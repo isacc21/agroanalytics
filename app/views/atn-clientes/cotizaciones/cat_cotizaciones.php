@@ -670,35 +670,29 @@ foreach($consultarProductos as $row){
        foreach($detalles as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetalleCotizacion'];
+        $unidad = $row['unidadDetalleCotizacion'];
         $monto = $row ['montoDetalleCotizacion'];
 
+        $typep="";
+        switch($unidad){
+          case "Litros":
+          $typep = "  [Lit]";
+          break;
+          case "Galones":
+          $typep = "  [Gal]";
+          break;
+          case "Ton_Metrica": 
+          $typep = "  [Ton. Met.]";
+          break;
+          case "Ton_Corta": 
+          $typep = "  [Ton. Corta]";
+          break;
+        }
         $cotizaciones->producto = $producto;
         $cProducto = $cotizaciones->consultarProductosxID();
 
         foreach($cProducto as $row){
           $nombreProducto = $row['nombreProducto'];
-          $tipoProducto = $row['presentacionProducto'];
-          $typep="";
-          switch($tipoProducto){
-            case 1:
-            $typep = "  [Gal]";
-            break;
-            case 2:
-            $typep = "  [Gal]";
-            break;
-            case 3: 
-            $typep = "  [Gal]";
-            break;
-            case 4: 
-            $typep = "  [Gal]";
-            break;
-            case 5:
-            $typep = "  [Lib]";
-            break;
-            case 6:
-            $typep = "  [Lib]";
-            break;
-          }
 
           ?>
           <tr>

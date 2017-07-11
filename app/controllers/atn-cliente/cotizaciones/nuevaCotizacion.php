@@ -34,6 +34,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 
 	$recProductos = explode("*hola*",$_POST['codigos']);
 	$recCantidades = explode("*hola*",$_POST['cantidades']);
+	$recUnidades = explode("*hola*",$_POST['unidades']);
 
 	$recibidos = count($recProductos);
 	$contador = $recibidos - 1;
@@ -122,6 +123,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 			$cotizaciones->folio=$folio;
 			$cotizaciones->producto=$recProductos[$i];
 			$cotizaciones->cantidad=$recCantidades[$i];
+			$cotizaciones->unidad=$recUnidades[$i];
 			$cotizaciones->monto=$monto_producto;
 
 			$porfin = $cotizaciones->registrarDetalle();

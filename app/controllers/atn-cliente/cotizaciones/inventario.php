@@ -22,23 +22,29 @@ if(isset($_POST['cliente'])){
 		else{
 			switch($_POST['unidad']){
 				case "Ton_Corta":
+				$pres = " ton. Corta";
+				break;
 				case "Galones":
 				$cantidad = $_POST['cantidad'];
+				$press = " gal.";
 				break;
 
 				case "Litros":
 				$cantidad = $_POST['cantidad']*0.26417205;
+				$pres = " lt.";
 				break;
 
 				case "Ton_Metrica": 
 				$cantidad = $_POST['cantidad']*1.1023;
+				$pres = " Ton. Met.";
+				break;
 			}
 			$faltante = $cantidad-$existencia;
 			if($faltante<=0){
 				echo "Introduce una cantidad";
 			}
 			else{
-				echo ($faltante);	
+				echo (number_format($faltante, 2, '.', ',').$pres);	
 			}
 			
 		}

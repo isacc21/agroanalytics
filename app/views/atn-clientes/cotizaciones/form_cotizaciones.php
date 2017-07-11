@@ -99,6 +99,7 @@
         </button>
       </div>
     </div>
+    
 
     <!--INICIA CUERPO DE PORTLET-->
     <div class="portlet-body form">
@@ -106,6 +107,7 @@
 
       <!--INICIA FORM-->
       <form class="form-horizontal save-user" id="guardarCotizacion" >
+        <input type="hidden" id="prod_faltante" value="">;
 
 
 
@@ -211,7 +213,7 @@
                   <br />
                   <div id="mensaje0" style="display:none">
                     <div class="col-md-1"></div>
-                    <div class="alert alert-danger col-md-10">
+                    <div class="alert alert-danger col-md-10 text-center">
                       <strong><div id="text-message0"></div></strong>
                     </div>
                   </div>
@@ -271,6 +273,8 @@
         });
 
         x=1;
+        var falto = 0;
+
         $("#app_producto").click(function(){
 
           $( "#nuevoProducto" ).append('<div class="form-group" id="remover'+x+'"><label class="col-md-3 control-label">Productos</label><div class="col-md-3"><select id="producto'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><?php 
@@ -298,7 +302,7 @@
                 case 6:
                 $preS = " | Súper saco";
                 break;
-              }?><option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option><?php } ?></select></div><div class="col-md-2"> <input type="text" class="form-control" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "> </div><div class="col-md-2"><select id="unidad'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><option id="litro'+x+'" value="Litros" style="display:none">Litros</option><option id="galon'+x+'" value="Galones" style="display:none">Galones</option><option id="metrica'+x+'" value="Ton_Metrica" style="display:none">Ton. Métrica</option><option id="corta'+x+'" value="Ton_Corta" style="display:none">Ton. Corta</option></select></div><div class="col-md-1"> <div class="btn blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div><br/><br/><br/><div id="mensaje'+x+'" style="display:none"><div class="col-md-1"></div><div class="alert alert-danger col-md-10"><strong><div id="text-message'+x+'"></div></strong></div></div></div>');
+              }?><option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option><?php } ?></select></div><div class="col-md-2"> <input type="text" class="form-control" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "> </div><div class="col-md-2"><select id="unidad'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><option id="litro'+x+'" value="Litros" style="display:none">Litros</option><option id="galon'+x+'" value="Galones" style="display:none">Galones</option><option id="metrica'+x+'" value="Ton_Metrica" style="display:none">Ton. Métrica</option><option id="corta'+x+'" value="Ton_Corta" style="display:none">Ton. Corta</option></select></div><div class="col-md-1"> <div class="btn blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div><br/><br/><br/><div id="mensaje'+x+'" style="display:none"><div class="col-md-1"></div><div class="alert alert-danger col-md-10 text-center"><strong><div id="text-message'+x+'"></div></strong></div></div></div>');
           x++;
         });
         productoEliminado = [];
@@ -320,6 +324,7 @@
          var registros = 0;
          var atrabajar;
          var selected;
+
          var vf ="";
          var lim = 0;
 
@@ -388,6 +393,7 @@
             if(result=="No hay producto"){
               $("#mensaje"+atrabajar).css("display", "block");
               $("#text-message"+atrabajar).text("No hay existencia de este producto");
+              $("#prod_faltante").val("1");
             }
             else{
               if(result=="Introduce una cantidad"){
@@ -395,7 +401,9 @@
               }
               else{
                 $("#mensaje"+atrabajar).css("display", "block");
-                $("#text-message"+atrabajar).text("Faltan "+result+" Gal. para surtir el producto");  
+                $("#text-message"+atrabajar).text("Faltan "+result+" para surtir el producto");
+                $("#prod_faltante").val("1");
+
               }
             }
             
@@ -524,9 +532,7 @@
   $("#nuevoProducto").append( '<input type="hidden" value="'+cantidades+'" id="cantidades" name="cantidades">');
   $("#nuevoProducto").append( '<input type="hidden" value="'+unidades+'" id="unidades" name="unidades">');
 
-  swal($("#unidades").val());
-
-  /*$.ajax({
+  $.ajax({
     type: "POST",
     url: "../../../controllers/atn-cliente/cotizaciones/nuevaCotizacion.php",
     data: "codigos="+$("#codigos").val()+
@@ -543,7 +549,7 @@
     }else{
       swal (result, "", "warning");
     } 
-  });*/
+  });
 
 });
 
