@@ -13,6 +13,7 @@ class cotizaciones{
 
   var $producto;
   var $cantidad;
+  var $unidad;
   var $monto;
 
   var $codigo;
@@ -82,6 +83,7 @@ class cotizaciones{
       folioCotizacion,
       codigoProducto,
       cantidadDetalleCotizacion,
+      unidadDetalleCotizacion,
       montoDetalleCotizacion)
 
       VALUES (
@@ -89,6 +91,7 @@ class cotizaciones{
       '".$this->folio."',
       '".$this->producto."',
       '".$this->cantidad."',
+      '".$this->unidad."',
       '".$this->monto."')";
 
       $statement = $conexion->prepare($query);
