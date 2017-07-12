@@ -120,46 +120,12 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 				}
 			}
 
-			$cotizaciones->producto = $recProductos[$i];
-			$num_inventario = $cotizaciones->inventarioEsp();
-
-			foreach($num_inventario as $row){
-				$existencia = $row['SUM(existenciaInventario)'];
-			}
-			$binExistencia = 0;
-
-			if(is_null($existencia)){
-				$binExistencia = 1;
-			}
-			else{
-				switch($recUnidades[$i]){
-					case "Ton_Corta";
-					break;
-					case "Galones":
-					$cantidad = $recCantidades[$i];
-					break;
-
-					case "Litros":
-					$cantidad = $recCantidades[$i]*0.26417205;
-					break;
-
-					case "Ton_Metrica": 
-					$cantidad = $recCantidades[$i]*1.1023;
-					break;
-				}
-			}
-
-			$faltante = $cantidad-$existencia;
-			if($faltante>0){
-				$binExistencia = 1;
-			}
 
 			$cotizaciones->folio=$folio;
 			$cotizaciones->producto=$recProductos[$i];
 			$cotizaciones->cantidad=$recCantidades[$i];
 			$cotizaciones->unidad=$recUnidades[$i];
 			$cotizaciones->monto=$monto_producto;
-			$cotizaciones->status=$binExistencia;
 
 			$porfin = $cotizaciones->registrarDetalle();
 

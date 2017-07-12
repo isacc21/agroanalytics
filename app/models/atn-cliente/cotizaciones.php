@@ -84,8 +84,7 @@ class cotizaciones{
       codigoProducto,
       cantidadDetalleCotizacion,
       unidadDetalleCotizacion,
-      montoDetalleCotizacion,
-      statusDetalleCotizacion)
+      montoDetalleCotizacion)
 
       VALUES (
       NULL,
@@ -93,8 +92,7 @@ class cotizaciones{
       '".$this->producto."',
       '".$this->cantidad."',
       '".$this->unidad."',
-      '".$this->monto."',
-      '".$this->status."')";
+      '".$this->monto."')";
 
       $statement = $conexion->prepare($query);
 

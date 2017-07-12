@@ -672,7 +672,6 @@ foreach($consultarProductos as $row){
         $cantidad = $row['cantidadDetalleCotizacion'];
         $unidad = $row['unidadDetalleCotizacion'];
         $monto = $row['montoDetalleCotizacion'];
-        $status = $row['statusDetalleCotizacion'];
 
         $typep="";
         switch($unidad){
@@ -703,10 +702,46 @@ foreach($consultarProductos as $row){
             <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
             <td>
               <?php 
+
+              $cotizaciones->producto =$producto;
+              $num_inventario = $cotizaciones->inventarioEsp();
+
+              foreach($num_inventario as $row){
+                $existencia = $row['SUM(existenciaInventario)'];
+              }
+              $binExistencia = 0;
+
+              if(is_null($existencia)){
+                $binExistencia = 1;
+              }
+              else{
+                switch($unidad){
+                  case "Ton_Corta";
+                  break;
+                  case "Galones":
+                  $qty = $cantidad;
+                  break;
+
+                  case "Litros":
+                  $qty = $cantidad*0.26417205;
+                  break;
+
+                  case "Ton_Metrica": 
+                  $qty = $cantidad*1.1023;
+                  break;
+                }
+              }
+
+              $faltante = $qty-$existencia;
+              if($faltante>0){
+                $binExistencia = 1;
+              }
+
+
               $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
               $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
 
-              if($status==1){
+              if($binExistencia==1){
                 echo $negative;
               }
               else{
@@ -724,8 +759,8 @@ foreach($consultarProductos as $row){
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><strong>Total</strong></td>
-        <td><?php echo  "$ ".number_format($total_coti,2, '.', ','); ?></td>
+        <td><div class="text-right"><strong>Total:</strong></div></td>
+        <td><div class="text-center"><?php echo  "$ ".number_format($total_coti,2, '.', ','); ?></div></td>
       </tr>
 
     </table>
