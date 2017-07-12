@@ -661,6 +661,7 @@ foreach($consultarProductos as $row){
          <th>Cantidad</th>
          <th>Precio Unitario</th>
          <th>Monto</th>
+         <th>En existencia</th>
        </tr>
        <?php 
        $total_coti = 0;
@@ -671,7 +672,8 @@ foreach($consultarProductos as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetalleCotizacion'];
         $unidad = $row['unidadDetalleCotizacion'];
-        $monto = $row ['montoDetalleCotizacion'];
+        $monto = $row['montoDetalleCotizacion'];
+        $status = $row['statusDetalleCotizacion'];
 
         $typep="";
         switch($unidad){
@@ -700,6 +702,19 @@ foreach($consultarProductos as $row){
             <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
             <td><?php echo "$ ".number_format(($monto / $cantidad),2, '.', ','); ?></td>
             <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
+            <td>
+              <?php 
+              $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
+              $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
+
+              if($status==1){
+                echo $negative;
+              }
+              else{
+                echo $positive;
+              }
+              ?>
+            </td>
           </tr>
           <?php
         }
@@ -709,10 +724,11 @@ foreach($consultarProductos as $row){
       <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td><strong>Total</strong></td>
         <td><?php echo  "$ ".number_format($total_coti,2, '.', ','); ?></td>
       </tr>
-      
+
     </table>
   </div>
   <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
