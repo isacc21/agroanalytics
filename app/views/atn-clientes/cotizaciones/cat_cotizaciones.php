@@ -205,7 +205,6 @@ else{
 $consultaModal = $cotizaciones->consultarCotizaciones();
 $consultarProductos = $cotizaciones->consultarCotizaciones();
 
-###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 $usuarios->id=$_SESSION['idUsuario'];
 $result = $usuarios->consultarPermisos();
 
