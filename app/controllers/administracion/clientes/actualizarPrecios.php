@@ -36,6 +36,7 @@ if($prueba == "Limpio"){
 
 	$envioProductos = explode(":",$_POST['id']);
 	$envioPrecios = explode(":",$_POST['precios']);
+	$envioPreciosM = explode(":",$_POST['preciosM']);
 
 	$countUno = count($envioProductos);
 	$countDos = count($envioPrecios);
@@ -50,9 +51,10 @@ if($prueba == "Limpio"){
 
 
 
-		if($envioPrecios[$i]!=$venta&&$envioPrecios[$i]!=0.00){
+		if($envioPrecios[$i]!=$venta&&$envioPrecios[$i]!=0.00||$envioPreciosM[$i]!=0.00){
 			$clientes->codigo = $codigo;
 			$clientes->precio = $envioPrecios[$i];
+			$clientes->precioM = $envioPreciosM[$i];
 			$clientes->rfc = $_POST['rfc'];
 
 			$metodo = $clientes->guardarPrecio();

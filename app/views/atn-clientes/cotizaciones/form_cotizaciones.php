@@ -441,12 +441,14 @@
 
       $("#codigos").remove();
       $("#cantidades").remove();
+      $("#unidades").remove();
       e.preventDefault();
       var registros = 0;
       registros = x;
 
       var codigos = "";
       var cantidades = "";
+      var unidades = "";
       var separacion = "*hola*";
       var bander = 0;
       for (var fp = 0; fp < registros; fp++) {
@@ -462,17 +464,20 @@
           if(bander==0){
             codigos = codigos + $("#producto"+fp).val() + separacion;
             cantidades = cantidades + $("#cantidad"+fp).val() + separacion;
+            unidades = unidades + $("#unidad"+fp).val() + separacion;
           }
         }
 
         $("#nuevoProducto").append( '<input type="hidden" value="'+codigos+'" id="codigos" name="codigos">');
         $("#nuevoProducto").append( '<input type="hidden" value="'+cantidades+'" id="cantidades" name="cantidades">');
+        $("#nuevoProducto").append( '<input type="hidden" value="'+unidades+'" id="unidades" name="unidades">');
 
         $.ajax({
           type: "POST",
           url: "../../../controllers/atn-cliente/cotizaciones/calculo.php",
           data: "codigos="+$("#codigos").val()+
           "&cantidades="+$("#cantidades").val()+
+          "&unidades="+$("#unidades").val()+
           "&codigo="+$("#codigo").val()+
           "&fecha="+$("#fecha").val()+
           "&cliente="+$("#cliente").val()

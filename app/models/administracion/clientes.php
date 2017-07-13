@@ -46,6 +46,7 @@ class clientes{
 
   var $codigo;
   var $precio;
+  var $precioM;
 
   // DECLARACIÓN DEL MÉTODO CONSTRUCTOR
   function __construct($datosConexionBD){
@@ -339,13 +340,15 @@ class clientes{
       $query = "INSERT INTO preciosespeciales (
       idEspecial,
       codigoProducto,
-      precioEspecial,
+      iPrecioEspecial,
+      mPrecioEspecial,
       rfcCliente)
 
       VALUES (
       NULL,
       '".$this->codigo."',
       '".$this->precio."',
+      '".$this->precioM."',
       '".$this->rfc."')";
 
       $statement = $conexion->prepare($query);

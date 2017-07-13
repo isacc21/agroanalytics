@@ -132,8 +132,10 @@ foreach ($result as $row){
                 <th> Nombre </th>
                 <th> Presentación </th>
                 <th> Precio compra </th>
-                <th> Venta a Dist.</th>
-                <th> Venta a Grower</th>
+                <th> Dist. Ing.</th>
+                <th> Dist. Mét.</th>
+                <th> Grw. Ing.</th>
+                <th> Grw. Mét.</th>
                 <th> Acciones </th>
               </tr>
             </thead>
@@ -149,8 +151,10 @@ foreach ($result as $row){
                 $nombre = $row['nombreProducto'];
                 $presentacion = $row['presentacionProducto'];
                 $tipo = $row['tipoProducto'];
-                $dis = $row['ventaDisProducto'];
-                $grower = $row['ventaGrwProducto'];
+                $dis = $row['iVentaDisProducto'];
+                $dism = $row['mVentaDisProducto'];
+                $grower = $row['iVentaGrwProducto'];
+                $growerm = $row['mVentaGrwProducto'];
                 $compra = $row['compraProducto'];
                 ?>
                 <!--TERMINO DE FOREACH PARA TABLA DE PRODUCTOS-->
@@ -190,7 +194,9 @@ foreach ($result as $row){
                     
                     <td> <?php echo "$ ".$compra;?></td>
                     <td> <?php echo "$ ".$dis;?></td>
+                    <td> <?php echo "$ ".$dism;?></td>
                     <td> <?php echo "$ ".$grower;?></td>
+                    <td> <?php echo "$ ".$growerm;?></td>
                     <td>
                       <?php
 

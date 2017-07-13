@@ -37,7 +37,9 @@ class productos{
   var $caducidad;
   var $compra;
   var $distribuidor;
+  var $distribuidorM;
   var $grower;
+  var $growerM;
   var $cofepris;
   var $ddCof;
   var $mmCof;
@@ -76,8 +78,10 @@ class productos{
       tipoProducto,
       caducidadProducto,
       compraProducto,
-      ventaDisProducto,
-      ventaGrwProducto,
+      iVentaDisProducto,
+      mVentaDisProducto,
+      iVentaGrwProducto,
+      mVentaGrwProducto,
       cofeprisProducto,
       ddCofProducto,
       mmCofProducto,
@@ -101,7 +105,9 @@ class productos{
       '".$this->caducidad."',
       '".$this->compra."',
       '".$this->distribuidor."',
+      '".$this->distribuidorM."',
       '".$this->grower."',
+      '".$this->growerM."',
       '".$this->cofepris."',
       '".$this->ddCof."',
       '".$this->mmCof."',
@@ -151,8 +157,10 @@ class productos{
       tipoProducto            = '".$this->tipo."',
       caducidadProducto       = '".$this->caducidad."',
       compraProducto          = '".$this->compra."',
-      ventaDisProducto        = '".$this->distribuidor."',
-      ventaGrwProducto        = '".$this->grower."',
+      iVentaDisProducto       = '".$this->distribuidor."',
+      mVentaDisProducto       = '".$this->distribuidorM."',
+      iVentaGrwProducto       = '".$this->grower."',
+      mVentaGrwProducto       = '".$this->growerM."',
       cofeprisProducto        = '".$this->cofepris."',
       ddCofProducto           = '".$this->ddCof."',
       mmCofProducto           = '".$this->mmCof."',
@@ -166,7 +174,7 @@ class productos{
       mmSemProducto           = '".$this->mmSem."',
       yyyySemProducto         = '".$this->yyyySem."',
       arancelProducto         = '".$this->arancel."',
-      densidadProducto         = '".$this->densidad."'
+      densidadProducto        = '".$this->densidad."'
 
 
       WHERE codigoProducto =     '".$this->viejo."'";

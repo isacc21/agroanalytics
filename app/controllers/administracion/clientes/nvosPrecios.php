@@ -35,6 +35,7 @@ if(isset($_POST['rfc'])){
 
 		$envioProductos = explode(":",$_POST['id']);
 		$envioPrecios = explode(":",$_POST['precios']);
+		$envioPreciosM = explode(":",$_POST['preciosM']);
 
 		$countUno = count($envioProductos);
 		$countDos = count($envioPrecios);
@@ -52,6 +53,7 @@ if(isset($_POST['rfc'])){
 			if($envioPrecios[$i]!=$venta){
 				$clientes->codigo = $codigo;
 				$clientes->precio = $envioPrecios[$i];
+				$clientes->precioM = $envioPreciosM[$i];
 				$clientes->rfc = $_POST['rfc'];
 
 				$metodo = $clientes->guardarPrecio();

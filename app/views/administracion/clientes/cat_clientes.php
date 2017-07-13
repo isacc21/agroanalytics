@@ -395,10 +395,10 @@ foreach($consultaPreciosMo as $row){
 
   ?>
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal fade" id="precios<?=$rfc;?>" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal fade bs-modal-lg" id="precios<?=$rfc;?>" tabindex="-1" role="dialog" aria-hidden="true">
 
     <!-- INICIO DE VENTANA MODAL -->
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
       <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
       <div class="modal-content">
@@ -419,15 +419,17 @@ foreach($consultaPreciosMo as $row){
 
           <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE PROVEEDORES-->
           <table class="table table-hover">
-            <tr><th>Producto</th> <th>Presentación</th> <th>Precio</th></tr>
+            <tr><th>Producto</th> <th>Presentación</th> <th>Precio S. Inglés</th><th>Precio S. Métrico</th></tr>
             <?php
             $consultaPrecios = $clientes->consultarProductos();
 
 
             foreach($consultaPrecios as $row){
               $nombre = $row['nombreProducto'];
-              $distri = $row['ventaDisProducto'];
-              $grower = $row['ventaGrwProducto'];
+              $distri = $row['iVentaDisProducto'];
+              $distriM = $row['mVentaDisProducto'];
+              $grower = $row['iVentaGrwProducto'];
+              $growerM = $row['mVentaGrwProducto'];
               $codigo = $row['codigoProducto'];
               $presentacion = $row['presentacionProducto'];
 
@@ -439,26 +441,38 @@ foreach($consultaPreciosMo as $row){
                 <td><?php 
                   if($presentacion==1){
                     echo "Cubeta";
+                    $unidad_ing="[USD/gal]";
+                    $unidad_met="[USD/lt]";
                   }
                   else{
                     if($presentacion==2){
                       echo "Tibor";
+                      $unidad_ing="[USD/gal]";
+                      $unidad_met="[USD/lt]";
                     }
                     else{
                       if($presentacion==3){
                         echo "Tote";
+                        $unidad_ing="[USD/gal]";
+                        $unidad_met="[USD/lt]";
                       }
                       else{
                         if($presentacion == 4){
                           echo "Granel";  
+                          $unidad_ing="[USD/gal]";
+                          $unidad_met="[USD/lt]";
                         }
                         else{
                           if($presentacion==5){
                             echo "Saco";
+                            $unidad_ing="[USD/ton.Corta]";
+                            $unidad_met="[USD/ton.Met.]";
                           }
                           else{
                             if($presentacion == 6){
                               echo "Super saco";
+                              $unidad_ing="[USD/ton.Corta]";
+                              $unidad_met="[USD/ton.Met.]";
                             }
                           }
                         }
@@ -482,7 +496,7 @@ foreach($consultaPreciosMo as $row){
                         $clientes->rfc = $rfc;
                         $lista_precios = $clientes->consultarEspeciales();
                         foreach($lista_precios as $row){
-                          $precio = $row['precioEspecial'];
+                          $precio = $row['iPrecioEspecial'];
                         }
 
                         $final = $precio;
@@ -490,8 +504,39 @@ foreach($consultaPreciosMo as $row){
                     }
 
 
-                    echo "$ ". $final . " &nbsp;&nbsp;[USD/gal]";
+                    echo "$ ". $final . " &nbsp;&nbsp;".$unidad_ing;
                     ?></td>
+
+
+
+                    <td><? 
+                    $final = 0;
+                    
+                    if($tipo==1){
+                      $final = $distriM;
+                    }
+                    else{
+                      if($tipo==3){
+                        $final = $growerM;
+                      }
+                      else{
+                        $clientes->codigo = $codigo;
+                        $clientes->rfc = $rfc;
+                        $lista_precios = $clientes->consultarEspeciales();
+                        foreach($lista_precios as $row){
+                          $precio = $row['mPrecioEspecial'];
+                        }
+
+                        $final = $precio;
+                      }
+                    }
+
+
+                    echo "$ ". $final . " &nbsp;&nbsp;".$unidad_met;
+                    ?></td>
+
+
+
                   </tr>
                   <?php
 
@@ -582,7 +627,7 @@ foreach($consultaPreciosMo as $row){
   });
 </script>
 
-<script src="../../../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>

@@ -41,6 +41,7 @@ else{
 	if($_POST['cliente']!="null"){
 		$recProductos = explode("*hola*",$_POST['codigos']);
 		$recCantidades = explode("*hola*",$_POST['cantidades']);
+		$recUnidades = explode("*hola*",$_POST['unidades']);
 
 		$recibidos = count($recProductos);
 		$contador = $recibidos - 1;
@@ -60,15 +61,28 @@ else{
 						$cotizaciones->producto = $recProductos[$i];
 						$precios = $cotizaciones->consultarProductosxID();
 						foreach($precios as $row){
-							$grower = $row['ventaGrwProducto'];
-							$distri = $row['ventaDisProducto'];
+							$grower = $row['iVentaGrwProducto'];
+							$growerM = $row['mVentaGrwProducto'];
+							$distri = $row['iVentaDisProducto'];
+							$distriM = $row['mVentaDisProducto'];
 						}
 						if($tipo_cliente == 1){
-							$total += ($distri*$recCantidades[$i]);	
+							if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+								$total += ($distriM*$recCantidades[$i]);	
+							}
+							else{
+								$total += ($distri*$recCantidades[$i]);		
+							}
+							
 						}
 						else{
 							if($tipo_cliente == 3){
-								$total += ($grower*$recCantidades[$i]);
+								if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+									$total += ($growerM*$recCantidades[$i]);	
+								}
+								else{
+									$total += ($grower*$recCantidades[$i]);		
+								}
 							}
 						}
 
@@ -80,9 +94,16 @@ else{
 							$precioEspe = $cotizaciones->consultarPrecios();
 
 							foreach($precioEspe as $row){
-								$monto = $row['precioEspecial'];
+								$monto = $row['iPrecioEspecial'];
+								$montoM = $row['mPrecioEspecial'];
 							}
-							$total += ($monto*$recCantidades[$i]);
+							if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+								$total += ($montoM*$recCantidades[$i]);	
+							}
+							else{
+								$total += ($monto*$recCantidades[$i]);	
+							}
+							
 						}
 					}
 				}

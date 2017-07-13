@@ -90,19 +90,27 @@ if (isset($_REQUEST['rfc'])){
                   $lista_precios = $clientes->consultarEspeciales();
 
                   foreach($lista_precios as $row){
-                    $precioEspecial = $row['precioEspecial'];
-                    if($precioEspecial != 0 || $precioEspeciales != null){
+                    $precioEspecial = $row['iPrecioEspecial'];
+                    $precioEspecialM = $row['mPrecioEspecial'];
+                    if($precioEspecial != 0 || $precioEspeciales != null ||$precioEspecialM != 0){
                       $final = $precioEspecial;
+                      $finalM = $precioEspecialM;
+                    }
+                    else{
+                      $final = "0.00";
+                      $finalM = "0.00";
                     }
                   }
                 }
                 else{
                   $final = "0.00";
+                  $finalM = "0.00";
                 }
 
                 ?>
 
                 <input type="number" class="form-control input-circle" id="precio<?=$x;?>" name="precio<?=$x;?>" step="0.01" min="0" value="<?=$final;?>">
+                <input type="number" class="form-control input-circle" id="precioM<?=$x;?>" name="precioM<?=$x;?>" step="0.01" min="0" value="<?=$finalM;?>">
                 <input type="hidden" id="idProducto" name="idProducto" value="<?=$idProducto;?>">
               </div>
             </div>
@@ -153,8 +161,7 @@ if (isset($_REQUEST['rfc'])){
 
 <!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
 <div class="col-md-2"></div>
-<script src="../../../../assets/global/scripts/app.min.js" type="text/javascript"></script>
-<!-- END THEME GLOBAL SCRIPTS -->
+
 
 <script type="text/javascript">
 
@@ -173,12 +180,15 @@ if (isset($_REQUEST['rfc'])){
   /* AJAX QUE ENVIA INFORMACION AL URL DE ACUERDO A LA SITUACION */
   $("#preciosNuevos").submit(function(e){
     var precios = "";
+    var preciosM= "";
     var separacion = ":";
     var vueltas = $("#vueltas").val();
 
     for (var i = 0; i < vueltas; i++) {
       var precio = $("#precio"+i).val();
+      var precioM = $("#precioM"+i).val();
       precios = precios + precio + separacion;
+      preciosM = preciosM + precioM + separacion;
     }
 
     
@@ -188,6 +198,7 @@ if (isset($_REQUEST['rfc'])){
       url: urlCont,
       data: "productos="+$("#productos").val()+
       "&precios="+precios+
+      "&preciosM="+preciosM+
       "&id="+$("#id").val()+
       "&rfc="+$("#rfc").val()
     }).done(function(result){

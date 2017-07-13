@@ -139,8 +139,10 @@
     $tipo = $row['tipoProducto'];
     $caducidad = $row['caducidadProducto'];
     $compra = $row['compraProducto'];
-    $distribuidor = $row['ventaDisProducto'];
-    $grower = $row['ventaGrwProducto'];
+    $distribuidor = $row['iVentaDisProducto'];
+    $distribuidor_m=$row['mVentaDisProducto'];
+    $grower = $row['iVentaGrwProducto'];
+    $grower_m = $row['mVentaGrwProducto'];
     $cofepris = $row['cofeprisProducto'];
     $ddCof = $row['ddCofProducto'];
     $mmCof = $row['mmCofProducto'];
@@ -353,8 +355,10 @@
         '&tipo='+ tipo+
         '&caducidad='+$("#caducidad").val()+
         '&compra='+$("#compra").val()+
-        '&distribuidor='+$("#ventaDistri").val()+
-        '&grower='+$("#ventaGrower").val()+
+        '&distribuidor='+$("#iVentaDistri").val()+
+        '&distribuidorM='+$("#mVentaDistri").val()+
+        '&grower='+$("#iVentaGrower").val()+
+        '&growerM='+$("#mVentaGrower").val()+
         '&cofepris='+$("#cofepris").val()+
         '&fechaCof='+$("#fechaCof").val()+
         '&cicoplafest='+$("#cicoplafest").val()+
@@ -550,8 +554,11 @@
         <!--INICIA INPUT DE PRECIO DE VENTA -->
         <div class="form-group">
           <label class="col-md-3 control-label">Precio de venta | Distribuidor</label>
-          <div class="col-md-6">
-            <input type="number" step="any" min="0" class="form-control " id="ventaDistri" name="venta" value="<?=$distribuidor;?>" required>
+          <div class="col-md-3">
+            <input type="number" step="any" min="0" class="form-control " id="iVentaDistri" name="venta" value="<?=$distribuidor;?>" required placeholder="Sist. Inglés">
+          </div>
+          <div class="col-md-3">
+            <input type="number" step="any" min="0" class="form-control " id="mVentaDistri" name="venta" value="<?=$distribuidor_m;?>" required placeholder="Sist. Métrico">
           </div>
         </div>
         <!-- TERMINA INPUT DE PRECIO DE VENTA-->
@@ -559,8 +566,11 @@
         <!--INICIA INPUT DE PRECIO DE VENTA -->
         <div class="form-group">
           <label class="col-md-3 control-label">Precio de venta | Grower</label>
-          <div class="col-md-6">
-            <input type="number" step="any" min="0" class="form-control " id="ventaGrower" name="venta" value="<?=$grower;?>" required>
+          <div class="col-md-3">
+            <input type="number" step="any" min="0" class="form-control " id="iVentaGrower" name="venta" value="<?=$grower;?>" required placeholder="Sist. Inglés">
+          </div>
+          <div class="col-md-3">
+            <input type="number" step="any" min="0" class="form-control " id="mVentaGrower" name="venta" value="<?=$grower_m;?>" required placeholder="Sist. Métrico">
           </div>
         </div>
         <!-- TERMINA INPUT DE PRECIO DE VENTA-->
