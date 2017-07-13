@@ -92,7 +92,9 @@ if(isset($_POST['codigo'])){
 			$productos->caducidad = $_POST['caducidad'];
 			$productos->compra = $_POST['compra'];
 			$productos->distribuidor = $_POST['distribuidor'];
+			$productos->distribuidorM = $_POST['distribuidorM'];
 			$productos->grower = $_POST['grower'];
+			$productos->growerM = $_POST['growerM'];
 			$productos->cofepris = $_POST['cofepris'];
 			$productos->ddCof = $diaCof;
 			$productos->mmCof = $mesCof;
