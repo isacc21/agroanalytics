@@ -85,7 +85,26 @@ if(isset($_POST['codigo'])){
 		} ## LLAVE DE IF #################################################################
 		else{
 
-			$productos->codigo = $_POST['codigo'];
+			$letras = strlen($_POST['codigo']);
+
+			$nvoCodigo = "";
+			$antCodigo = $_POST['codigo'];
+
+			for ($i=0; $i < $letras ; $i++) { 
+				
+				if($antCodigo[$i]!=" "){
+					$nvoCodigo = $nvoCodigo.$antCodigo[$i];	
+				}
+				else{
+					if($antCodigo[$i]==" "){
+						if(($i+1)!=$letras){
+							$nvoCodigo = $nvoCodigo."_";		
+						}
+					}
+				}
+			}
+
+			$productos->codigo = $nvoCodigo;
 			$productos->nombre = $_POST['nombre'];
 			$productos->presentacion = $_POST['presentacion'];
 			$productos->tipo = $_POST['tipo'];
