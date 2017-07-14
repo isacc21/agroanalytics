@@ -107,7 +107,7 @@
 
       <!--INICIA FORM-->
       <form class="form-horizontal save-user" id="guardarCotizacion" >
-        <input type="hidden" id="prod_faltante" value="">;
+        <input type="hidden" id="prod_faltante" value="">
 
 
 

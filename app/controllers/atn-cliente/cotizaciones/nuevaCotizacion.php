@@ -90,16 +90,28 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 					$cotizaciones->producto = $recProductos[$i];
 					$precios = $cotizaciones->consultarProductosxID();
 					foreach($precios as $row){
-						$grower = $row['ventaGrwProducto'];
-						$distri = $row['ventaDisProducto'];
+						$grower = $row['iVentaGrwProducto'];
+						$growerM = $row['mVentaGrwProducto'];
+						$distri = $row['iVentaDisProducto'];
+						$distriM = $row['mVentaDisProducto'];
 					}
 					if($tipo_cliente == 1){
-						$total += ($distri*$recCantidades[$i]);	
-						$monto_producto = $distri*$recCantidades[$i];
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($distriM*$recCantidades[$i]);
+							$monto_producto = $distriM*$recCantidades[$i];
+						}
+						else{
+							$total += ($distri*$recCantidades[$i]);		
+							$monto_producto = $distri*$recCantidades[$i];
+						}
 					}
 					else{
-						if($tipo_cliente == 3){
-							$total += ($grower*$recCantidades[$i]);
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($growerM*$recCantidades[$i]);
+							$monto_producto = $growerM*$recCantidades[$i];	
+						}
+						else{
+							$total += ($grower*$recCantidades[$i]);		
 							$monto_producto = $grower*$recCantidades[$i];
 						}
 					}
@@ -112,10 +124,17 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 						$precioEspe = $cotizaciones->consultarPrecios();
 
 						foreach($precioEspe as $row){
-							$monto = $row['precioEspecial'];
+							$monto = $row['iPrecioEspecial'];
+							$montoM = $row['mPrecioEspecial'];
 						}
-						$total += ($monto*$recCantidades[$i]);
-						$monto_producto = $monto*$recCantidades[$i];
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($montoM*$recCantidades[$i]);	
+							$monto_producto = $montoM*$recCantidades[$i];
+						}
+						else{
+							$total += ($monto*$recCantidades[$i]);
+							$monto_producto = $monto*$recCantidades[$i];	
+						}
 					}
 				}
 			}
