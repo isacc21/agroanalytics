@@ -34,90 +34,87 @@ foreach($consulta as $row){
 	$codigoConsulta = $row['folioCotizacion'];
 }
 
-if($_POST['codigo']==$codigoConsulta){
-	echo "Error";
-}
-else{
-	if($_POST['cliente']!="null"){
-		$recProductos = explode("*hola*",$_POST['codigos']);
-		$recCantidades = explode("*hola*",$_POST['cantidades']);
-		$recUnidades = explode("*hola*",$_POST['unidades']);
 
-		$recibidos = count($recProductos);
-		$contador = $recibidos - 1;
+if($_POST['cliente']!="null"){
+	$recProductos = explode("*hola*",$_POST['codigos']);
+	$recCantidades = explode("*hola*",$_POST['cantidades']);
+	$recUnidades = explode("*hola*",$_POST['unidades']);
 
-		$total = 0;
-		$hola = 0;
+	$recibidos = count($recProductos);
+	$contador = $recibidos - 1;
 
-		for ($i=0; $i < $contador ; $i++) {
-			if($recProductos!=""){ 
-				$cotizaciones->cliente = $_POST['cliente'];
-				$tipos = $cotizaciones->consultarClientes();
+	$total = 0;
+	$hola = 0;
 
-				foreach($tipos as $row){
-					$tipo_cliente = $row['tipoCliente'];
+	for ($i=0; $i < $contador ; $i++) {
+		if($recProductos!=""){ 
+			$cotizaciones->cliente = $_POST['cliente'];
+			$tipos = $cotizaciones->consultarClientes();
 
-					if($tipo_cliente == 1 || $tipo_cliente == 3){
-						$cotizaciones->producto = $recProductos[$i];
-						$precios = $cotizaciones->consultarProductosxID();
-						foreach($precios as $row){
-							$grower = $row['iVentaGrwProducto'];
-							$growerM = $row['mVentaGrwProducto'];
-							$distri = $row['iVentaDisProducto'];
-							$distriM = $row['mVentaDisProducto'];
-						}
-						if($tipo_cliente == 1){
-							if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
-								$total += ($distriM*$recCantidades[$i]);	
-							}
-							else{
-								$total += ($distri*$recCantidades[$i]);		
-							}
-							
+			foreach($tipos as $row){
+				$tipo_cliente = $row['tipoCliente'];
+
+				if($tipo_cliente == 1 || $tipo_cliente == 3){
+					$cotizaciones->producto = $recProductos[$i];
+					$precios = $cotizaciones->consultarProductosxID();
+					foreach($precios as $row){
+						$grower = $row['iVentaGrwProducto'];
+						$growerM = $row['mVentaGrwProducto'];
+						$distri = $row['iVentaDisProducto'];
+						$distriM = $row['mVentaDisProducto'];
+					}
+					if($tipo_cliente == 1){
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($distriM*$recCantidades[$i]);	
 						}
 						else{
-							if($tipo_cliente == 3){
-								if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
-									$total += ($growerM*$recCantidades[$i]);	
-								}
-								else{
-									$total += ($grower*$recCantidades[$i]);		
-								}
-							}
+							$total += ($distri*$recCantidades[$i]);		
 						}
-
+						
 					}
 					else{
-						if($tipo_cliente == 2){
-							$cotizaciones->producto = $recProductos[$i];
-							$cotizaciones->cliente = $_POST['cliente'];
-							$precioEspe = $cotizaciones->consultarPrecios();
-
-							foreach($precioEspe as $row){
-								$monto = $row['iPrecioEspecial'];
-								$montoM = $row['mPrecioEspecial'];
-							}
+						if($tipo_cliente == 3){
 							if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
-								$total += ($montoM*$recCantidades[$i]);	
+								$total += ($growerM*$recCantidades[$i]);	
 							}
 							else{
-								$total += ($monto*$recCantidades[$i]);	
+								$total += ($grower*$recCantidades[$i]);		
 							}
-							
 						}
+					}
+
+				}
+				else{
+					if($tipo_cliente == 2){
+						$cotizaciones->producto = $recProductos[$i];
+						$cotizaciones->cliente = $_POST['cliente'];
+						$precioEspe = $cotizaciones->consultarPrecios();
+
+						foreach($precioEspe as $row){
+							$monto = $row['iPrecioEspecial'];
+							$montoM = $row['mPrecioEspecial'];
+						}
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($montoM*$recCantidades[$i]);	
+						}
+						else{
+							$total += ($monto*$recCantidades[$i]);	
+						}
+						
 					}
 				}
 			}
 		}
-		$final = number_format($total,2, '.', ',');
-		echo "$ ". $final;
+	}
+	$final = number_format($total,2, '.', ',');
+	echo "$ ". $final;
 	//echo $cotizaciones->registrarCotizacion();
 
-	}
-	else{
-		echo "Seleccione un cliente";
-	}
 }
+else{
+	echo "Seleccione un cliente";
+}
+
 
 
 //echo $_POST['fecha'].$_POST['cliente'].$_POST['codigo'];

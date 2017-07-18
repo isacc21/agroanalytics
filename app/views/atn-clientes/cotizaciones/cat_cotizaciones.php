@@ -670,45 +670,70 @@ foreach($consultarProductos as $row){
 
 						foreach($detalles as $row){
 							$producto = $row['codigoProducto'];
-							$cantidad = $row['cantidadDetalleCotizacion'];
-							$unidad = $row['unidadDetalleCotizacion'];
-							$monto = $row['montoDetalleCotizacion'];
+
+              $cantidad = $row['cantidadDetalleCotizacion'];
+              $unidad = $row['unidadDetalleCotizacion'];
+              $monto = $row['montoDetalleCotizacion'];
+
+              
 
 
-							$typep="";
-							switch($unidad){
-								case "Litros":
-								$typep = "  [Lit]";
-								$precio_unidad = 1;
-								break;
-								case "Galones":
-								$typep = "  [Gal]";
-								$precio_unidad = 2;
-								break;
-								case "Ton_Metrica": 
-								$typep = "  [Ton. Met.]";
-								$precio_unidad = 1;
-								break;
-								case "Ton_Corta": 
-								$typep = "  [Ton. Corta]";
-								$precio_unidad = 2;
-								break;
-							}
-							$cotizaciones->producto = $producto;
-							$cProducto = $cotizaciones->consultarProductosxID();
+              $typep="";
+              switch($unidad){
+                case "Litros":
+                $typep = "  [Lit]";
+                $precio_unidad = 1;
+                break;
+                case "Galones":
+                $typep = "  [Gal]";
+                $precio_unidad = 2;
+                break;
+                case "Ton_Metrica": 
+                $typep = "  [Ton. Met.]";
+                $precio_unidad = 1;
+                break;
+                case "Ton_Corta": 
+                $typep = "  [Ton. Corta]";
+                $precio_unidad = 2;
+                break;
+              }
+              $cotizaciones->producto = $producto;
+              $cProducto = $cotizaciones->consultarProductosxID();
 
-							foreach($cProducto as $row){
-								$nombreProducto = $row['nombreProducto'];
-								$distri = $row['iVentaDisProducto'];
-								$distriM = $row['mVentaDisProducto'];
-								$grower = $row['iVentaGrwProducto'];
-								$growerM = $row['mVentaGrwProducto'];
+              foreach($cProducto as $row){
+                $nombreProducto = $row['nombreProducto'];
+                $presentacion = $row['presentacionProducto'];
+                $distri = $row['iVentaDisProducto'];
+                $distriM = $row['mVentaDisProducto'];
+                $grower = $row['iVentaGrwProducto'];
+                $growerM = $row['mVentaGrwProducto'];
 
-								$cotizaciones->cliente = $cliente;
-								$lista_clientes = $cotizaciones->consultarClientes();
-								foreach($lista_clientes as $row){
-									$cliente_tipo = $row['tipoCliente'];
-								}
+                switch($presentacion){
+                  case 1:
+                  $pres = " | Cubeta";
+                  break;
+                  case 2:
+                  $pres = " | Tibor";
+                  break;
+                  case 3:
+                  $pres = " | Tote";
+                  break;
+                  case 4:
+                  $pres = " | Granel";
+                  break;
+                  case 5:
+                  $pres = " | Saco";
+                  break;
+                  case 6:
+                  $pres = " | Súper saco";
+                  break;
+                }
+
+                $cotizaciones->cliente = $cliente;
+                $lista_clientes = $cotizaciones->consultarClientes();
+                foreach($lista_clientes as $row){
+                 $cliente_tipo = $row['tipoCliente'];
+               }
 
 								if($cliente_tipo == 1){ //IF TIPO DE CLIENTE 1
 									if($precio_unidad == 1){ 
@@ -756,7 +781,7 @@ foreach($consultarProductos as $row){
 
 								?>
 								<tr>
-									<td><?php echo $nombreProducto;?></td>
+									<td><?php echo $nombreProducto.$pres;?></td>
 									<td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
 									<td><?php echo "$ ".number_format($precio_unitario,2, '.', ','); ?></td>
 									<td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>

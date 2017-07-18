@@ -32,6 +32,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 
 	$recProductos = explode("*hola*",$_POST['codigos']);
 	$recCantidades = explode("*hola*",$_POST['cantidades']);
+	$recUnidades = explode("*hola*",$_POST['unidades']);
 
 	$recibidos = count($recProductos);
 	$contador = $recibidos - 1;
@@ -66,49 +67,110 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 
 	for ($i=0; $i < $contador ; $i++) {
-		if($recProductos!=""){ 
-			$pedidos->producto = $recProductos[$i];
-			$preciosEspe = $pedidos->consultarPrecios();
-			$precios = $pedidos->consultarProductosxID();
-			foreach($preciosEspe as $row){
-				$precio_especial = $row['precioEspecial'];
-				$rfc = $row['rfcCliente'];
-			}
-			foreach($precios as $row){
-				$precio = $row['ventaProducto'];
-			}
+		if($recProductos!=""&&$recCantidades[$i]!=""){
+			$ban = 0;
 
-			if($rfc==$_POST['cliente']){
-				$total += ($precio_especial * $recCantidades[$i]);
-				$monto_producto = ($precio_especial * $recCantidades[$i]);
-			}
-			else{
-				$total += ($precio * $recCantidades[$i]);
-				$monto_producto = ($precio * $recCantidades[$i]);
+
+			$pedidos->cliente = $_POST['cliente'];
+			$tipos = $pedidos->consultarClientes();
+
+			foreach($tipos as $row){
+				$tipo_cliente = $row['tipoCliente'];
+
+				if($tipo_cliente == 1 || $tipo_cliente == 3){
+					$pedidos->producto = $recProductos[$i];
+					$precios = $pedidos->consultarProductosxID();
+					foreach($precios as $row){
+						$grower = $row['iVentaGrwProducto'];
+						$growerM = $row['mVentaGrwProducto'];
+						$distri = $row['iVentaDisProducto'];
+						$distriM = $row['mVentaDisProducto'];
+					}
+					if($tipo_cliente == 1){
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($distriM*$recCantidades[$i]);
+							$monto_producto = $distriM*$recCantidades[$i];
+						}
+						else{
+							$total += ($distri*$recCantidades[$i]);		
+							$monto_producto = $distri*$recCantidades[$i];
+						}
+					}
+					else{
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($growerM*$recCantidades[$i]);
+							$monto_producto = $growerM*$recCantidades[$i];	
+						}
+						else{
+							$total += ($grower*$recCantidades[$i]);		
+							$monto_producto = $grower*$recCantidades[$i];
+						}
+					}
+					
+				}
+				else{
+					if($tipo_cliente == 2){
+						$pedidos->producto = $recProductos[$i];
+						$pedidos->cliente = $_POST['cliente'];
+						$precioEspe = $pedidos->consultarPrecios();
+
+						foreach($precioEspe as $row){
+							$monto = $row['iPrecioEspecial'];
+							$montoM = $row['mPrecioEspecial'];
+						}
+						if($recUnidades[$i]=="Litros"||$recUnidades[$i]=="Ton_Metrica"){
+							$total += ($montoM*$recCantidades[$i]);	
+							$monto_producto = $montoM*$recCantidades[$i];
+						}
+						else{
+							$total += ($monto*$recCantidades[$i]);
+							$monto_producto = $monto*$recCantidades[$i];	
+						}
+					}
+				}
 			}
 
 
 			$pedidos->folio=$folio;
 			$pedidos->producto=$recProductos[$i];
 			$pedidos->cantidad=$recCantidades[$i];
+			$pedidos->unidad=$recUnidades[$i];
 			$pedidos->monto=$monto_producto;
 
 			$porfin = $pedidos->registrarDetalle();
 
 		}
+		else{
+			echo "Ingrese una cantidad";
+			$ban = 1;
+		}
+		
+	}
+
+
+	
+	if($ban == 0){
+		$pedidos->id=$_SESSION['idUsuario'];
+		$pedidos->pedido = $folio;
+		$pedidos->folio = $_POST['codigo'];
+		$usar_cotizacion = $pedidos->usarCotizacion();
+
+
+		$pedidos->folio = $folio;
+		$pedidos->dd = $dia;
+		$pedidos->mm = $mes;
+		$pedidos->yyyy = $anio;
+		$pedidos->cliente = $_POST['cliente'];
+		$pedidos->total = $total;
+		$pedidos->id=$_SESSION['idUsuario'];
+
+		echo $pedidos->registrarPedido();
 	}
 
 
 	
 
-	$pedidos->folio = $folio;
-	$pedidos->dd = $dia;
-	$pedidos->mm = $mes;
-	$pedidos->yyyy = $anio;
-	$pedidos->cliente = $_POST['cliente'];
-	$pedidos->total = $total;
-	$pedidos->id=$_SESSION['idUsuario'];
-	echo $pedidos->registrarPedido();
+	
 
 	
 

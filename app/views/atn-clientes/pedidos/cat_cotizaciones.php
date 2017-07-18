@@ -129,129 +129,129 @@ foreach ($result as $row){
 
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
-     <div class="caption font-dark">
+       <div class="caption font-dark">
 
-      <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <i class="fa fa-list-alt font-dark"></i>
+        <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
+        <i class="fa fa-list-alt font-dark"></i>
 
-      <!-- TEXTO DE TITULO DE PORTLET-->
-      <span class="caption-subject bold uppercase"> Cotizaciones disponibles</span>
+        <!-- TEXTO DE TITULO DE PORTLET-->
+        <span class="caption-subject bold uppercase"> Cotizaciones disponibles</span>
+      </div>
+      <div class="actions btn-set">
+       <button type="button" name="back" id="back_cat_cotd" class="btn default green-stripe">
+        <i class="fa fa-arrow-left"></i> Regresar
+      </button>
     </div>
-    <div class="actions btn-set">
-     <button type="button" name="back" id="back_cat_cotd" class="btn default green-stripe">
-      <i class="fa fa-arrow-left"></i> Regresar
-    </button>
+
+
   </div>
+  <!-- TERMINA TITULO DE PORTLET-->
 
+  <!-- INICIA CUERPO DE PORTLET-->
+  <div class="portlet-body">
 
-</div>
-<!-- TERMINA TITULO DE PORTLET-->
+    <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
-<!-- INICIA CUERPO DE PORTLET-->
-<div class="portlet-body">
+     <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+     <thead>
+      <tr>
+       <th> Código </th>
+       <th> Fecha [AAAA/MM/DD] </th>
+       <th> Cliente </th>
+       <th> Total </th>
+       <th> Acciones </th>
+     </tr>
+   </thead>
+   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
-  <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-  <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+   <!-- INICIA CUERPO DE DATA TABLE-->
+   <tbody>
 
-   <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-   <thead>
-    <tr>
-     <th> Código </th>
-     <th> Fecha [AAAA/MM/DD] </th>
-     <th> Cliente </th>
-     <th> Total </th>
-     <th> Acciones </th>
-   </tr>
- </thead>
- <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
-
- <!-- INICIA CUERPO DE DATA TABLE-->
- <tbody>
-
-  <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php
-  foreach($listaCotizaciones as $row){
-   $codigo = $row['folioCotizacion'];
-   $cliente = $row['rfcCliente'];
-   $dd = $row['ddCotizacion'];
-   $mm = $row['mmCotizacion'];
-   $yyyy = $row['yyyyCotizacion'];
-   $total = $row['totalCotizacion'];
-   $status = $row['statusCotizacion'];
-   $num = number_format($total,2, '.', ',');
-   ?>
-   <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
-
-   <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-   <tr class="odd gradeX">
-
-
-    <td> <?php echo $codigo;?> </td>
-    <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
     <?php
-    $cotizaciones->cliente = $cliente;
-    $consultaClientes = $cotizaciones->consultarClientes();
-    foreach($consultaClientes as $row){
-      $name_cliente = $row['razonSocCliente'];
-    }
-    ?>
-    <td> <?php echo $name_cliente; ?></td>
-    <td> <?php echo '$ '.$num;?></td>
+    foreach($listaCotizaciones as $row){
+     $codigo = $row['folioCotizacion'];
+     $cliente = $row['rfcCliente'];
+     $dd = $row['ddCotizacion'];
+     $mm = $row['mmCotizacion'];
+     $yyyy = $row['yyyyCotizacion'];
+     $total = $row['totalCotizacion'];
+     $status = $row['statusCotizacion'];
+     $num = number_format($total,2, '.', ',');
+     ?>
+     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-    <td>
-
-     <!-- INICIAN BOTONES DE ACCIONES-->
-
-     <?php
-
-     $html_inicio_action='<div class="text-center"><div class="btn-group">
-     <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-      &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-      &nbsp; Elegir&nbsp;&nbsp;
-    </button><ul class="dropdown-menu pull-right" role="menu">';
-
-    $html_final_action='</ul></div>';
-    $html_moreInfo='<li>
-    <a data-toggle="modal" href="#modal'.$codigo.'">
-      <i class="icon-magnifier"></i> Ver info. </a>
-    </li>';
-
-    $html_productos='<li>
-    <a data-toggle="modal" href="#productos'.$codigo.'">
-      <i class="icon-magnifier"></i> Productos </a>
-    </li>';
-
-    $html_usar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
-    <label for="usar'.$codigo.'" ">  <i class="icon-paper-clip"></i>&nbsp;Utilizar </label></a></li>';
+     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+     <tr class="odd gradeX">
 
 
+      <td> <?php echo $codigo;?> </td>
+      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+      <?php
+      $cotizaciones->cliente = $cliente;
+      $consultaClientes = $cotizaciones->consultarClientes();
+      foreach($consultaClientes as $row){
+        $name_cliente = $row['razonSocCliente'];
+      }
+      ?>
+      <td> <?php echo $name_cliente; ?></td>
+      <td> <?php echo '$ '.$num;?></td>
 
-    if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
-      echo $html_inicio_action;
-    }
-    if($pCotizacion[0]=='1'){
-      echo $html_moreInfo; 
-      echo $html_productos;
-    }
-    if($pCotizacion[1]=='2'){
-      echo $html_usar;
-    }
-    if($pCotizacion[2]=='3'&&$status==1){
+      <td>
+
+       <!-- INICIAN BOTONES DE ACCIONES-->
+
+       <?php
+
+       $html_inicio_action='<div class="text-center"><div class="btn-group">
+       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+        &nbsp; Elegir&nbsp;&nbsp;
+      </button><ul class="dropdown-menu pull-right" role="menu">';
+
+      $html_final_action='</ul></div>';
+      $html_moreInfo='<li>
+      <a data-toggle="modal" href="#modal'.$codigo.'">
+        <i class="icon-magnifier"></i> Ver info. </a>
+      </li>';
+
+      $html_productos='<li>
+      <a data-toggle="modal" href="#productos'.$codigo.'">
+        <i class="icon-magnifier"></i> Productos </a>
+      </li>';
+
+      $html_usar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
+      <label for="usar'.$codigo.'" ">  <i class="icon-paper-clip"></i>&nbsp;Utilizar </label></a></li>';
+
+
+
+      if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
+        echo $html_inicio_action;
+      }
+      if($pCotizacion[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_productos;
+      }
+      if($pCotizacion[1]=='2'){
+        echo $html_usar;
+      }
+      if($pCotizacion[2]=='3'&&$status==1){
     //echo $html_editar;
-    }
+      }
 
-    if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
-      echo $html_final_action;
-    }
+      if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
+        echo $html_final_action;
+      }
 
-    ?>
+      ?>
 
-  </td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
 }
 ?>
 <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
@@ -464,8 +464,33 @@ foreach($consultarProductos as $row){
     });
 
     /* SCRIPT PARA ENVIO DE FOLIO Y ELIMINACION DEL ACREEDOR EN CUESTION*/ 
-    $('.usar').click(function() {
+   /* $('.usar').click(function() {
       $("#mainContent").load( "conf_uCotizacion.php?codigo="+$(this).val());
+    });*/
+
+
+    $(".usar").click(function(){
+
+      var cotizacionActual = $(this).val();
+
+      swal({
+        title: "Procesar cotización "+cotizacionActual,
+        text: "¿Que acción desea realizar?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Procesar",
+        cancelButtonText: "Editar",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      },
+      function(isConfirm){
+        if (isConfirm) {
+          $("#mainContent").load( "conf_uCotizacion.php?codigo="+cotizacionActual);
+        } else {
+          $("#mainContent").load( "form_pedidos.php?codigo="+cotizacionActual);
+        }
+      });
     });
 
     $('#filtro').change(function() {
@@ -480,6 +505,7 @@ foreach($consultarProductos as $row){
     });
   });
 </script>
+<script src="../../../../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 
 <script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>

@@ -13,6 +13,7 @@ class pedidos{
 
   var $producto;
   var $cantidad;
+  var $unidad;
   var $monto;
   var $pedido;
 
@@ -174,6 +175,7 @@ class pedidos{
       folioPedido,
       codigoProducto,
       cantidadDetallePedido,
+      unidadDetallePedido,
       montoDetallePedido)
 
       VALUES (
@@ -181,6 +183,7 @@ class pedidos{
       '".$this->folio."',
       '".$this->producto."',
       '".$this->cantidad."',
+      '".$this->unidad."',
       '".$this->monto."')";
 
       $statement = $conexion->prepare($query);
@@ -275,7 +278,7 @@ class pedidos{
   }
 
 
-   public function consultarProductosxID(){
+  public function consultarProductosxID(){
     try {
 
       //CONEXION A LA BASE DE DATOS
@@ -300,17 +303,17 @@ class pedidos{
 
       //CONEXION A LA BASE DE DATOS
       $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-      dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para modificar un registro
       $query = "UPDATE pedidos SET
 
-          statusPedido = 3,
-          idUsuario = '".$this->id."'
+      statusPedido = 3,
+      idUsuario = '".$this->id."'
 
-          WHERE folioPedido =   '".$this->folio."'";
+      WHERE folioPedido =   '".$this->folio."'";
 
       $statement = $conexion->prepare($query);
 
@@ -376,15 +379,7 @@ class pedidos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT 
-        a.codigoProducto, 
-        a.ventaProducto, 
-        b.precioEspecial, 
-        b.rfcCliente 
-        FROM productos AS a 
-        INNER JOIN preciosespeciales AS b 
-        ON a.codigoProducto = b.codigoProducto 
-        WHERE a.codigoProducto = '".$this->producto."'");
+      return $resultados = $conexion->query("SELECT * FROM preciosespeciales WHERE rfcCliente = '".$this->cliente."' AND codigoProducto = '".$this->producto."'");
 
     }
 
@@ -393,8 +388,7 @@ class pedidos{
     }
   }
 
-
-   public function consultarCodigos(){
+  public function consultarCodigos(){
     try {
 
       //CONEXION A LA BASE DE DATOS
