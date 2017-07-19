@@ -593,6 +593,8 @@ if(isset($_SESSION['login'])){
 <script src="../../../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
+<script src="../../../../assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
 <script src="../../../../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
 <script src="../../../../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
 <script src="../../../../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
@@ -600,10 +602,12 @@ if(isset($_SESSION['login'])){
 <script src="../../../../assets/js/menu.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script src="../../../../assets/pages/scripts/form-samples.min.js" type="text/javascript"></script>
+<script src="../../../../assets/js/envio.js" type="text/javascript"></script>
 <script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
 <script src="../../../../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<script src="../assets/pages/scripts/ui-modals.min.js" type="text/javascript"></script>
 
 <script src="../../../../assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
 

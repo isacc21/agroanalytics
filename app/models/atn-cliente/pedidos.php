@@ -427,5 +427,26 @@ class pedidos{
       return "Error: " . $e->getMessage();
     }
   }
+
+    /////////////////////////////////////////////////////////////////////////////
+  public function inventarioEsp(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT SUM(existenciaInventario) FROM inventario WHERE codigoProducto = '".$this->producto."'");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 ?>

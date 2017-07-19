@@ -56,10 +56,12 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 				$producto = $row['codigoProducto'];
 				$cantidad = $row['cantidadDetalleCotizacion'];
 				$monto = $row['montoDetalleCotizacion'];
+				$unidad = $row['unidadDetalleCotizacion'];
 
 				$pedidos->folio = $folio;
 				$pedidos->producto = $producto;
 				$pedidos->cantidad = $cantidad;
+				$pedidos->unidad = $unidad;
 				$pedidos->monto = $monto;
 				$detalle = $pedidos->registrarDetalle();
 				if($detalle=="Registro detalle exitoso"){

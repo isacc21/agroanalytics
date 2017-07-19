@@ -670,7 +670,6 @@ foreach($consultarProductos as $row){
 
 						foreach($detalles as $row){
 							$producto = $row['codigoProducto'];
-
               $cantidad = $row['cantidadDetalleCotizacion'];
               $unidad = $row['unidadDetalleCotizacion'];
               $monto = $row['montoDetalleCotizacion'];

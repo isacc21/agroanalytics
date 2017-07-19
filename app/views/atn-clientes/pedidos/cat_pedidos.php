@@ -374,6 +374,7 @@ foreach($consultaModal as $row){
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
 foreach($consultarProductos as $row){
  $codigo = $row['folioPedido'];
+ $cliente = $row['rfcCliente'];
 
 
 
@@ -409,6 +410,7 @@ foreach($consultarProductos as $row){
          <th>Cantidad</th>
          <th>Precio Unitario</th>
          <th>Monto</th>
+         <th>En existencia</th>
        </tr>
        <?php 
        $total_pedido = 0;
@@ -418,44 +420,191 @@ foreach($consultarProductos as $row){
        foreach($detalles as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetallePedido'];
+        $unidad = $row['unidadDetallePedido'];
         $monto = $row ['montoDetallePedido'];
+
+        $typep="";
+        switch($unidad){
+          case "Litros":
+          $typep = "  [Lit]";
+          $precio_unidad = 1;
+          break;
+          case "Galones":
+          $typep = "  [Gal]";
+          $precio_unidad = 2;
+          break;
+          case "Ton_Metrica": 
+          $typep = "  [Ton. Met.]";
+          $precio_unidad = 1;
+          break;
+          case "Ton_Corta": 
+          $typep = "  [Ton. Corta]";
+          $precio_unidad = 2;
+          break;
+        }
 
         $pedidos->producto = $producto;
         $cProducto = $pedidos->consultarProductosxID();
 
         foreach($cProducto as $row){
           $nombreProducto = $row['nombreProducto'];
+          $presentacion = $row['presentacionProducto'];
+          $distri = $row['iVentaDisProducto'];
+          $distriM = $row['mVentaDisProducto'];
+          $grower = $row['iVentaGrwProducto'];
+          $growerM = $row['mVentaGrwProducto'];
 
-          ?>
-          <tr>
-            <td><?php echo $nombreProducto;?></td>
-            <td><?php echo number_format( $cantidad,2, '.', ',');?></td>
-            <td><?php echo "$ ".number_format(($monto / $cantidad),2, '.', ','); ?></td>
-            <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
-          </tr>
-          <?php
+          switch($presentacion){
+            case 1:
+            $pres = " | Cubeta";
+            break;
+            case 2:
+            $pres = " | Tibor";
+            break;
+            case 3:
+            $pres = " | Tote";
+            break;
+            case 4:
+            $pres = " | Granel";
+            break;
+            case 5:
+            $pres = " | Saco";
+            break;
+            case 6:
+            $pres = " | Súper saco";
+            break;
+          }
+
+          $pedidos->cliente = $cliente;
+          $lista_clientes = $pedidos->consultarClientes();
+          foreach($lista_clientes as $row){
+           $cliente_tipo = $row['tipoCliente'];
+         }
+
+         if($cliente_tipo == 1){ 
+          if($precio_unidad == 1){ 
+            $precio_unitario = $distriM;
+          } 
+          else{
+            if($precio_unidad == 2){
+              $precio_unitario = $distri;
+            }
+          }
+        } 
+        else{
+          if($cliente_tipo == 2){
+            if($precio_unidad == 1){
+              $precio_unitario = $growerM;
+            }
+            else{
+              if($precio_unidad == 2){
+                $precio_unitario = $grower;
+              }
+            }
+          }
+          else{
+            if($cliente_tipo==3){
+              $pedidos->cliente = $cliente;
+              $pedidos->producto = $producto;
+              $lista_preciosespe = $pedidos->consultarPrecios();
+
+              foreach($lista_preciosespe as $row){
+                $precio1 = $row['iPrecioEspecial'];
+                $precio2 = $row['mPrecioEspecial'];
+              }
+
+              if($precio_unidad == 1){
+                $precio_unitario = $precio1;
+              }
+              else{
+                if($precio_unidad == 2){
+                  $precio_unitario = $precio2;
+                }
+              }
+            }
+          }
         }
-        $total_pedido += $monto;
+
+        ?>
+        <tr>
+          <td><?php echo $nombreProducto.$pres;?></td>
+          <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
+          <td><?php echo "$ ".number_format($precio_unitario,2, '.', ','); ?></td>
+          <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
+          <td>
+            <?php 
+
+            $pedidos->producto =$producto;
+            $num_inventario = $pedidos->inventarioEsp();
+
+            foreach($num_inventario as $row){
+              $existencia = $row['SUM(existenciaInventario)'];
+            }
+            $binExistencia = 0;
+
+            if(is_null($existencia)){
+              $binExistencia = 1;
+            }
+            else{
+              switch($unidad){
+                case "Ton_Corta";
+                break;
+                case "Galones":
+                $qty = $cantidad;
+                break;
+
+                case "Litros":
+                $qty = $cantidad*0.26417205;
+                break;
+
+                case "Ton_Metrica": 
+                $qty = $cantidad*1.1023;
+                break;
+              }
+            }
+
+            $faltante = $qty-$existencia;
+            if($faltante>0){
+              $binExistencia = 1;
+            }
+
+
+            $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
+            $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
+
+            if($binExistencia==1){
+              echo $negative;
+            }
+            else{
+              echo $positive;
+            }
+            ?>
+          </td>
+        </tr>
+        <?php
       }
-      ?>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td><strong>Total</strong></td>
-        <td><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></td>
-      </tr>
-      
-    </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+      $total_pedido += $monto;
+    }
+    ?>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><div class="text-right"><strong>Total:</strong></div></td>
+      <td><div class="text-center"><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></div></td>    
+    </tr>
 
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
+  </table>
+</div>
+<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
+<!-- INICIA PIE DE VENTANA MODAL-->
+<div class="modal-footer">
+
+  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+</div>
+<!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
 <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
 </div>
