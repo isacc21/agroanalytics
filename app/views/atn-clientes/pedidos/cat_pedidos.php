@@ -196,7 +196,7 @@ foreach ($result as $row){
         &nbsp; Elegir&nbsp;&nbsp;
       </button><ul class="dropdown-menu pull-right" role="menu">';
 
-      $html_final_action='</ul></div>';
+      $html_final_action='</ul></div></div>';
       $html_moreInfo='<li>
       <a data-toggle="modal" href="#modal'.$codigo.'">
         <i class="icon-magnifier"></i> Ver info. </a>
@@ -208,38 +208,33 @@ foreach ($result as $row){
       </li>';
       $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
       <label for="cancelar'.$codigo.'" ">  <i class="glyphicon glyphicon-remove-circle"></i>&nbsp;Cancelar </label></a></li>';
-  /*$html_editar='<li><a><input type="radio" id="editar'.$codigo.'" class="editar" name="editar" value="'.$codigo.'">
-  <label for="editar'.$codigo.'">  <i class="fa fa-edit"></i>&nbsp;Modificar </label></a></li>';
-
-  $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
-  <label for="cancelar'.$codigo.'">  <i class="fa fa-times-circle"></i>&nbsp;Cancelar </label></a></li>';*/
 
 
-  if($pPedidos[0]=='1'||$pPedidos[1]=='2'||$pPedidos[2]=='3'||$pPedidos[3]=='4'){
-    echo $html_inicio_action;
-  }
-  if($pPedidos[0]=='1'){
-    echo $html_moreInfo; 
-    echo $html_productos;
-  }
-  if($pPedidos[2]=='3'&&$status==1){
+      if($pPedidos[0]=='1'||$pPedidos[1]=='2'||$pPedidos[2]=='3'||$pPedidos[3]=='4'){
+        echo $html_inicio_action;
+      }
+      if($pPedidos[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_productos;
+      }
+      if($pPedidos[2]=='3'&&$status==1){
     //echo $html_editar;
-  }
-  if($pPedidos[3]=='4'&&$status==1){
-    echo $html_cancelar;
-  }
-  if($pPedidos[0]=='1'||$pPedidos[1]=='2'||$pPedidos[2]=='3'||$pPedidos[3]=='4'){
-    echo $html_final_action;
-  }
+      }
+      if($pPedidos[3]=='4'&&$status==1){
+        echo $html_cancelar;
+      }
+      if($pPedidos[0]=='1'||$pPedidos[1]=='2'||$pPedidos[2]=='3'||$pPedidos[3]=='4'){
+        echo $html_final_action;
+      }
 
-  ?>
+      ?>
 
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
 }
 ?>
 <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
@@ -278,7 +273,7 @@ foreach($consultaModal as $row){
  $cnombres = $usuarios->consultarUsuariosID();
 
  foreach ($cnombres as $row){
-  $nombreUser = $row['nombreUsuario'];
+  $nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
 }
 
 
@@ -342,7 +337,7 @@ foreach($consultaModal as $row){
         $cotizacion = $row['folioCotizacion'];
       }
       if($cotizacion!=""){
-        echo "<tr><td>Cotización: </td><td>".$cotizacion."11</td></tr>";  
+        echo "<tr><td>Cotización: </td><td>".$cotizacion."</td></tr>";  
       }
       ############# REVISAR COTIZACION DE ORIGEN ############################
 
@@ -381,10 +376,10 @@ foreach($consultarProductos as $row){
 
  ?>
  <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+ <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">

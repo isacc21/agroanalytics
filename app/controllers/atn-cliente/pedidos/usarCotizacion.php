@@ -30,10 +30,15 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	}
 
 	if($zahler==0){
-		$folio = $fechaCodigo."-1";
+		$folio = $fechaCodigo."-01";
 	}
 	else{
-		$folio = $fechaCodigo."-".($zahler+1);
+		if($zahler<9){
+			$folio = $fechaCodigo."-0".($zahler+1);
+		}
+		else{
+			$folio = $fechaCodigo."-".($zahler+1);
+		}
 	}
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 

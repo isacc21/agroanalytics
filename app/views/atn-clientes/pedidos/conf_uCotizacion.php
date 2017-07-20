@@ -56,7 +56,7 @@ if (isset($_REQUEST['codigo'])){
 		<div class="portlet-title">
 
 			<!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-			<div class="caption">Utilizar cotizacion: "<?php echo $codigo;?>" </div>
+			<div class="caption">Procesar cotizacion: "<?php echo $codigo;?>" </div>
 			<!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
 
 		</div>

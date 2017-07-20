@@ -17,6 +17,7 @@ class ordenesCarga{
 	var $id;
 
 	var $cantidad;
+	var $cliente;
 
 
 
@@ -170,15 +171,7 @@ class ordenesCarga{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT 
-				a.codigoProducto, 
-				a.ventaProducto, 
-				b.precioEspecial, 
-				b.rfcCliente 
-				FROM productos AS a 
-				INNER JOIN preciosespeciales AS b 
-				ON a.codigoProducto = b.codigoProducto 
-				WHERE a.codigoProducto = '".$this->producto."'");
+			return $resultados = $conexion->query("SELECT * FROM preciosespeciales WHERE rfcCliente = '".$this->cliente."' AND codigoProducto = '".$this->producto."'");
 
 		}
 
@@ -198,7 +191,7 @@ class ordenesCarga{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM pedidos WHERE folioPedidos LIKE '".$this->folio."'");
+			return $resultados = $conexion->query("SELECT * FROM pedidos WHERE folioPedido LIKE '".$this->folio."'");
 
 		}
 
@@ -361,6 +354,44 @@ class ordenesCarga{
 
       //Sentencia SQL para eliminar un usuario
 			return $resultados = $conexion->query("SELECT folioOrdenCarga FROM ordenescarga WHERE folioOrdenCarga LIKE '".$this->codigo."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function inventarioEsp(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT SUM(existenciaInventario) FROM inventario WHERE codigoProducto = '".$this->producto."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarClientes(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM clientes WHERE rfcCliente = '".$this->cliente."'");
 
 		}
 

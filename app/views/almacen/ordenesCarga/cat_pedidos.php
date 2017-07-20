@@ -97,7 +97,7 @@ foreach ($result as $row){
       <div class="caption font-dark">
 
        <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="icon-settings font-dark"></i>
+       <i class="fa fa-list-alt font-dark"></i>
 
        <!-- TEXTO DE TITULO DE PORTLET-->
        <span class="caption-subject bold uppercase"> Pedidos</span>
@@ -105,7 +105,7 @@ foreach ($result as $row){
 
      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
      <div class="actions btn-set">
-      <button type="button" name="back" id="back_cat_pedidosd" class="btn btn-secondary-outline">
+      <button type="button" name="back" id="back_cat_pedidosd" class="btn default green-stripe">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
@@ -114,148 +114,120 @@ foreach ($result as $row){
 
   <!-- INICIA CUERPO DE PORTLET-->
   <div class="portlet-body">
-
-    <!-- INICIA ENCABEZADO DE CUERPO DE PORTLET-->
-    <div class="table-toolbar">
-
-
-
-
-    </div>
-    <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
-
-
     <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
      <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
      <thead>
       <tr>
-       <th>
-        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-         <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-         <span></span>
-       </label>
-     </th>
-     <th> Código </th>
-     <th> Fecha [AAAA/MM/DD] </th>
-     <th> Cliente </th>
-     <th> Total </th>
-     <th> Estatus </th>
-     <th> Acciones </th>
-   </tr>
- </thead>
- <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+       <th> Código </th>
+       <th> Fecha [AAAA/MM/DD] </th>
+       <th> Cliente </th>
+       <th> Total </th>
+       <th> Estatus </th>
+       <th> Acciones </th>
+     </tr>
+   </thead>
+   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
- <!-- INICIA CUERPO DE DATA TABLE-->
- <tbody>
+   <!-- INICIA CUERPO DE DATA TABLE-->
+   <tbody>
 
-  <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php
-  foreach($listaPedidos as $row){
-   $codigo = $row['folioPedido'];
-   $cliente = $row['rfcCliente'];
-   $dd = $row['ddPedido'];
-   $mm = $row['mmPedido'];
-   $yyyy = $row['yyyyPedido'];
-   $total = $row['totalPedido'];
-   $status = $row['statusPedido'];
-   $num = number_format($total,2, '.', ',');
-   ?>
-   <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
+    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php
+    foreach($listaPedidos as $row){
+     $codigo = $row['folioPedido'];
+     $cliente = $row['rfcCliente'];
+     $dd = $row['ddPedido'];
+     $mm = $row['mmPedido'];
+     $yyyy = $row['yyyyPedido'];
+     $total = $row['totalPedido'];
+     $status = $row['statusPedido'];
+     $num = number_format($total,2, '.', ',');
+     ?>
+     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-   <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-   <tr class="odd gradeX">
-    <td>
-     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-      <input type="checkbox" class="checkboxes" value="1" />
-      <span></span>
-    </label>
-  </td>
-
-  <td> <?php echo $codigo;?> </td>
-  <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
-  <?php
-  $pedidos->cliente = $cliente;
-  $consultaClientes = $pedidos->consultarClientes();
-  foreach($consultaClientes as $row){
-    $name_cliente = $row['razonSocCliente'];
-  }
-  ?>
-  <td> <?php echo $name_cliente; ?></td>
-  <td> <?php echo '$ '.$num;?></td>
-  <td>
-    <?php 
-    if($status==1){
-      echo $html_camino;
-    }
-    else{
-      if($status==2){
-        echo $html_entregado;
+     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+     <tr class="odd gradeX">
+      <td> <?php echo $codigo;?> </td>
+      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+      <?php
+      $pedidos->cliente = $cliente;
+      $consultaClientes = $pedidos->consultarClientes();
+      foreach($consultaClientes as $row){
+        $name_cliente = $row['razonSocCliente'];
       }
-      else{
-        if($status==3){
-          echo $html_cancelado;
+      ?>
+      <td> <?php echo $name_cliente; ?></td>
+      <td> <?php echo '$ '.$num;?></td>
+      <td>
+        <?php 
+        if($status==1){
+          echo $html_camino;
         }
+        else{
+          if($status==2){
+            echo $html_entregado;
+          }
+          else{
+            if($status==3){
+              echo $html_cancelado;
+            }
+          }
+        }
+        ?>
+      </td>
+      <td>
+
+       <!-- INICIAN BOTONES DE ACCIONES-->
+
+       <?php
+
+       $html_inicio_action='<div class="text-center"><div class="btn-group">
+       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+        &nbsp; Elegir&nbsp;&nbsp;
+      </button><ul class="dropdown-menu pull-right" role="menu">';
+
+      $html_final_action='</ul></div></div>';
+      $html_moreInfo='<li>
+      <a data-toggle="modal" href="#modal'.$codigo.'">
+        <i class="icon-magnifier"></i> Ver info. </a>
+      </li>';
+
+      $html_productos='<li>
+      <a data-toggle="modal" href="#productos'.$codigo.'">
+        <i class="icon-magnifier"></i> Productos </a>
+      </li>';
+      $html_cancelar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
+      <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Usar pedido </label></a></li>';
+
+
+      if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
+        echo $html_inicio_action;
       }
-    }
-    ?>
-  </td>
-  <td>
-
-   <!-- INICIAN BOTONES DE ACCIONES-->
-
-   <?php
-
-   $html_inicio_action='<div class="btn-group">
-   <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Acciones
-    <i class="fa fa-angle-down"></i>
-  </button><ul class="dropdown-menu pull-right" role="menu">';
-
-  $html_final_action='</ul></div>';
-  $html_moreInfo='<li>
-  <a data-toggle="modal" href="#modal'.$codigo.'">
-    <i class="icon-magnifier"></i> Ver info. </a>
-  </li>';
-
-  $html_productos='<li>
-  <a data-toggle="modal" href="#productos'.$codigo.'">
-    <i class="icon-magnifier"></i> Productos </a>
-  </li>';
-  $html_cancelar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
-  <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Usar pedido </label></a></li>';
-  /*$html_editar='<li><a><input type="radio" id="editar'.$codigo.'" class="editar" name="editar" value="'.$codigo.'">
-  <label for="editar'.$codigo.'">  <i class="fa fa-edit"></i>&nbsp;Modificar </label></a></li>';
-
-  $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
-  <label for="cancelar'.$codigo.'">  <i class="fa fa-times-circle"></i>&nbsp;Cancelar </label></a></li>';*/
-
-
-  if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
-    echo $html_inicio_action;
-  }
-  if($carga[0]=='1'){
-    echo $html_moreInfo; 
-    echo $html_productos;
-  }
-  if($carga[2]=='3'&&$status==1){
+      if($carga[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_productos;
+      }
+      if($carga[2]=='3'&&$status==1){
     //echo $html_editar;
-  }
-  if($carga[3]=='4'&&$status==1){
-    echo $html_cancelar;
-  }
-  if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
-    echo $html_final_action;
-  }
+      }
+      if($carga[3]=='4'&&$status==1){
+        echo $html_cancelar;
+      }
+      if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
+        echo $html_final_action;
+      }
 
-  ?>
+      ?>
 
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
 }
 ?>
 <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
@@ -377,16 +349,17 @@ foreach($consultaModal as $row){
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
 foreach($consultarProductos as $row){
  $codigo = $row['folioPedido'];
+ $cliente = $row['rfcCliente'];
 
 
 
 
  ?>
  <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+ <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">
@@ -412,6 +385,7 @@ foreach($consultarProductos as $row){
          <th>Cantidad</th>
          <th>Precio Unitario</th>
          <th>Monto</th>
+         <th>En existencia</th>
        </tr>
        <?php 
        $total_pedido = 0;
@@ -421,32 +395,179 @@ foreach($consultarProductos as $row){
        foreach($detalles as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetallePedido'];
+        $unidad = $row['unidadDetallePedido'];
         $monto = $row ['montoDetallePedido'];
+
+        $typep="";
+        switch($unidad){
+          case "Litros":
+          $typep = "  [Lit]";
+          $precio_unidad = 1;
+          break;
+          case "Galones":
+          $typep = "  [Gal]";
+          $precio_unidad = 2;
+          break;
+          case "Ton_Metrica": 
+          $typep = "  [Ton. Met.]";
+          $precio_unidad = 1;
+          break;
+          case "Ton_Corta": 
+          $typep = "  [Ton. Corta]";
+          $precio_unidad = 2;
+          break;
+        }
 
         $pedidos->producto = $producto;
         $cProducto = $pedidos->consultarProductosxID();
 
         foreach($cProducto as $row){
           $nombreProducto = $row['nombreProducto'];
+          $presentacion = $row['presentacionProducto'];
+          $distri = $row['iVentaDisProducto'];
+          $distriM = $row['mVentaDisProducto'];
+          $grower = $row['iVentaGrwProducto'];
+          $growerM = $row['mVentaGrwProducto'];
 
-          ?>
-          <tr>
-            <td><?php echo $nombreProducto;?></td>
-            <td><?php echo number_format( $cantidad,2, '.', ',');?></td>
-            <td><?php echo "$ ".number_format(($monto / $cantidad),2, '.', ','); ?></td>
-            <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
-          </tr>
-          <?php
+          switch($presentacion){
+            case 1:
+            $pres = " | Cubeta";
+            break;
+            case 2:
+            $pres = " | Tibor";
+            break;
+            case 3:
+            $pres = " | Tote";
+            break;
+            case 4:
+            $pres = " | Granel";
+            break;
+            case 5:
+            $pres = " | Saco";
+            break;
+            case 6:
+            $pres = " | Súper saco";
+            break;
+          }
+
+          $pedidos->cliente = $cliente;
+          $lista_clientes = $pedidos->consultarClientes();
+          foreach($lista_clientes as $row){
+           $cliente_tipo = $row['tipoCliente'];
+         }
+
+         if($cliente_tipo == 1){ 
+          if($precio_unidad == 1){ 
+            $precio_unitario = $distriM;
+          } 
+          else{
+            if($precio_unidad == 2){
+              $precio_unitario = $distri;
+            }
+          }
+        } 
+        else{
+          if($cliente_tipo == 2){
+            if($precio_unidad == 1){
+              $precio_unitario = $growerM;
+            }
+            else{
+              if($precio_unidad == 2){
+                $precio_unitario = $grower;
+              }
+            }
+          }
+          else{
+            if($cliente_tipo==3){
+              $pedidos->cliente = $cliente;
+              $pedidos->producto = $producto;
+              $lista_preciosespe = $pedidos->consultarPrecios();
+
+              foreach($lista_preciosespe as $row){
+                $precio1 = $row['iPrecioEspecial'];
+                $precio2 = $row['mPrecioEspecial'];
+              }
+
+              if($precio_unidad == 1){
+                $precio_unitario = $precio1;
+              }
+              else{
+                if($precio_unidad == 2){
+                  $precio_unitario = $precio2;
+                }
+              }
+            }
+          }
         }
-        $total_pedido += $monto;
+
+        ?>
+        <tr>
+          <td><?php echo $nombreProducto.$pres;?></td>
+          <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
+          <td><?php echo "$ ".number_format($precio_unitario,2, '.', ','); ?></td>
+          <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
+          <td>
+            <?php 
+
+            $pedidos->producto =$producto;
+            $num_inventario = $pedidos->inventarioEsp();
+
+            foreach($num_inventario as $row){
+              $existencia = $row['SUM(existenciaInventario)'];
+            }
+            $binExistencia = 0;
+
+            if(is_null($existencia)){
+              $binExistencia = 1;
+            }
+            else{
+              switch($unidad){
+                case "Ton_Corta";
+                break;
+                case "Galones":
+                $qty = $cantidad;
+                break;
+
+                case "Litros":
+                $qty = $cantidad*0.26417205;
+                break;
+
+                case "Ton_Metrica": 
+                $qty = $cantidad*1.1023;
+                break;
+              }
+            }
+
+            $faltante = $qty-$existencia;
+            if($faltante>0){
+              $binExistencia = 1;
+            }
+
+
+            $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
+            $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
+
+            if($binExistencia==1){
+              echo $negative;
+            }
+            else{
+              echo $positive;
+            }
+            ?>
+          </td>
+        </tr>
+        <?php
       }
-      ?>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td><strong>Total</strong></td>
-        <td><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></td>
-      </tr>
+      $total_pedido += $monto;
+    }
+    ?>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><div class="text-right"><strong>Total:</strong></div></td>
+      <td><div class="text-center"><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></div></td>    
+    </tr>
       
     </table>
   </div>
@@ -488,9 +609,11 @@ foreach($consultarProductos as $row){
   });
 </script>
 
-<!--INICIAN SCRITPS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<script src="../../../../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
-
-<!-- TERMINAN SCRIPTS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>

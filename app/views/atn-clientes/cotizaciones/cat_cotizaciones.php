@@ -460,162 +460,158 @@ foreach ($result as $row){
 
   									$html_imprimir='<li><a><input type="radio" id="imprimir'.$codigo.'" class="imprimir" name="imprimir" value="'.$codigo.'">
   									<label for="imprimir'.$codigo.'" ">  <i class="fa fa-print"></i>&nbsp;Imprimir </label></a></li>';
-  /*$html_editar='<li><a><input type="radio" id="editar'.$codigo.'" class="editar" name="editar" value="'.$codigo.'">
-  <label for="editar'.$codigo.'">  <i class="fa fa-edit"></i>&nbsp;Modificar </label></a></li>';
-
-  $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
-  <label for="cancelar'.$codigo.'">  <i class="fa fa-times-circle"></i>&nbsp;Cancelar </label></a></li>';*/
-
-
-  if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
-  	echo $html_inicio_action;
-  }
-  if($pCotizacion[0]=='1'){
-  	echo $html_moreInfo; 
-  	echo $html_productos;
-  	echo $html_imprimir;
-  }
-  if($pCotizacion[2]=='3'&&$status==1){
-    //echo $html_editar;
-  }
-  if($pCotizacion[3]=='4'&&$status==1){
-  	echo $html_cancelar;
-  }
-  if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
-  	echo $html_final_action;
-  }
-
-  ?>
-
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
-}
-?>
-<!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-
-</tbody>
-<!-- TERMINA CUERPO DE DATA TABLE -->
-
-</table>
-<!-- TERMINA DATA TABLE PARA TABLA DE ACREEDORES-->
-
-</div>
-<!-- TERMINA CUERPO DE PORTLET -->
-</div>
-<!-- TERMINA PORTLET-->
-</div>
-<!-- TERMINAR COLUMNA DE 12 PARA PORTLET-->
-
-</div>
-<!-- TERMINA ROW PARA PORTLET-->
 
 
 
-<?php
+                    if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
+                     echo $html_inicio_action;
+                   }
+                   if($pCotizacion[0]=='1'){
+                     echo $html_moreInfo; 
+                     echo $html_productos;
+                     echo $html_imprimir;
+                   }
+                   if($pCotizacion[2]=='3'&&$status==1){
+
+                   }
+                   if($pCotizacion[3]=='4'&&$status==1){
+                     echo $html_cancelar;
+                   }
+                   if($pCotizacion[0]=='1'||$pCotizacion[1]=='2'||$pCotizacion[2]=='3'||$pCotizacion[3]=='4'){
+                     echo $html_final_action;
+                   }
+
+                   ?>
+
+                 </td>
+               </tr>
+               <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+               <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+               <?php 
+             }
+             ?>
+             <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+
+           </tbody>
+           <!-- TERMINA CUERPO DE DATA TABLE -->
+
+         </table>
+         <!-- TERMINA DATA TABLE PARA TABLA DE ACREEDORES-->
+
+       </div>
+       <!-- TERMINA CUERPO DE PORTLET -->
+     </div>
+     <!-- TERMINA PORTLET-->
+   </div>
+   <!-- TERMINAR COLUMNA DE 12 PARA PORTLET-->
+
+ </div>
+ <!-- TERMINA ROW PARA PORTLET-->
+
+
+
+ <?php
 
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
-foreach($consultaModal as $row){
-	$codigo = $row['folioCotizacion'];
-	$cliente = $row['rfcCliente'];
-	$dd = $row['ddCotizacion'];
-	$mm = $row['mmCotizacion'];
-	$yyyy = $row['yyyyCotizacion'];
-	$usuario = $row['idUsuario'];
-	$pedido = $row['folioPedido'];
-	$status = $row['statusCotizacion'];
-	$num = number_format($total,2, '.', ',');
+ foreach($consultaModal as $row){
+   $codigo = $row['folioCotizacion'];
+   $cliente = $row['rfcCliente'];
+   $dd = $row['ddCotizacion'];
+   $mm = $row['mmCotizacion'];
+   $yyyy = $row['yyyyCotizacion'];
+   $usuario = $row['idUsuario'];
+   $pedido = $row['folioPedido'];
+   $status = $row['statusCotizacion'];
+   $num = number_format($total,2, '.', ',');
 
-	$usuarios->id=$usuario;
-	$cnombres = $usuarios->consultarUsuariosID();
+   $usuarios->id=$usuario;
+   $cnombres = $usuarios->consultarUsuariosID();
 
-	foreach ($cnombres as $row){
-		$nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
-	}
-
-
-	?>
-	<!-- INICIO DE VENTANA MODAL -->
-	<div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
-
-		<!-- INICIO DE VENTANA MODAL -->
-		<div class="modal-dialog">
-
-			<!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-			<div class="modal-content">
-
-				<!-- INICIO DE CABECERA DE VENTANA MODAL -->
-				<div class="modal-header">
-
-					<!-- BONTON DE CIERRE DE VENTANA MODAL-->
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-
-					<!-- ENCABEZADO DE VENTANA MODAL-->
-					<h4 class="modal-title">Información completa</h4>
-				</div>
-				<!-- TERMINA CABECERA DE VENTANA MODAL -->
-
-				<!-- INICIA CUERPO DE VENTANA MODAL-->
-				<div class="modal-body">
-
-					<!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
-					<table class="table table-hover">
-
-						<tr>
-							<td>Código de operación: </td>
-							<td><?php echo $codigo;?></td>
-						</tr>
-
-						<tr>
-							<td>Fecha: </td>
-							<td><?php echo $dd."/".$mm."/".$yyyy;?></td>
-						</tr>
+   foreach ($cnombres as $row){
+    $nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
+  }
 
 
-						<tr>
-							<td><?php 
-								if($status==1||$status==2){
-									echo "Última edición por:";
-								}
-								else{
-									if($status==3){
-										echo "Cancelada por:";
-									}
-									else{
-										if($status==4){
-											echo "Utilizada por:";
-										}
-									}
-								}
-								?> </td>
-								<td><?php echo $nombreUser;?></td>
+  ?>
+  <!-- INICIO DE VENTANA MODAL -->
+  <div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
-							</tr><?php
-							if($pedido!=NULL){
-								echo "<tr><td>Utilizada en pedido: </td><td>".$pedido."</td></tr>";
-							}
-							?>
-						</table>
-					</div>
-					<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+    <!-- INICIO DE VENTANA MODAL -->
+    <div class="modal-dialog">
 
-					<!-- INICIA PIE DE VENTANA MODAL-->
-					<div class="modal-footer">
+     <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
+     <div class="modal-content">
 
-						<!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-						<button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-					</div>
-					<!-- TERMINA PIE DE VENTANA MODAL-->
-				</div>
-				<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
-			</div>
-			<!-- TERMINO DE VENTANA MODAL  -->
-		</div>
-		<!-- TERMINO DE VENTANA MODAL -->
-		<?
+      <!-- INICIO DE CABECERA DE VENTANA MODAL -->
+      <div class="modal-header">
+
+       <!-- BONTON DE CIERRE DE VENTANA MODAL-->
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+
+       <!-- ENCABEZADO DE VENTANA MODAL-->
+       <h4 class="modal-title">Información completa</h4>
+     </div>
+     <!-- TERMINA CABECERA DE VENTANA MODAL -->
+
+     <!-- INICIA CUERPO DE VENTANA MODAL-->
+     <div class="modal-body">
+
+       <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
+       <table class="table table-hover">
+
+        <tr>
+         <td>Código de operación: </td>
+         <td><?php echo $codigo;?></td>
+       </tr>
+
+       <tr>
+         <td>Fecha: </td>
+         <td><?php echo $dd."/".$mm."/".$yyyy;?></td>
+       </tr>
+
+
+       <tr>
+         <td><?php 
+          if($status==1||$status==2){
+           echo "Última edición por:";
+         }
+         else{
+           if($status==3){
+            echo "Cancelada por:";
+          }
+          else{
+            if($status==4){
+             echo "Utilizada por:";
+           }
+         }
+       }
+       ?> </td>
+       <td><?php echo $nombreUser;?></td>
+
+     </tr><?php
+     if($pedido!=NULL){
+      echo "<tr><td>Utilizada en pedido: </td><td>".$pedido."</td></tr>";
+    }
+    ?>
+  </table>
+</div>
+<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+
+<!-- INICIA PIE DE VENTANA MODAL-->
+<div class="modal-footer">
+
+  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+</div>
+<!-- TERMINA PIE DE VENTANA MODAL-->
+</div>
+<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
+</div>
+<!-- TERMINO DE VENTANA MODAL  -->
+</div>
+<!-- TERMINO DE VENTANA MODAL -->
+<?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
 
@@ -632,10 +628,10 @@ foreach($consultarProductos as $row){
 
 	?>
 	<!-- INICIO DE VENTANA MODAL -->
-	<div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+	<div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
 		<!-- INICIO DE VENTANA MODAL -->
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
 			<div class="modal-content">

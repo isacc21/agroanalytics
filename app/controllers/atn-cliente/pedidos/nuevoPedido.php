@@ -59,7 +59,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	}
 
 	if($zahler==0){
-		$folio = $fechaCodigo."-1";
+		$folio = $fechaCodigo."-01";
 	}
 	else{
 		if($zahler<9){

@@ -342,7 +342,7 @@
       var falto = 0;
 
       $("#app_producto").click(function(){
-        alert(x);
+        //alert(x);
 
         $( "#nuevoProducto" ).append('<div class="form-group" id="remover'+x+'"><label class="col-md-3 control-label">Productos</label><div class="col-md-3"><select id="producto'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><?php 
           $productos=$cotizaciones->consultarProductos();

@@ -289,7 +289,7 @@ foreach($consultaModal as $row){
  $cnombres = $usuarios->consultarUsuariosID();
 
  foreach ($cnombres as $row){
-  $nombreUser = $row['nombreUsuario'];
+  $nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
 }
 
 
@@ -369,10 +369,10 @@ foreach($consultarProductos as $row){
 
  ?>
  <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+ <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">

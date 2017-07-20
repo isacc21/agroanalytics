@@ -203,8 +203,8 @@ if(isset($_SESSION['login'])){
 
 
     $html_nuevo='<div class="col-md-4">
-    <div class="mt-widget-3">
-      <div class="mt-head bg-green-jungle">
+    <div class="mt-widget-3 bg-red">
+      <div class="mt-head bg-red">
         <div class="mt-head-icon">
           <i class="fa fa-barcode"></i>
         </div>
@@ -216,12 +216,12 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_lista='<div class="col-md-4">
-    <div class="mt-widget-3">
-      <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-blue-hoki">
+      <div class="mt-head bg-blue-hoki">
         <div class="mt-head-icon">
           <i class="fa fa-server"></i>
         </div>
-        <div class="mt-head-desc"> Lista de órdenes </div>
+        <div class="mt-head-desc"> Lista de órdenes de carga</div>
         <div class="mt-head-button">
           <button type="button" id="list_ocarga" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
         </div>
@@ -229,8 +229,8 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_reporte='<div class="col-md-4">
-    <div class="mt-widget-3">
-      <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-green">
+      <div class="mt-head bg-green">
         <div class="mt-head-icon">
           <i class="fa fa-print"></i>
         </div>
@@ -496,63 +496,59 @@ if(isset($_SESSION['login'])){
                         <div class="page-content-wrapper">
                           <div class="page-content">
 
-                            <!--INICIA TITULO DE PAGINA -->
-                            <h1 class="page-title"> Órdenes de carga
-                              <small><?php echo " - ". date(d) ."/". date(m) ."/". date(Y); ?></small>
-                            </h1>
-                            <!--TERMINA TITULO DE PAGINA-->
+                           <!-- INICIA TITULO DE PAGINA-->
+                           <h1 class="page-title"> Órdenes de carga<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                           <!-- TERMINA TITULO DE PAGINA -->
 
-                            <!--INICIA MAIN CONTENT USADO POR AJAX-->
-                            <div id="mainContent" class="page-container">
+                           <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                           <style type="text/css">
+                            div#mainContent {margin:0}
+                            body {overflow-x:hidden;}
+                          </style>
 
-                              <!--INICIA PORTLET MENU DE USUARIOS-->
-                              <div class="portlet light portlet-fit bordered">
-                                <div class="portlet-title">
-                                  <div class="caption">
-                                    <i class="icon-settings font-green-sharp"></i>
-                                    <span class="caption-subject font-green-sharp bold uppercase">Seleccione la acción</span>
-                                  </div>
-                                </div>
-                                <div class="portlet-body">
-                                  <div class="row">
+                          <div id="mainContent" class="page-container">
+                            <!--INICIA PORTLET MENU DE USUARIOS-->
 
-                                    <!--INICIA LISTA DE USUARIOS-->
-                                    <?php 
-                                    if($carga[1]=='2'){
-                                      echo $html_nuevo;
-                                    }
-                                    if($carga[0]=='1'||$carga[2]=='3'||$carga[3]=='4'){
+                            <div class="row">
 
-                                      echo $html_lista;
 
-                                      echo $html_reporte;
-                                    }
-                                    ?>
-                                    <!--TERMINA LISTA DE USUARIOS-->
+                              <!--INICIA LISTA DE USUARIOS-->
+                              <?php 
+                              if($carga[1]=='2'){
+                                echo $html_nuevo;
+                              }
+                              if($carga[0]=='1'||$carga[2]=='3'||$carga[3]=='4'){
 
-                                  </div>
-                                </div>
-                              </div>
-                              <!--TERMINA PORTLET DE USUARIOS-->
+                                echo $html_lista;
+
+                                echo $html_reporte;
+                              }
+                              ?>
+                              <!--TERMINA LISTA DE USUARIOS-->
+
                             </div>
-                            <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
                           </div>
                         </div>
-                        <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                        <!--TERMINA PORTLET DE USUARIOS-->
                       </div>
-                      <!-- TERMINA CONTENEDOR -->
-
-
-                      <!-- INICIA FOOTER -->
-                      <div class="page-footer">
-                        <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-                        </div>
-                        <div class="scroll-to-top">
-                          <i class="icon-arrow-up"></i>
-                        </div>
-                      </div>
-                      <!-- TERMINA FOOTER -->
+                      <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
                     </div>
+                  </div>
+                  <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                </div>
+                <!-- TERMINA CONTENEDOR -->
+
+
+                <!-- INICIA FOOTER -->
+                <div class="page-footer">
+                  <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+                  </div>
+                  <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                  </div>
+                </div>
+                <!-- TERMINA FOOTER -->
+              </div>
 
         <!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>
