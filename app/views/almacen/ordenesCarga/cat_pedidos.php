@@ -200,7 +200,7 @@ foreach ($result as $row){
         <i class="icon-magnifier"></i> Productos </a>
       </li>';
       $html_cancelar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
-      <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Usar pedido </label></a></li>';
+      <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Procesar pedido </label></a></li>';
 
 
       if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){

@@ -38,4 +38,17 @@ $(document).ready(function(){
 		$("#mainContent").load( "cat_ocargas.php" );
 	}); /* CIERRE SECCION DOLARES */
 
+
+	/****************** REMISIONES **************************/
+
+	/* RUTA A SECCION DOLARES*/
+	$("#add_remisiones").click(function(){
+		$("#mainContent").load( "cat_ocargas.php" );
+	}); /* CIERRE SECCION DOLARES */
+
+	/* RUTA A SECCION DOLARES*/
+	$("#list_remisiones").click(function(){
+		$("#mainContent").load( "cat_remisiones.php" );
+	}); /* CIERRE SECCION DOLARES */
+
 }); /* TERMINA PROCESO JQUERY */

@@ -115,6 +115,7 @@ foreach ($result as $row){
        <th> Código </th>
        <th> Fecha [AAAA/MM/DD] </th>
        <th> Pedido </th>
+       <th> Cliente </th>
        <th> Estatus </th>
        <th> Acciones </th>
      </tr>
@@ -134,6 +135,18 @@ foreach ($result as $row){
      $yyyy = $row['yyyyOrdenCarga'];
      $status = $row['statusOrdenCarga'];
 
+     $ordenesCarga->folio = $pedido;
+     $info_pedido = $ordenesCarga->consultarPedidosID();
+     foreach($info_pedido as $row){
+      $rfc = $row['rfcCliente'];
+     }
+
+     $ordenesCarga->cliente = $rfc;
+     $info_cliente = $ordenesCarga->consultarClientes();
+     foreach($info_cliente as $row){
+      $nombre_cliente = $row['razonSocCliente'];
+     }
+
      ?>
      <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
@@ -142,6 +155,7 @@ foreach ($result as $row){
       <td> <?php echo $codigo;?> </td>
       <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
       <td> <?php echo $pedido;?></td>
+      <td> <?php echo $nombre_cliente;?></td>
       <td> <?php
         if($status == 1){
           echo $html_registrado;
@@ -182,8 +196,8 @@ foreach ($result as $row){
           <i class="icon-magnifier"></i> Productos </a>
         </li>';
 
-        $html_remision='<li><a><input type="radio" id="remisionar'.$codigo.'" class="remisionar" name="remisionar" value="'.$codigo.'">
-        <label for="remisionar'.$codigo.'" ">  <i class="icon-paper-clip"></i>&nbsp;Agregar remisión </label></a></li>';
+        /*$html_remision='<li><a><input type="radio" id="remisionar'.$codigo.'" class="remisionar" name="remisionar" value="'.$codigo.'">
+        <label for="remisionar'.$codigo.'" ">  <i class="icon-paper-clip"></i>&nbsp;Agregar remisión </label></a></li>';*/
 
 
 
@@ -195,7 +209,7 @@ foreach ($result as $row){
           echo $html_productos;
         }
         if($carga[1]=='2'&&$status == 1){
-          echo $html_remision;
+          //echo $html_remision;
         }
         if($carga[2]=='3'&&$status==1){
     //echo $html_editar;
@@ -379,12 +393,12 @@ foreach($consultarProductos as $row){
        $lista_clientes = $ordenesCarga->consultarPedidosID();
        foreach($lista_clientes as $row){
         $cliente = $row['rfcCliente'];
-       }
+      }
 
-       $ordenesCarga->pedido = $pedido;
-       $detalles = $ordenesCarga->consultarDetalle();
+      $ordenesCarga->pedido = $pedido;
+      $detalles = $ordenesCarga->consultarDetalle();
 
-       foreach($detalles as $row){
+      foreach($detalles as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetallePedido'];
         $unidad = $row['unidadDetallePedido'];

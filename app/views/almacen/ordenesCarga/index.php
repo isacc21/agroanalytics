@@ -208,7 +208,7 @@ if(isset($_SESSION['login'])){
         <div class="mt-head-icon">
           <i class="fa fa-barcode"></i>
         </div>
-        <div class="mt-head-desc"> Lista de pedidos</div>
+        <div class="mt-head-desc"> Pedidos sin surtir</div>
         <div class="mt-head-button">
           <button type="button" id="add_ocarga" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
         </div>

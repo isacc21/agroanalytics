@@ -203,40 +203,40 @@ if(isset($_SESSION['login'])){
 
 
     $html_nuevo='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-green-jungle">
+    <div class="mt-widget-3 bg-red">
+        <div class="mt-head bg-red">
             <div class="mt-head-icon">
                 <i class="fa fa-floppy-o"></i>
             </div>
-            <div class="mt-head-desc"> Registrar nueva orden de compra</div>
+            <div class="mt-head-desc"> Lista de órdenes de carga</div>
             <div class="mt-head-button">
-                <button type="button" id="add_ocompra" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
+                <button type="button" id="add_remisiones" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
             </div>
         </div>
     </div></div>';
 
-    $html_lista='<div class="col-md-6">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    $html_lista='<div class="col-md-4">
+    <div class="mt-widget-3 bg-blue-hoki">
+        <div class="mt-head bg-blue-hoki">
             <div class="mt-head-icon">
                 <i class="fa fa-files-o"></i>
             </div>
             <div class="mt-head-desc"> Lista de remisiones </div>
             <div class="mt-head-button">
-                <button type="button" id="list_ocompra" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
+                <button type="button" id="list_remisiones" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
             </div>
         </div>
     </div></div>';
 
-    $html_reporte='<div class="col-md-6">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    $html_reporte='<div class="col-md-4">
+    <div class="mt-widget-3 bg-green">
+        <div class="mt-head bg-green">
             <div class="mt-head-icon">
                 <i class="fa fa-print"></i>
             </div>
             <div class="mt-head-desc"> Reporte de remisiones </div>
             <div class="mt-head-button">
-                <button type="button" id="rep_ocompra" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
+                <button type="button" id="rep_remisiones" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
             </div>
         </div>
     </div></div>';
@@ -496,37 +496,33 @@ if(isset($_SESSION['login'])){
                             <div class="page-content-wrapper">
                                 <div class="page-content">
 
-                                    <!--INICIA TITULO DE PAGINA -->
-                                    <h1 class="page-title"> Remisiones
-                                        <small><?php echo " - ". date(d) ."/". date(m) ."/". date(Y); ?></small>
-                                    </h1>
-                                    <!--TERMINA TITULO DE PAGINA-->
+                                    <!-- INICIA TITULO DE PAGINA-->
+                                    <h1 class="page-title"> Remisiones<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                    <!-- TERMINA TITULO DE PAGINA -->
 
-                                    <!--INICIA MAIN CONTENT USADO POR AJAX-->
+                                    <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                    <style type="text/css">
+                                        div#mainContent {margin:0}
+                                        body {overflow-x:hidden;}
+                                    </style>
+
                                     <div id="mainContent" class="page-container">
-
                                         <!--INICIA PORTLET MENU DE USUARIOS-->
-                                        <div class="portlet light portlet-fit bordered">
-                                            <div class="portlet-title">
-                                                <div class="caption">
-                                                    <i class="icon-settings font-green-sharp"></i>
-                                                    <span class="caption-subject font-green-sharp bold uppercase">Seleccione la acción</span>
-                                                </div>
-                                            </div>
-                                            <div class="portlet-body">
-                                                <div class="row">
 
-                                                    <!--INICIA LISTA DE USUARIOS-->
-                                                    <?php 
-                                                    if($compra[0]=='1'||$compra[2]=='3'||$compra[3]=='4'){
-                                                        echo $html_lista;
-                                                        echo $html_reporte;
-                                                    }
-                                                    ?>
-                                                    <!--TERMINA LISTA DE USUARIOS-->
+                                        <div class="row">
 
-                                                </div>
-                                            </div>
+                                            <!--INICIA LISTA DE USUARIOS-->
+                                            <?php 
+                                            if($remisiones[0]=='1'||$remisiones[2]=='3'||$remisiones[3]=='4'){
+                                                if($remisiones[1]==2){
+                                                    echo $html_nuevo;
+                                                }
+                                                echo $html_lista;
+                                                echo $html_reporte;
+                                            }
+                                            ?>
+                                            <!--TERMINA LISTA DE USUARIOS-->
+
                                         </div>
                                         <!--TERMINA PORTLET DE USUARIOS-->
                                     </div>
