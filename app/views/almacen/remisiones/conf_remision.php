@@ -126,7 +126,7 @@
  								<input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
 
  								<!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
- 								<a href="../pedidos" class="btn grey-salsa btn-outline">Cancelar</a>
+ 								<a href="../remisiones" class="btn grey-salsa btn-outline">Cancelar</a>
  							</div>
  						</div>
  					</div>

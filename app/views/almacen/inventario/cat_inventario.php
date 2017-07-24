@@ -148,9 +148,6 @@ foreach ($result as $row){
    $codigo = $row['barCodeInventario'];
    $producto = $row['codigoProducto'];
    $existencia = $row['existenciaInventario'];
-   $precio = $row['precioInventario'];
-   $peso = $row['pesoInventario'];
-   $num = number_format($precio,2, '.', ',');
    ?>
    <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
@@ -169,12 +166,18 @@ foreach ($result as $row){
   $consultarProducto = $inventario->consultarProductosID();
   foreach($consultarProducto as $row){
     $nombre_producto = $row['nombreProducto'];
+    $precio = $row['compraProducto'];
+    $densidad = $row['densidadProducto'];
   }
+  $total = $precio * $existencia;
+  $num = number_format($total,2, '.', ',');
+
+  $pt = number_format(($densidad * $existencia),2, '.', ',');
   ?>
   <td> <?php echo $nombre_producto; ?></td>
   <td> <?php echo $existencia; ?></td>
   <td> <?php echo '$ '.$num;?></td>
-  <td> <?php echo $peso; ?></td>
+  <td> <?php echo $pt; ?></td>
   
   <td>
 

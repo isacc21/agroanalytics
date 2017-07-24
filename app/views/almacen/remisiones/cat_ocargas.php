@@ -31,7 +31,7 @@ $ordenesCarga = new ordenesCarga($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$lista_cargas = $ordenesCarga->consultarCargas();
+$lista_cargas = $ordenesCarga->consultarCargasSS();
 
 
 

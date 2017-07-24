@@ -10,6 +10,8 @@ class remisiones{
 	var $id;
 	var $carga;
 	var $pedido;
+	var $remision;
+	var $pedimento;
 
 	var $dd;
 	var $mm;
@@ -61,6 +63,39 @@ class remisiones{
 			$statement->execute();
 
 			return "listo";
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function detalleRemision(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para crear una nueva orden de compra
+			$query = "INSERT INTO detalleremisiones (
+			idDetalleRemision,
+			folioRemision,
+			folioPedimento)
+
+			VALUES (
+			NULL,
+			'".$this->remision."',
+			'".$this->pedimento."'
+			)";
+
+			$statement = $conexion->prepare($query);
+
+			$statement->execute();
+
+			//return "listo";
 		}
 
 		catch(PDOException $e){
@@ -135,7 +170,7 @@ class remisiones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM inventario WHERE codigoProducto = '".$this->producto."' ORDER BY idInventario ASC");
+			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'A%' AND codigoProducto = '".$this->producto."' AND existenciaInventario > 0 ORDER BY idInventario ASC");
 
 		}
 
@@ -166,6 +201,75 @@ class remisiones{
 			$statement->execute();
 
 			return "listo";
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarEE(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'EE%' AND codigoProducto = '".$this->producto."' and existenciaInventario > 0 ORDER BY idInventario ASC");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+	public function remisionarODCarga(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para modificar un registro
+			$query = "UPDATE ordenescarga SET
+
+			statusOrdenCarga = 2,
+			remisionCarga    = '".$this->remision."',
+			idUsuario        = '".$this->id."'
+
+			WHERE folioOrdenCarga =   '".$this->folio."'";
+
+			$statement = $conexion->prepare($query);
+
+			$statement->execute();
+
+			//return "listo";
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarImportacionesxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM importaciones WHERE folioImportacion = '".$this->folio."'");
+
 		}
 
 		catch(PDOException $e){

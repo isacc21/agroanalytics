@@ -16,7 +16,7 @@ if(isset($_POST['cliente'])){
 	}
 
 	if($_POST['cantidad']!=""){
-		if(is_null($existencia)){
+		if(is_null($existencia)||$existencia==0){
 			echo "No hay producto";
 		}
 		else{

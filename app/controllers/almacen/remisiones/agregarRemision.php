@@ -36,12 +36,16 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	}
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 
+
+	/*CARGAR LA FECHA DE LA REMISION - IJLM::24/07/17::11.46*/
 	$fecha = $_POST['fecha'];
 
 	$dia = $fecha[0].$fecha[1];
 	$mes = $fecha[3].$fecha[4];
 	$anio = $fecha[6].$fecha[7].$fecha[8].$fecha[9];
+	/*CARGAR LA FECHA DE LA REMISION - IJLM::24/07/17::11.46*/
 
+	/*GUARDAR REMISION EN CURSO - IJLM::24/07/17::11.47*/
 	$remisiones->folio = $folio;
 	$remisiones->adicional = $_POST['adicional'];
 	$remisiones->carga = $_POST['carga'];
@@ -50,10 +54,10 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	$remisiones->yyyy = $anio;
 	$remisiones->id = $_SESSION['idUsuario'];
 	$remisionar = $remisiones->nuevaRemision();
+	/*GUARDAR REMISION EN CURSO - IJLM::24/07/17::11.47*/
 
 	$soporte =0;
-	$prueba = "";
-	$prueba2 = "";
+	$x=0;
 
 	if($remisionar == "listo"){
 		
@@ -72,34 +76,137 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 				$soporte = $cantidad;
 
 
+				/*RESTAR INVENTARIO (ENTRADA EXPRESS) PARA SURTIR ORDEN DE CARGA - IJLM::24/07/17::11.44*/
+				$remisiones->producto = $producto;
+				$lista_ee=$remisiones->consultarEE();
+
+				foreach($lista_ee as $row){
+
+					$pepsEE = $row['barCodeInventario'];
+					$existenciaEE = $row['existenciaInventario'];
+					$importacionEE = $row['folioImportacion'];
+
+					if($soporte>=$existenciaEE){
+						$remisiones->folio = $pepsEE;
+						$remisiones->cantidad = "0";
+						$result = $remisiones->restarInventario();
+						if($result == "listo"){
+							
+							/*REGISTRAR PEDIMENTOS EN DETALLES*/
+							$remisiones->folio = $importacionEE;
+							$lista_importaciones=$remisiones->consultarImportacionesxID();
+
+							foreach($lista_importaciones as $row){
+								$pedimento = $row['folioPedimentoImportacion'];
+							}
+
+							$remisiones->remision = $folio;
+							$remisiones->pedimento = $importacionEE;
+							$remisiones->detalleRemision();
+							/*REGISTRAR PEDIMENTOS EN DETALLES*/
+
+						}
+						$soporte -= $existenciaEE;
+					}
+					else{
+
+						/*EVALUAR SI ESTA EN CERO PARA EVITAR EL DOBLE REGISTRO EN DETALLE DE REMISIONES*/
+
+						if($soporte<$existencia){
+							$remisiones->folio = $pepsEE;
+							$remisiones->cantidad = ($existenciaEE-$soporte);
+							$result = $remisiones->restarInventario();
+							if($result == "listo"){
+								$x++;
+								/*REGISTRAR PEDIMENTOS EN DETALLES*/
+								$remisiones->folio = $importacionEE;
+								$lista_importaciones=$remisiones->consultarImportacionesxID();
+
+								foreach($lista_importaciones as $row){
+									$pedimento = $row['folioPedimentoImportacion'];
+								}
+
+								$remisiones->remision = $folio;
+								$remisiones->pedimento = $importacionEE;
+								$remisiones->detalleRemision();
+								/*REGISTRAR PEDIMENTOS EN DETALLES*/
+							}
+							$soporte = 0;
+						}
+					}
+				}
+				/*RESTAR INVENTARIO (ENTRADA EXPRESS) PARA SURTIR ORDEN DE CARGA - IJLM::24/07/17::11.44*/
+
+
+				/*RESTAR INVENTARIO (ENTRADA DEFINITIVA) PARA SURTIR ORDEN DE CARGA - IJLM::24/07/17::11.44*/
 				$remisiones->producto = $producto;
 				$lista_existencia = $remisiones->consultarExistencia();
 
 				foreach($lista_existencia as $row){
 					$peps = $row['barCodeInventario'];
 					$existencia = $row['existenciaInventario'];
+					$importacion = $row['folioImportacion'];
 
 
 					if($soporte>=$existencia){
 						$remisiones->folio = $peps;
 						$remisiones->cantidad = "0";
 						$result = $remisiones->restarInventario();
+						if($result == "listo"){
+							
+							/*REGISTRAR PEDIMENTOS EN DETALLES*/
+							$remisiones->folio = $importacion;
+							$lista_importaciones=$remisiones->consultarImportacionesxID();
+
+							foreach($lista_importaciones as $row){
+								$pedimento = $row['folioPedimentoImportacion'];
+							}
+
+							$remisiones->remision = $folio;
+							$remisiones->pedimento = $importacion;
+							$remisiones->detalleRemision();
+							/*REGISTRAR PEDIMENTOS EN DETALLES*/
+						}
 
 						$soporte -= $existencia;
 					}
 					else{
+
 						if($soporte<$existencia){
 							$remisiones->folio = $peps;
 							$remisiones->cantidad = ($existencia-$soporte);
 							$result = $remisiones->restarInventario();
+							if($result == "listo"){
+								
+								/*REGISTRAR PEDIMENTOS EN DETALLES*/
+								$remisiones->folio = $importacion;
+								$lista_importaciones=$remisiones->consultarImportacionesxID();
+
+								foreach($lista_importaciones as $row){
+									$pedimento = $row['folioPedimentoImportacion'];
+								}
+
+								$remisiones->remision = $folio;
+								$remisiones->pedimento = $importacion;
+								$remisiones->detalleRemision();
+								/*REGISTRAR PEDIMENTOS EN DETALLES*/
+							}
 							$soporte = 0;
 						}
 					}
 					
-
-
 				}
 			}
+			/*RESTAR INVENTARIO (ENTRADA DEFINITIVA) PARA SURTIR ORDEN DE CARGA - IJLM::24/07/17::11.44*/
+
+
+			/*CAMBIAR STATUS A ORDEN DE CARGA Y VINCULARLA A REMISION - IJLM::24/07/17::11.43*/
+			$remisiones->remision = $folio;
+			$remisiones->folio = $_POST['carga'];
+			$remisiones->id = $_SESSION['idUsuario'];
+			$remisiones->remisionarODCarga();
+			/*CAMBIAR STATUS A ORDEN DE CARGA Y VINCULARLA A REMISION - IJLM::24/07/17::11.43*/
+
 			echo "Remisión registrada";
 		}
 	}
