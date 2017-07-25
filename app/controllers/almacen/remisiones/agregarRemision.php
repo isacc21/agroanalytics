@@ -72,7 +72,23 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 
 			foreach($lista_productos as $row){
 				$producto = $row['codigoProducto'];
-				$cantidad = $row['cantidadDetallePedido'];
+				$qty = $row['cantidadDetallePedido'];
+				$unidad = $row['unidadDetallePedido'];
+
+				switch($unidad){
+					case "Litros":
+					$cantidad = $qty*0.26417205;
+					break;
+
+					case "Ton_Metrica":
+					$cantidad = $qty*1.1023;
+					break;
+
+					case "Galones":
+					case "Ton_Corta":
+					$cantidad = $qty;
+					break;
+				}
 				$soporte = $cantidad;
 
 
