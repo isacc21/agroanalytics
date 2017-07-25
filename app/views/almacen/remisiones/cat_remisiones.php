@@ -23,22 +23,20 @@ date_default_timezone_set('America/Tijuana');
 include '../../../../config.php';
 
 ###### REQUIRE DE LA LIBRERIA DE METODOS DE ACREEDORES ###############################
-require '../../../models/almacen/ordenesCarga.php';
+require '../../../models/almacen/remisiones.php';
 require '../../../models/administracion/usuarios.php';
 
 ###### CREACION DEL OBJETO ACREEDORES PARA UTILIZAR METODOS ##########################
-$ordenesCarga = new ordenesCarga($datosConexionBD);
+$remisiones = new remisiones($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$lista_cargas = $ordenesCarga->consultarCargas();
-
-
-
+$lista_remisiones = $remisiones->consultarRemisiones();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $ordenesCarga->consultarCargas();
-$consultarProductos = $ordenesCarga->consultarCargas();
+$consultaModal = $remisiones->consultarRemisiones();
+$revisar_productos = $remisiones->consultarRemisiones();
+$consultar_pedimentos = $remisiones->consultarRemisiones();
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 $usuarios->id=$_SESSION['idUsuario'];
@@ -46,17 +44,17 @@ $result = $usuarios->consultarPermisos();
 
 ###### FOREACH PARA CONSULTA DE PERMISOS #############################################
 foreach ($result as $row){
-  $carga = $row['cargaPermiso'];
+  $remision = $row['remisionesPermiso'];
   }## LLAVE DE FOREACH ###############################################################
 
-  
 
-  $html_registrado='<div class="text-center"><span class="label label-sm label-success"> Esperando remisión </span></div>';
-  $html_utilizada='<div class="text-center"><span class="label label-sm label-info"> Utilizada </span></div>';
-  $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelada </span></div>';
+  $html_entregado='<span class="label label-sm label-success"> Entregado </span>';
+  $html_camino='<span class="label label-sm label-warning"> En camino </span>';
+  //$html_utilizada='<span class="label label-sm label-info"> Utilizada </span>';
+  $html_cancelado='<span class="label label-sm label-danger"> Cancelado </span>';
 
-  $html_ingreso='<div class="text-center"><span class="label label-sm label-success"> Ingreso </span></div>';
-  $html_egreso='<div class="text-center"><span class="label label-sm label-danger"> Egreso </span></div>';
+  $html_ingreso='<span class="label label-sm label-success"> Ingreso </span>';
+  $html_egreso='<span class="label label-sm label-danger"> Egreso </span>';
 
   ?>
 
@@ -90,37 +88,30 @@ foreach ($result as $row){
        <i class="fa fa-list-alt font-dark"></i>
 
        <!-- TEXTO DE TITULO DE PORTLET-->
-       <span class="caption-subject bold uppercase"> Órdenes de carga</span>
+       <span class="caption-subject bold uppercase"> Remisiones</span>
      </div>
-     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
+     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
      <div class="actions btn-set">
-      <button type="button" name="back" id="back_cat_ocargas" class="btn default green-stripe">
+      <button type="button" name="back" id="back_remisiones" class="btn default green-stripe">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
-
-      <button type="button" name="back" id="goto_remisiones" class="btn default green-stripe">
-        Remisiones<i class="fa fa-arrow-right"></i> 
-      </button>
     </div>
-
   </div>
   <!-- TERMINA TITULO DE PORTLET-->
 
   <!-- INICIA CUERPO DE PORTLET-->
   <div class="portlet-body">
-
     <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
     <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
      <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
      <thead>
       <tr>
-       <th> Código </th>
+       <th> Remisión </th>
        <th> Fecha [AAAA/MM/DD] </th>
-       <th> Pedido </th>
        <th> Cliente </th>
-       <th> Estatus </th>
+       <th> Orden de Carga </th>
        <th> Acciones </th>
      </tr>
    </thead>
@@ -131,116 +122,100 @@ foreach ($result as $row){
 
     <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
     <?php
-    foreach($lista_cargas as $row){
-     $codigo = $row['folioOrdenCarga'];
-     $pedido = $row['folioPedido'];
-     $dd = $row['ddOrdenCarga'];
-     $mm = $row['mmOrdenCarga'];
-     $yyyy = $row['yyyyOrdenCarga'];
-     $status = $row['statusOrdenCarga'];
+    foreach($lista_remisiones as $row){
+     $folio_rem = $row['folioRemision'];
+     $dd = $row['ddRemision'];
+     $mm = $row['mmRemision'];
+     $yyyy = $row['yyyyRemision'];
+     $ordenCarga = $row['folioOrdenCarga'];
 
-     $ordenesCarga->folio = $pedido;
-     $info_pedido = $ordenesCarga->consultarPedidosID();
-     foreach($info_pedido as $row){
+     $remisiones->carga = $ordenCarga;
+     $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
+
+     foreach($lista_ordenesCarga as $row){
+      $pedido = $row['folioPedido'];
+    }
+
+    $remisiones->pedido = $pedido;
+    $lista_pedidos = $remisiones->consultarPedidosxID();
+
+    foreach($lista_pedidos as $row){
       $rfc = $row['rfcCliente'];
     }
 
-    $ordenesCarga->cliente = $rfc;
-    $info_cliente = $ordenesCarga->consultarClientes();
-    foreach($info_cliente as $row){
-      $nombre_cliente = $row['razonSocCliente'];
-    }
+    $remisiones->cliente = $rfc;
+    $lista_clientes = $remisiones->consultarClientesxID();
 
+    foreach($lista_clientes as $row){
+      $cliente = $row['razonSocCliente'];
+    }
     ?>
     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
     <tr class="odd gradeX">
-      <td> <?php echo $codigo;?> </td>
+      <td> <?php echo $folio_rem;?> </td>
       <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
-      <td> <?php echo $pedido;?></td>
-      <td> <?php echo $nombre_cliente;?></td>
-      <td> <?php
-        if($status == 1){
-          echo $html_registrado;
-        }
-        else{
-          if($status == 2){
-            echo $html_utilizada;  
-          }
-          else{
-            if($status == 3){
-              echo $html_cancelado;
-            }
-          }
+      <td> <?php echo $cliente; ?></td>
+      <td> <?php echo $ordenCarga;?></td>
+      <td>
 
-        }
-        ?></td>
+       <!-- INICIAN BOTONES DE ACCIONES-->
 
-        <td>
+       <?php
 
-         <!-- INICIAN BOTONES DE ACCIONES-->
+       $html_inicio_action='<div class="text-center"><div class="btn-group">
+       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+        &nbsp; Elegir&nbsp;&nbsp;
+      </button><ul class="dropdown-menu pull-right" role="menu">';
 
-         <?php
+      $html_final_action='</ul></div></div>';
+      $html_moreInfo='<li>
+      <a data-toggle="modal" href="#modal'.$folio_rem.'">
+        <i class="icon-magnifier"></i> Ver info. </a>
+      </li>';
 
-         $html_inicio_action='<div class="text-center"><div class="btn-group">
-         <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-          &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-          &nbsp; Elegir&nbsp;&nbsp;
-        </button><ul class="dropdown-menu pull-right" role="menu">';
+      $html_productos='<li>
+      <a data-toggle="modal" href="#productos'.$folio_rem.'">
+        <i class="icon-social-dropbox"></i> Productos </a>
+      </li>';
 
-        $html_final_action='</ul></div></div>';
-        $html_moreInfo='<li>
-        <a data-toggle="modal" href="#modal'.$codigo.'">
-          <i class="icon-magnifier"></i> Ver info. </a>
-        </li>';
+      $html_pedimentos='<li>
+      <a data-toggle="modal" href="#pedimentos'.$folio_rem.'">
+        <i class="icon-book-open"></i> Pedimentos </a>
+      </li>';
 
-        $html_productos='<li>
-        <a data-toggle="modal" href="#productos'.$codigo.'">
-          <i class="icon-magnifier"></i> Productos </a>
-        </li>';
+      if($carga[0]=='1'||$carga[1]=='2'||$caremisionrga[2]=='3'||$remision[3]=='4'){
+        echo $html_inicio_action;
+      }
+      if($remision[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_productos;
+        echo $html_pedimentos;
+      }
+      
+      if($remision[0]=='1'||$remision[1]=='2'||$remision[2]=='3'||$remision[3]=='4'){
+        echo $html_final_action;
+      }
 
-        /*$html_remision='<li><a><input type="radio" id="remisionar'.$codigo.'" class="remisionar" name="remisionar" value="'.$codigo.'">
-        <label for="remisionar'.$codigo.'" ">  <i class="icon-paper-clip"></i>&nbsp;Agregar remisión </label></a></li>';*/
+      ?>
 
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-
-        if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
-          echo $html_inicio_action;
-        }
-        if($carga[0]=='1'){
-          echo $html_moreInfo; 
-          echo $html_productos;
-        }
-        if($carga[1]=='2'&&$status == 1){
-          //echo $html_remision;
-        }
-        if($carga[2]=='3'&&$status==1){
-    //echo $html_editar;
-        }
-
-        if($carga[0]=='1'||$carga[1]=='2'||$carga[2]=='3'||$carga[3]=='4'){
-          echo $html_final_action;
-        }
-
-        ?>
-
-      </td>
-    </tr>
-    <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-    <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-    <?php 
-  }
-  ?>
-  <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
+}
+?>
+<!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
 
 </tbody>
 <!-- TERMINA CUERPO DE DATA TABLE -->
 
 </table>
 <!-- TERMINA DATA TABLE PARA TABLA DE ACREEDORES-->
-
 </div>
 <!-- TERMINA CUERPO DE PORTLET -->
 </div>
@@ -257,86 +232,81 @@ foreach ($result as $row){
 
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
 foreach($consultaModal as $row){
- $codigo = $row['folioOrdenCarga'];
- $pedido = $row['folioPedido'];
- $dd = $row['ddOrdenCarga'];
- $mm = $row['mmOrdenCarga'];
- $yyyy = $row['yyyyOrdenCarga'];
- $status = $row['statusOrdenCarga'];
- $remision = $row['remisionCarga'];
- $usuario = $row['idUsuario'];
+  $folio_rem = $row['folioRemision'];
+  $folio_oc = $row['folioOrdenCarga'];
+  $adicional = $row['adicionalRemision'];
+  $dd = $row['ddRemision'];
+  $mm = $row['mmRemision'];
+  $yyyy = $row['yyyyRemision'];
+  $usuario = $row['idUsuario'];
 
- $usuarios->id=$usuario;
- $cnombres = $usuarios->consultarUsuariosID();
+  $usuarios->id=$usuario;
+  $cnombres = $usuarios->consultarUsuariosID();
 
- foreach ($cnombres as $row){
-  $nombreUser = $row['nombreUsuario'];
-}
+  foreach ($cnombres as $row){
+    $nombreUser = $row['nombreUsuario'];
+  }
 
 
-?>
-<!-- INICIO DE VENTANA MODAL -->
-<div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
-
+  ?>
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal fade" id="modal<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
 
-   <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-   <div class="modal-content">
+    <!-- INICIO DE VENTANA MODAL -->
+    <div class="modal-dialog">
 
-    <!-- INICIO DE CABECERA DE VENTANA MODAL -->
-    <div class="modal-header">
+     <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
+     <div class="modal-content">
 
-     <!-- BONTON DE CIERRE DE VENTANA MODAL-->
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <!-- INICIO DE CABECERA DE VENTANA MODAL -->
+      <div class="modal-header">
 
-     <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa</h4>
+       <!-- BONTON DE CIERRE DE VENTANA MODAL-->
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+
+       <!-- ENCABEZADO DE VENTANA MODAL-->
+       <h4 class="modal-title">Información completa</h4>
+     </div>
+     <!-- TERMINA CABECERA DE VENTANA MODAL -->
+
+     <!-- INICIA CUERPO DE VENTANA MODAL-->
+     <div class="modal-body">
+
+       <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
+       <table class="table table-hover">
+
+        <tr>
+         <td>Código de operación: </td>
+         <td><?php echo $folio_rem;?></td>
+       </tr>
+
+       <tr>
+         <td>Fecha: </td>
+         <td><?php echo $dd."/".$mm."/".$yyyy;?></td>
+       </tr>
+       <tr>
+         <td>Orden de Carga: </td>
+         <td><?php echo $folio_oc; ?></td>
+       </tr>
+       <tr>
+         <td>Información adicional:</td>
+         <td><?php echo $adicional; ?></td>
+       </tr>
+       <tr>
+         <td> Ultima edición por:</td>
+         <td><?php echo $nombreUser;?></td>
+       </tr>
+     </table>
    </div>
-   <!-- TERMINA CABECERA DE VENTANA MODAL -->
+   <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-   <!-- INICIA CUERPO DE VENTANA MODAL-->
-   <div class="modal-body">
+   <!-- INICIA PIE DE VENTANA MODAL-->
+   <div class="modal-footer">
 
-     <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
-     <table class="table table-hover">
-
-      <tr>
-       <td>Código de operación: </td>
-       <td><?php echo $codigo;?></td>
-     </tr>
-
-     <tr>
-       <td>Fecha: </td>
-       <td><?php echo $dd."/".$mm."/".$yyyy;?></td>
-     </tr>
-
-     <tr>
-       <td>Pedido: </td>
-       <td><?php echo $pedido;?></td>
-     </tr>
-
-     <?php
-     if($remision!="Pendiente"){
-      echo '<tr><td>Remisión: </td><td>'.$remision.'</td></tr>';
-    }
-    ?>
-
-    <tr>
-      <td><?php if($status==1||$status==2){echo "Última edición por:";}else{if($status==3){echo "Cancelado por:";}} ?> </td>
-      <td><?php echo $nombreUser;?></td>
-    </tr>
-  </table>
-</div>
-<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
-
-<!-- INICIA PIE DE VENTANA MODAL-->
-<div class="modal-footer">
-
-  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-</div>
-<!-- TERMINA PIE DE VENTANA MODAL-->
+    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+  </div>
+  <!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
 <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
 </div>
@@ -351,16 +321,28 @@ foreach($consultaModal as $row){
 <?php
 
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
-foreach($consultarProductos as $row){
- $codigo = $row['folioOrdenCarga'];
- $pedido = $row['folioPedido'];
+foreach($revisar_productos as $row){
+ $folio_rem = $row['folioRemision'];
 
+ $ordenCarga = $row['folioOrdenCarga'];
 
+ $remisiones->carga = $ordenCarga;
+ $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
 
+ foreach($lista_ordenesCarga as $row){
+  $pedido = $row['folioPedido'];
+}
 
- ?>
- <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+$remisiones->pedido = $pedido;
+$lista_pedidos = $remisiones->consultarPedidosxID();
+
+foreach($lista_pedidos as $row){
+  $cliente = $row['rfcCliente'];
+}
+
+?>
+<!-- INICIO DE VENTANA MODAL -->
+<div class="modal fade bs-modal-lg" id="productos<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
   <div class="modal-dialog modal-lg">
@@ -375,7 +357,7 @@ foreach($consultarProductos as $row){
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 
      <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa</h4>
+     <h4 class="modal-title">Información completa </h4>
    </div>
    <!-- TERMINA CABECERA DE VENTANA MODAL -->
 
@@ -389,20 +371,13 @@ foreach($consultarProductos as $row){
          <th>Cantidad</th>
          <th>Precio Unitario</th>
          <th>Monto</th>
-         <th><div class="text-center">En existencia</div></th>
        </tr>
        <?php 
-       $total_coti = 0;
-       $ordenesCarga->folio = $pedido;
-       $lista_clientes = $ordenesCarga->consultarPedidosID();
-       foreach($lista_clientes as $row){
-        $cliente = $row['rfcCliente'];
-      }
+       $total_pedido = 0;
+       $remisiones->pedido = $pedido;
+       $detalles = $remisiones->consultarDetallePedido();
 
-      $ordenesCarga->pedido = $pedido;
-      $detalles = $ordenesCarga->consultarDetalle();
-
-      foreach($detalles as $row){
+       foreach($detalles as $row){
         $producto = $row['codigoProducto'];
         $cantidad = $row['cantidadDetallePedido'];
         $unidad = $row['unidadDetallePedido'];
@@ -428,8 +403,8 @@ foreach($consultarProductos as $row){
           break;
         }
 
-        $ordenesCarga->producto = $producto;
-        $cProducto = $ordenesCarga->consultarProductosxID();
+        $remisiones->producto = $producto;
+        $cProducto = $remisiones->consultarProductosxID();
 
         foreach($cProducto as $row){
           $nombreProducto = $row['nombreProducto'];
@@ -460,9 +435,8 @@ foreach($consultarProductos as $row){
             break;
           }
 
-
-          $ordenesCarga->cliente = $cliente;
-          $lista_clientes = $ordenesCarga->consultarClientes();
+          $remisiones->cliente = $cliente;
+          $lista_clientes = $remisiones->consultarClientesxID();
           foreach($lista_clientes as $row){
            $cliente_tipo = $row['tipoCliente'];
          }
@@ -490,9 +464,9 @@ foreach($consultarProductos as $row){
           }
           else{
             if($cliente_tipo==3){
-              $ordenesCarga->cliente = $cliente;
-              $ordenesCarga->producto = $producto;
-              $lista_preciosespe = $ordenesCarga->consultarPrecios();
+              $remisiones->cliente = $cliente;
+              $remisiones->producto = $producto;
+              $lista_preciosespe = $remisiones->consultarPrecios();
 
               foreach($lista_preciosespe as $row){
                 $precio1 = $row['iPrecioEspecial'];
@@ -517,55 +491,6 @@ foreach($consultarProductos as $row){
           <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
           <td><?php echo "$ ".number_format($precio_unitario,2, '.', ','); ?></td>
           <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
-          <td>
-            <?php 
-
-            $ordenesCarga->producto =$producto;
-            $num_inventario = $ordenesCarga->inventarioEsp();
-
-            foreach($num_inventario as $row){
-              $existencia = $row['SUM(existenciaInventario)'];
-            }
-            $binExistencia = 0;
-
-            if(is_null($existencia)){
-              $binExistencia = 1;
-            }
-            else{
-              switch($unidad){
-                case "Ton_Corta";
-                break;
-                case "Galones":
-                $qty = $cantidad;
-                break;
-
-                case "Litros":
-                $qty = $cantidad*0.26417205;
-                break;
-
-                case "Ton_Metrica": 
-                $qty = $cantidad*1.1023;
-                break;
-              }
-            }
-
-            $faltante = $qty-$existencia;
-            if($faltante>0){
-              $binExistencia = 1;
-            }
-
-
-            $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
-            $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
-
-            if($binExistencia==1){
-              echo $negative;
-            }
-            else{
-              echo $positive;
-            }
-            ?>
-          </td>
         </tr>
         <?php
       }
@@ -575,9 +500,8 @@ foreach($consultarProductos as $row){
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
-      <td>&nbsp;</td>
       <td><div class="text-right"><strong>Total:</strong></div></td>
-      <td><div class="text-center"><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></div></td>    
+      <td><div class="text-left"><?php echo  "$ ".number_format($total_pedido,2, '.', ','); ?></div></td>    
     </tr>
 
   </table>
@@ -602,22 +526,79 @@ foreach($consultarProductos as $row){
 ?>
 
 
+<?php
+
+###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
+foreach($consultar_pedimentos as $row){
+  $folio_rem = $row['folioRemision'];
+
+  $remisiones->remision = $folio_rem;
+  $lista_pedimentos = $remisiones->consultarDetalleRemision();
+
+  ?>
+  <!-- INICIO DE VENTANA MODAL -->
+  <div class="modal fade" id="pedimentos<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
+
+    <!-- INICIO DE VENTANA MODAL -->
+    <div class="modal-dialog">
+
+     <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
+     <div class="modal-content">
+
+      <!-- INICIO DE CABECERA DE VENTANA MODAL -->
+      <div class="modal-header">
+
+       <!-- BONTON DE CIERRE DE VENTANA MODAL-->
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+
+       <!-- ENCABEZADO DE VENTANA MODAL-->
+       <h4 class="modal-title">Lista de pedimentos</h4>
+     </div>
+     <!-- TERMINA CABECERA DE VENTANA MODAL -->
+
+     <!-- INICIA CUERPO DE VENTANA MODAL-->
+     <div class="modal-body">
+
+       <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
+       <table class="table table-hover">
+        <?php
+        foreach($lista_pedimentos as $row){
+          ?>
+          <tr>
+            <td>Folio: <?php echo $row['folioPedimento'];?></td>
+          </tr> 
+          <?php
+        }
+        ?>
+      </table>
+    </div>
+    <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+
+    <!-- INICIA PIE DE VENTANA MODAL-->
+    <div class="modal-footer">
+
+      <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+      <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+    </div>
+    <!-- TERMINA PIE DE VENTANA MODAL-->
+  </div>
+  <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
+</div>
+<!-- TERMINO DE VENTANA MODAL  -->
+</div>
+<!-- TERMINO DE VENTANA MODAL -->
+<?
+} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
+?>
+
+
 <!-- SCRIPTS NECEARIOS PARA FUNCIONAMIENTO DE CATALOGO-->
 <script>
 	$(document).ready(function(){
 
-    $("#back_cat_ocargas").click(function(){
+    $("#back_remisiones").click(function(){
       window.location = ""
     });
-
-    $("#goto_remisiones").click(function(){
-      window.location = "../remisiones"
-    });
-
-    /* SCRIPT PARA ENVIO DE FOLIO Y ELIMINACION DEL ACREEDOR EN CUESTION*/ 
-    $('.remisionar').click(function() {
-      $("#mainContent").load( "conf_remision.php?codigo="+$(this).val());
-    })
   });
 </script>
 

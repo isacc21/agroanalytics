@@ -19,6 +19,7 @@ class remisiones{
 
 	var $producto;
 	var $cantidad;
+	var $cliente;
 
 
 
@@ -132,7 +133,7 @@ class remisiones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM ordenescarga WHERE folioOrdenCarga = '".$this->folio."'");
+			return $resultados = $conexion->query("SELECT * FROM ordenescarga WHERE folioOrdenCarga = '".$this->carga."'");
 
 		}
 
@@ -276,6 +277,120 @@ class remisiones{
 			return "Error: " . $e->getMessage();
 		}
 	}
+
+	public function consultarRemisiones(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM remisiones");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarPedidosxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM pedidos WHERE folioPedido = '".$this->pedido."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarClientesxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM clientes WHERE rfcCliente = '".$this->cliente."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarProductosxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM productos WHERE codigoProducto = '".$this->producto."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarPrecios(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM preciosespeciales WHERE rfcCliente = '".$this->cliente."' AND codigoProducto = '".$this->producto."'");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+
+  public function consultarDetalleRemision(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM detalleremisiones WHERE folioRemision = '".$this->remision."'");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
 
 }//LLAVE DE CLASE REMISIONES
 ?>
