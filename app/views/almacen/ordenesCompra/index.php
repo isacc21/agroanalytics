@@ -203,8 +203,8 @@ if(isset($_SESSION['login'])){
 
 
     $html_nuevo='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-green-jungle">
+    <div class="mt-widget-3 bg-red">
+        <div class="mt-head bg-red">
             <div class="mt-head-icon">
                 <i class="fa fa-floppy-o"></i>
             </div>
@@ -216,8 +216,8 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_lista='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-blue-hoki">
+        <div class="mt-head bg-blue-hoki">
             <div class="mt-head-icon">
                 <i class="fa fa-files-o"></i>
             </div>
@@ -229,8 +229,8 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_reporte='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-green">
+        <div class="mt-head bg-green">
             <div class="mt-head-icon">
                 <i class="fa fa-print"></i>
             </div>
@@ -496,40 +496,34 @@ if(isset($_SESSION['login'])){
                                 <div class="page-content-wrapper">
                                     <div class="page-content">
 
-                                        <!--INICIA TITULO DE PAGINA -->
-                                        <h1 class="page-title"> Órdenes de Compra
-                                            <small><?php echo " - ". date(d) ."/". date(m) ."/". date(Y); ?></small>
-                                        </h1>
-                                        <!--TERMINA TITULO DE PAGINA-->
+                                        <!-- INICIA TITULO DE PAGINA-->
+                                        <h1 class="page-title"> Órdenes de compra<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                        <!-- TERMINA TITULO DE PAGINA -->
 
-                                        <!--INICIA MAIN CONTENT USADO POR AJAX-->
+                                        <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                        <style type="text/css">
+                                            div#mainContent {margin:0}
+                                            body {overflow-x:hidden;}
+                                        </style>
+
                                         <div id="mainContent" class="page-container">
 
-                                            <!--INICIA PORTLET MENU DE USUARIOS-->
-                                            <div class="portlet light portlet-fit bordered">
-                                                <div class="portlet-title">
-                                                    <div class="caption">
-                                                        <i class="icon-settings font-green-sharp"></i>
-                                                        <span class="caption-subject font-green-sharp bold uppercase">Seleccione la acción</span>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="row">
 
-                                                        <!--INICIA LISTA DE USUARIOS-->
-                                                        <?php 
-                                                        if($compra[1]=='2'){
-                                                            echo $html_nuevo;
-                                                        }
-                                                        if($compra[0]=='1'||$compra[2]=='3'||$compra[3]=='4'){
-                                                            echo $html_lista;
-                                                            echo $html_reporte;
-                                                        }
-                                                        ?>
-                                                        <!--TERMINA LISTA DE USUARIOS-->
+                                            <div class="row">
 
-                                                    </div>
-                                                </div>
+                                                <!--INICIA LISTA DE USUARIOS-->
+                                                <?php 
+                                                if($compra[1]=='2'){
+                                                    echo $html_nuevo;
+                                                }
+                                                if($compra[0]=='1'||$compra[2]=='3'||$compra[3]=='4'){
+                                                    echo $html_lista;
+                                                    echo $html_reporte;
+                                                }
+                                                ?>
+                                                <!--TERMINA LISTA DE USUARIOS-->
+
+
                                             </div>
                                             <!--TERMINA PORTLET DE USUARIOS-->
                                         </div>

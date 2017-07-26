@@ -198,7 +198,7 @@ class ordenesCompra{
 
 			$statement->execute();
 
-			return "Factura añadida con éxito";
+			return "Factura procesada";
 		}
 
 		catch(PDOException $e){

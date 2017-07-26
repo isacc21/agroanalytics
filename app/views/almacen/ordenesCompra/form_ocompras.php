@@ -72,13 +72,10 @@
   }
 </style>
 
-<!--COLUMNA DE 2 UTILIZADA PARA CENTRAR FORMULARIO-->
-<div class="col-md-2"></div>
-<!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
-<div class="col-md-8">
+<div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box blue-hoki">
+  <div class="portlet box grey-mint">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
@@ -125,7 +122,7 @@
           <div class="form-group">
             <label class="col-md-3 control-label">Proveedor</label>
             <div class="col-md-7">
-              <select id="proveedor" class="form-control input-circle" required >
+              <select id="proveedor" class="form-control" required >
                 <option selected disabled value="">Seleccione un proveedor</option>
                 <?php 
                 $proveedores=$ordenesCompra->consultarProveedoresAll();
@@ -145,103 +142,227 @@
             <!-- TERMINA INPUT PARA CLIENTE-->
             <div id="nuevoProducto">
 
-              <div class="form-group">
-
+              <div class="form-group" id="remover0">
+                <label class="col-md-3 control-label">Productos</label>
+                <div class="col-md-3">
+                  <select id="producto0" class="form-control" required >
+                    <option selected disabled value="default">Seleccione</option>
+                    <?php 
+                    $productos=$ordenesCompra->consultarProductos();
+                    foreach($productos as $row){
+                      $codigoP = $row['codigoProducto'];
+                      $nombreP = $row['nombreProducto'];
+                      $presP = $row['presentacionProducto'];
+                      switch($presP){
+                        case 1:
+                        $preS = " | Cubeta";
+                        break;
+                        case 2:
+                        $preS = " | Tibor";
+                        break;
+                        case 3:
+                        $preS = " | Tote";
+                        break;
+                        case 4:
+                        $preS = " | Granel";
+                        break;
+                        case 5:
+                        $preS = " | Saco";
+                        break;
+                        case 6:
+                        $preS = " | Súper saco";
+                        break;
+                      }?>
+                      <option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option>
+                      <?php 
+                    } 
+                    ?>
+                  </select>
+                </div>
+                <div class="col-md-2"> 
+                  <input type="text" class="form-control" id="cantidad0" name="cantidad" value="" placeholder="Cantidad" required ">
+                </div>
+                <div class="col-md-2"> 
+                  <input type="text" class="form-control" value="" id="unidad0" disabled placeholder="Unidad">
+                </div>
+                <div class="col-md-2"> 
+                  <div class="btn blue-chambray btn-outline" onclick="removerProducto(0)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                  </div>
+                </div>
               </div>
             </div>
             <div id="calculos"></div>
             <div class="form-group">
-            <div class="col-md-7"></div>
+              <div class="col-md-7"></div>
               <label class="col-md-3 control-label">
-                <button id="app_producto" class="btn btn-circle blue-chambray btn-outline" >
-                  <i class="glyphicon glyphicon-plus"></i>&nbsp;Producto
-                </button>
+                <div id="app_producto" class="btn blue-chambray btn-outline" >
+                  <i class="glyphicon glyphicon-plus"></i>&nbsp;Agregar producto
+                </div>
               </label>
 
 
             </div>
             <div class="form-group">
               <label class="col-md-6 control-label">Total</label>
-              <div class="col-md-3">
-                <input type="text" class="form-control input-circle" id="total" name="total" value="" required placeholder="Calcular total">
-              </div>
-              <div class="col-md-2">
-               <i class="col-md-4 icon-calculator btn btn-icon-only btn-lg white" id="calc_total"></i>          
-             </div>
-           </div>
-           <!-- INICIA INPUT FOLIO DE REGISTRO-->
-           <div class="form-group">
-            <label class="col-md-3 control-label">Password</label>
-            <div class="col-md-7">
-              <input type="password" class="form-control input-circle" id="pass" name="pass" required>
-            </div>
-          </div>
-          <!-- TERMINA INPUT FOLIO DE REGISTRO-->
-
-
-          <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-          <div class="form-actions">
-            <div class="row">
-              <div class="col-md-offset-4 col-md-12">
-
-                <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                <input type="submit" id="accionBoton" class="btn btn-circle green" value="<?=$nombreSubmit;?>"> 
-
-                <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                <a href="../ordenesCompra" class="btn btn-circle grey-salsa btn-outline">Cancelar</a>
+              <div class="col-md-4">
+                <input type="text" class="form-control" id="total" name="total" value="" required placeholder="Calcular total">
               </div>
             </div>
-          </div>
-          <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
-        </form>
-        <!-- TERMINA FORM-->
+            <!-- INICIA INPUT FOLIO DE REGISTRO-->
+            <div class="form-group">
+              <label class="col-md-3 control-label">Password</label>
+              <div class="col-md-7">
+                <input type="password" class="form-control" id="pass" name="pass" required>
+              </div>
+            </div>
+            <!-- TERMINA INPUT FOLIO DE REGISTRO-->
+
+
+            <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
+            <div class="form-actions">
+              <div class="row">
+                <div class="text-center">
+
+                  <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+                  <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
+
+                  <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+                  <a href="../ordenesCompra" class="btn grey-salsa btn-outline">Cancelar</a>
+                </div>
+              </div>
+            </div>
+            <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
+          </form>
+          <!-- TERMINA FORM-->
+        </div>
       </div>
+      <!-- TERMINA CUERPO DE PORTLET-->
     </div>
-    <!-- TERMINA CUERPO DE PORTLET-->
-  </div>
-  <!-- TERMINA PORTLET-->
 
-  <!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
-  <div class="col-md-2"></div>
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    $(".readonly").keydown(function(e){
-      e.preventDefault();
-    });
+      $(".readonly").keydown(function(e){
+        e.preventDefault();
+      });
 
-    x=0;
-    $("#app_producto").click(function(){
-      $( "#nuevoProducto" ).append('<div class="form-group" id="remover'+x+'"><label class="col-md-3 control-label">Productos</label><div class="col-md-3"><select id="producto'+x+'" class="form-control input-circle" required ><option selected disabled value="">Seleccione</option><?php $productos=$ordenesCompra->consultarProductos();foreach($productos as $row){$codigoP = $row['codigoProducto'];$nombreP = $row['nombreProducto'];?><option value="<?=$codigoP;?>"><? echo $nombreP;?></option><?php } ?></select></div><div class="col-md-3"> <input type="text" class="form-control input-circle" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "></div><div class="col-md-2"> <div class="btn btn-circle blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div></div>');
-      x++;
-    });
-    productoEliminado = [];
-    function removerProducto(numeroElemento){
-      $( "#remover"+numeroElemento ).css("display","none");
-      productoEliminado[numeroElemento] = "no";
+      x=1;
+      $("#app_producto").click(function(){
+        $( "#nuevoProducto" ).append('<div class="form-group" id="remover'+x+'"><label class="col-md-3 control-label">Productos</label><div class="col-md-3"><select id="producto'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><?php $productos=$ordenesCompra->consultarProductos();
+          foreach($productos as $row){
+            $codigoP = $row['codigoProducto'];
+            $nombreP = $row['nombreProducto'];
+            $presP = $row['presentacionProducto'];
+            switch($presP){
+              case 1:
+              $preS = " | Cubeta";
+              break;
+              case 2:
+              $preS = " | Tibor";
+              break;
+              case 3:
+              $preS = " | Tote";
+              break;
+              case 4:
+              $preS = " | Granel";
+              break;
+              case 5:
+              $preS = " | Saco";
+              break;
+              case 6:
+              $preS = " | Súper saco";
+              break;
+            }?><option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option><?php } ?></select></div><div class="col-md-2"> <input type="text" class="form-control" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "></div><div class="col-md-2"><input type="text" class="form-control" value="" id="unidad'+x+'" disabled placeholder="Unidad"></div><div class="col-md-2"> <div class="btn blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div></div>');
+        x++;
+      });
+      productoEliminado = [];
+      function removerProducto(numeroElemento){
+        $( "#remover"+numeroElemento ).css("display","none");
+        productoEliminado[numeroElemento] = "no";
 
-    }
-
-    function revisar(){
-      for (var i = 0; i < x; i++) {
-        hola = productoEliminado[i];
-        alert(hola);
       }
+
+      function revisar(){
+        for (var i = 0; i < x; i++) {
+          hola = productoEliminado[i];
+          alert(hola);
+        }
+      }
+
+      $("#nuevoProducto").change(function(e){
+
+        var registros = 0;
+        var atrabajar;
+        var selected;
+
+        var vf ="";
+        var lim = 0;
+
+        registros = x;
+
+
+
+        atrabajar = x-1;
+
+        texto = document.getElementById("producto"+atrabajar);
+        selected = texto.options[texto.selectedIndex].text;
+        for (var i = 0; i < selected.length; i++){
+         if(selected[i] == "|"){
+          lim = i+1;
+        }
+      }
+      for (var i = 0; i < selected.length; i++) {
+        if (lim<i){
+          vf+=selected[i];
+        }
+      }
+
+      switch(vf){
+        case "Cubeta":
+        case "Tibor":
+        case "Tote":
+        case "Granel":
+        $("#unidad"+atrabajar).val("GAL.");
+        break;
+
+        case "Saco":
+        case "Súper saco":
+        $("#unidad"+atrabajar).val("Ton. Corta");
+        break;
+      }
+
+      for (var i = 0; i < registros; i++) {
+       var producto = "";
+       var conf_del = "";
+       var cuenta = "";
+       producto = $("#producto"+i).val();
+       conf_del = productoEliminado[i];
+       if(conf_del == "no"){
+        cuenta = "1";
+      }
+      for (var j = 0; j < registros; j++) {
+
+        if(j!=i && i!=registros && producto == $("#producto"+j).val() && cuenta!== "1" && productoEliminado[j]!="no"){
+          $("#producto"+j).val("default");
+          swal("Producto ya ingresado", "", "warning");
+        }
+      }
+
+
     }
 
-    $("#nuevoProducto").change(function(e){
+    $("#codigos").remove();
+    $("#cantidades").remove();
+    e.preventDefault();
+    var registros = 0;
+    registros = x;
 
-      $("#codigos").remove();
-      $("#cantidades").remove();
-      e.preventDefault();
-      var registros = 0;
-      registros = x;
-
-      var codigos = "";
-      var cantidades = "";
-      var separacion = "*hola*";
-      var bander = 0;
-      for (var fp = 0; fp < registros; fp++) {
+    var codigos = "";
+    var cantidades = "";
+    var separacion = "*hola*";
+    var bander = 0;
+    for (var fp = 0; fp < registros; fp++) {
           //alert(productoEliminado[fp]);
           if(productoEliminado[fp]!="no"){
             bander= 0;
@@ -273,61 +394,61 @@
        });
       });
 
-    $("#guardarCotizacion").submit(function(e){
-      $("#codigos").remove();
-      $("#cantidades").remove();
-      e.preventDefault();
-      var registros = 0;
-      registros = x;
+      $("#guardarCotizacion").submit(function(e){
+        $("#codigos").remove();
+        $("#cantidades").remove();
+        e.preventDefault();
+        var registros = 0;
+        registros = x;
 
-      var codigos = "";
-      var cantidades = "";
-      var separacion = "*hola*";
-      var bander = 0;
-      for (var fp = 0; fp < registros; fp++) {
+        var codigos = "";
+        var cantidades = "";
+        var separacion = "*hola*";
+        var bander = 0;
+        for (var fp = 0; fp < registros; fp++) {
 
-        if(productoEliminado[fp]!="no"){
-          bander= 0;
-        }
-        else{
-          if(productoEliminado[fp]=="no"){
-            bander = 1;
+          if(productoEliminado[fp]!="no"){
+            bander= 0;
+          }
+          else{
+            if(productoEliminado[fp]=="no"){
+              bander = 1;
+            }
+          }
+          if(bander==0){
+            codigos = codigos + $("#producto"+fp).val() + separacion;
+            cantidades = cantidades + $("#cantidad"+fp).val() + separacion;
           }
         }
-        if(bander==0){
-          codigos = codigos + $("#producto"+fp).val() + separacion;
-          cantidades = cantidades + $("#cantidad"+fp).val() + separacion;
-        }
-      }
 
-      $("#nuevoProducto").append( '<input type="hidden" value="'+codigos+'" id="codigos" name="codigos">');
-      $("#nuevoProducto").append( '<input type="hidden" value="'+cantidades+'" id="cantidades" name="cantidades">');
+        $("#nuevoProducto").append( '<input type="hidden" value="'+codigos+'" id="codigos" name="codigos">');
+        $("#nuevoProducto").append( '<input type="hidden" value="'+cantidades+'" id="cantidades" name="cantidades">');
 
-      $.ajax({
-        type: "POST",
-        url: "../../../controllers/almacen/ordenesCompra/nuevaOrden.php",
-        data: "codigos="+$("#codigos").val()+
-        "&cantidades="+$("#cantidades").val()+
-        "&codigo="+$("#codigo").val()+
-        "&fecha="+$("#fecha").val()+
-        "&proveedor="+$("#proveedor").val()+
-        "&pass="+$("#pass").val()
-      }).done(function(result){
-        if(result=="Orden de Compra registrada"){
-          swal (result, "", "success");
-          $("#mainContent").load( "cat_ocompras.php" );
-        }else{
-          swal (result, "", "warning");
-        } 
+        $.ajax({
+          type: "POST",
+          url: "../../../controllers/almacen/ordenesCompra/nuevaOrden.php",
+          data: "codigos="+$("#codigos").val()+
+          "&cantidades="+$("#cantidades").val()+
+          "&codigo="+$("#codigo").val()+
+          "&fecha="+$("#fecha").val()+
+          "&proveedor="+$("#proveedor").val()+
+          "&pass="+$("#pass").val()
+        }).done(function(result){
+          if(result=="Orden de Compra registrada"){
+            swal (result, "", "success");
+            $("#mainContent").load( "cat_ocompras.php" );
+          }else{
+            swal (result, "", "warning");
+          } 
+        });
+
       });
 
-    });
+    </script>
 
-  </script>
-
-  <script src="../../../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
-  <script src="../../../../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-  <script src="../../../../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
-  <script src="../../../../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-  <script src="../../../../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
-  <script src="../../../../assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript">
+    <script src="../../../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <script src="../../../../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="../../../../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="../../../../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="../../../../assets/global/plugins/clockface/js/clockface.js" type="text/javascript"></script>
+    <script src="../../../../assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript">

@@ -34,7 +34,7 @@ if (isset($_REQUEST['codigo'])){
 				'&factura='+$("#factura").val()+
 				'&pass='+$("#pass").val()
 			}).done(function(result){
-				if(result=="Factura añadida con éxito"){
+				if(result=="Factura procesada"){
 					swal (result, "", "success");
 					$("#mainContent").load( "cat_ocompras.php" );
 				}else{
@@ -48,22 +48,16 @@ if (isset($_REQUEST['codigo'])){
 </script>
 
 
-<!--COLUMNA DE 2 UTILIZADA PARA CENTRAR FORMULARIO-->
-<div class="col-md-2"></div>
-<!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
-<div class="col-md-8">
+<div class="col-md-12">
 
 	<!--INICIA PORTLET-->
-	<div class="portlet box blue-hoki">
+	<div class="portlet box grey-mint">
 
 		<!--INICIA TITULO DE PORTLET-->
 		<div class="portlet-title">
 
 			<!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-			<div class="caption">
-				<!-- ICONO Y TEXTO DE TITULO-->
-				<i class="fa fa-save"></i> Confirmar cancelación: "<?php echo $codigo;?>" 
-			</div>
+			<div class="caption">Agregar factura a orden: "<?php echo $codigo;?>" </div>
 			<!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
 
 		</div>
@@ -80,20 +74,20 @@ if (isset($_REQUEST['codigo'])){
 				<div class="form-body">
 
 
-				<!-- INICIA INPUT FOLIO-->
+					<!-- INICIA INPUT FOLIO-->
 					<div class="form-group">
-						<label class="col-md-4 control-label">No. Factura</label>
-						<div class="col-md-6">
-							<input type="text" class="form-control input-circle" id="factura" name="factura" required>
+						<label class="col-md-3 control-label">No. Factura</label>
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="factura" name="factura" required>
 						</div>
 					</div>
 					<!-- TERMINA INPUT FOLIO-->
 
 					<!-- INICIA INPUT FOLIO-->
 					<div class="form-group">
-						<label class="col-md-4 control-label">Confirmar contraseña</label>
-						<div class="col-md-6">
-							<input type="password" class="form-control input-circle" id="pass" name="pass" required>
+						<label class="col-md-3 control-label">Confirmar contraseña</label>
+						<div class="col-md-7">
+							<input type="password" class="form-control" id="pass" name="pass" required>
 							<input type="hidden" id="folio" name="folio" value="<?=$codigo;?>">
 						</div>
 					</div>
@@ -103,13 +97,13 @@ if (isset($_REQUEST['codigo'])){
 					<!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
 					<div class="form-actions">
 						<div class="row">
-							<div class="col-md-offset-4 col-md-12">
+							<div class="text-center">
 
 								<!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-								<input type="submit" id="accionBoton" class="btn btn-circle green" value="<?=$nombreSubmit;?>"> 
+								<input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
 
 								<!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-								<a href="../bancos" class="btn btn-circle grey-salsa btn-outline">Cancelar</a>
+								<a href="../ordenesCompra" class="btn grey-salsa btn-outline">Cancelar</a>
 							</div>
 						</div>
 					</div>
@@ -120,15 +114,6 @@ if (isset($_REQUEST['codigo'])){
 		</div>
 		<!-- TERMINA CUERPO DE PORTLET-->
 	</div>
-	<!-- TERMINA PORTLET-->
-
-	<!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
-	<div class="col-md-2"></div>
-
-
-
-
-
 	<!-- END CORE PLUGINS -->
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 	<script src="../../../../assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
