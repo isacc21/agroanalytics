@@ -195,6 +195,7 @@ class importaciones{
 			$query = "UPDATE ordenescompra SET
 
 			statusFactura = 2,
+			statusOrdenCompra = 4,
 			folioImportacion = '".$this->folio."',
 			idUsuario = '".$this->id."'
 
@@ -430,7 +431,7 @@ class importaciones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT folioimportacion FROM importaciones WHERE folioImportacion LIKE '".$this->codigo."'");
+			return $resultados = $conexion->query("SELECT folioImportacion FROM importaciones WHERE folioImportacion LIKE '".$this->codigo."'");
 
 		}
 

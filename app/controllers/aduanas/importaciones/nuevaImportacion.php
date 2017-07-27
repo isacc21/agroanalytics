@@ -18,28 +18,27 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 
 
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
-	$contador = 0;
+	$zahler = 0;
 
 	$fechaCodigo = "I".$dia.$mes.$anio[2].$anio[3];
 	$importaciones->codigo = $fechaCodigo."%";
 	$encontrados = $importaciones->consultarCodigos();
 	foreach($encontrados as $row){
 		if($row['folioImportacion']!=""){
-			$contador++;
+			$zahler++;
 		}
 	}
 
-	if($contador==0){
+	if($zahler==0){
 		$folio = $fechaCodigo."-01";
 	}
 	else{
-		if($contador < 9){
-			$folio = $fechaCodigo."-0".($contador+1);	
+		if($zahler<9){
+			$folio = $fechaCodigo."-0".($zahler+1);
 		}
 		else{
-			$folio = $fechaCodigo."-".($contador+1);	
+			$folio = $fechaCodigo."-".($zahler+1);
 		}
-		
 	}
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 	

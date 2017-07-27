@@ -65,7 +65,7 @@ foreach ($result as $row){
 
   $html_registrado='<div class="text-center"><span class="label label-sm label-success"> Vigente </span></div>';
   $html_vencida='<div class="text-center"><span class="label label-sm label-warning"> Facturada </span></div>';
-  $html_utilizada='<div class="text-center"><span class="label label-sm label-info"> Utilizada </span></div>';
+  $html_utilizada='<div class="text-center"><span class="label label-sm label-info"> Importada </span></div>';
   $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelada </span></div>';
 
   $html_ingreso='<span class="label label-sm label-success"> Ingreso </span>';
@@ -177,6 +177,11 @@ foreach ($result as $row){
             if($status==3){
               echo $html_cancelado;
             }
+            else{
+              if($status==4){
+                echo $html_utilizada;
+              }
+            }
           }
         }
         ?>
@@ -275,7 +280,7 @@ foreach($consultaModal as $row){
  $cnombres = $usuarios->consultarUsuariosID();
 
  foreach ($cnombres as $row){
-  $nombreUser = $row['nombreUsuario'];
+  $nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
 }
 
 
@@ -319,7 +324,7 @@ foreach($consultaModal as $row){
 
      <tr>
       <td><?php 
-        if($status==1||$status==2){
+        if($status==1||$status==2||$status==4){
           echo "Última edición por:";
         }
         else{

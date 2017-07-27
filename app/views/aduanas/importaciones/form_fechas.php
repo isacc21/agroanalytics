@@ -30,9 +30,8 @@ $listaFacturas="";
 $nombreSubmit = 'Guardar';
 //echo $_REQUEST['codigo'];
 
-$folio = $_REQUEST['codigo'];
-
-echo $folio;
+$folio = $_REQUEST['codigo']; /*DESCOMENTAR Y COMENTAR LA LINEA DE ABAJO CUANDO QUEDE CORRECTO. */
+//$folio = "I270717-01";
 
 $importaciones->folio = $folio;
 $consultar_facturas = $importaciones->consultarFacturas();
@@ -45,10 +44,6 @@ $consultar_facturas = $importaciones->consultarFacturas();
 		if ($("#accionBoton").val() == 'Guardar'){
 			var urlCont = "../../../controllers/aduanas/importaciones/guardarFechas.php";
 		} /* LLAVE DE IF */
-
-
-		
-
 
 		/* AJAX QUE ENVIA INFORMACION AL URL DE ACUERDO A LA SITUACION */
 		$("#agregarFechas").submit(function(e){
@@ -63,7 +58,7 @@ $consultar_facturas = $importaciones->consultarFacturas();
 				fechasC = fechasC + $("#fechaC"+i).val() + separacion;
 				lotes = lotes + $("#lote"+i).val() + separacion;
 			}
-			alert(fechasM+fechasC+lotes);
+			//alert(fechasM+fechasC+lotes);
 
 			$.ajax({
 				type: "POST",
@@ -119,7 +114,6 @@ $consultar_facturas = $importaciones->consultarFacturas();
 		<!--INICIA CUERPO DE PORTLET-->
 		<div class="portlet-body form">
 
-
 			<!--INICIA FORM-->
 			<form class="form-horizontal save-user" id="agregarFechas" >
 
@@ -144,17 +138,44 @@ $consultar_facturas = $importaciones->consultarFacturas();
 								$nombre = "";
 								foreach($nombre_producto as $row){
 									$nombre = $row['nombreProducto'];
+									$presentacion = $row['presentacionProducto'];
+
+									switch($presentacion){
+										case 1:
+										$pres = " | Cubeta";
+										break;
+										case 2:
+										$pres = " | Tibor";
+										break;
+										case 3:
+										$pres = " | Tote";
+										break;
+										case 4:
+										$pres = " | Granel";
+										break;
+										case 5:
+										$pres = " | Saco";
+										break;
+										case 6:
+										$pres = " | Súper saco";
+										break;
+									}
 								}
 
 								?>
 								<!-- INICIA INPUT PRODUCTO-->
 								<div class="form-group">
 									<label class="col-md-1 control-label"></label>
-									<label class="col-md-8 black"><u><?echo $nombre;?></u></label><br>
+									<label class="col-md-8 black"><u><?echo $nombre.$pres;?></u></label><br>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-md-5">Fecha de manufactura</label>
-									<div class="col-md-5">
+									<label class="control-label col-md-3">Fecha de Manufactura</label>
+									<label class="control-label col-md-3">Fecha de Caducidad&nbsp;&nbsp;&nbsp;</label>
+									<label class="col-md-3 control-label">Lote de producción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								</div>
+								<div class="form-group">
+									<div class="col-md-1"></div>
+									<div class="col-md-3">
 										<div class="input-group  date date-picker" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
 											<input type="text" class="form-control readonly"  id="fechaM<?=$x;?>" required placeholder="Seleccione fecha">
 											<span class="input-group-btn">
@@ -163,10 +184,9 @@ $consultar_facturas = $importaciones->consultarFacturas();
 												</button>
 											</span>
 										</div></div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-md-5">Fecha de caducidad</label>
-										<div class="col-md-5">
+
+										
+										<div class="col-md-3">
 											<div class="input-group  date date-picker" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
 												<input type="text" class="form-control readonly"  id="fechaC<?=$x;?>" required placeholder="Seleccione fecha">
 												<span class="input-group-btn">
@@ -175,11 +195,8 @@ $consultar_facturas = $importaciones->consultarFacturas();
 													</button>
 												</span>
 											</div></div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-5 control-label">Lote de producción</label>
-											<div class="col-md-5">
-												<input type="text" class="form-control input-circle" id="lote<?=$x;?>" name="lote">
+											<div class="col-md-4">
+												<input type="text" class="form-control" id="lote<?=$x;?>" name="lote" required>
 												<input type="hidden" id="folio" value="<?=$_REQUEST['codigo'];?>">
 											</div>
 										</div>
