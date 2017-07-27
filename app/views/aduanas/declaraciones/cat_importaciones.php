@@ -1,5 +1,18 @@
 <?php
-
+######################################################################################
+# ISACC JAVIER LOZANO MONTAÑEZ (IJLM)                                                #
+# 24 Marzo 2017 : 12:07                                                              #
+#                                                                                    #
+###### bancos/cat_bancoD.php #########################################################
+#                                                                                    #
+# Archivo sin estructura del catálogo de bancos para ser recibido por                #  
+# JQuery en index de "Bancos Dolares"                                                #
+#                                                                                    #
+###### HISTORIAL DE MODIFICACIONES ###################################################
+#                                                                                    #
+# 24-MAR-17: 12:07                                                                   #
+# IJLM - Se copia CATALOGO de acreedores                                             #
+######################################################################################
 
 
 ###### DEFINICION DE ZONA HORARIO ####################################################
@@ -18,12 +31,7 @@ $importaciones = new importaciones($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$listaImportaciones = $importaciones->consultarImportacionesNV();
-
-
-
-
-
+$listaImportaciones = $importaciones->consultarImportaciones();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
 $consultaModal = $importaciones->consultarImportaciones();
@@ -35,24 +43,25 @@ $result = $usuarios->consultarPermisos();
 
 ###### FOREACH PARA CONSULTA DE PERMISOS #############################################
 foreach ($result as $row){
-  $declaracion = $row['declaracionesPermiso'];
+  $declaracion = $row['importacionesPermiso'];
   }## LLAVE DE FOREACH ###############################################################
 
   $html_inicio_head_dt='<div class="row">';
   $html_final_head_dt='</div>';
   $html_nuevo='
   <div class="col-md-6">
-  	<div class="btn-group">
-  		<button id="gotoDeclaracion" class="btn sbold green"> 
-  			Nuevo <i class="fa fa-plus"></i>
-  		</button>
-  	</div>
+    <div class="btn-group">
+      <button id="gotoImportacion" class="btn sbold green"> 
+        Nuevo <i class="fa fa-plus"></i>
+      </button>
+    </div>
   </div>';
 
 
-  $html_finalizada='<span class="label label-sm label-success"> Finalizada </span>';
-  $html_camino='<span class="label label-sm label-warning"> En camino </span>';
-  $html_cancelado='<span class="label label-sm label-danger"> Cancelada </span>';
+  $html_finalizada='<div class="text-center"><span class="label label-sm label-success"> Finalizada </span></div>';
+  $html_camino='<div class="text-center"><span class="label label-sm label-warning"> En camino </span></div>';
+  $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelada </span></div>';
+  $html_usado='<div class="text-center"><span class="label label-sm label-info"> Espera pedimento </span></div>';
 
   ?>
 
@@ -83,7 +92,7 @@ foreach ($result as $row){
       <div class="caption font-dark">
 
        <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="icon-settings font-dark"></i>
+       <i class="fa fa-list-alt font-dark"></i>
 
        <!-- TEXTO DE TITULO DE PORTLET-->
        <span class="caption-subject bold uppercase"> Importaciones</span>
@@ -91,120 +100,131 @@ foreach ($result as $row){
      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
      <div class="actions btn-set">
-      <button type="button" name="back" id="back_cat_impord" class="btn btn-secondary-outline">
+       <button type="button" name="back" id="back_cat_impord" class="btn default green-stripe">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
+
   </div>
   <!-- TERMINA TITULO DE PORTLET-->
 
   <!-- INICIA CUERPO DE PORTLET-->
   <div class="portlet-body">
-  <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
 
-  <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-  <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+    <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
-   <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-   <thead>
-    <tr>
-     <th>
-      <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-       <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-       <span></span>
-     </label>
-   </th>
-   <th> Código </th>
-   <th> Fecha [AAAA/MM/DD] </th>
-   <th> Total </th>
-   <th> Acciones </th>
- </tr>
-</thead>
-<!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+     <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+     <thead>
+      <tr>
+       <th> Código </th>
+       <th> Fecha [AAAA/MM/DD] </th>
+       <th> Total </th>
+       <th> Estatus </th>
+       <th> Acciones </th>
+     </tr>
+   </thead>
+   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
-<!-- INICIA CUERPO DE DATA TABLE-->
-<tbody>
+   <!-- INICIA CUERPO DE DATA TABLE-->
+   <tbody>
 
-  <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php
-  foreach($listaImportaciones as $row){
-   $codigo = $row['folioImportacion'];
-   $dd = $row['ddImportacion'];
-   $mm = $row['mmImportacion'];
-   $yyyy = $row['yyyyImportacion'];
-   $total = $row['costoImportacion'];
-   $status = $row['statusImportacion'];
-   $num = number_format($total,2, '.', ',');
-   ?>
-   <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
+    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php
+    foreach($listaImportaciones as $row){
+     $codigo = $row['folioImportacion'];
+     $dd = $row['ddImportacion'];
+     $mm = $row['mmImportacion'];
+     $yyyy = $row['yyyyImportacion'];
+     $total = $row['costoImportacion'];
+     $status = $row['statusImportacion'];
+     $num = number_format($total,2, '.', ',');
+     ?>
+     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-   <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-   <tr class="odd gradeX">
-    <td>
-     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-      <input type="checkbox" class="checkboxes" value="1" />
-      <span></span>
-    </label>
-  </td>
+     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+     <tr class="odd gradeX">
+      <td> <?php echo $codigo;?> </td>
+      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
 
-  <td> <?php echo $codigo;?> </td>
-  <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+      <td> <?php echo '$ '.$num;?></td>
+      <td>
+        <?php 
+        if($status==1){
+          echo $html_camino;
+        }
+        else{
+          if($status==2){
+            echo $html_finalizada;
+          }
+          else{
+            if($status==3){
+              echo $html_cancelado;
+            }
+            else{
+              if($status==4){
+                echo $html_usado;
+              }
+            }
+          }
+        }
+        ?>
+      </td>
+      <td>
 
-  <td> <?php echo '$ '.$num;?></td>
-  
-  <td>
+       <!-- INICIAN BOTONES DE ACCIONES-->
 
-   <!-- INICIAN BOTONES DE ACCIONES-->
+       <?php
 
-   <?php
-
-   $html_inicio_action='<div class="btn-group">
-   <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-    <i class="fa fa-angle-down"></i>
-  </button><ul class="dropdown-menu pull-right" role="menu">';
-
-  $html_final_action='</ul></div>';
-  $html_moreInfo='<li>
-  <a data-toggle="modal" href="#modal'.$codigo.'">
-    <i class="icon-magnifier"></i> Ver info. </a>
-  </li>';
-
-  $html_productos='<li>
-  <a data-toggle="modal" href="#productos'.$codigo.'">
-    <i class="icon-magnifier"></i> Productos </a>
-  </li>';
-  $html_utilizar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
-  <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Utilizar </label></a></li>';
+       $html_inicio_action='<div class="text-center"><div class="btn-group">
+       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+        &nbsp; Elegir&nbsp;&nbsp;
+      </button><ul class="dropdown-menu pull-right" role="menu">';
 
 
+      $html_final_action='</ul></div></div>';
+      $html_moreInfo='<li>
+      <a data-toggle="modal" href="#modal'.$codigo.'">
+        <i class="icon-magnifier"></i> Ver info. </a>
+      </li>';
+
+      $html_productos='<li>
+      <a data-toggle="modal" href="#productos'.$codigo.'">
+        <i class="icon-magnifier"></i> Productos </a>
+      </li>';
+      $html_utilizar='<li><a><input type="radio" id="usar'.$codigo.'" class="usar" name="usar" value="'.$codigo.'">
+      <label for="usar'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Utilizar </label></a></li>';
 
 
 
-  if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
-    echo $html_inicio_action;
-  }
-  if($declaracion[0]=='1'){
-    echo $html_moreInfo; 
-    echo $html_productos;
-  }
-  if($declaracion[2]=='3'&&$status==1){
-    echo $html_utilizar;
-  }
-  if($declaracion[3]=='4'&&$status==1){
 
-  }
-  if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
-    echo $html_final_action;
-  }
 
-  ?>
+      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+        echo $html_inicio_action;
+      }
+      if($declaracion[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_productos;
+      }
+      if($declaracion[2]=='3'&&$status==1){
+        echo $html_utilizar;
+      }
+      if($declaracion[3]=='4'&&$status==1){
 
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+      }
+      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+        echo $html_final_action;
+      }
 
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
+      ?>
+
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
 }
 ?>
 <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
@@ -287,46 +307,47 @@ foreach($consultaModal as $row){
 
 
      <tr>
-      <td><?php 
-        if($status==1||$status==2){
-          echo "Última edición por:";
-        }
-        else{
-          if($status==3){
-            echo "Cancelado por:";
-          }
-        }
-        ?> </td>
-        <td><?php echo $nombreUser;?></td>
+       <td><?php echo "Última edición por:"; ?> </td>
+       <td><?php echo $nombreUser;?></td>
+       <?php
 
-      </tr>
-      <?php 
-      if($pedimento!=NULL){
-        echo '<tr><td>No. Pedimento</td><td>'.$pedimento.'</td></tr>';
+       $importaciones->folio = $codigo;
+       $lista_odecompras = $importaciones->consultarOrdenesxImportacion();
+       $x=0;
+       foreach($lista_odecompras as $row){
+        $x++;
+        echo "<tr><td>Orden de Compra #".$x.":</td><td>".$row['folioOrdenCompra']."</td></tr>";
       }
+      ?>
 
-      if($entrada != 0){
-        if($entrada == 1){
-          $mensaje = "Definitiva";
-        }
-        else{
-          if($entrada == 2){
-            $mensaje = "Express";
-          }        
-        }
-        echo '<tr><td>Tipo de entrada</td><td>'.$mensaje.'</td></tr>';
-      }?>
-    </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+    </tr>
+    <?php 
+    if($pedimento!=NULL){
+      echo '<tr><td>No. Pedimento</td><td>'.$pedimento.'</td></tr>';
+    }
 
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
+    if($entrada != 0){
+      if($entrada == 1){
+        $mensaje = "Definitiva";
+      }
+      else{
+        if($entrada == 2){
+          $mensaje = "Express";
+        }        
+      }
+      echo '<tr><td>Tipo de entrada</td><td>'.$mensaje.'</td></tr>';
+    }?>
+  </table>
+</div>
+<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
+<!-- INICIA PIE DE VENTANA MODAL-->
+<div class="modal-footer">
+
+  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+</div>
+<!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
 <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
 </div>
@@ -349,10 +370,10 @@ foreach($consultarProductos as $row){
 
  ?>
  <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+ <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">
@@ -399,12 +420,41 @@ foreach($consultarProductos as $row){
           $cProductos = $importaciones->catalogoProductos();
           foreach($cProductos as $row){
             $nombreProducto = $row['nombreProducto'];
+            $presentacion = $row['presentacionProducto'];
+            $precio_unitario = $row['compraProducto'];
+
+            switch($presentacion){
+              case 1:
+              $pres = " | Cubeta";
+              $typep = " [GAL]";
+              break;
+              case 2:
+              $pres = " | Tibor";
+              $typep = " [GAL]";
+              break;
+              case 3:
+              $pres = " | Tote";
+              $typep = " [GAL]";
+              break;
+              case 4:
+              $pres = " | Granel";
+              $typep = " [GAL]";
+              break;
+              case 5:
+              $pres = " | Saco";
+              $typep = " [Ton. Corta]";
+              break;
+              case 6:
+              $pres = " | Súper saco";
+              $typep = " [Ton. Corta]";
+              break;
+            }
 
             ?>
             <tr>
-              <td><?php echo $nombreProducto;?></td>
-              <td><?php echo number_format( $cantidad,2, '.', ',');?></td>
-              <td><?php echo "$ ".number_format(($monto / $cantidad),2, '.', ','); ?></td>
+              <td><?php echo $nombreProducto.$pres;?></td>
+              <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
+              <td><?php echo "$ ".number_format($precio_unitario,2, '.', ','); ?></td>
               <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
             </tr>
             <?php
@@ -441,10 +491,9 @@ foreach($consultarProductos as $row){
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
 
-
 <!-- SCRIPTS NECEARIOS PARA FUNCIONAMIENTO DE CATALOGO-->
 <script>
-	$(document).ready(function(){
+  $(document).ready(function(){
 
     $("#back_cat_impord").click(function(){
       window.location = ""
@@ -459,10 +508,17 @@ foreach($consultarProductos as $row){
     });
   });
 </script>
-
-<!--INICIAN SCRITPS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<script src="../../../../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
 
-<!-- TERMINAN SCRIPTS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+
+
+
+

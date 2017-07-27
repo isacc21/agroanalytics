@@ -20,6 +20,7 @@ class declaraciones{
 	var $id;
 
 	var $codigo;
+	var $tipo;
 
 	
 
@@ -47,11 +48,12 @@ class declaraciones{
 			ddDeclaracion,
 			mmDeclaracion,
 			yyyyDeclaracion,
+			tipoTransporte,
 			placasMXDeclaracion,
 			placasUSDeclaracion,
 			noEcoTractoDeclaracion,
-			placasPlatDeclaracion,
-			noEcoPlatDeclaracion,
+			placasXtraDeclaracion,
+			noEcoXtraDeclaracion,
 			pesoTotalDeclaracion,
 			statusDeclaracion,
 			idUsuario)
@@ -63,6 +65,7 @@ class declaraciones{
 			'".$this->dd."',
 			'".$this->mm."',
 			'".$this->yyyy."',
+			'".$this->tipo."',
 			'".$this->placasmx."',
 			'".$this->placasus."',
 			'".$this->noeco_tracto."',
@@ -277,6 +280,27 @@ class declaraciones{
 			return "Error: " . $e->getMessage();
 		}
 	}
+
+	public function consultarTransportistaxID(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM transportistas WHERE rfcTransportista = '".$this->transportista."' ");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
 }
 
 ?>

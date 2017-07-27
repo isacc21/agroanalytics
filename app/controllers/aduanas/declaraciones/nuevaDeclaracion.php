@@ -71,6 +71,15 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 
 
 	if($cambiar = "listo"){
+
+		if($_POST['tipo']==3){
+			$placasextra = "NULL";
+			$noecoextra = "NULL";
+		}
+		else{
+			$placasextra = $_POST['placasplat'];
+			$noecoextra = $_POST['noecoplat'];
+		}
 		
 		
 
@@ -80,11 +89,12 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 		$declaraciones->dd = $dia;
 		$declaraciones->mm = $mes;
 		$declaraciones->yyyy = $anio;
+		$declaraciones->tipo = $_POST['tipo'];
 		$declaraciones->placasmx = $_POST['placasmx'];
 		$declaraciones->placasus = $_POST['placasus'];
 		$declaraciones->noeco_tracto = $_POST['noecotracto'];
-		$declaraciones->placas_plat = $_POST['placasplat'];
-		$declaraciones->noeco_plat = $_POST['noecoplat'];
+		$declaraciones->placas_plat = $placasextra;
+		$declaraciones->noeco_plat = $noecoextra;
 		$declaraciones->peso = $peso_total;
 		$declaraciones->id = $_SESSION['idUsuario'];
 		echo $declaraciones->crearDeclaracion();

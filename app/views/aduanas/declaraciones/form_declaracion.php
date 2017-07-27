@@ -67,9 +67,49 @@ $nombreSubmit = 'Guardar';
     }
 
 
+    $('#tanque').on('ifChecked', function(event){
+      $("#placas").css("display", "block");
+      $("#noeco").css("display", "block");
+      $("#txtplaca").text("Placas tanque");
+      $("#txtnoeco").text("No. económico tanque");
+    });
+
+    $('#plataforma').on('ifChecked', function(event){
+      $("#placas").css("display", "block");
+      $("#noeco").css("display", "block");
+      $("#txtplaca").text("Placas plataforma");
+      $("#txtnoeco").text("No. económico plataforma");
+      $("#placasplat").prop("required", true);
+      $("#noecoplat").prop("required", true);
+    });
+
+    $('#rabon').on('ifChecked', function(event){
+      $("#placas").css("display", "none");
+      $("#noeco").css("display", "none");
+      $("#placasplat").removeAttr("required");
+      $("#noecoplat").removeAttr("required");
+    });
+
+
 
     /* AJAX QUE ENVIA INFORMACION AL URL DE ACUERDO A LA SITUACION */
     $("#guardarCXC").submit(function(e){
+
+      /* CONDICIONES PARA EL TIPO DE PRODUCTO*/
+      if($("#tanque").is(':checked')){
+        var tipo = "1";
+      }
+      else{
+        if($("#plataforma").is(':checked')){
+          var tipo = "2";
+        }
+        else
+        {
+          if($("#rabon").is(':checked')){
+            var tipo = "3";
+          }
+        }
+      } 
 
       $.ajax({
         type: "POST",
@@ -77,6 +117,7 @@ $nombreSubmit = 'Guardar';
         data: "fecha="+$("#fecha").val()+
         '&importacion='+$("#importacion").val()+
         '&transportista='+$("#transportista").val()+
+        '&tipo='+tipo+
         '&placasmx='+$("#placasmx").val()+
         '&placasus='+$("#placasus").val()+
         '&noecotracto='+$("#noecotracto").val()+
@@ -111,22 +152,16 @@ $nombreSubmit = 'Guardar';
   }
 </style>
 
-<!--COLUMNA DE 2 UTILIZADA PARA CENTRAR FORMULARIO-->
-<div class="col-md-2"></div>
-<!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
-<div class="col-md-8">
+<div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box blue-hoki">
+  <div class="portlet box grey-mint">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
 
       <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">
-        <!-- ICONO Y TEXTO DE TITULO-->
-        <i class="fa fa-save"></i> Nueva declaración de aduanas 
-      </div>
+      <div class="caption">Nueva declaración de aduanas </div>
       <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
 
     </div>
@@ -181,12 +216,30 @@ $nombreSubmit = 'Guardar';
               </div>
             </div>
             <!-- TERMINA INPUT PARA CLIENTES-->
+            <!--INICIA RADIOS PARA TIPO DE PRODUCTO-->
+            <div class="form-group">
+              <label class="control-label col-md-3" >Tipo de transporte
+              </label>
+              <div class="input-group">
+                <div class="icheck-inline col-md-12">
+                  <label>
+                    <input type="radio" name="tipo" id="tanque" class="icheck" data-radio="iradio_square-grey" required> Tanque 
+                  </label>
+                  <label>
+                    <input type="radio" name="tipo" id="plataforma" class="icheck" data-radio="iradio_square-grey" > Plataforma 
+                  </label>
+                  <label>
+                    <input type="radio" name="tipo" id="rabon" class="icheck" data-radio="iradio_square-grey"> Rabón 
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!--TERMINA RADIOS PARA TIPO DE PRODUCTO-->
 
-         
 
             <!--INICIA INPUT DE PLACAS MEXICANAS -->
             <div class="form-group">
-              <label class="col-md-3 control-label">Placas MX</label>
+              <label class="col-md-3 control-label">Placas MX Tractocamión</label>
               <div class="col-md-7">
                 <input type="text" class="form-control" id="placasmx" name="placasmx" required> 
               </div>
@@ -196,7 +249,7 @@ $nombreSubmit = 'Guardar';
 
             <!-- INICIA INPUT PLACAS AMERICANAS-->
             <div class="form-group">
-              <label class="col-md-3 control-label">Placas US</label>
+              <label class="col-md-3 control-label">Placas US Tractocamión</label>
               <div class="col-md-7">
                 <input type="text" step="any" min="0" class="form-control" id="placasus" name="placasus" required>
               </div>
@@ -204,8 +257,8 @@ $nombreSubmit = 'Guardar';
             <!-- TERMINA INPUT PLACAS AMERICANAS-->   
 
             <!-- INICIA INPUT DE NUMERO ECONOMICO TRACTO-->
-            <div class="form-group">
-              <label class="col-md-3 control-label">No. Económico tractocamión</label>
+            <div class="form-group" >
+              <label class="col-md-3 control-label">No. Económico Tractocamión</label>
               <div class="col-md-7">
                 <input type="text" class="form-control" id="noecotracto" name="noecotracto" required>
               </div>
@@ -214,8 +267,8 @@ $nombreSubmit = 'Guardar';
 
 
             <!-- INICIA INPUT DE PLACAS PLATAFORMA-->
-            <div class="form-group">
-              <label class="col-md-3 control-label">Placas plataforma</label>
+            <div class="form-group" style="display:none" id="placas">
+              <label class="col-md-3 control-label"><div id="txtplaca">plataforma</div></label>
               <div class="col-md-7">
                 <input type="text" class="form-control" id="placasplat" name="placasplat" required>
               </div>
@@ -224,8 +277,8 @@ $nombreSubmit = 'Guardar';
 
 
             <!-- INICIA INPUT DE NUMERO ECONOMICO PLATAFORMA-->
-            <div class="form-group">
-              <label class="col-md-3 control-label">No. Econoómico Plataforma</label>
+            <div class="form-group" style="display:none;" id="noeco">
+              <label class="col-md-3 control-label"><div id="txtnoeco">plataforma</div></label>
               <div class="col-md-7">
                 <input type="text" class="form-control" id="noecoplat" name="noecoplat" required>
               </div>
@@ -262,14 +315,6 @@ $nombreSubmit = 'Guardar';
       </div>
       <!-- TERMINA CUERPO DE PORTLET-->
     </div>
-    <!-- TERMINA PORTLET-->
-
-    <!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
-    <div class="col-md-2"></div>
-
-
-
-
 
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->

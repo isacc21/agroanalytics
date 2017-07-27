@@ -90,8 +90,7 @@ foreach ($result as $row){
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
       <div class="caption font-dark">
 
-       <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="icon-settings font-dark"></i>
+       <i class="fa fa-list-alt font-dark"></i>
 
        <!-- TEXTO DE TITULO DE PORTLET-->
        <span class="caption-subject bold uppercase"> Inventario en existencia</span>
@@ -99,7 +98,7 @@ foreach ($result as $row){
      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
      <div class="actions btn-set">
-       <button type="button" name="back" id="back_cat_inv" class="btn btn-secondary-outline">
+       <button type="button" name="back" id="back_cat_inv" class="btn default green-stripe">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
@@ -109,117 +108,131 @@ foreach ($result as $row){
   <!-- INICIA CUERPO DE PORTLET-->
   <div class="portlet-body">
 
-    <!-- INICIA ENCABEZADO DE CUERPO DE PORTLET-->
-    <div class="table-toolbar">
-
-
-
-    </div>
-    <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
-
     <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
      <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
      <thead>
-      <tr>
-       <th>
-        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-         <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-         <span></span>
-       </label>
-     </th>
-     <th> Código </th>
-     <th> Producto </th>
-     <th> Existencia </th>
-     <th> Precio </th>
-     <th> Peso </th>
-     <th> Acciones </th>
-   </tr>
- </thead>
- <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+       <tr>
+         <th> Código </th>
+         <th> Producto </th>
+         <th> Existencia </th>
+         <th> Precio </th>
+         <th> Peso </th>
+         <th> Acciones </th>
+       </tr>
+     </thead>
+     <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
- <!-- INICIA CUERPO DE DATA TABLE-->
- <tbody>
+     <!-- INICIA CUERPO DE DATA TABLE-->
+     <tbody>
 
-  <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php
-  foreach($lista_existencia as $row){
-   $codigo = $row['barCodeInventario'];
-   $producto = $row['codigoProducto'];
-   $existencia = $row['existenciaInventario'];
-   ?>
-   <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
+      <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+      <?php
+      foreach($lista_existencia as $row){
+       $codigo = $row['barCodeInventario'];
+       $producto = $row['codigoProducto'];
+       $existencia = $row['existenciaInventario'];
+       ?>
+       <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-   <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-   <tr class="odd gradeX">
-    <td>
-     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-      <input type="checkbox" class="checkboxes" value="1" />
-      <span></span>
-    </label>
-  </td>
+       <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+       <tr class="odd gradeX">
 
-  <td> <?php echo $codigo;?> </td>
-  <?php
-  $inventario->producto = $producto;
-  $consultarProducto = $inventario->consultarProductosID();
-  foreach($consultarProducto as $row){
-    $nombre_producto = $row['nombreProducto'];
-    $precio = $row['compraProducto'];
-    $densidad = $row['densidadProducto'];
+        <td> <?php echo $codigo;?> </td>
+        <?php
+        $inventario->producto = $producto;
+        $consultarProducto = $inventario->consultarProductosID();
+        foreach($consultarProducto as $row){
+          $nombre_producto = $row['nombreProducto'];
+          $precio = $row['compraProducto'];
+          $densidad = $row['densidadProducto'];
+          $presentacion = $row['presentacionProducto'];
+
+          switch($presentacion){
+            case 1:
+            $pres = " | Cubeta";
+            $typep = " [GALS]";
+            break;
+
+            case 2:
+            $pres = " | Tibor";
+            $typep = " [GALS]";
+            break;
+
+            case 3:
+            $pres = " | Tote";
+            $typep = " [GALS]";
+            break;
+
+            case 4:
+            $pres = " | Granel";
+            $typep = " [GALS]";
+            break;
+
+            case 5:
+            $pres = " | Saco";
+            $typep = " [Ton. Corta]";
+            break;
+
+            case 6:
+            $pres = " | Súper saco";
+            $typep = " [Ton. Corta]";
+            break;
+          }
+        }
+        $total = $precio * $existencia;
+        $num = number_format($total,2, '.', ',');
+
+        $pt = number_format(($densidad * $existencia),2, '.', ',');
+        ?>
+        <td> <?php echo $nombre_producto.$pres; ?></td>
+        <td> <?php echo $existencia.$typep; ?></td>
+        <td> <?php echo '$ '.$num;?></td>
+        <td> <?php echo $pt; ?> [LIBS]</td>
+
+        <td>
+
+         <!-- INICIAN BOTONES DE ACCIONES-->
+
+         <?php
+
+         $html_inicio_action='<div class="text-center"><div class="btn-group">
+         <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+          &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+          &nbsp; Elegir&nbsp;&nbsp;
+        </button><ul class="dropdown-menu pull-right" role="menu">';
+
+        $html_final_action='</ul></div>';
+        $html_moreInfo='<li>
+        <a data-toggle="modal" href="#modal'.$codigo.'">
+          <i class="icon-magnifier"></i> Ver info. </a>
+        </li>';
+
+
+
+
+        if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
+          echo $html_inicio_action;
+        }
+        if($inventary[0]=='1'){
+          echo $html_moreInfo; 
+        }
+        if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
+          echo $html_final_action;
+        }
+
+        ?>
+
+      </td>
+    </tr>
+    <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+    <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php 
   }
-  $total = $precio * $existencia;
-  $num = number_format($total,2, '.', ',');
-
-  $pt = number_format(($densidad * $existencia),2, '.', ',');
   ?>
-  <td> <?php echo $nombre_producto; ?></td>
-  <td> <?php echo $existencia; ?></td>
-  <td> <?php echo '$ '.$num;?></td>
-  <td> <?php echo $pt; ?></td>
-  
-  <td>
-
-   <!-- INICIAN BOTONES DE ACCIONES-->
-
-   <?php
-
-   $html_inicio_action='<div class="btn-group">
-   <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-    <i class="fa fa-angle-down"></i>
-  </button><ul class="dropdown-menu pull-right" role="menu">';
-
-  $html_final_action='</ul></div>';
-  $html_moreInfo='<li>
-  <a data-toggle="modal" href="#modal'.$codigo.'">
-    <i class="icon-magnifier"></i> Ver info. </a>
-  </li>';
-
-
-
-
-  if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
-    echo $html_inicio_action;
-  }
-  if($inventary[0]=='1'){
-    echo $html_moreInfo; 
-  }
-  if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
-    echo $html_final_action;
-  }
-
-  ?>
-
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
-}
-?>
-<!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
 
 </tbody>
 <!-- TERMINA CUERPO DE DATA TABLE -->
@@ -243,10 +256,8 @@ foreach ($result as $row){
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
 foreach($consultaModal as $row){
  $codigo = $row['barCodeInventario'];
- $producto = $row['nombreProducto'];
+ $producto = $row['codigoProducto'];
  $existencia = $row['existenciaInventario'];
- $precio = $row['precioInventario'];
- $peso = $row['pesoInventario'];
  $ddM = $row['ddManufactura'];
  $mmM = $row['mmManufactura'];
  $yyyyM = $row['yyyyManufactura'];
@@ -255,6 +266,8 @@ foreach($consultaModal as $row){
  $yyyyC = $row['yyyyCaducidad'];
  $lote = $row['loteInventario'];
  $num = number_format($precio,2, '.', ',');
+
+
 
 
 
@@ -297,24 +310,62 @@ foreach($consultaModal as $row){
        $consultarProducto = $inventario->consultarProductosID();
        foreach($consultarProducto as $row){
         $nombre_producto = $row['nombreProducto'];
+        $precio = $row['compraProducto'];
+        $densidad = $row['densidadProducto'];
+        $presentacion = $row['presentacionProducto'];
+
+        switch($presentacion){
+          case 1:
+          $pres = " | Cubeta";
+          $typep = " [GALS]";
+          break;
+
+          case 2:
+          $pres = " | Tibor";
+          $typep = " [GALS]";
+          break;
+
+          case 3:
+          $pres = " | Tote";
+          $typep = " [GALS]";
+          break;
+
+          case 4:
+          $pres = " | Granel";
+          $typep = " [GALS]";
+          break;
+
+          case 5:
+          $pres = " | Saco";
+          $typep = " [Ton. Corta]";
+          break;
+
+          case 6:
+          $pres = " | Súper saco";
+          $typep = " [Ton. Corta]";
+          break;
+        }
       }
+      $total = $precio * $existencia;
+      $precio_total = number_format($total,2, '.', ',');
+      $pt = number_format(($densidad * $existencia),2, '.', ',');
       ?>
-      <td> <?php echo $nombre_producto; ?></td>
+      <td> <?php echo $nombre_producto.$pres; ?></td>
     </tr>
 
     <tr>
       <td>Existencia: </td>
-      <td><?php echo $existencia;?></td>
+      <td><?php echo $existencia.$typep;?></td>
     </tr>
 
     <tr>
       <td>Precio: </td>
-      <td><?php echo $num;?></td>
+      <td><?php echo "$ ".$precio_total;?></td>
     </tr>
 
     <tr>
      <td>Peso: </td>
-     <td><?php echo $peso;?></td>
+     <td><?php echo $pt;?> [LIBS]</td>
    </tr>
 
    <tr>
@@ -380,9 +431,12 @@ foreach($consultaModal as $row){
   });
 </script>
 
-<!--INICIAN SCRITPS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<script src="../../../../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
-
-<!-- TERMINAN SCRIPTS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>

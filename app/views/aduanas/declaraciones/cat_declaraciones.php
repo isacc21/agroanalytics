@@ -48,7 +48,7 @@ $result = $usuarios->consultarPermisos();
 
 ###### FOREACH PARA CONSULTA DE PERMISOS #############################################
 foreach ($result as $row){
-  $importacion = $row['declaracionPermiso'];
+  $declaracion = $row['declaracionesPermiso'];
   }## LLAVE DE FOREACH ###############################################################
 
   $html_inicio_head_dt='<div class="row">';
@@ -57,7 +57,7 @@ foreach ($result as $row){
 
 
   $html_finalizada='<span class="label label-sm label-success"> Finalizada </span>';
-  $html_camino='<span class="label label-sm label-success"> Declarada </span>';
+  $html_camino='<div class="text-center"><span class="label label-sm label-success"> Declarada </span></div>';
   $html_cancelado='<span class="label label-sm label-danger"> Declarado </span>';
   $html_usado='<span class="label label-sm label-info"> Espera pedimento </span>';
 
@@ -90,7 +90,7 @@ foreach ($result as $row){
       <div class="caption font-dark">
 
        <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="icon-settings font-dark"></i>
+       <i class="fa fa-list-alt font-dark"></i>
 
        <!-- TEXTO DE TITULO DE PORTLET-->
        <span class="caption-subject bold uppercase"> Declaraciones de Aduanas</span>
@@ -98,7 +98,7 @@ foreach ($result as $row){
      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
      <div class="actions btn-set">
-       <button type="button" name="back" id="back_cat_decl" class="btn btn-secondary-outline">
+       <button type="button" name="back" id="back_cat_decl" class="btn default green-stripe">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
@@ -108,136 +108,110 @@ foreach ($result as $row){
   <!-- INICIA CUERPO DE PORTLET-->
   <div class="portlet-body">
 
-    <!-- INICIA ENCABEZADO DE CUERPO DE PORTLET-->
-    <div class="table-toolbar">
+    <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
-     <?php
+     <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+     <thead>
+      <tr>
+       <th> Código </th>
+       <th> Fecha [AAAA/MM/DD] </th>
+       <th> Peso Total </th>
+       <th> Estatus </th>
+       <th> Acciones </th>
+     </tr>
+   </thead>
+   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
-     echo $html_inicio_head_dt; 
-     if($importacion[1]=='2'){
-      echo $html_nuevo;
-    }
-    echo $html_final_head_dt; 
-    ?>
+   <!-- INICIA CUERPO DE DATA TABLE-->
+   <tbody>
 
+    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php
+    foreach($lista_declaraciones as $row){
+     $codigo = $row['folioDeclaracion'];
+     $dd = $row['ddDeclaracion'];
+     $mm = $row['mmDeclaracion'];
+     $yyyy = $row['yyyyDeclaracion'];
+     $total = $row['pesoTotalDeclaracion'];
+     $status = $row['statusDeclaracion'];
+     $num = number_format($total,2, '.', ',');
+     ?>
+     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
+     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+     <tr class="odd gradeX">
 
-  </div>
-  <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
+      <td> <?php echo $codigo;?> </td>
+      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
 
-  <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-  <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-
-   <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-   <thead>
-    <tr>
-     <th>
-      <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-       <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-       <span></span>
-     </label>
-   </th>
-   <th> Código </th>
-   <th> Fecha [AAAA/MM/DD] </th>
-   <th> Peso Total </th>
-   <th> Estatus </th>
-   <th> Acciones </th>
- </tr>
-</thead>
-<!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
-
-<!-- INICIA CUERPO DE DATA TABLE-->
-<tbody>
-
-  <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php
-  foreach($lista_declaraciones as $row){
-   $codigo = $row['folioDeclaracion'];
-   $dd = $row['ddDeclaracion'];
-   $mm = $row['mmDeclaracion'];
-   $yyyy = $row['yyyyDeclaracion'];
-   $total = $row['pesoTotalDeclaracion'];
-   $status = $row['statusDeclaracion'];
-   $num = number_format($total,2, '.', ',');
-   ?>
-   <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
-
-   <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-   <tr class="odd gradeX">
-    <td>
-     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-      <input type="checkbox" class="checkboxes" value="1" />
-      <span></span>
-    </label>
-  </td>
-
-  <td> <?php echo $codigo;?> </td>
-  <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
-
-  <td> <?php echo $num;?></td>
-  <td>
-    <?php 
-    if($status==1){
-      echo $html_camino;
-    }
-    else{
-      if($status==2){
-        echo $html_finalizada;
-      }
-      else{
-        if($status==3){
-          echo $html_cancelado;
+      <td> <?php echo $num;?> [LIBRAS]</td>
+      <td>
+        <?php 
+        if($status==1){
+          echo $html_camino;
         }
         else{
-          if($status==4){
-            echo $html_usado;
+          if($status==2){
+            echo $html_finalizada;
+          }
+          else{
+            if($status==3){
+              echo $html_cancelado;
+            }
+            else{
+              if($status==4){
+                echo $html_usado;
+              }
+            }
           }
         }
+        ?>
+      </td>
+      <td>
+
+       <!-- INICIAN BOTONES DE ACCIONES-->
+
+       <?php
+
+       $html_inicio_action='<div class="text-center"><div class="btn-group">
+       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+        &nbsp; Elegir&nbsp;&nbsp;
+      </button><ul class="dropdown-menu pull-right" role="menu">';
+
+      $html_final_action='</ul></div>';
+      $html_moreInfo='<li>
+      <a data-toggle="modal" href="#modal'.$codigo.'">
+        <i class="icon-magnifier"></i> Info. </a>
+      </li>';
+      $html_print='<li>
+      <a data-toggle="modal">
+        <i class="icon-printer"></i> Imprimir </a>
+      </li>';
+
+
+
+      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+        echo $html_inicio_action;
       }
-    }
-    ?>
-  </td>
-  <td>
+      if($declaracion[0]=='1'){
+        echo $html_moreInfo; 
+        echo $html_print;
+      }
 
-   <!-- INICIAN BOTONES DE ACCIONES-->
+      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+        echo $html_final_action;
+      }
 
-   <?php
+      ?>
 
-   $html_inicio_action='<div class="btn-group">
-   <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-    <i class="fa fa-angle-down"></i>
-  </button><ul class="dropdown-menu pull-right" role="menu">';
+    </td>
+  </tr>
+  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-  $html_final_action='</ul></div>';
-  $html_moreInfo='<li>
-  <a data-toggle="modal" href="#modal'.$codigo.'">
-    <i class="icon-printer"></i> Imprimir </a>
-  </li>';
-
-  $html_productos='<li>
-  <a data-toggle="modal" href="#productos'.$codigo.'">
-    <i class="icon-magnifier"></i> Productos </a>
-  </li>';
-  $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
-  <label for="cancelar'.$codigo.'" ">  <i class="glyphicon glyphicon-remove-circle"></i>&nbsp;Cancelar </label></a></li>';
-
-  $html_pedimento='<li><a><input type="radio" id="pedimento'.$codigo.'" class="pedimento" name="pedimento" value="'.$codigo.'">
-  <label for="pedimento'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Agregar pedimento </label></a></li>';
-
-
-
-  echo $html_inicio_action;
-  echo $html_moreInfo;
-  echo $html_final_action;
-
-  ?>
-
-</td>
-</tr>
-<!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-<!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-<?php 
+  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+  <?php 
 }
 ?>
 <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
@@ -263,207 +237,152 @@ foreach ($result as $row){
 
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
 foreach($consultaModal as $row){
- $codigo = $row['folioImportacion'];
- $dd = $row['ddImportacion'];
- $mm = $row['mmImportacion'];
- $yyyy = $row['yyyyImportacion'];
- $usuario = $row['idUsuario'];
- $pedimento = $row['folioPedimentoImportacion'];
- $entrada = $row['tipoEntradaImportacion'];
- $num = number_format($total,2, '.', ',');
- $mensaje ="";
+  $codigo = $row['folioDeclaracion'];
+  $importacion = $row['folioImportacion'];
+  $transportista = $row['rfcTransportista'];
+  $dd = $row['ddDeclaracion'];
+  $mm = $row['mmDeclaracion'];
+  $yyyy = $row['yyyyDeclaracion'];
+  $tipo = $row['tipoTransporte'];
+  $placasmx = $row['placasMXDeclaracion'];
+  $placasus = $row['placasUSDeclaracion'];
+  $noeco = $row['noEcoTractoDeclaracion'];
+  $placasxtra = $row['placasXtraDeclaracion'];
+  $noecoxtra = $row['noEcoXtraDeclaracion'];
+  $peso = $row['pesoTotalDeclaracion'];
+  $usuario = $row['idUsuario'];
 
- $usuarios->id=$usuario;
- $cnombres = $usuarios->consultarUsuariosID();
+  $declaraciones->transportista = $transportista;
+  $result = $declaraciones->consultarTransportistaxID();
+  foreach($result as $row){
+    $nombre_transp = $row['razonSocTransportista'];
+  }
 
- foreach ($cnombres as $row){
-  $nombreUser = $row['nombreUsuario'];
-}
+
+  $usuarios->id=$usuario;
+  $cnombres = $usuarios->consultarUsuariosID();
+
+  foreach ($cnombres as $row){
+    $nombreUser = $row['nombreUsuario']." ".$row['apellidosUsuario'];
+  }
 
 
-?>
-<!-- INICIO DE VENTANA MODAL -->
-<div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
-
+  ?>
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
-   <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-   <div class="modal-content">
+    <!-- INICIO DE VENTANA MODAL -->
+    <div class="modal-dialog">
 
-    <!-- INICIO DE CABECERA DE VENTANA MODAL -->
-    <div class="modal-header">
+     <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
+     <div class="modal-content">
 
-     <!-- BONTON DE CIERRE DE VENTANA MODAL-->
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <!-- INICIO DE CABECERA DE VENTANA MODAL -->
+      <div class="modal-header">
 
-     <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa</h4>
-   </div>
-   <!-- TERMINA CABECERA DE VENTANA MODAL -->
+       <!-- BONTON DE CIERRE DE VENTANA MODAL-->
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 
-   <!-- INICIA CUERPO DE VENTANA MODAL-->
-   <div class="modal-body">
+       <!-- ENCABEZADO DE VENTANA MODAL-->
+       <h4 class="modal-title">Información completa</h4>
+     </div>
+     <!-- TERMINA CABECERA DE VENTANA MODAL -->
 
-     <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
-     <table class="table table-hover">
+     <!-- INICIA CUERPO DE VENTANA MODAL-->
+     <div class="modal-body">
 
-      <tr>
-       <td>Código de operación: </td>
-       <td><?php echo $codigo;?></td>
-     </tr>
+       <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
+       <table class="table table-hover">
 
-     <tr>
-       <td>Fecha: </td>
-       <td><?php echo $dd."/".$mm."/".$yyyy;?></td>
-     </tr>
-
-
-     <tr>
-      <td><?php 
-        if($status==1||$status==2){
-          echo "Última edición por:";
-        }
-        else{
-          if($status==3){
-            echo "Cancelado por:";
-          }
-        }
-        ?> </td>
-        <td><?php echo $nombreUser;?></td>
-
-      </tr>
-      <?php 
-      if($pedimento!=NULL){
-        echo '<tr><td>No. Pedimento</td><td>'.$pedimento.'</td></tr>';
-      }
-
-      if($entrada != 0){
-        if($entrada == 1){
-          $mensaje = "Definitiva";
-        }
-        else{
-          if($entrada == 2){
-            $mensaje = "Express";
-          }        
-        }
-        echo '<tr><td>Tipo de entrada</td><td>'.$mensaje.'</td></tr>';
-      }?>
-    </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
-
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
-
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
-</div>
-<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
-</div>
-<!-- TERMINO DE VENTANA MODAL  -->
-</div>
-<!-- TERMINO DE VENTANA MODAL -->
-<?
-} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
-?>
-
-
-<?php
-
-###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
-foreach($lista_declaraciones as $row){
- $codigo = $row['folioImportacion'];
-
-
-
-
- ?>
- <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
-
-  <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
-
-   <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-   <div class="modal-content">
-
-    <!-- INICIO DE CABECERA DE VENTANA MODAL -->
-    <div class="modal-header">
-
-     <!-- BONTON DE CIERRE DE VENTANA MODAL-->
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-
-     <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa</h4>
-   </div>
-   <!-- TERMINA CABECERA DE VENTANA MODAL -->
-
-   <!-- INICIA CUERPO DE VENTANA MODAL-->
-   <div class="modal-body">
-
-     <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
-     <table class="table table-hover">
-       <tr>
-         <th>Producto</th>
-         <th>Cantidad</th>
-         <th>Precio Unitario</th>
-         <th>Monto</th>
+        <tr>
+         <td>Código de operación: </td>
+         <td><?php echo $codigo;?></td>
        </tr>
-       <?php 
-       $total_coti = 0;
-       $importaciones->folio = $codigo;
-       $ordenes = $importaciones->consultarOrdenesxImportacion();
 
-       foreach($ordenes as $row){
-        $odcompra = $row['folioOrdenCompra'];
-        
-        $importaciones->odc = $odcompra;
-        $rel_productos = $importaciones->consultarProductosODC();
+       <tr>
+         <td>Fecha: </td>
+         <td><?php echo $dd."/".$mm."/".$yyyy;?></td>
+       </tr>
+       <tr>
+         <td>Folio importación:</td>
+         <td><?php echo $importacion; ?></td>
+       </tr>
+       <tr>
+         <td>Transportista:</td>
+         <td><?php echo $nombre_transp; ?></td>
+       </tr>
+       <tr>
+         <td>Tipo de transporte:</td>
+         <?php 
+         switch($tipo){
+          case 1:
+          $transporte = "Tanque";
+          break;
+          case 2:
+          $transporte = "Plataforma";
+          break;
+          case 3:
+          $transporte = "Rabón";
+          break;
+        } 
+        ?>
 
-        foreach($rel_productos as $row){
-          $producto = $row['codigoProducto'];
-          $cantidad = $row['cantidadOrdenCompra'];
-          $monto = $row['montoOrdenCompra'];
-
-          $importaciones->producto = $producto;
-          $cProductos = $importaciones->catalogoProductos();
-          foreach($cProductos as $row){
-            $nombreProducto = $row['nombreProducto'];
-
-            ?>
-            <tr>
-              <td><?php echo $nombreProducto;?></td>
-              <td><?php echo number_format( $cantidad,2, '.', ',');?></td>
-              <td><?php echo "$ ".number_format(($monto / $cantidad),2, '.', ','); ?></td>
-              <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
-            </tr>
-            <?php
-          }
-          $total_coti += $monto;
-        }
-      }
+        <td><?php echo $transporte; ?></td>
+      </tr>
+      <tr>
+       <td>Placas MX Tractocamión:</td>
+       <td><?php echo $placasmx; ?></td>
+     </tr>
+     <tr>
+       <td>Placas US Tractocamión:</td>
+       <td><?php echo $placasus; ?></td>
+     </tr>
+     <tr>
+       <td>No. económico Tractocamión:</td>
+       <td><?php echo $noeco; ?></td>
+     </tr>
+     <?php 
+     if($tipo!=3){
       ?>
       <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td><strong>Total</strong></td>
-        <td><?php echo  "$ ".number_format($total_coti,2, '.', ','); ?></td>
+        <td>Placas <?php echo $transporte; ?>:</td>
+        <td><?php echo $placasxtra; ?></td>
       </tr>
-      
-    </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+      <tr>
+        <td>No. económico <?php echo $transporte; ?>:</td>
+        <td><?php echo $noecoxtra; ?></td>
+      </tr>
+      <?php
+    }
+    ?>
+    <tr>
+      <td>Peso total:</td>
+      <td><?php echo $peso; ?> [LIBRAS]</td>
+    </tr>
+    <tr>
+      <td>Realizada por: </td>
+      <td><?php echo $nombreUser; ?></td>
+    </tr>
+    <?php 
+    $declaraciones->importacion = $importacion;
+    $lista_facturas = $declaraciones->consultaodcs();
+    $x=0;
+    foreach($lista_facturas as $row){
+      $x++;
+      echo "<tr><td>Factura #".$x.":</td><td>".$row['folioFactura']."</td></tr>";
+    }
+    ?>
+  </table>
+</div>
+<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
+<!-- INICIA PIE DE VENTANA MODAL-->
+<div class="modal-footer">
 
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
+  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+</div>
+<!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
 <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
 </div>
@@ -473,7 +392,6 @@ foreach($lista_declaraciones as $row){
 <?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
-
 
 <!-- SCRIPTS NECEARIOS PARA FUNCIONAMIENTO DE CATALOGO-->
 <script>
@@ -502,9 +420,12 @@ foreach($lista_declaraciones as $row){
   });
 </script>
 
-<!--INICIAN SCRITPS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="../../../../assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-<script src="../../../../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
-
-<!-- TERMINAN SCRIPTS PARA EL FUNCIONAMIENTO DE DATA TABLES-->
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>

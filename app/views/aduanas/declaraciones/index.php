@@ -205,12 +205,12 @@ if(isset($_SESSION['login'])){
 
 
     $html_import='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-red">
+        <div class="mt-head bg-red">
             <div class="mt-head-icon">
                 <i class="fa fa-files-o"></i>
             </div>
-            <div class="mt-head-desc"> Lista de importaciones </div>
+            <div class="mt-head-desc"> Importaciones por procesar </div>
             <div class="mt-head-button">
                 <button type="button" id="jalar_importacion" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
             </div>
@@ -218,8 +218,8 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_lista='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-blue-hoki">
+        <div class="mt-head bg-blue-hoki">
             <div class="mt-head-icon">
                 <i class="fa fa-files-o"></i>
             </div>
@@ -231,8 +231,8 @@ if(isset($_SESSION['login'])){
     </div></div>';
 
     $html_reporte='<div class="col-md-4">
-    <div class="mt-widget-3">
-        <div class="mt-head bg-blue-soft">
+    <div class="mt-widget-3 bg-green">
+        <div class="mt-head bg-green">
             <div class="mt-head-icon">
                 <i class="fa fa-print"></i>
             </div>
@@ -497,62 +497,55 @@ if(isset($_SESSION['login'])){
                                 <div class="page-content-wrapper">
                                     <div class="page-content">
 
-                                        <!--INICIA TITULO DE PAGINA -->
-                                        <h1 class="page-title"> Declaraciones de Aduanas
-                                            <small><?php echo " - ". date(d) ."/". date(m) ."/". date(Y); ?></small>
-                                        </h1>
-                                        <!--TERMINA TITULO DE PAGINA-->
+                                     <!-- INICIA TITULO DE PAGINA-->
+                                     <h1 class="page-title"> Declaraciones de aduanas<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                     <!-- TERMINA TITULO DE PAGINA -->
 
-                                        <!--INICIA MAIN CONTENT USADO POR AJAX-->
-                                        <div id="mainContent" class="page-container">
+                                     <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                     <style type="text/css">
+                                      div#mainContent {margin:0}
+                                      body {overflow-x:hidden;}
+                                  </style>
 
-                                            <!--INICIA PORTLET MENU DE USUARIOS-->
-                                            <div class="portlet light portlet-fit bordered">
-                                                <div class="portlet-title">
-                                                    <div class="caption">
-                                                        <i class="icon-settings font-green-sharp"></i>
-                                                        <span class="caption-subject font-green-sharp bold uppercase">Seleccione la acción</span>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="row">
+                                  <!--INICIA MAIN CONTENT USADO POR AJAX-->
+                                  <div id="mainContent" class="page-container">
 
-                                                        <!--INICIA LISTA DE USUARIOS-->
-                                                        <?php 
-                                                        if($declaraciones[1]=='2'){
-                                                            echo $html_nuevo;
-                                                        }
-                                                        if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
-                                                            echo $html_import;
-                                                            echo $html_lista;
-                                                            echo $html_reporte;
-                                                        }
-                                                        ?>
-                                                        <!--TERMINA LISTA DE USUARIOS-->
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--TERMINA PORTLET DE USUARIOS-->
-                                        </div>
-                                        <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
+                                    <div class="row">
+
+                                        <!--INICIA LISTA DE USUARIOS-->
+                                        <?php 
+                                        if($declaraciones[1]=='2'){
+                                            echo $html_nuevo;
+                                        }
+                                        if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
+                                            echo $html_import;
+                                            echo $html_lista;
+                                            echo $html_reporte;
+                                        }
+                                        ?>
+
                                     </div>
+                                    <!--TERMINA PORTLET DE USUARIOS-->
                                 </div>
-                                <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                                <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
                             </div>
-                            <!-- TERMINA CONTENEDOR -->
-
-
-                            <!-- INICIA FOOTER -->
-                            <div class="page-footer">
-                                <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-                                </div>
-                                <div class="scroll-to-top">
-                                    <i class="icon-arrow-up"></i>
-                                </div>
-                            </div>
-                            <!-- TERMINA FOOTER -->
                         </div>
+                        <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                    </div>
+                    <!-- TERMINA CONTENEDOR -->
+
+
+                    <!-- INICIA FOOTER -->
+                    <div class="page-footer">
+                        <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+                        </div>
+                        <div class="scroll-to-top">
+                            <i class="icon-arrow-up"></i>
+                        </div>
+                    </div>
+                    <!-- TERMINA FOOTER -->
+                </div>
 
         <!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>
