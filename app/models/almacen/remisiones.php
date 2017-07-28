@@ -171,7 +171,7 @@ class remisiones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'A%' AND codigoProducto = '".$this->producto."' AND existenciaInventario > 0 ORDER BY idInventario ASC");
+			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'K%' AND codigoProducto = '".$this->producto."' AND existenciaInventario > 0 ORDER BY idInventario ASC");
 
 		}
 

@@ -1402,6 +1402,14 @@ if (isset($_REQUEST['idUsuario'])){
               </div>
               <!-- TERMINA PERMISO DECLARACIONES DE ADUANAS-->
 
+              
+
+
+              <!-- INICIA TITULO DE SECCION ALMACEN-->
+              <br />
+              <p class="text-center col-md-2"> <h4><strong>Almacén</strong></h4> </p>
+              <!-- TERMINA TITULO DE SECCION ALMACEN-->
+
               <!-- TERMINA PERMISO ORDENES DE COMPRA-->
               <div class="form-group form-md-checkboxes">
 
@@ -1424,12 +1432,6 @@ if (isset($_REQUEST['idUsuario'])){
                   </div>
                 </div>
                 <!-- TERMINA PERMISO ORDENES DE COMPRA-->
-
-
-                <!-- INICIA TITULO DE SECCION ALMACEN-->
-                <br />
-                <p class="text-center col-md-2"> <h4><strong>Almacén</strong></h4> </p>
-                <!-- TERMINA TITULO DE SECCION ALMACEN-->
 
                 <!-- TERMINA PERMISO INVENTARIO-->
                 <div class="form-group form-md-checkboxes">

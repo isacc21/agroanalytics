@@ -16,5 +16,5 @@
 $datosConexionBD[0]='localhost';        //  Dominio
 $datosConexionBD[1]='isacc';             //  Usuario
 $datosConexionBD[2]='katherine21'; //  Contraseña
-$datosConexionBD[3]='agro_analytics';     //  Nombre de Base de datos
+$datosConexionBD[3]='agroanalytics';     //  Nombre de Base de datos
 ?>
