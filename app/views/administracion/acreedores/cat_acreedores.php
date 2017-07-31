@@ -59,8 +59,7 @@ if(isset($_SESSION['login'])){
     $acreedores = $row['acreedoresPermiso'];
   }## LLAVE DE FOREACH ###############################################################
 
-  $html_nuevo='<button id="gotoAcreedores" class="btn sbold green"> 
-  Nuevo <i class="fa fa-plus"></i></button>';
+  $html_nuevo='<button id="gotoAcreedores" class="btn green-seagreen"><i class="fa fa-plus"></i>&nbsp;Nuevo</button>';
   ?>
 
   <!-- INICIA LINK PARA ASSETS DE SWEET ALERTS -->
@@ -77,114 +76,157 @@ if(isset($_SESSION['login'])){
   <div class="row">
     <div class="col-md-12">
       <!-- BEGIN EXAMPLE TABLE PORTLET-->
-      <div class="portlet light bordered">
+      <div class="portlet box grey-steel">
         <div class="portlet-title">
-          <div class="caption font-dark">
-            <i class="fa fa-list-alt font-dark"></i>
-            <span class="caption-subject bold uppercase">Catálogo</span>
-          </div>
-          <div class="actions btn-set">
-            <?php 
-            if($acreedores[1]=='2'){
-              echo $html_nuevo;
-            } ?>
-            <button type="button" name="back" id="back_cat_acre" class="btn default green-stripe">
-              <i class="fa fa-arrow-left"></i> Regresar
-            </button>
+
+         <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div>
+
+       </div>
+       <div class="actions btn-set">
+        <?php 
+        if($acreedores[1]=='2'){
+          echo $html_nuevo;
+        } ?>
+        <button type="button" name="back" id="back_cat_acre" class="btn green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+        </button>
 
 
-          </div>
-
-        </div>
-        <div class="portlet-body">
-          <!-- INICIA ENCABEZADO DE CUERPO DE PORTLET-->
-          
-          <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
-          <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
-            <thead>
-              <tr>
-                <th> Razón social </th>
-                <th> RFC </th>
-                <th> Teléfono </th>
-                <th> Celular </th>
-                <th> Acciones </th>
-              </tr>
-            </thead>
-            <tbody>
-
-              <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-              <?php
-              foreach($listaAcreedores as $row){
-                $rfc = $row['rfcAcreedor'];
-                $nombre = $row['razonSocAcreedor'];
-                $email = $row['emailAcreedor'];
-                $telefono = $row['telefonoAcreedor'];
-                $celular = $row['celularAcreedor'];
-
-
-                ?>
-                <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
-
-                <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-                <tr class="odd gradeX">
-
-
-                  <td> <?php echo $nombre;?> </td>
-                  <td> <?php echo $rfc; ?> </td>
-                  <td> <?php echo $telefono;?></td>
-                  <td> <?php echo $celular;?></td>
-                  <td>
-                    <?php
-
-                    $html_inicio_actions='<div class="text-center"><div class="btn-group">
-                    <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-                      &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-                      &nbsp; Elegir&nbsp;&nbsp;
-                    </button><ul class="dropdown-menu pull-right" role="menu">';
-
-                    $html_final_actions='</ul></div></div>';
-
-                    $html_moreInfo='<li>
-                    <a data-toggle="modal" href="#modal'.$rfc.'">
-                      <i class="icon-magnifier"></i> Ver info. </a>
-                    </li>';
-
-                    $html_editar='<li><a><input type="radio" id="editar'.$rfc.'" class="editar" name="editar" value="'.$rfc.'">
-                    <label for="editar'.$rfc.'">  <i class="fa fa-edit"></i>&nbsp;Modificar </label></a></li>';
-
-                    $html_eliminar='<li><a><input type="radio" id="borrar'.$rfc.'" class="borrar" name="borrar" value="'.$rfc.'">
-                    <label for="borrar'.$rfc.'" " data-toggle="modal" href="#basic">  <i class="fa fa-trash-o"></i>&nbsp;Eliminar </label></a></li>';
-
-                    if($acreedores[0]=='1'||$acreedores[1]=='2'||$acreedores[2]=='3'||$acreedores[3]=='4'){
-                      echo $html_inicio_actions;
-                    }
-                    if($acreedores[0]=='1'){
-                     echo $html_moreInfo; 
-                   }
-                   if($acreedores[2]=='3'){
-                    echo $html_editar;
-                  }
-                  if($acreedores[3]=='4'){
-                    echo $html_eliminar;
-                  }
-                  if($acreedores[0]=='1'||$acreedores[1]=='2'||$acreedores[2]=='3'||$acreedores[3]=='4'){
-                    echo $html_final_actions;
-                  }
-                  ?>
-                </td>
-              </tr>
-              <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-              <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-              <?php 
-            }
-            ?>
-            <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-          </tbody>
-        </table>
       </div>
+
     </div>
+    <div class="portlet-body">
+      <!-- INICIA ENCABEZADO DE CUERPO DE PORTLET-->
+
+      <!-- TERMINA ENCABEZADO DE CUERPO DE PORTLET-->
+      <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+        <thead>
+          <tr>
+            <th> Razón social </th>
+            <th> RFC </th>
+            <th> Teléfono </th>
+            <th> Celular </th>
+            <th> Acciones </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+          <?php
+          foreach($listaAcreedores as $row){
+            $rfc = $row['rfcAcreedor'];
+            $nombre = $row['razonSocAcreedor'];
+            $email = $row['emailAcreedor'];
+            $telefono = $row['telefonoAcreedor'];
+            $celular = $row['celularAcreedor'];
+
+            for ($i=0; $i <(strlen($telefono)) ; $i++) { 
+              if($telefono[$i]=="("){
+                $abreF = $i;
+              }
+              if($telefono[$i]==")"){
+                $cierraF = $i;
+              }
+            }
+
+            for ($i=($abreF+1); $i < $cierraF ; $i++) { 
+              $ladafijo .= $telefono[$i];
+            }
+            $x=0;
+            for ($i=($cierraF+1); $i < (strlen($telefono)); $i++) { 
+              $x++;
+              $telfijo .= $telefono[$i];
+              if($x==3||$x==5){
+                $telfijo .=".";
+              }
+            }
+
+
+            for ($i=0; $i <(strlen($celular)) ; $i++) { 
+              if($celular[$i]=="("){
+                $abreM = $i;
+              }
+              if($celular[$i]==")"){
+                $cierraM = $i;
+              }
+            }
+
+            for ($i=($abreM+1); $i < $cierraM ; $i++) { 
+              $ladamovil .= $celular[$i];
+            }
+            $x=0;
+            for ($i=($cierraM+1); $i < (strlen($celular)); $i++) { 
+              $x++;
+              $telmovil .= $celular[$i];
+              if($x==3||$x==5){
+                $telmovil .=".";
+              }
+            }
+
+
+            ?>
+            <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
+
+            <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+            <tr class="odd gradeX">
+
+
+              <td> <?php echo $nombre;?> </td>
+              <td> <?php echo $rfc; ?> </td>
+              <td> <?php echo "(".$ladafijo.") ".$telfijo;?></td>
+              <td> <?php echo "(".$ladamovil.") ".$telmovil;?></td>
+              <td>
+                <?php
+
+                $html_inicio_actions='<div class="text-center"><div class="btn-group">
+                <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+                  &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+                  &nbsp; Elegir&nbsp;&nbsp;
+                </button><ul class="dropdown-menu pull-right" role="menu">';
+
+                $html_final_actions='</ul></div></div>';
+
+                $html_moreInfo='<li>
+                <a data-toggle="modal" href="#modal'.$rfc.'">
+                  <i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
+                </li>';
+
+                $html_editar='<li><a><input type="radio" id="editar'.$rfc.'" class="editar" name="editar" value="'.$rfc.'">
+                <label for="editar'.$rfc.'">  <i class="fa fa-edit"></i>&nbsp;Modificar<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+                $html_eliminar='<li><a><input type="radio" id="borrar'.$rfc.'" class="borrar" name="borrar" value="'.$rfc.'">
+                <label for="borrar'.$rfc.'" " data-toggle="modal" href="#basic">  <i class="fa fa-trash-o"></i>&nbsp;Eliminar<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+                if($acreedores[0]=='1'||$acreedores[1]=='2'||$acreedores[2]=='3'||$acreedores[3]=='4'){
+                  echo $html_inicio_actions;
+                }
+                if($acreedores[0]=='1'){
+                 echo $html_moreInfo; 
+               }
+               if($acreedores[2]=='3'){
+                echo $html_editar;
+              }
+              if($acreedores[3]=='4'){
+                echo $html_eliminar;
+              }
+              if($acreedores[0]=='1'||$acreedores[1]=='2'||$acreedores[2]=='3'||$acreedores[3]=='4'){
+                echo $html_final_actions;
+              }
+              ?>
+            </td>
+          </tr>
+          <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+          <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+          <?php 
+        }
+        ?>
+        <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+      </tbody>
+    </table>
   </div>
+</div>
+</div>
 </div>
 <?php
 
@@ -298,12 +340,12 @@ foreach($consultaModal as $row){
 
               <tr>
                 <td>Tel. oficina: </td>
-                <td><?php echo $telefono;?></td>
+                <td> <?php echo "(".$ladafijo.") ".$telfijo;?></td>
               </tr>
 
               <tr>
                 <td>Celular: </td>
-                <td><?php echo $celular;?></td>
+                <td> <?php echo "(".$ladamovil.") ".$telmovil;?></td>
               </tr>
 
               <tr>
@@ -363,8 +405,8 @@ foreach($consultaModal as $row){
       type: "warning",
       showCancelButton: true,
       confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Sí, Eliminarlo",
-      cancelButtonText: "No, Cancelar",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
       closeOnConfirm: false,
       closeOnCancel: false
     },
@@ -375,14 +417,26 @@ foreach($consultaModal as $row){
           url: "../../../controllers/administracion/acreedores/eliminarAcreedor.php",
           data:"rfc="+ rfcAcreedor
         }).done(function(result){
-          swal("Eliminado", "El acreedor ha sido eliminado", "success");
+          swal({
+            title: "Eliminado",
+            text: "El acreedor ha sido eliminado",
+            type: "success",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
           $("#mainContent").load( "cat_acreedores.php" );
         });
 
       } else {
-        swal("Cancelado", "Se ha conservado el acreedor", "error");
-      }
-    });
+       swal({
+        title: "Cancelado",
+        text: "Se ha conservado el acreedor",
+        type: "error",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
+     }
+   });
   });
  });
 </script>

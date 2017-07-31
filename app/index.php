@@ -92,7 +92,7 @@ if(isset($_SESSION['login'])){
 ###### MODULO DE ADMINISTRACION #####################################################
 	$html_inicio_administracion='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="fa fa-building"></i>
+		<i class="icon-folder-alt"></i>
 		<span class="title">Catálogos</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
@@ -134,7 +134,7 @@ if(isset($_SESSION['login'])){
 
 	$html_inicio_administrador='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="glyphicon glyphicon-eye-open"></i>
+		<i class="icon-settings"></i>
 		<span class="title">Administrador</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
@@ -143,7 +143,7 @@ if(isset($_SESSION['login'])){
 
 	$html_usuarios = '<li class="nav-item ">
 	<a href="views/administracion/usuarios" class="nav-link ">
-		<i class="fa fa-desktop"></i>
+		<i class="fa fa-user-plus"></i>
 		<span class="title"> Usuarios</span>
 	</a></li>';
 
@@ -174,7 +174,7 @@ if(isset($_SESSION['login'])){
 
 	$html_inicio_aduanas='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="fa fa-map-signs"></i>
+		<i class="fa fa-truck"></i>
 		<span class="title">Aduanas</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
@@ -196,7 +196,7 @@ if(isset($_SESSION['login'])){
 	###### MODULO DE ALMACEN ###########################################################
 	$html_inicio_almacen='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="fa fa-industry"></i>
+		<i class="icon-social-dropbox"></i>
 		<span class="title">Almacén</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
@@ -231,7 +231,7 @@ if(isset($_SESSION['login'])){
 
 	$html_inicio_conta='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="fa fa-money"></i>
+		<i class="glyphicon glyphicon-usd"></i>
 		<span class="title">Contabilidad</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
@@ -291,7 +291,7 @@ if(isset($_SESSION['login'])){
 		<!-- END THEME GLOBAL STYLES -->
 		<!-- BEGIN THEME LAYOUT STYLES -->
 		<link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-		<link href="../assets/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+		<link href="../assets/layouts/layout/css/themes/grey.min.css" rel="stylesheet" type="text/css" id="style_color" />
 		<link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
 		<!-- END THEME LAYOUT STYLES -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -335,7 +335,7 @@ if(isset($_SESSION['login'])){
 					<!-- BEGIN LOGO -->
 					<div class="page-logo">
 						<a href="index.php">
-							<img src="../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+							<img src="../assets/img/agroanalytics_logo.png" alt="logo" class="logo-default" /> </a>
 							<div class="menu-toggler sidebar-toggler">
 								<span></span>
 							</div>
@@ -364,7 +364,7 @@ if(isset($_SESSION['login'])){
 											</li>
 											<li class="divider"> </li>
 											<li>
-												<a href="../index.php">
+												<a href="../index.php?lg=1">
 													<i class="icon-key"></i> Log Out </a>
 												</li>
 											</ul>
@@ -416,7 +416,7 @@ if(isset($_SESSION['login'])){
 										<li class="nav-item start active open">
 											<a href="../app" class="nav-link nav-toggle">
 												<i class="icon-home"></i>
-												<span class="title">GOP Score Card</span>
+												<span class="title">GOP Scorecard</span>
 												<span class="selected"></span>
 											</a>
 										</li>
@@ -547,7 +547,7 @@ if(isset($_SESSION['login'])){
 										<!-- BEGIN PAGE HEADER-->
 
 										<!-- BEGIN PAGE TITLE-->
-										<h1 class="page-title"> GOP Score Card<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+										<h1 class="page-title"> GOP Scorecard<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
 										<!-- END PAGE TITLE-->
 										<!-- END PAGE HEADER-->
 										<?php

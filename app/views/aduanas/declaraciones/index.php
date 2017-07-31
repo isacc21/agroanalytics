@@ -282,7 +282,7 @@ if(isset($_SESSION['login'])){
 
         <link href="../../../../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
         <link href="../../../../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="../../../../assets/layouts/layout/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="../../../../assets/layouts/layout/css/themes/grey.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="../../../../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
 
         <link rel="shortcut icon" href="favicon.ico" /> 
@@ -375,7 +375,7 @@ if(isset($_SESSION['login'])){
                                         <li class="nav-item">
                                             <a href="../../../" class="nav-link nav-toggle">
                                                 <i class="icon-home"></i>
-                                                <span class="title">GOP Score Card</span>
+                                                <span class="title">GOP Scorecard</span>
                                             </a>
                                         </li>
                                         <!--TERMINA ELEMENTO DASHBOARD-->

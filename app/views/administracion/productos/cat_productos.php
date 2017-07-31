@@ -128,15 +128,18 @@ foreach ($result as $row){
             <thead>
               <tr>
 
-                <th> Código </th>
-                <th> Nombre </th>
-                <th> Presentación </th>
-                <th> Precio compra </th>
-                <th> Dist. Ing.</th>
-                <th> Dist. Mét.</th>
-                <th> Grw. Ing.</th>
-                <th> Grw. Mét.</th>
-                <th> Acciones </th>
+                <th class="text-center" rowspan="2"> Código </th>
+                <th class="text-center" rowspan="2"> Nombre </th>
+                <th class="text-center" rowspan="2"> Presentación </th>
+                <th class="text-center" colspan="1"> Proveedor </th>
+                <th class="text-center" colspan="1"> Distribuidor</th>
+                <th class="text-center" colspan="1"> Grower</th>
+                <th class="text-center" rowspan="2"> Acciones </th>
+              </tr>
+              <tr>
+                <th> [USD/Gal]</th>
+                <th> [USD/Lt]</th>
+                <th> [USD/Lt]</th>
               </tr>
             </thead>
             <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
@@ -191,12 +194,12 @@ foreach ($result as $row){
                       break;
                     }
                     ?></td>
-                    
+
                     <td> <?php echo "$ ".$compra;?></td>
                     <td> <?php echo "$ ".$dis;?></td>
-                    <td> <?php echo "$ ".$dism;?></td>
+                    
                     <td> <?php echo "$ ".$grower;?></td>
-                    <td> <?php echo "$ ".$growerm;?></td>
+                   
                     <td>
                       <?php
 

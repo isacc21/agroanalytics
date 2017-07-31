@@ -1117,6 +1117,10 @@ if (isset($_REQUEST['idUsuario'])){
    });
     return false;
   });
+
+$("#back_pusers").click(function(){
+  window.location = ""
+});
 });
 </script>
 
@@ -1127,512 +1131,530 @@ if (isset($_REQUEST['idUsuario'])){
 <div class="col-md-12">
 
 	<!-- INICIA PORTLET -->
-	<div class="portlet box grey-mint">
+	<div class="portlet box grey-steel">
 
 		<!-- INICIA TITULO DE PORTLET-->
 		<div class="portlet-title">
-			<div class="caption">Permisos<!--Agregar variable de sesión con el nombre del usuario a asignar permisos--> </div>
-		</div>
-		<!-- TERMINA TITULO DE PORTLET-->
+			<div class="caption"><div class="font-grey-mint"> <b>Permisos</b> </div> </div>
+
+      <div class="actions btn-set">
+        <button type="button" name="back" id="back_pusers" class="btn default green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+        </button>
+      </div>
+    </div>
+    <!-- TERMINA TITULO DE PORTLET-->
 
 
 
 
-		<!-- INICIA CUERPO DE PORTLET-->
-		<div class="portlet-body form">
+    <!-- INICIA CUERPO DE PORTLET-->
+    <div class="portlet-body form">
 
 
-			<!-- INICIO DE  FORM-->
-			<form class="form-horizontal save-user" id="guardarPermisos" >
-        <input type="hidden" id="sesion" value="<?=$sesionAc;?>">
-        <div class="form-body">
-         <input type="hidden" id="idPermiso" value="<?=$idPermiso; ?>">
+     <!-- INICIO DE  FORM-->
+     <form class="form-horizontal save-user" id="guardarPermisos" >
+       <div class="col-md-1"></div>
+       <div class="col-md-10">
+         <div class="table-scrollable table-scrollable-borderless">
+           <table class="table table-hover table-light">
 
-         <!--INICIA TITULO DE SECCION ADMINISTRACION-->
-         <br />
-         <p class="text-center col-md-2"> <h4><strong>Catálogos</strong></h4> </p>
-         <!-- TERMINA TITULO DE SECCION ADMINISTRACION-->
+             <!-- INICIA TITULO SECCION CATALOGOS-->
+             <tr>
+             <td width="28%">
+                 <div class="text-left font-grey-mint"> 
+                   <h4>
+                     <b>Catálogos</b>
+                   </h4> 
+                 </div>
+               </td>
+               
+             </tr>
+             <!-- TERMINA TITULO SECCION CATALOGOS-->
 
+             <!-- INICIA TITULO CHECKBOXES -->
+             <tr>
+               <th>&nbsp;</th>
+               <th class="text-center" width="100px">Consulta</th>
+               <th class="text-center" width="100px">Registro</th>
+               <th class="text-center" width="100px">Modificación</th>
+               <th class="text-center" width="100px">Eliminación</th>
+             </tr>
+             <!-- TERMINA TITULO CHECKBOXES -->
 
-         <!-- INICIA PERMISO PROVEEDORES-->
-         <div class="form-group form-md-checkboxes">
+             <tbody>
+               <!-- INICIO PROVEEDORES-->
+               <tr>
+                 <td class="text-left">
+                   <div class="col-md-12 font-grey-mint"><h5>Proveedores</h5></div>
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provConsulta" <?echo $provConsulta;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provCrear" <?echo $provCrear;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provModificar" class="md-check" <?echo $provModificar;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provEliminar" <?echo $provEliminar;?> />
+                 </td>
+               </tr>
+               <!--TERMINA PROVEEDORES-->
 
-           <label class="col-md-3 control-label black">Proveedores:
-           </label>
-           <div class="input-group">
-            <div class="icheck-inline">
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provConsulta" <?echo $provConsulta;?>> Consulta
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provCrear" <?echo $provCrear;?>> Crear 
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provModificar" class="md-check" <?echo $provModificar;?>> Modificación
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="provEliminar" <?echo $provEliminar;?>> Eliminación</label>
-              </div>
-            </div>
+               <!-- INICIA ACREEDORES -->
+               <tr>
+                 <td class="text-left">
+                   <div class="col-md-12 font-grey-mint"><h5>Acreedores</h5></div>
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreConsulta" <?echo $acreConsulta;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreCrear" <?echo $acreCrear;?> /> 
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreModificar" class="md-check" <?echo $acreModificar;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreEliminar" <?echo $acreEliminar;?> />
+                 </td>
+               </tr>
+               <!-- TERMINA ACREEDORES -->
+
+               <!-- INICIA TRANSPORTISTAS -->
+               <tr>
+                 <td class="text-left">
+                   <div class="col-md-12 font-grey-mint"><h5>Transportistas</h5></div>
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transConsulta" <?echo $transConsulta;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transCrear" <?echo $transCrear;?> />  
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transModificar" class="md-check" <?echo $transModificar;?> /> 
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transEliminar" <?echo $transEliminar;?> />
+                 </td>
+               </tr>
+               <!-- TERMINA TRANSPORTISTAS -->
+
+               <!-- INICIA PRODUCTOS -->
+               <tr>
+                 <td class="text-left">
+                   <div class="col-md-12 font-grey-mint"><h5>Productos</h5></div>
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productConsulta" <?echo $productConsulta;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productCrear" <?echo $productCrear;?> /> 
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productModificar" class="md-check" <?echo $productModificar;?> /> 
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productEliminar" <?echo $productEliminar;?> />
+                 </td>
+               </tr>
+               <!-- TERMINA PRODUCTOS -->
+
+               <!-- INICIA CLIENTES -->
+               <tr>
+                 <td class="text-left">
+                   <div class="col-md-12 font-grey-mint"><h5>Clientes</h5></div>
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientConsulta" <?echo $clientConsulta;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientCrear" <?echo $clientCrear;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientModificar" class="md-check" <?echo $clientModificar;?> />
+                 </td>
+                 <td class="text-center">
+                   <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientEliminar" <?echo $clientEliminar;?> />
+                 </td>
+               </tr>
+               <!-- TERMINA CLIENTES -->
+
+               <!-- INICIA AGENCIA ADUANAL -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Agencia aduanal</h5></div>
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalConsulta" <?echo $aduanalConsulta;?> />
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalCrear" <?echo $aduanalCrear;?> />
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalModificar" class="md-check" <?echo $aduanalModificar;?> /> 
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalEliminar" <?echo $aduanalEliminar;?> />
+                </td>
+              </tr>
+              <!-- TERMINA AGENCIA ADUANAL -->
+
+              <!-- INICIA TITULO SECCION ATENCION AL CLIENTE -->
+
+              <tr>
+               <td>
+                 <div class="text-left font-grey-mint"> 
+                   <h4>
+                     <b>Atención al cliente</b>
+                   </h4> 
+                 </div>
+               </td>
+             </tr>
+             <!-- TERMINA TITULO SECCION ATENCION AL CLIENTE -->
+
+             <!-- INICIA TITULO CHECKBOXES -->
+             <tr>
+               <th>&nbsp;</th>
+               <th class="text-center">Consulta</th>
+               <th class="text-center">Registro</th>
+               <th class="text-center">Modificación</th>
+               <th class="text-center">Eliminación</th>
+             </tr>
+             <!-- TERMINA TITULO CHECKBOXES -->
+
+             <!-- INICIA COTIZACIONES-->
+             <tr>
+               <td class="text-left">
+                 <div class="col-md-12 font-grey-mint"><h5>Cotizaciones</h5></div>
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionConsulta" <?echo $cotizacionConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionCrear" <?echo $cotizacionCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionModificar" class="md-check" <?echo $cotizacionModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionEliminar" <?echo $cotizacionEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA COTIZACIONES -->
+
+               <!-- INICIA PEDIDOS -->
+               <tr>
+                <td class="text-left">
+                 <div class="col-md-12 font-grey-mint"><h5>Pedidos</h5></div>
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoConsulta" <?echo $pedidoConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoCrear" <?echo $pedidoCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoModificar" class="md-check" <?echo $pedidoModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoEliminar" <?echo $pedidoEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA PEDIDOS -->
+
+               <!-- INICIA TITULO SECCION ADUANAS -->
+
+               <tr>
+                 <td>
+                   <div class="text-left font-grey-mint"> 
+                     <h4>
+                       <b>Aduanas</b>
+                     </h4> 
+                   </div>
+                 </td>
+               </tr>
+               <!-- TERMINA TITULO SECCION ADUANAS -->
+
+               <!-- INICIA TITULO CHECKBOXES -->
+               <tr>
+                 <th>&nbsp;</th>
+                 <th class="text-center">Consulta</th>
+                 <th class="text-center">Registro</th>
+                 <th class="text-center">Modificación</th>
+                 <th class="text-center">Eliminación</th>
+               </tr>
+               <!-- TERMINA TITULO CHECKBOXES -->
+
+               <!-- INICIA IMPORTACIONES -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Importaciones</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionConsulta" <?echo $importacionConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionCrear" <?echo $importacionCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionModificar" class="md-check" <?echo $importacionModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionEliminar" <?echo $importacionEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA IMPORTACIONES -->
+
+               <!-- INICIA DECLARACIONES DE ADUANAS -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Declaración de aduanas</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionConsulta" <?echo $declaracionConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionCrear" <?echo $declaracionCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionModificar" class="md-check" <?echo $declaracionModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionEliminar" <?echo $declaracionEliminar;?> /> </td>
+               </tr>
+               <!-- TERMINA DECLARACIONES DE ADUANAS -->
+
+               <!-- INICIA TITULO SECCION ALMACEN -->
+
+               <tr>
+                 <td>
+                   <div class="text-left font-grey-mint"> 
+                     <h4>
+                       <b>Almacén</b>
+                     </h4> 
+                   </div>
+                 </td>
+               </tr>
+               <!-- TERMINA TITULO SECCION ALMACEN -->
+
+               <!-- INICIA TITULO CHECKBOXES -->
+               <tr>
+                 <th>&nbsp;</th>
+                 <th class="text-center">Consulta</th>
+                 <th class="text-center">Registro</th>
+                 <th class="text-center">Modificación</th>
+                 <th class="text-center">Eliminación</th>
+               </tr>
+               <!-- TERMINA TITULO CHECKBOXES -->
+
+               <!-- INICIA ORDENES DE COMPRA -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Órdenes de compra</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraConsulta" <?echo $compraConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraCrear" <?echo $compraCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraModificar" class="md-check" <?echo $compraModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraEliminar" <?echo $compraEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA ORDENES DE COMPRA -->
+
+               <!-- INICIA INVENTARIO -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Inventario</h5></div>
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioConsulta" <?echo $inventarioConsulta;?> />
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioCrear" <?echo $inventarioCrear;?> />
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioModificar" class="md-check" <?echo $inventarioModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioEliminar" <?echo $inventarioEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA INVENTARIO -->
+
+               <!-- INICIA ORDENES DE CARGA -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Órdenes de carga</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaConsulta" <?echo $cargaConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaCrear" <?echo $cargaCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaModificar" class="md-check" <?echo $cargaModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaEliminar" <?echo $cargaEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA ORDENES DE CARGA -->
+
+               <!-- INICIA REMISIONES -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Remisiones</h5></div>
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionConsulta" <?echo $remisionConsulta;?> />
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionCrear" <?echo $remisionCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionModificar" class="md-check" <?echo $remisionModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionEliminar" <?echo $remisionEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA REMISIONES -->
+
+               <!-- INICIA TITULO SECCION CONTABILIDAD -->
+
+               <tr>
+                 <td>
+                   <div class="text-left font-grey-mint"> 
+                     <h4>
+                       <b>Contabilidad</b>
+                     </h4> 
+                   </div>
+                 </td>
+               </tr>
+               <!-- TERMINA TITULO SECCION CONTABILIDAD -->
+
+               <!-- INICIA TITULO CHECKBOXES -->
+               <tr>
+                 <th>&nbsp;</th>
+                 <th class="text-center">Consulta</th>
+                 <th class="text-center">Registro</th>
+                 <th class="text-center">Modificación</th>
+                 <th class="text-center">Eliminación</th>
+               </tr>
+               <!-- TERMINA TITULO CHECKBOXES -->
+
+               <!-- INICIA BANCOS -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Bancos</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosConsulta" <?echo $bancosConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosCrear" <?echo $bancosCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosModificar" class="md-check" <?echo $bancosModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosEliminar" <?echo $bancosEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA BANCOS -->
+
+               <!-- INICIA CUENTAS POR COBRAR -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Cuentas por cobrar</h5></div>
+                </td>
+                <td class="text-center">
+                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcConsulta" <?echo $cxcConsulta;?> />
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcCrear" <?echo $cxcCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcModificar" class="md-check" <?echo $cxcModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcEliminar" <?echo $cxcEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA CUENTAS POR COBRAR -->
+
+               <!-- INICIA CUENTAS POR PAGAR -->
+               <tr>
+                <td class="text-left">
+                  <div class="col-md-12 font-grey-mint"><h5>Cuentas por pagar</h5></div>
+                </td>
+                <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpConsulta" <?echo $cxpConsulta;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpCrear" <?echo $cxpCrear;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpModificar" class="md-check" <?echo $cxpModificar;?> />
+               </td>
+               <td class="text-center">
+                 <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpEliminar" <?echo $cxpEliminar;?> /></td>
+               </tr>
+               <!-- TERMINA CUENTAS POR PAGAR -->
+
+             </tbody>
+           </table>
+           <br />
+           <br />
+           <input type="hidden" id="idPermiso" value="<?=$idPermiso; ?>">
+           <input type="hidden" id="sesion" value="<?=$sesionAc;?>">
+
+           <div class="text-center">
+
+             <!--BOTON DE GUARDAR O ACTUALIZAR-->
+             <?php
+             if($_REQUEST['idUsuario']!=""){
+              $nombreSubmit="Actualizar";
+            }
+            else{
+              $nombreSubmit="Guardar";
+            }
+            $html_guardar='<input type="submit" id="accionBoton" class="btn green" value='.$nombreSubmit.'>';
+            if($_SESSION['boton']==1){
+
+              echo $html_guardar;
+            }
+            ?>
+            <!--BOTON PARA REGRESAR AL INICIO-->
+            <a href="../usuarios" class="btn grey-salsa btn-outline">Cancelar</a>
           </div>
-          <!-- TERMINA PERMISO PROVEEDORES-->
+          <!--TERMINA SECCION DE BOTONES-->
+        </div>
 
+      </div>
+      
 
-          <!-- INICIA PERMISO ACREEDORES-->
-          <div class="form-group form-md-checkboxes">
+    </form>
+    <!-- TERMINA FORM-->
+  </div>
+  <!--TERMINA CUERPO DE PORTLET-->
 
-           <label class="col-md-3 control-label black">Acreedores:
-           </label>
-           <div class="input-group">
-            <div class="icheck-inline">
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreConsulta" <?echo $acreConsulta;?>> Consulta
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreCrear" <?echo $acreCrear;?>> Crear 
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreModificar" class="md-check" <?echo $acreModificar;?>> Modificación
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="acreEliminar" <?echo $acreEliminar;?>> Eliminación</label>
-              </div>
-            </div>
-          </div>
-          <!-- TERMINA PERMISO ACREEDORES-->
+</div>
+<!-- TERMINA PORTLET-->
+</div>
+<!--TERMINA COLUMNA DE 8-->
 
-          <!-- TERMINA PERMISO TRANSPORTISTAS-->
-          <div class="form-group form-md-checkboxes">
 
-           <label class="col-md-3 control-label black">Transportistas:
-           </label>
-           <div class="input-group">
-            <div class="icheck-inline">
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transConsulta" <?echo $transConsulta;?>> Consulta
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transCrear" <?echo $transCrear;?>> Crear 
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transModificar" class="md-check" <?echo $transModificar;?>> Modificación
-              </label>
-              <label>
-                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="transEliminar" <?echo $transEliminar;?>> Eliminación</label>
-              </div>
-            </div>
-          </div>
-          <!-- TERMINA PERMISO TRANSPORTISTAS-->
 
-          <!-- TERMINA PERMISO PRODUCTOS-->
-          <div class="form-group form-md-checkboxes">
 
-            <label class="col-md-3 control-label black">Productos:
-            </label>
-            <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productConsulta" <?echo $productConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productCrear" <?echo $productCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productModificar" class="md-check" <?echo $productModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="productEliminar" <?echo $productEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO PRODUCTOS-->
-
-
-            <!-- TERMINA PERMISO CLIENTES-->
-            <div class="form-group form-md-checkboxes">
-
-             <label class="col-md-3 control-label black">Clientes:
-             </label>
-             <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientConsulta" <?echo $clientConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientCrear" <?echo $clientCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientModificar" class="md-check" <?echo $clientModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="clientEliminar" <?echo $clientEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO CLIENTES-->
-
-
-            <!-- TERMINA PERMISO AGENCIA ADUANAL-->
-            <div class="form-group form-md-checkboxes">
-
-             <label class="col-md-3 control-label black">Agencia aduanal:
-             </label>
-             <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalConsulta" <?echo $aduanalConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalCrear" <?echo $aduanalCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalModificar" class="md-check" <?echo $aduanalModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="aduanalEliminar" <?echo $aduanalEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO AGENCIA ADUANAL-->
-
-
-
-            <!-- INICIA TITULO DE SECCION ATENCION AL CLIENTE-->
-            <br />
-            <p class="text-center col-md-2"> <h4><strong>Atención al Cliente</strong></h4> </p>
-            <!-- TERMINA TITULO DE SECCION ATENCION AL CLIENTE-->
-
-            <!-- TERMINA PERMISO COTIZACIONES-->
-            <div class="form-group form-md-checkboxes">
-
-             <label class="col-md-3 control-label black">Cotizaciones:
-             </label>
-             <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionConsulta" <?echo $cotizacionConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionCrear" <?echo $cotizacionCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionModificar" class="md-check" <?echo $cotizacionModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cotizacionEliminar" <?echo $cotizacionEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO COTIZACIONES-->
-
-
-            <!-- TERMINA PERMISO PEDIDOS-->
-            <div class="form-group form-md-checkboxes">
-
-             <label class="col-md-3 control-label black">Pedidos:
-             </label>
-             <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoConsulta" <?echo $pedidoConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoCrear" <?echo $pedidoCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoModificar" class="md-check" <?echo $pedidoModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="pedidoEliminar" <?echo $pedidoEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO PEDIDOS-->
-
-
-            <!-- INICIA TITULO DE SECCION ADUANAS-->
-            <br />
-            <p class="text-center col-md-2"> <h4><strong>Aduanas</strong></h4> </p>
-            <!-- TERMINA TITULO DE SECCION ADUANAS-->
-
-            <!-- TERMINA PERMISO IMPORTACIONES-->
-            <div class="form-group form-md-checkboxes">
-
-             <label class="col-md-3 control-label black">Importaciones:
-             </label>
-             <div class="input-group">
-              <div class="icheck-inline">
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionConsulta" <?echo $importacionConsulta;?>> Consulta
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionCrear" <?echo $importacionCrear;?>> Crear 
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionModificar" class="md-check" <?echo $importacionModificar;?>> Modificación
-                </label>
-                <label>
-                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="importacionEliminar" <?echo $importacionEliminar;?>> Eliminación</label>
-                </div>
-              </div>
-            </div>
-            <!-- TERMINA PERMISO IMPORTACIONES-->
-
-
-            <!-- TERMINA PERMISO DECLARACIONES DE ADUANAS-->
-            <div class="form-group form-md-checkboxes">
-
-              <label class="col-md-3 control-label black">Declaración de aduanas:
-              </label>
-              <div class="input-group">
-                <div class="icheck-inline">
-                  <label>
-                    <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionConsulta" <?echo $declaracionConsulta;?>> Consulta
-                  </label>
-                  <label>
-                    <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionCrear" <?echo $declaracionCrear;?>> Crear 
-                  </label>
-                  <label>
-                    <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionModificar" class="md-check" <?echo $declaracionModificar;?>> Modificación
-                  </label>
-                  <label>
-                    <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionEliminar" <?echo $declaracionEliminar;?>> Eliminación</label>
-                  </div>
-                </div>
-              </div>
-              <!-- TERMINA PERMISO DECLARACIONES DE ADUANAS-->
-
-              
-
-
-              <!-- INICIA TITULO DE SECCION ALMACEN-->
-              <br />
-              <p class="text-center col-md-2"> <h4><strong>Almacén</strong></h4> </p>
-              <!-- TERMINA TITULO DE SECCION ALMACEN-->
-
-              <!-- TERMINA PERMISO ORDENES DE COMPRA-->
-              <div class="form-group form-md-checkboxes">
-
-                <label class="col-md-3 control-label black">Órdenes de compra:
-                </label>
-                <div class="input-group">
-                  <div class="icheck-inline">
-                    <label>
-                      <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraConsulta" <?echo $compraConsulta;?>> Consulta
-                    </label>
-                    <label>
-                      <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraCrear" <?echo $compraCrear;?>> Crear 
-                    </label>
-                    <label>
-                      <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraModificar" class="md-check" <?echo $compraModificar;?>> Modificación
-                    </label>
-                    <label>
-                      <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="compraEliminar" <?echo $compraEliminar;?>> Eliminación</label>
-                    </div>
-                  </div>
-                </div>
-                <!-- TERMINA PERMISO ORDENES DE COMPRA-->
-
-                <!-- TERMINA PERMISO INVENTARIO-->
-                <div class="form-group form-md-checkboxes">
-
-                  <label class="col-md-3 control-label black">Inventario:
-                  </label>
-                  <div class="input-group">
-                    <div class="icheck-inline">
-                      <label>
-                        <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioConsulta" <?echo $inventarioConsulta;?>> Consulta
-                      </label>
-                      <label>
-                        <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="declaracionCrear" <?echo $inventarioCrear;?>> Crear 
-                      </label>
-                      <label>
-                        <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioModificar" class="md-check" <?echo $inventarioModificar;?>> Modificación
-                      </label>
-                      <label>
-                        <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="inventarioEliminar" <?echo $inventarioEliminar;?>> Eliminación</label>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- TERMINA PERMISO INVENTARIO-->
-
-
-
-                  <!-- TERMINA PERMISO ORDENES DE CARGA-->
-                  <div class="form-group form-md-checkboxes">
-
-                    <label class="col-md-3 control-label black">Órdenes de carga:
-                    </label>
-                    <div class="input-group">
-                      <div class="icheck-inline">
-                        <label>
-                          <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaConsulta" <?echo $cargaConsulta;?>> Consulta
-                        </label>
-                        <label>
-                          <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaCrear" <?echo $cargaCrear;?>> Crear 
-                        </label>
-                        <label>
-                          <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaModificar" class="md-check" <?echo $cargaModificar;?>> Modificación
-                        </label>
-                        <label>
-                          <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cargaEliminar" <?echo $cargaEliminar;?>> Eliminación</label>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- TERMINA PERMISO ORDENES DE CARGA-->
-
-                    <!-- TERMINA PERMISO REMISIONES-->
-                    <div class="form-group form-md-checkboxes">
-
-                      <label class="col-md-3 control-label black">Remisiones:
-                      </label>
-                      <div class="input-group">
-                        <div class="icheck-inline">
-                          <label>
-                            <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionConsulta" <?echo $remisionConsulta;?>> Consulta
-                          </label>
-                          <label>
-                            <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionCrear" <?echo $remisionCrear;?>> Crear 
-                          </label>
-                          <label>
-                            <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionModificar" class="md-check" <?echo $remisionModificar;?>> Modificación
-                          </label>
-                          <label>
-                            <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="remisionEliminar" <?echo $remisionEliminar;?>> Eliminación</label>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- TERMINA PERMISO REMISIONES-->
-
-
-
-                      <!-- INICIA TITULO DE SECCION CONTABILIDAD-->
-                      <br />
-                      <p class="text-center col-md-2"> <h4><strong>Contabilidad</strong></h4> </p>
-                      <!-- TERMINA TITULO DE SECCION CONTABILIDAD-->
-
-                      <!-- TERMINA PERMISO BANCOS-->
-                      <div class="form-group form-md-checkboxes">
-
-                        <label class="col-md-3 control-label black">Bancos:
-                        </label>
-                        <div class="input-group">
-                          <div class="icheck-inline">
-                            <label>
-                              <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosConsulta" <?echo $bancosConsulta;?>> Consulta
-                            </label>
-                            <label>
-                              <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosCrear" <?echo $bancosCrear;?>> Crear 
-                            </label>
-                            <label>
-                              <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosModificar" class="md-check" <?echo $bancosModificar;?>> Modificación
-                            </label>
-                            <label>
-                              <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="bancosEliminar" <?echo $bancosEliminar;?>> Eliminación</label>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- TERMINA PERMISO BANCOS-->
-
-
-                        <!-- TERMINA PERMISO CUENTAS POR COBRAR-->
-                        <div class="form-group form-md-checkboxes">
-
-                          <label class="col-md-3 control-label black">Cuentas por cobrar:
-                          </label>
-                          <div class="input-group">
-                            <div class="icheck-inline">
-                              <label>
-                                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcConsulta" <?echo $cxcConsulta;?>> Consulta
-                              </label>
-                              <label>
-                                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcCrear" <?echo $cxcCrear;?>> Crear 
-                              </label>
-                              <label>
-                                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcModificar" class="md-check" <?echo $cxcModificar;?>> Modificación
-                              </label>
-                              <label>
-                                <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxcEliminar" <?echo $cxcEliminar;?>> Eliminación</label>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- TERMINA PERMISO CUENTAS POR COBRAR-->
-
-
-                          <!-- TERMINA PERMISO CUENTAS POR PAGAR-->
-                          <div class="form-group form-md-checkboxes">
-
-                            <label class="col-md-3 control-label black">Cuentas por pagar:
-                            </label>
-                            <div class="input-group">
-                              <div class="icheck-inline">
-                                <label>
-                                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpConsulta" <?echo $cxpConsulta;?>> Consulta
-                                </label>
-                                <label>
-                                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpCrear" <?echo $cxpCrear;?>> Crear 
-                                </label>
-                                <label>
-                                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpModificar" class="md-check" <?echo $cxpModificar;?>> Modificación
-                                </label>
-                                <label>
-                                  <input type="checkbox" class="icheck" data-checkbox="icheckbox_square-grey" id="cxpEliminar" <?echo $cxpEliminar;?>> Eliminación</label>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- TERMINA PERMISO CUENTAS POR PAGAR-->
-
-
-
-
-
-
-                          </div>
-                          <!--INICIA SECCION DE BOTONES-->
-                          <div class="form-actions">
-                           <div class="row">
-                            <div class="text-center">
-
-                             <!--BOTON DE GUARDAR O ACTUALIZAR-->
-                             <?php
-                             if($_REQUEST['idUsuario']!=""){
-                              $nombreSubmit="Actualizar";
-                            }
-                            else{
-                              $nombreSubmit="Guardar";
-                            }
-                            $html_guardar='<input type="submit" id="accionBoton" class="btn green" value='.$nombreSubmit.'>';
-                            if($_SESSION['boton']==1){
-
-                              echo $html_guardar;
-                            }
-                            ?>
-                            <!--BOTON PARA REGRESAR AL INICIO-->
-                            <a href="../usuarios" class="btn grey-salsa btn-outline">Cancelar</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!--TERMINA SECCION DE BOTONES-->
-
-                    </form>
-                    <!-- TERMINA FORM-->
-                  </div>
-                  <!--TERMINA CUERPO DE PORTLET-->
-
-                </div>
-                <!-- TERMINA PORTLET-->
-              </div>
-              <!--TERMINA COLUMNA DE 8-->
-              
-
-
-
-              <script src="../../../../assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
-              <!-- END PAGE LEVEL PLUGINS -->
-              <!-- BEGIN THEME GLOBAL SCRIPTS -->
-              <script src="../../../../assets/global/scripts/app.min.js" type="text/javascript"></script>
-              <!-- END THEME GLOBAL SCRIPTS -->
-              <!-- BEGIN PAGE LEVEL SCRIPTS -->
-              <script src="../../../../assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>
-              <!-- END PAGE LEVEL SCRIPTS -->
-              <!-- BEGIN THEME LAYOUT SCRIPTS -->
+<script src="../../../../assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="../../../../assets/global/scripts/app.min.js" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../../../assets/pages/scripts/form-icheck.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->

@@ -58,6 +58,16 @@ $tipo ="";
 $distribuidor ="";
 $gdc="";
 $grower="";
+$ladafijo ="";
+$ladamovil ="";
+$telfijo="";
+$telmovil="";
+
+$abreF="";
+$abreM="";
+
+$cierraF="";
+$cierraM="";
 
 
 ###### RECEPCION DE VARIABLE EN CASO DE MODIFICACION #################################
@@ -112,6 +122,40 @@ if (isset($_REQUEST['rfc'])){
     }
   }
 
+
+  for ($i=0; $i <(strlen($telefono)) ; $i++) { 
+    if($telefono[$i]=="("){
+      $abreF = $i;
+    }
+    if($telefono[$i]==")"){
+      $cierraF = $i;
+    }
+  }
+
+  for ($i=($abreF+1); $i < $cierraF ; $i++) { 
+    $ladafijo .= $telefono[$i];
+  }
+  for ($i=($cierraF+1); $i < (strlen($telefono)); $i++) { 
+    $telfijo .= $telefono[$i];
+  }
+  
+
+  for ($i=0; $i <(strlen($celular)) ; $i++) { 
+    if($celular[$i]=="("){
+      $abreM = $i;
+    }
+    if($celular[$i]==")"){
+      $cierraM = $i;
+    }
+  }
+
+  for ($i=($abreM+1); $i < $cierraM ; $i++) { 
+    $ladamovil .= $celular[$i];
+  }
+  for ($i=($cierraM+1); $i < (strlen($celular)); $i++) { 
+    $telmovil .= $celular[$i];
+  }
+
 ###### EN CASO DE QUE SE HAGA EL PROCESO DENTRO DEL IF, SE CAMBIA LA VARIABLE ########
   $nombreSubmit = 'Actualizar';
 } ###### LLAVE DE IF PARA CONSULTAR SI EXISTE EL FOLIO ###############################
@@ -145,7 +189,7 @@ if (isset($_REQUEST['rfc'])){
     } /* LLAVE DE ELSE */
 
     $("#pais").change(function(){
-      if($("#pais").val()=="México"||$("#pais").val()=="Mexico"||$("#pais").val()=="mexico"||$("#pais").val()=="méxico"){
+      if($("#pais").val()=="México"||$("#pais").val()=="Mexico"||$("#pais").val()=="mexico"||$("#pais").val()=="méxico"||$("#pais").val()=="MEXICO"||$("#pais").val()=="MÉXICO"){
         document.getElementById('oculto').style.display = 'block';
         document.getElementById('mostrado').style.display = 'none';
         document.getElementById('estado').value = "";
@@ -191,7 +235,9 @@ if (isset($_REQUEST['rfc'])){
       '&pais='+$("#pais").val()+
       '&contacto='+$("#contacto").val()+
       '&email='+$("#email").val()+
+      '&ladafijo='+$("#ladafijo").val()+
       '&telefono='+$("#telefono").val()+
+      '&ladamovil='+$("#ladamovil").val()+
       '&celular='+$("#celular").val()+
       '&tipo='+tipo+
       '&pagina='+$("#pagina").val()
@@ -232,20 +278,19 @@ if (isset($_REQUEST['rfc'])){
 <div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box grey-mint">
+  <div class="portlet  box grey-steel">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
 
       <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption"> Registro </div>
+      <div class="caption"><div class="font-grey-mint"> <b>Registro</b> </div></div>
       <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
       <div class="actions btn-set">
-      <button type="button" name="back" id="back_form_client" class="btn default blue-stripe">
+        <button type="button" name="back" id="back_form_client" class="btn default green-seagreen">
           <i class="fa fa-arrow-left"></i> Regresar
         </button>
       </div>
-
     </div>
     <!-- TERMINA TITULO DE PORTLET -->
 
@@ -301,7 +346,6 @@ if (isset($_REQUEST['rfc'])){
             <label class="col-md-3 control-label">Número interior</label>
             <div class="col-md-6">
               <input type="number" step="1" min="0" class="form-control " id="interior" name="interior" value="<?=$interior;?>" required>
-              <span class="help-block"> Escribir 0 si no existe </span>
             </div>
           </div>
           <!-- TERMINA INPUT INTERIOR-->
@@ -416,8 +460,11 @@ if (isset($_REQUEST['rfc'])){
           <!-- INICIA INPUT PARA TELEFONO-->
           <div class="form-group">
             <label class="col-md-3 control-label">Teléfono</label>
-            <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="telefono" name="telefono" value="<?=$telefono;?>" required>
+            <div class="col-md-2">
+              <input type="number" class="form-control" id="ladafijo" name="ladafijo" value="<?=$ladafijo;?>" required placeholder="Lada">
+            </div>
+            <div class="col-md-4">
+              <input type="number"  class="form-control " id="telefono" name="telefono" value="<?=$telfijo;?>" required placeholder="Teléfono">
             </div>
           </div>
           <!-- TERMINA INPUT PARA TELEFONO-->
@@ -425,8 +472,11 @@ if (isset($_REQUEST['rfc'])){
           <!-- INICIA INPUT PARA CELULAR-->
           <div class="form-group">
             <label class="col-md-3 control-label">Celular</label>
-            <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="celular" name="celular" value="<?=$celular;?>">
+            <div class="col-md-2">
+              <input type="number" class="form-control" id="ladamovil" name="ladamovil" value="<?=$ladamovil;?>" placeholder="Lada">
+            </div>
+            <div class="col-md-4">
+              <input type="text " step="any" class="form-control" id="celular" name="celular" value="<?=$telmovil;?>" placeholder="Teléfono">
             </div>
           </div>
           <!-- TERMINA INPUT PARA CELULAR-->
@@ -460,18 +510,14 @@ if (isset($_REQUEST['rfc'])){
           </div>
           <!-- TERMINA RADIO TIPO-->
 
-          <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-          <div class="form-actions">
-            <div class="row">
-              <div class="text-center">
+          <br>
+          <div class="text-center">
 
-                <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
-                
-                <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                <a href="../clientes" class="btn grey-salsa btn-outline">Cancelar</a>
-              </div>
-            </div>
+            <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+            <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
+
+            <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+            <a href="../clientes" class="btn grey-salsa btn-outline">Cancelar</a>
           </div>
           <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
         </form>

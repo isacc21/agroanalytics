@@ -62,8 +62,8 @@ if(isset($_POST['rfc'])){
 		$transportistas->pais = $_POST['pais'];
 		$transportistas->contacto = $_POST['contacto'];
 		$transportistas->email = $_POST['email'];
-		$transportistas->telefono = $_POST['telefono'];
-		$transportistas->celular = $_POST['celular'];
+		$transportistas->telefono = "(".$_POST['ladafijo'].")".$_POST['telefono'];
+		$transportistas->celular = "(".$_POST['ladamovil'].")".$_POST['celular'];
 		$transportistas->pagina = $_POST['pagina'];
 		$transportistas->idFiscal = $_POST['idFiscal'];
 		$transportistas->sccac = $_POST['sccac'];

@@ -31,139 +31,168 @@ if (isset($_REQUEST['rfc'])){
 
   $nombreSubmit = 'Actualizar';
 }
+
+$clientes->rfc =$_REQUEST['rfc'];
+$lista_clientes = $clientes->consultarClientes();
+foreach($lista_clientes as $row){
+  $nombre_cliente = $row['razonSocCliente'];
+}
 ?>
 
+<style>
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+</style>
 
+<div class="col-md-12">
 
-<!--COLUMNA DE 2 UTILIZADA PARA CENTRAR FORMULARIO-->
-<div class="col-md-2"></div>
-<!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
-<div class="col-md-8">
+ <div class="portlet  box grey-steel">
 
-  <!--INICIA PORTLET-->
-  <div class="portlet box blue-hoki">
+  <!--INICIA TITULO DE PORTLET-->
+  <div class="portlet-title">
 
-    <!--INICIA TITULO DE PORTLET-->
-    <div class="portlet-title">
-
-      <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">
-        <!-- ICONO Y TEXTO DE TITULO-->
-        <i class="fa fa-save"></i> Lista de Precios
-      </div>
-      <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
-
+    <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
+    <div class="caption"><div class="font-grey-mint"> <b>Precios de <?=$nombre_cliente;?></b> </div></div>
+    <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
+    <div class="actions btn-set">
+      <button type="button" name="back" id="back_form_client" class="btn default green-seagreen">
+        <i class="fa fa-arrow-left"></i> Regresar
+      </button>
     </div>
-    <!-- TERMINA TITULO DE PORTLET -->
+  </div>
+  <!-- TERMINA TITULO DE PORTLET -->
 
-    <!--INICIA CUERPO DE PORTLET-->
-    <div class="portlet-body form">
+  <!--INICIA CUERPO DE PORTLET-->
+  <div class="portlet-body form">
 
 
-      <!--INICIA FORM-->
-      <form class="form-horizontal save-user" id="preciosNuevos" >
+    <!--INICIA FORM-->
+    <form class="form-horizontal save-user" id="preciosNuevos" >
 
-        <!--INICIAN ESTILOS DE FORM-->
-        <div class="form-body">
-          <?php 
-          $x=0;
+      <!--INICIAN ESTILOS DE FORM-->
+      <div class="form-body">
+        <?php 
+        $x=0;
 
-          $clientes->rfc = $_REQUEST['rfc'];
-          $count_precios = $clientes->cuenta();
+        $clientes->rfc = $_REQUEST['rfc'];
+        $count_precios = $clientes->cuenta();
           //echo $count_precios;
-          foreach($precios as $row){
-            $producto = $row['nombreProducto'];
-            $idProducto = $row['codigoProducto'];
+        foreach($precios as $row){
+          $producto = $row['nombreProducto'];
+          $idProducto = $row['codigoProducto'];
+          $presentacion = $row['presentacionProducto'];
 
-            ?>
-            <!-- INICIA INPUT PRODUCTO-->
-            <div class="form-group">
-              <label class="col-md-3 control-label"><?echo $producto;?></label>
-              <div class="col-md-3">
-                <?php
-                $precio =0;
-                if($count_precios!=0){
+          switch($presentacion){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            $phi = "[USD/GAL]";
+            $phm = "[USD/LT]";
+            break;
+            case 5:
+            case 6:
+            $phi = "[USD/LB]";
+            $phm = "[USD/KG]";
+            break;
+          }
+
+          ?>
+          
+          <!-- INICIA INPUT PRODUCTO-->
+          <div class="form-group">
+            <?php
+            $precio =0;
+            if($count_precios!=0){
 
 
-                  $clientes->codigo = $idProducto;
-                  $clientes->rfc = $_REQUEST['rfc'];
-                  $lista_precios = $clientes->consultarEspeciales();
-
-                  foreach($lista_precios as $row){
-                    $precioEspecial = $row['iPrecioEspecial'];
-                    $precioEspecialM = $row['mPrecioEspecial'];
-                    if($precioEspecial != 0 || $precioEspeciales != null ||$precioEspecialM != 0){
-                      $final = $precioEspecial;
-                      $finalM = $precioEspecialM;
-                    }
-                    else{
-                      $final = "0.00";
-                      $finalM = "0.00";
-                    }
-                  }
+              $clientes->codigo = $idProducto;
+              $clientes->rfc = $_REQUEST['rfc'];
+              $lista_precios = $clientes->consultarEspeciales();
+              $final = "0.00";
+              $finalM = "0.00";
+              foreach($lista_precios as $row){
+                $final = "0.00";
+                $finalM = "0.00";
+                $precioEspecial = $row['iPrecioEspecial'];
+                $precioEspecialM = $row['mPrecioEspecial'];
+                if($precioEspecial != 0 || $precioEspecial != null ||$precioEspecialM != 0){
+                  $final = $precioEspecial;
+                  $finalM = $precioEspecialM;
                 }
                 else{
                   $final = "0.00";
                   $finalM = "0.00";
                 }
+              }
+            }
+            else{
+              $final = "0.00";
+              $finalM = "0.00";
+            }
 
-                ?>
+            ?>
 
-                <input type="number" class="form-control input-circle" id="precio<?=$x;?>" name="precio<?=$x;?>" step="0.01" min="0" value="<?=$final;?>">
-                <input type="number" class="form-control input-circle" id="precioM<?=$x;?>" name="precioM<?=$x;?>" step="0.01" min="0" value="<?=$finalM;?>">
-                <input type="hidden" id="idProducto" name="idProducto" value="<?=$idProducto;?>">
-              </div>
+            <label class="col-md-3 control-label"><?echo $producto;?></label>
+            <div class="col-md-3">
+              <input type="number" class="form-control" id="precio<?=$x;?>" name="precio<?=$x;?>" step="0.01" min="0" value="<?=$final;?>" required placeholder="<?=$phi;?>">
             </div>
-            <!-- TERMINA INPUT PRODUCTO-->
-            <?php
-            $listaProductos = $listaProductos .$producto. ":";
-            $listaPrecios = $listaPrecios .$precio. ":";
-            $listaID = $listaID .$idProducto. ":";
-
-            $x++;
-          }
-
-
-
-
-          ?>
-          <input type="hidden" id="productos" name="productos" value="<?= $listaProductos;?>">
-          <input type="hidden" id="precios" name="precios" value="<?= $listaPrecios;?>">
-          <input type="hidden" id="id" name="id" value="<?= $listaID;?>">
-          <input type="hidden" id="vueltas" name="vueltas" value="<?= $x;?>">
-          <input type="hidden" id="rfc" name="rfc" value="<?=$_REQUEST['rfc'];?>">
-
-
-
-
-          <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-          <div class="form-actions">
-            <div class="row">
-              <div class="col-md-offset-4 col-md-12">
-
-                <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                <input type="submit" id="accionBoton" class="btn btn-circle green" value="<?=$nombreSubmit;?>"> 
-
-                <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                <a href="../clientes" class="btn btn-circle grey-salsa btn-outline">Cancelar</a>
-              </div>
+            <div class="col-md-3">
+              <input type="number"  class="form-control " id="precioM<?=$x;?>" name="precioM<?=$x;?>" step="0.01" min="0" value="<?=$finalM;?>" required placeholder="<?=$phm;?>">
             </div>
+            <input type="hidden" id="idProducto" name="idProducto" value="<?=$idProducto;?>">
           </div>
+
+
+          <?php
+          $listaProductos = $listaProductos .$producto. ":";
+          $listaPrecios = $listaPrecios .$precio. ":";
+          $listaID = $listaID .$idProducto. ":";
+
+          $x++;
+        }
+
+
+
+
+        ?>
+        <input type="hidden" id="productos" name="productos" value="<?= $listaProductos;?>">
+        <input type="hidden" id="precios" name="precios" value="<?= $listaPrecios;?>">
+        <input type="hidden" id="id" name="id" value="<?= $listaID;?>">
+        <input type="hidden" id="vueltas" name="vueltas" value="<?= $x;?>">
+        <input type="hidden" id="rfc" name="rfc" value="<?=$_REQUEST['rfc'];?>">
+        <br>
+        <div class="text-center">
+
+          <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
+
+          <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+          <a href="../clientes" class="btn grey-salsa btn-outline">Cancelar</a>
         </div>
-        <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
-      </form>
-      <!-- TERMINA FORM-->
-    </div>
+      </div>
+      <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
+    </form>
+    <!-- TERMINA FORM-->
   </div>
-  <!-- TERMINA CUERPO DE PORTLET-->
+</div>
+<!-- TERMINA CUERPO DE PORTLET-->
 </div>
 <!-- TERMINA PORTLET-->
 
-<!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
-<div class="col-md-2"></div>
 
 
 <script type="text/javascript">
+
+  $("#back_form_client").click(function(){
+    window.location = ""
+  });
 
 
   /* COMPARACION DE VALOR DE BOTON DE FORMULARIO PARA CAMBIO DE URL*/

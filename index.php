@@ -151,14 +151,22 @@ date_default_timezone_set('America/Tijuana');
 		$(document).ready(function(){
 			<?php if($_REQUEST['lg']!=1){
 				?>
-				swal("NO GUARDES",
-					"TU USUARIO Y CONTRASEÑA EN EL NAVEGADOR",
-					'warning');
+				swal({
+					title: 'AVISO',
+					type: 'warning',
+					text: 'NO GUARDES TU USUARIO Y CONTRASEÑA EN EL NAVEGADOR',
+					showCloseButton: true,
+					confirmButtonText:
+					'Cerrar'});
 				<?}
 				else{?>
-					swal("Tu sesión ha terminado",
-						"",
-						'success');
+					swal({
+						title: 'Tu sesión ha terminado',
+						type: 'success',
+						/*text: 'NO GUARDES TU USUARIO Y CONTRASEÑA EN EL NAVEGADOR',*/
+						showCloseButton: true,
+						confirmButtonText:
+						'Cerrar'});
 					<?}?>
 					/*AJAX PARA ENVIO DE INFORMACION A CONTROLLER PARA LOGIN*/
 					$("#entrar").submit(function(e){
@@ -170,9 +178,13 @@ date_default_timezone_set('America/Tijuana');
 						}).done(function(result){
 							/*SE MUESTRA ERROR EN CASO DE QUE EL PASSWORD SEA INCORRECTO*/
 							if (result != true){
-								swal(result,
-									"",
-									'error');
+								swal({
+									title: result,
+									type: 'error',
+									/*text: 'NO GUARDES TU USUARIO Y CONTRASEÑA EN EL NAVEGADOR',*/
+									showCloseButton: true,
+									confirmButtonText:
+									'Cerrar'});
 							}else{
 								if(result == true){
 

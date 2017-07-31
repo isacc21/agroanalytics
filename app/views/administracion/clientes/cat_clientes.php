@@ -55,8 +55,7 @@ foreach ($result as $row){
   $permiso = $row['clientesPermiso'];
   }## LLAVE DE FOREACH ###############################################################
 
-  $html_nuevo='<button id="gotoClient" class="btn sbold green"> 
-  Nuevo <i class="fa fa-plus"></i></button>';
+  $html_nuevo='<button id="gotoClient" class="btn green-seagreen"><i class="fa fa-plus"></i>&nbsp;Nuevo </button>';
 
 
   ?>
@@ -80,138 +79,176 @@ foreach ($result as $row){
     <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
     <div class="col-md-12">
       <!-- INICIA PORTLET -->
-      <div class="portlet light bordered">
+      <div class="portlet box grey-steel">
 
         <!-- INICIA TITULO DE PORTLET-->
         <div class="portlet-title">
 
-          <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-          <div class="caption font-dark">
+          <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div>
 
-            <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-            <i class="fa fa-list-alt font-dark"></i>
-
-            <!-- TEXTO DE TITULO DE PORTLET-->
-            <span class="caption-subject bold uppercase"> Catálogo</span>
-          </div>
-          <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
-
-          <div class="actions btn-set">
-            <?php 
-            if($permiso[1]=='2'){
-              echo $html_nuevo;
-            } ?>
-            <button type="button" name="back" id="back_cat_cli" class="btn default green-stripe">
-              <i class="fa fa-arrow-left"></i> Regresar
-            </button>
-          </div>
 
         </div>
-        <!-- TERMINA TITULO DE PORTLET-->
+        <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
-        <!-- INICIA CUERPO DE PORTLET-->
-        <div class="portlet-body">
+        <div class="actions btn-set">
+          <?php 
+          if($permiso[1]=='2'){
+            echo $html_nuevo;
+          } ?>
+          <button type="button" name="back" id="back_cat_cli" class="btn green-seagreen">
+            <i class="fa fa-arrow-left"></i> Regresar
+          </button>
+        </div>
 
-          <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-          <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
-
-            <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-            <thead>
-              <tr>
-                <th> Razón social</th>
-                <th> RFC </th>
-                <th> Teléfono </th>
-                <th> Celular </th>
-                <th> Acciones </th>
-              </tr>
-            </thead>
-            <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
-
-            <!-- INICIA CUERPO DE DATA TABLE-->
-            <tbody>
-
-              <!--INICIO DE FOREACH PARA TABLA DE PROVEEDORES-->
-              <?php
-              foreach($listaClientes as $row){
-                $rfc = $row['rfcCliente'];
-                $nombre = $row['razonSocCliente'];
-                $email = $row['emailCliente'];
-                $telefono = $row['telefonoCliente'];
-                $celular = $row['celularCliente'];
-                ?>
-                <!--TERMINO DE FOREACH PARA TABLA DE PROVEEDORES-->
-
-                <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-                <tr class="odd gradeX">
-                  <td> <?php echo $nombre;?> </td>
-                  <td> <?php echo $rfc;?> </td>
-                  <td> <?php echo $telefono;?></td>
-                  <td> <?php echo $celular;?></td>
-                  <td>
-                    <?php
-
-                    $html_inicio_actions='<div class="text-center"><div class="btn-group">
-                    <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-                      &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-                      &nbsp; Elegir&nbsp;&nbsp;
-                    </button><ul class="dropdown-menu pull-right" role="menu">';
-
-                    $html_final_actions='</ul></div></div>';
-
-                    $html_moreInfo='<li>
-                    <a data-toggle="modal" href="#modal'.$rfc.'">
-                      <i class="icon-magnifier"></i> Ver info. </a>
-                    </li>';
-
-                    $html_precios='<li>
-                    <a data-toggle="modal" href="#precios'.$rfc.'">
-                      <i class="fa fa-dollar"></i> Precios </a>
-                    </li>';
-
-                    $html_editar='<li><a><input type="radio" id="editar'.$rfc.'" class="editar" name="editar" value="'.$rfc.'">
-                    <label for="editar'.$rfc.'">  <i class="fa fa-edit"></i>&nbsp;Modificar </label></a></li>';
-
-                    $html_eliminar='<li><a><input type="radio" id="borrar'.$rfc.'" class="borrar" name="borrar" value="'.$rfc.'">
-                    <label for="borrar'.$rfc.'" " data-toggle="modal" href="#basic">  <i class="fa fa-trash-o"></i>&nbsp;Eliminar </label></a></li>';
-
-                    if($permiso[0]=='1'||$permiso[1]=='2'||$permiso[2]=='3'||$permiso[3]=='4'){
-                      echo $html_inicio_actions;
-                    }
-                    if($permiso[0]=='1'){
-                     echo $html_moreInfo; 
-                     echo $html_precios;
-                   }
-                   if($permiso[2]=='3'){
-                    echo $html_editar;
-                  }
-                  if($permiso[3]=='4'){
-                    echo $html_eliminar;
-                  }
-                  if($permiso[0]=='1'||$permiso[1]=='2'||$permiso[2]=='3'||$permiso[3]=='4'){
-                    echo $html_final_actions;
-                  }
-                  ?>
-                </td>
-              </tr>
-              <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-              <!-- INICIA LLAVE DE FOREACH PARA TABLA DE PROVEEDORES-->
-              <?php 
-            }
-            ?>
-            <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE PROVEEDORES-->
-
-          </tbody>
-          <!-- TERMINA CUERPO DE DATA TABLE -->
-
-        </table>
-        <!-- TERMINA DATA TABLE PARA TABLA DE PROVEEDORES-->
       </div>
-      <!-- TERMINA CUERPO DE PORTLET -->
+      <!-- TERMINA TITULO DE PORTLET-->
+
+      <!-- INICIA CUERPO DE PORTLET-->
+      <div class="portlet-body">
+
+        <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+        <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+
+          <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+          <thead>
+            <tr>
+              <th> Razón social</th>
+              <th> RFC </th>
+              <th> Teléfono </th>
+              <th> Celular </th>
+              <th> Acciones </th>
+            </tr>
+          </thead>
+          <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+
+          <!-- INICIA CUERPO DE DATA TABLE-->
+          <tbody>
+
+            <!--INICIO DE FOREACH PARA TABLA DE PROVEEDORES-->
+            <?php
+            foreach($listaClientes as $row){
+              $rfc = $row['rfcCliente'];
+              $nombre = $row['razonSocCliente'];
+              $email = $row['emailCliente'];
+              $telefono = $row['telefonoCliente'];
+              $celular = $row['celularCliente'];
+
+              for ($i=0; $i <(strlen($telefono)) ; $i++) { 
+                if($telefono[$i]=="("){
+                  $abreF = $i;
+                }
+                if($telefono[$i]==")"){
+                  $cierraF = $i;
+                }
+              }
+
+              for ($i=($abreF+1); $i < $cierraF ; $i++) { 
+                $ladafijo .= $telefono[$i];
+              }
+              $x=0;
+              for ($i=($cierraF+1); $i < (strlen($telefono)); $i++) { 
+                $x++;
+                $telfijo .= $telefono[$i];
+                if($x==3||$x==5){
+                  $telfijo .=".";
+                }
+              }
+
+
+              for ($i=0; $i <(strlen($celular)) ; $i++) { 
+                if($celular[$i]=="("){
+                  $abreM = $i;
+                }
+                if($celular[$i]==")"){
+                  $cierraM = $i;
+                }
+              }
+
+              for ($i=($abreM+1); $i < $cierraM ; $i++) { 
+                $ladamovil .= $celular[$i];
+              }
+              $x=0;
+              for ($i=($cierraM+1); $i < (strlen($celular)); $i++) { 
+                $x++;
+                $telmovil .= $celular[$i];
+                if($x==3||$x==5){
+                  $telmovil .=".";
+                }
+              }
+              ?>
+              <!--TERMINO DE FOREACH PARA TABLA DE PROVEEDORES-->
+
+              <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+              <tr class="odd gradeX">
+                <td> <?php echo $nombre;?> </td>
+                <td> <?php echo $rfc;?> </td>
+                <td> <?php echo "(".$ladafijo.") ".$telfijo;?></td>
+                <td> <?php echo "(".$ladamovil.") ".$telmovil;?></td>
+                <td>
+                  <?php
+
+                  $html_inicio_actions='<div class="text-center"><div class="btn-group">
+                  <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+                    &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+                    &nbsp; Elegir&nbsp;&nbsp;
+                  </button><ul class="dropdown-menu pull-right" role="menu">';
+
+                  $html_final_actions='</ul></div></div>';
+
+                  $html_moreInfo='<li>
+                  <a data-toggle="modal" href="#modal'.$rfc.'">
+                    <i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
+                  </li>';
+
+                  $html_precios='<li>
+                  <a data-toggle="modal" href="#precios'.$rfc.'">
+                    <i class="fa fa-dollar"></i> Precios<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
+                  </li>';
+
+                  $html_editar='<li><a><input type="radio" id="editar'.$rfc.'" class="editar" name="editar" value="'.$rfc.'">
+                  <label for="editar'.$rfc.'">  <i class="fa fa-edit"></i>&nbsp;Modificar<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+                  $html_eliminar='<li><a><input type="radio" id="borrar'.$rfc.'" class="borrar" name="borrar" value="'.$rfc.'">
+                  <label for="borrar'.$rfc.'" " data-toggle="modal" href="#basic">  <i class="fa fa-trash-o"></i>&nbsp;Eliminar<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+                  if($permiso[0]=='1'||$permiso[1]=='2'||$permiso[2]=='3'||$permiso[3]=='4'){
+                    echo $html_inicio_actions;
+                  }
+                  if($permiso[0]=='1'){
+                   echo $html_moreInfo; 
+                   echo $html_precios;
+                 }
+                 if($permiso[2]=='3'){
+                  echo $html_editar;
+                }
+                if($permiso[3]=='4'){
+                  echo $html_eliminar;
+                }
+                if($permiso[0]=='1'||$permiso[1]=='2'||$permiso[2]=='3'||$permiso[3]=='4'){
+                  echo $html_final_actions;
+                }
+                ?>
+              </td>
+            </tr>
+            <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+            <!-- INICIA LLAVE DE FOREACH PARA TABLA DE PROVEEDORES-->
+            <?php 
+          }
+          ?>
+          <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE PROVEEDORES-->
+
+        </tbody>
+        <!-- TERMINA CUERPO DE DATA TABLE -->
+
+      </table>
+      <!-- TERMINA DATA TABLE PARA TABLA DE PROVEEDORES-->
     </div>
-    <!-- TERMINA PORTLET-->
+    <!-- TERMINA CUERPO DE PORTLET -->
   </div>
-  <!-- TERMINAR COLUMNA DE 12 PARA PORTLET-->
+  <!-- TERMINA PORTLET-->
+</div>
+<!-- TERMINAR COLUMNA DE 12 PARA PORTLET-->
 </div>
 <!-- TERMINA ROW PARA PORTLET-->
 
@@ -328,12 +365,12 @@ foreach($consultaModal as $row){
 
               <tr>
                 <td>Tel. oficina: </td>
-                <td><?php echo $telefono;?></td>
+                <td><?php echo "(".$ladafijo.") ".$telfijo;?></td>
               </tr>
 
               <tr>
                 <td>Celular: </td>
-                <td><?php echo $celular;?></td>
+                <td><?php echo "(".$ladamovil.") ".$telmovil;?></td>
               </tr>
 
               <tr>
@@ -495,6 +532,8 @@ foreach($consultaPreciosMo as $row){
                         $clientes->codigo = $codigo;
                         $clientes->rfc = $rfc;
                         $lista_precios = $clientes->consultarEspeciales();
+                        $final = "0.00";
+                        $precio = "0.00";
                         foreach($lista_precios as $row){
                           $precio = $row['iPrecioEspecial'];
                         }
@@ -510,56 +549,58 @@ foreach($consultaPreciosMo as $row){
 
 
                     <td><? 
-                    $final = 0;
-                    
-                    if($tipo==1){
-                      $final = $distriM;
-                    }
-                    else{
-                      if($tipo==3){
-                        $final = $growerM;
+                      $final = 0;
+
+                      if($tipo==1){
+                        $final = $distriM;
                       }
                       else{
-                        $clientes->codigo = $codigo;
-                        $clientes->rfc = $rfc;
-                        $lista_precios = $clientes->consultarEspeciales();
-                        foreach($lista_precios as $row){
-                          $precio = $row['mPrecioEspecial'];
+                        if($tipo==3){
+                          $final = $growerM;
                         }
+                        else{
+                          $clientes->codigo = $codigo;
+                          $clientes->rfc = $rfc;
+                          $lista_precios = $clientes->consultarEspeciales();
+                          $final = "0.00";
+                          $precio = "0.00";
+                          foreach($lista_precios as $row){
+                            $precio = $row['mPrecioEspecial'];
+                          }
 
-                        $final = $precio;
+                          $final = $precio;
+                        }
                       }
-                    }
 
 
-                    echo "$ ". $final . " &nbsp;&nbsp;".$unidad_met;
-                    ?></td>
+                      echo "$ ". $final . " &nbsp;&nbsp;".$unidad_met;
+                      ?></td>
 
 
 
-                  </tr>
-                  <?php
+                    </tr>
+                    <?php
 
-                }
-                ?>
-              </table>
+                  }
+                  ?>
+                </table>
+              </div>
+              <!-- TERMINA TABLA SIMPLE PARA DETALLES DE PROVEEDORES-->
+
+              <!-- INICIA PIE DE VENTANA MODAL-->
+              <div class="modal-footer">
+
+                <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+              </div>
+              <!-- TERMINA PIE DE VENTANA MODAL-->
             </div>
-            <!-- TERMINA TABLA SIMPLE PARA DETALLES DE PROVEEDORES-->
-
-            <!-- INICIA PIE DE VENTANA MODAL-->
-            <div class="modal-footer">
-
-              <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-              <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-            </div>
-            <!-- TERMINA PIE DE VENTANA MODAL-->
+            <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
           </div>
-          <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
+          <!-- TERMINO DE VENTANA MODAL  -->
         </div>
-        <!-- TERMINO DE VENTANA MODAL  -->
-      </div>
-      <!-- TERMINO DE VENTANA MODAL -->
-      <?
+        <!-- TERMINO DE VENTANA MODAL -->
+        <?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE PROVEEDORES #############################################
 ?>
 
@@ -603,8 +644,8 @@ foreach($consultaPreciosMo as $row){
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sí, Eliminarlo",
-        cancelButtonText: "No, Cancelar",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
         closeOnConfirm: false,
         closeOnCancel: false
       },
@@ -615,12 +656,26 @@ foreach($consultaPreciosMo as $row){
             url: "../../../controllers/administracion/clientes/eliminarCliente.php",
             data:"rfc="+ rfcCliente
           }).done(function(result){
-            swal("Eliminado", "El proveedor ha sido eliminado", "success");
+            swal({
+              title: "Eliminado",
+              text: "El cliente ha sido eliminado",
+              type: "success",
+              showCloseButton: true,
+              confirmButtonText:'Cerrar'
+            });
             $("#mainContent").load( "cat_clientes.php" );
           });
 
         } else {
-          swal("Cancelado", "Se ha conservado el Cliente", "error");
+
+          swal({
+            title: "Cancelado",
+            text: "Se ha conservado el cliente",
+            type: "error",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
+
         }
       });
     });

@@ -60,8 +60,8 @@ if(isset($_POST['rfc'])){
 		$acreedores->pais = $_POST['pais'];
 		$acreedores->contacto = $_POST['contacto'];
 		$acreedores->email = $_POST['email'];
-		$acreedores->telefono = $_POST['telefono'];
-		$acreedores->celular = $_POST['celular'];
+		$acreedores->telefono = "(".$_POST['ladafijo'].")".$_POST['telefono'];
+		$acreedores->celular = "(".$_POST['ladamovil'].")".$_POST['celular'];
 		$acreedores->pagina = $_POST['pagina'];
 
 
@@ -110,8 +110,8 @@ if(isset($_POST['rfc'])){
 			$acreedores->pais = $_POST['pais'];
 			$acreedores->contacto = $_POST['contacto'];
 			$acreedores->email = $_POST['email'];
-			$acreedores->telefono = $_POST['telefono'];
-			$acreedores->celular = $_POST['celular'];
+			$acreedores->telefono = "(".$_POST['ladafijo'].")".$_POST['telefono'];
+			$acreedores->celular = "(".$_POST['ladamovil'].")".$_POST['celular'];
 			$acreedores->pagina = $_POST['pagina'];
 
 

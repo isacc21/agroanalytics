@@ -72,8 +72,8 @@ if(isset($_POST['rfc'])){
 		$clientes->pais = $_POST['pais'];
 		$clientes->contacto = $_POST['contacto'];
 		$clientes->email = $_POST['email'];
-		$clientes->telefono = $_POST['telefono'];
-		$clientes->celular = $_POST['celular'];
+		$clientes->telefono = "(".$_POST['ladafijo'].")".$_POST['telefono'];
+		$clientes->celular = "(".$_POST['ladamovil'].")".$_POST['celular'];
 		$clientes->pagina = $_POST['pagina'];
 		$clientes->tipo = $_POST['tipo'];
 

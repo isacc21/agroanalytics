@@ -99,6 +99,11 @@ if (isset($_REQUEST['idUsuario'])){
 <script type="text/javascript">
   $(document).ready(function(){
 
+    $("#back_form_acre").click(function(){
+      window.location = ""
+    });
+
+
     /*VARIABLES DE URL PARA ENVIO DE INFO */
     if ($("#accionBoton").val() == 'Guardar'){
       var urlCont = "../../../controllers/administracion/usuarios/nuevoUsuario.php";
@@ -140,15 +145,20 @@ if (isset($_REQUEST['idUsuario'])){
 <div class="col-md-12">
 
   <!-- INICIA PORTLET -->
-  <div class="portlet box grey-mint">
+  <div class="portlet box grey-steel">
 
     <!-- INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
-      <div class="caption">Registro </div>
+      <div class="caption"><div class="font-grey-mint"> <b>Registro</b> </div> </div>
+
+      <!-- TERMINA TITULO DE PORTLET-->
+      <div class="actions btn-set">
+        <button type="button" name="back" id="back_form_acre" class="btn default green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+        </button>
+      </div>
+
     </div>
-    <!-- TERMINA TITULO DE PORTLET-->
-
-
     <!-- INICIA CUERPO DE PORTLET-->
     <div class="portlet-body form">
 
@@ -207,17 +217,15 @@ if (isset($_REQUEST['idUsuario'])){
           <!--TERMINA INPUT CONTRASEÑA -->
         </div>
         <!--INICIA SECCION DE BOTONES-->
-        <div class="form-actions">
-          <div class="row">
-            <div class="text-center">
+        
+        <div class="text-center">
 
-              <!--BOTON DE GUARDAR O ACTUALIZAR-->
-              <input type="submit" id="accionBoton" class="btn  green" value="<?=$nombreSubmit;?>"> 
-              <!--BOTON PARA REGRESAR AL INICIO-->
-              <a href="../usuarios" class="btn  grey-salsa btn-outline">Cancelar</a>
-            </div>
-          </div>
+          <!--BOTON DE GUARDAR O ACTUALIZAR-->
+          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
+          <!--BOTON PARA REGRESAR AL INICIO-->
+          <a href="../usuarios" class="btn  grey-salsa btn-outline">Cancelar</a>
         </div>
+        
         <!--TERMINA SECCION DE BOTONES-->
 
       </form>
