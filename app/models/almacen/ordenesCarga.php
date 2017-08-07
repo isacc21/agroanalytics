@@ -141,7 +141,7 @@ class ordenesCarga{
 		}
 	}
 
-	public function consultarProductosxID(){
+	public function consultarProductosID(){
 		try {
 
       //CONEXION A LA BASE DE DATOS

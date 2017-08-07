@@ -181,7 +181,7 @@ class remisiones{
 	}
 
 
-		public function restarInventario(){
+	public function restarInventario(){
 		try {
 
 			//CONEXION A LA BASE DE DATOS
@@ -297,6 +297,25 @@ class remisiones{
 		}
 	}
 
+	public function consultarRemisionesID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM remisiones WHERE folioRemision ='".$this->folio."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
 	public function consultarPedidosxID(){
 		try {
 
@@ -355,42 +374,42 @@ class remisiones{
 	}
 
 	public function consultarPrecios(){
-    try {
+		try {
 
       //CONEXION A LA BASE DE DATOS
-      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
-      $conexion -> exec("set names utf8");
+			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM preciosespeciales WHERE rfcCliente = '".$this->cliente."' AND codigoProducto = '".$this->producto."'");
+			return $resultados = $conexion->query("SELECT * FROM preciosespeciales WHERE rfcCliente = '".$this->cliente."' AND codigoProducto = '".$this->producto."'");
 
-    }
+		}
 
-    catch(PDOException $e){
-      return "Error: " . $e->getMessage();
-    }
-  }
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
 
-  public function consultarDetalleRemision(){
-    try {
+	public function consultarDetalleRemision(){
+		try {
 
       //CONEXION A LA BASE DE DATOS
-      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
-      $conexion -> exec("set names utf8");
+			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM detalleremisiones WHERE folioRemision = '".$this->remision."'");
+			return $resultados = $conexion->query("SELECT DISTINCT folioPedimento FROM detalleremisiones WHERE folioRemision = '".$this->remision."'");
 
-    }
+		}
 
-    catch(PDOException $e){
-      return "Error: " . $e->getMessage();
-    }
-  }
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
 
 }//LLAVE DE CLASE REMISIONES
 ?>

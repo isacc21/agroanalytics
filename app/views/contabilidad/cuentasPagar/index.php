@@ -329,7 +329,7 @@ if(isset($_SESSION['login'])){
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
-                                            <a href="page_user_profile_1.html">
+                                            <a href="../../profile/info">
                                                 <i class="icon-user"></i> Mi Perfil </a>
                                             </li>
                                             <li class="divider"> </li>

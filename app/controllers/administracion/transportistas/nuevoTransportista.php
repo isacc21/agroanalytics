@@ -50,6 +50,16 @@ if(isset($_POST['rfc'])){
 
 ###### EN CASO DE NO COINCIDIR, SE RECIBEN TODAS LAS VARIABLES POR "POST" ############
 	else{
+
+		if($_POST['estadoMexico']!="null"){
+			$estado=$_POST['estadoMexico'];
+		}
+		else{
+			if($_POST['estadoMexico']=="null"){
+				$estado=$_POST['estado'];
+			}
+		}
+
 		$transportistas->rfc = $_POST['rfc'];
 		$transportistas->razon = $_POST['nombre'];
 		$transportistas->calle = $_POST['calle'];
@@ -58,7 +68,7 @@ if(isset($_POST['rfc'])){
 		$transportistas->colonia = $_POST['colonia'];
 		$transportistas->codigoPostal = $_POST['cPostal'];
 		$transportistas->ciudad = $_POST['ciudad'];
-		$transportistas->estado = $_POST['estado'];
+		$transportistas->estado = $estado;
 		$transportistas->pais = $_POST['pais'];
 		$transportistas->contacto = $_POST['contacto'];
 		$transportistas->email = $_POST['email'];

@@ -50,7 +50,7 @@ if(isset($_SESSION['login'])){
 ###### MODULO DE ADMINISTRACION #####################################################
     $html_inicio_administracion='<li class="nav-item">
     <a href="javascript:;" class="nav-link nav-toggle">
-        <i class="fa fa-building"></i>
+        <i class="icon-folder-alt"></i>
         <span class="title">Catálogos</span>
         <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -83,11 +83,11 @@ if(isset($_SESSION['login'])){
         <span class="title">4 | Productos</span>
     </a></li>';
 
-    ###### MODULO DE ADMINISTRADOR ###############################################
+   ###### MODULO DE ADMINISTRADOR ###############################################
 
     $html_inicio_administrador='<li class="nav-item">
     <a href="javascript:;" class="nav-link nav-toggle">
-        <i class="glyphicon glyphicon-eye-open"></i>
+        <i class="icon-settings"></i>
         <span class="title">Administrador</span>
         <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -96,10 +96,9 @@ if(isset($_SESSION['login'])){
 
     $html_usuarios = '<li class="nav-item">
     <a href="../../../views/administracion/usuarios" class="nav-link ">
-        <i class="fa fa-desktop"></i>
+        <i class="fa fa-user-plus"></i>
         <span class="title">Usuarios</span>
     </a></li>';
-
 
     ###### MODULO DE ATENCION AL CLIENTE ###############################################
 
@@ -126,7 +125,7 @@ if(isset($_SESSION['login'])){
 
     $html_inicio_aduanas='<li class="nav-item  ">
     <a href="javascript:;" class="nav-link nav-toggle">
-        <i class="fa fa-map-signs"></i>
+        <i class="fa fa-truck"></i>
         <span class="title">Aduanas</span>
         <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -146,7 +145,7 @@ if(isset($_SESSION['login'])){
     ###### MODULO DE ALMACEN ###########################################################
     $html_inicio_almacen='<li class="nav-item start active open  ">
     <a href="javascript:;" class="nav-link nav-toggle">
-        <i class="fa fa-industry"></i>
+        <i class="icon-social-dropbox"></i>
         <span class="title">Almacén</span>
         <span class="selected"></span>
         
@@ -154,7 +153,7 @@ if(isset($_SESSION['login'])){
 
     $html_final_almacen='</ul></li>';
 
-    $html_inventario='<li class="nav-item active open ">
+    $html_inventario='<li class="nav-item  active open">
     <a href="../../../views/almacen/inventario" class="nav-link ">
         <span class="title">2 | Inventario</span>
     </a></li>';
@@ -178,9 +177,8 @@ if(isset($_SESSION['login'])){
 
     $html_inicio_conta='<li class="nav-item ">
     <a href="javascript:;" class="nav-link nav-toggle">
-        <i class="fa fa-money"></i>
+        <i class="glyphicon glyphicon-usd"></i>
         <span class="title">Contabilidad</span>
-        <span class="selected"></span>
         <span class="arrow"></span>
     </a><ul class="sub-menu">';
 
@@ -201,48 +199,12 @@ if(isset($_SESSION['login'])){
         <span class="title">3 | Cuentas por Pagar</span>
     </a></li>';
 
+    $html_inventary='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 grey-steel" id="inventory"><div class="visual"><i class="fa fa-plus-circle"></i></div><div class="details"><div class="number"><h3 class="font-grey-mint"><b>Inventario</b></h3></div></div></a></div>';
 
+    $html_pedimentos='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 grey-steel" id="list_pedimento"><div class="visual"><i class=" fa fa-list"></i></div><div class="details"><div class="number"><h3 class="font-grey-mint"><b>Pedimentos</b></h3></div></div></a></div>';
 
-    
+    $html_reporte='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 green-seagreen" id="rep_ocompra"><div class="visual"><i class="fa fa-print"></i></div><div class="details"><div class="number"><h3><b>Reporte</b></h3></div></div></a></div>';
 
-    $html_inventary='<div class="col-md-4">
-    <div class="mt-widget-3 bg-red">
-        <div class="mt-head bg-red">
-            <div class="mt-head-icon">
-                <i class="fa fa-files-o"></i>
-            </div>
-            <div class="mt-head-desc"> Inventario actual </div>
-            <div class="mt-head-button">
-                <button type="button" id="inventory" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-            </div>
-        </div>
-    </div></div>';
-
-    $html_pedimentos='<div class="col-md-4">
-    <div class="mt-widget-3 bg-blue-hoki">
-        <div class="mt-head bg-blue-hoki">
-            <div class="mt-head-icon">
-                <i class="fa fa-files-o"></i>
-            </div>
-            <div class="mt-head-desc"> Lista de pedimentos </div>
-            <div class="mt-head-button">
-                <button type="button" id="list_pedimento" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-            </div>
-        </div>
-    </div></div>';
-
-    $html_reporte='<div class="col-md-4">
-    <div class="mt-widget-3 bg-green">
-        <div class="mt-head bg-green">
-            <div class="mt-head-icon">
-                <i class="fa fa-print"></i>
-            </div>
-            <div class="mt-head-desc"> Reporte de cotizaciones </div>
-            <div class="mt-head-button">
-                <button type="button" id="rep_ocompra" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-            </div>
-        </div>
-    </div></div>';
     ?>
 
     <!DOCTYPE html>
@@ -314,7 +276,7 @@ if(isset($_SESSION['login'])){
                     <!--INICIA LOGO-->
                     <div class="page-logo">
                         <a href="index.php">
-                            <img src="../../../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                            <img src="../../../../assets/img/agroanalytics_logo.png" alt="logo" class="logo-default" /> </a>
                             <div class="menu-toggler sidebar-toggler">
                                 <span></span>
                             </div>
@@ -337,7 +299,7 @@ if(isset($_SESSION['login'])){
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-default">
                                         <li>
-                                            <a href="page_user_profile_1.html">
+                                            <a href="../../profile/info">
                                                 <i class="icon-user"></i> Mi Perfil </a>
                                             </li>
                                             <li class="divider"> </li>
@@ -499,12 +461,12 @@ if(isset($_SESSION['login'])){
                                 <div class="page-content-wrapper">
                                     <div class="page-content">
 
-                                     <!-- INICIA TITULO DE PAGINA-->
-                                     <h1 class="page-title"> Inventario<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
-                                     <!-- TERMINA TITULO DE PAGINA -->
+                                       <!-- INICIA TITULO DE PAGINA-->
+                                       <h1 class="page-title"> <b>Inventario</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                       <!-- TERMINA TITULO DE PAGINA -->
 
-                                     <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-                                     <style type="text/css">
+                                       <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                       <style type="text/css">
                                         div#mainContent {margin:0}
                                         body {overflow-x:hidden;}
                                     </style>

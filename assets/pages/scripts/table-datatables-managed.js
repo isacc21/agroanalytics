@@ -8,7 +8,7 @@ var TableDatatablesManaged = function () {
         table.dataTable({
 
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
-            "language": {
+           /* "language": {
                 "aria": {
                     "sortAscending": ": activate to sort column ascending",
                     "sortDescending": ": activate to sort column descending"
@@ -26,12 +26,12 @@ var TableDatatablesManaged = function () {
                     "last": "Last",
                     "first": "First"
                 }
-            },
+            },*/
 
             // Or you can use remote translation file
-            //"language": {
-            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-            //},
+            "language": {
+             url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+         },
 
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
             // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
@@ -41,9 +41,9 @@ var TableDatatablesManaged = function () {
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
-                [5, 15, 20, -1],
+            [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
-            ],
+                ],
             // set the initial value
             "pageLength": 5,            
             "pagingType": "bootstrap_full_number",
@@ -60,8 +60,8 @@ var TableDatatablesManaged = function () {
                     "className": "dt-right", 
                     //"targets": [2]
                 }
-            ],
-            "order": [
+                ],
+                "order": [
                 [1, "asc"]
             ] // set first column as a default sort by asc
         });
@@ -128,9 +128,9 @@ var TableDatatablesManaged = function () {
             "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
-                [5, 15, 20, -1],
+            [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
-            ],
+                ],
 
             // set the initial value
             "pageLength": 5,            
@@ -148,9 +148,9 @@ var TableDatatablesManaged = function () {
                     "className": "dt-right", 
                     //"targets": [2]
                 }
-            ],
+                ],
 
-            "order": [
+                "order": [
                 [1, "asc"]
             ], // set first column as a default sort by asc
 
@@ -160,16 +160,16 @@ var TableDatatablesManaged = function () {
                 this.api().column(1).every(function(){
                     var column = this;
                     var select = $('<select class="form-control input-sm"><option value="">Select</option></select>')
-                        .appendTo( $(column.footer()).empty() )
-                        .on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
                             );     
-                            column
-                                .search( val ? '^'+val+'$' : '', true, false )
-                                .draw();
-                        } );
-     
+                        column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
+                    } );
+
                     column.data().unique().sort().each( function ( d, j ) {
                         select.append( '<option value="'+d+'">'+d+'</option>' )
                     } );
@@ -235,9 +235,9 @@ var TableDatatablesManaged = function () {
             "pagingType": "bootstrap_extended",
 
             "lengthMenu": [
-                [5, 15, 20, -1],
+            [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
-            ],
+                ],
             // set the initial value
             "pageLength": 5,
             "columnDefs": [{  // set default column settings
@@ -248,7 +248,7 @@ var TableDatatablesManaged = function () {
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+            [1, "asc"]
             ] // set first column as a default sort by asc
         });
 
@@ -303,9 +303,9 @@ var TableDatatablesManaged = function () {
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
             
             "lengthMenu": [
-                [6, 15, 20, -1],
+            [6, 15, 20, -1],
                 [6, 15, 20, "All"] // change per page values here
-            ],
+                ],
             // set the initial value
             "pageLength": 6,
             "columnDefs": [{  // set default column settings
@@ -316,7 +316,7 @@ var TableDatatablesManaged = function () {
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+            [1, "asc"]
             ] // set first column as a default sort by asc
         });
 
@@ -372,9 +372,9 @@ var TableDatatablesManaged = function () {
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
             
             "lengthMenu": [
-                [6, 15, 20, -1],
+            [6, 15, 20, -1],
                 [6, 15, 20, "All"] // change per page values here
-            ],
+                ],
             // set the initial value
             "pageLength": 6,
             "columnDefs": [{  // set default column settings
@@ -385,7 +385,7 @@ var TableDatatablesManaged = function () {
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+            [1, "asc"]
             ] // set first column as a default sort by asc
         });
 
@@ -434,35 +434,35 @@ var TableDatatablesManaged = function () {
 
             "footerCallback": function ( row, data, start, end, display ) {
                 var api = this.api(), data;
-     
+
                 // Remove the formatting to get integer data for summation
                 var intVal = function ( i ) {
                     return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                            i : 0;
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                    i : 0;
                 };
-     
+
                 // Total over all pages
                 total = api
-                    .column( 3 )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-     
+                .column( 3 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
                 // Total over this page
                 pageTotal = api
-                    .column( 3, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-     
+                .column( 3, { page: 'current'} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
                 // Update footer
                 $( api.column( 3 ).footer() ).html(
                     '$'+pageTotal +' ( $'+ total +' total)'
-                );
+                    );
             },
             
             // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
@@ -473,9 +473,9 @@ var TableDatatablesManaged = function () {
             "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
             
             "lengthMenu": [
-                [6, 15, 20, -1],
+            [6, 15, 20, -1],
                 [6, 15, 20, "All"] // change per page values here
-            ],
+                ],
             // set the initial value
             "pageLength": 6,
             "columnDefs": [{  // set default column settings
@@ -486,7 +486,7 @@ var TableDatatablesManaged = function () {
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+            [1, "asc"]
             ] // set first column as a default sort by asc
         });
 

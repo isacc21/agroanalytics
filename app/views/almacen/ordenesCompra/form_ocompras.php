@@ -52,12 +52,16 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    /* COMPARACION DE VALOR DE BOTON DE FORMULARIO PARA CAMBIO DE URL*/
-    if ($("#accionBoton").val() == 'Guardar'){
-      var urlCont = "../../../controllers/almacen/ordenesCompra/nuevaOrden.php";
-    } /* LLAVE DE IF */
-
+   $("#back_form_oc").click(function(){
+    window.location = "";
   });
+
+   /* COMPARACION DE VALOR DE BOTON DE FORMULARIO PARA CAMBIO DE URL*/
+   if ($("#accionBoton").val() == 'Guardar'){
+    var urlCont = "../../../controllers/almacen/ordenesCompra/nuevaOrden.php";
+  } /* LLAVE DE IF */
+
+});
 </script>
 <style>
   input[type=number]::-webkit-outer-spin-button,
@@ -75,17 +79,19 @@
 <div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box grey-mint">
+  <div class="portlet box grey-steel">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
 
       <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">
-        <!-- ICONO Y TEXTO DE TITULO-->
-        <i class="fa fa-save"></i> Registro de orden de compra 
-      </div>
+      <div class="caption"><div class="font-grey-mint"> <b>Registro</b> </div></div>
       <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
+      <div class="actions btn-set">
+        <button type="button" name="back" id="back_form_oc" class="btn default green-seagreen">
+          <i class="fa fa-arrow-left"></i> Regresar
+        </button>
+      </div>
 
     </div>
     <!-- TERMINA TITULO DE PORTLET -->
@@ -219,18 +225,14 @@
             <!-- TERMINA INPUT FOLIO DE REGISTRO-->
 
 
-            <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-            <div class="form-actions">
-              <div class="row">
-                <div class="text-center">
 
-                  <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                  <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
+            <div class="text-center">
+              <hr>
+              <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+              <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 
-                  <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                  <a href="../ordenesCompra" class="btn grey-salsa btn-outline">Cancelar</a>
-                </div>
-              </div>
+              <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+              <a href="../ordenesCompra" class="btn grey-salsa btn-outline">Cancelar</a>
             </div>
             <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
           </form>
@@ -345,7 +347,12 @@
 
         if(j!=i && i!=registros && producto == $("#producto"+j).val() && cuenta!== "1" && productoEliminado[j]!="no"){
           $("#producto"+j).val("default");
-          swal("Producto ya ingresado", "", "warning");
+          swal({
+            title: 'Producto ya ingresado',
+            type: "warning",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
         }
       }
 
@@ -435,10 +442,20 @@
           "&pass="+$("#pass").val()
         }).done(function(result){
           if(result=="Orden de Compra registrada"){
-            swal (result, "", "success");
+            swal({
+              title: result,
+              type: "success",
+              showCloseButton: true,
+              confirmButtonText:'Cerrar'
+            });
             $("#mainContent").load( "cat_ocompras.php" );
           }else{
-            swal (result, "", "warning");
+            swal({
+              title: result,
+              type: "warning",
+              showCloseButton: true,
+              confirmButtonText:'Cerrar'
+            });
           } 
         });
 

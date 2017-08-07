@@ -202,6 +202,7 @@ if (isset($_REQUEST['rfc'])){
         '&cPostal='+$("#cPostal").val()+
         '&ciudad='+$("#ciudad").val()+
         '&estado='+$("#estado").val()+
+        '&estadoMexico='+$("#estadoMexico").val()+
         '&pais='+$("#pais").val()+
         '&contacto='+$("#contacto").val()+
         '&email='+$("#email").val()+
@@ -215,10 +216,20 @@ if (isset($_REQUEST['rfc'])){
         '&caat='+$("#caat").val()
       }).done(function(result){
        if(result=="Transportista registrado exitósamente"||result=="Transportista modificado exitósamente"){
-        swal (result, "", "success");
+        swal({
+          title: result,
+          type: "success",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
         $("#mainContent").load( "cat_transportistas.php" );
       }else{
-        swal (result, "", "warning");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
       }
       
     });
@@ -477,11 +488,9 @@ if (isset($_REQUEST['rfc'])){
               <input type="text" step="any" class="form-control " id="caat" name="caat" value="<?=$caat;?>" required>
             </div>
           </div>
-          <!-- TERMINA INPUT PARA CAAT-->
 
-          <br>
           <div class="text-center">
-
+            <hr>
             <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
             <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 

@@ -141,7 +141,8 @@ foreach ($result as $row){
                   $cierraF = $i;
                 }
               }
-
+              $ladafijo = "";
+              $telfijo = "";
               for ($i=($abreF+1); $i < $cierraF ; $i++) { 
                 $ladafijo .= $telefono[$i];
               }
@@ -164,6 +165,8 @@ foreach ($result as $row){
                 }
               }
 
+              $ladamovil = "";
+              $telmovil="";
               for ($i=($abreM+1); $i < $cierraM ; $i++) { 
                 $ladamovil .= $celular[$i];
               }
@@ -591,7 +594,7 @@ foreach($consultaPreciosMo as $row){
               <div class="modal-footer">
 
                 <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
               </div>
               <!-- TERMINA PIE DE VENTANA MODAL-->
             </div>
@@ -692,4 +695,4 @@ foreach($consultaPreciosMo as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>

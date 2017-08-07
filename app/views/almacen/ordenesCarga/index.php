@@ -51,7 +51,7 @@ if(isset($_SESSION['login'])){
 ###### MODULO DE ADMINISTRACION #####################################################
     $html_inicio_administracion='<li class="nav-item">
     <a href="javascript:;" class="nav-link nav-toggle">
-      <i class="fa fa-building"></i>
+      <i class="icon-folder-alt"></i>
       <span class="title">Catálogos</span>
       <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -84,11 +84,11 @@ if(isset($_SESSION['login'])){
       <span class="title">4 | Productos</span>
     </a></li>';
 
-    ###### MODULO DE ADMINISTRADOR ###############################################
+   ###### MODULO DE ADMINISTRADOR ###############################################
 
     $html_inicio_administrador='<li class="nav-item">
     <a href="javascript:;" class="nav-link nav-toggle">
-      <i class="glyphicon glyphicon-eye-open"></i>
+      <i class="icon-settings"></i>
       <span class="title">Administrador</span>
       <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -97,7 +97,7 @@ if(isset($_SESSION['login'])){
 
     $html_usuarios = '<li class="nav-item">
     <a href="../../../views/administracion/usuarios" class="nav-link ">
-      <i class="fa fa-desktop"></i>
+      <i class="fa fa-user-plus"></i>
       <span class="title">Usuarios</span>
     </a></li>';
 
@@ -117,7 +117,7 @@ if(isset($_SESSION['login'])){
       <span class="title">2 | Pedidos</span>
     </a></li>';
 
-    $html_cotizaciones='<li class="nav-item  ">
+    $html_cotizaciones='<li class="nav-item">
     <a href="../../../views/atn-clientes/cotizaciones" class="nav-link ">
       <span class="title">1 | Cotizaciones</span>
     </a></li>';
@@ -126,7 +126,7 @@ if(isset($_SESSION['login'])){
 
     $html_inicio_aduanas='<li class="nav-item  ">
     <a href="javascript:;" class="nav-link nav-toggle">
-      <i class="fa fa-map-signs"></i>
+      <i class="fa fa-truck"></i>
       <span class="title">Aduanas</span>
       <span class="arrow"></span>
     </a><ul class="sub-menu">';
@@ -146,9 +146,10 @@ if(isset($_SESSION['login'])){
     ###### MODULO DE ALMACEN ###########################################################
     $html_inicio_almacen='<li class="nav-item start active open  ">
     <a href="javascript:;" class="nav-link nav-toggle">
-      <i class="fa fa-industry"></i>
+      <i class="icon-social-dropbox"></i>
       <span class="title">Almacén</span>
       <span class="selected"></span>
+
     </a><ul class="sub-menu">';
 
     $html_final_almacen='</ul></li>';
@@ -177,9 +178,8 @@ if(isset($_SESSION['login'])){
 
     $html_inicio_conta='<li class="nav-item ">
     <a href="javascript:;" class="nav-link nav-toggle">
-      <i class="fa fa-money"></i>
+      <i class="glyphicon glyphicon-usd"></i>
       <span class="title">Contabilidad</span>
-      
       <span class="arrow"></span>
     </a><ul class="sub-menu">';
 
@@ -200,46 +200,12 @@ if(isset($_SESSION['login'])){
       <span class="title">3 | Cuentas por Pagar</span>
     </a></li>';
 
+    $html_nuevo='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 grey-steel" id="add_ocarga"><div class="visual"><i class="fa fa-plus-circle"></i></div><div class="details"><div class="number"><h3 class="font-grey-mint"><b>Registro</b></h3></div></div></a></div>';
 
+    $html_lista='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 grey-steel" id="list_ocarga"><div class="visual"><i class=" fa fa-list"></i></div><div class="details"><div class="number"><h3 class="font-grey-mint"><b>Catálogo</b></h3></div></div></a></div>';
 
-    $html_nuevo='<div class="col-md-4">
-    <div class="mt-widget-3 bg-red">
-      <div class="mt-head bg-red">
-        <div class="mt-head-icon">
-          <i class="fa fa-barcode"></i>
-        </div>
-        <div class="mt-head-desc"> Pedidos sin surtir</div>
-        <div class="mt-head-button">
-          <button type="button" id="add_ocarga" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-        </div>
-      </div>
-    </div></div>';
+    $html_reporte='<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a class="dashboard-stat dashboard-stat-v2 green-seagreen" id="rep_pedido"><div class="visual"><i class="fa fa-print"></i></div><div class="details"><div class="number"><h3><b>Reporte</b></h3></div></div></a></div>';
 
-    $html_lista='<div class="col-md-4">
-    <div class="mt-widget-3 bg-blue-hoki">
-      <div class="mt-head bg-blue-hoki">
-        <div class="mt-head-icon">
-          <i class="fa fa-server"></i>
-        </div>
-        <div class="mt-head-desc"> Lista de órdenes de carga</div>
-        <div class="mt-head-button">
-          <button type="button" id="list_ocarga" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-        </div>
-      </div>
-    </div></div>';
-
-    $html_reporte='<div class="col-md-4">
-    <div class="mt-widget-3 bg-green">
-      <div class="mt-head bg-green">
-        <div class="mt-head-icon">
-          <i class="fa fa-print"></i>
-        </div>
-        <div class="mt-head-desc"> Reporte de pedidos </div>
-        <div class="mt-head-button">
-          <button type="button" id="rep_pedido" class="btn btn-circle btn-outline white btn-sm">Seleccionar</button>
-        </div>
-      </div>
-    </div></div>';
     ?>
 
     <!DOCTYPE html>
@@ -311,7 +277,7 @@ if(isset($_SESSION['login'])){
                   <!--INICIA LOGO-->
                   <div class="page-logo">
                     <a href="index.php">
-                      <img src="../../../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+                      <img src="../../../../assets/img/agroanalytics_logo.png" alt="logo" class="logo-default" /> </a>
                       <div class="menu-toggler sidebar-toggler">
                         <span></span>
                       </div>
@@ -334,7 +300,7 @@ if(isset($_SESSION['login'])){
                           </a>
                           <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                              <a href="page_user_profile_1.html">
+                              <a href="../../profile/info">
                                 <i class="icon-user"></i> Mi Perfil </a>
                               </li>
                               <li class="divider"> </li>
@@ -497,7 +463,7 @@ if(isset($_SESSION['login'])){
                           <div class="page-content">
 
                            <!-- INICIA TITULO DE PAGINA-->
-                           <h1 class="page-title"> Órdenes de carga<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                           <h1 class="page-title"><b> Órdenes de carga </b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
                            <!-- TERMINA TITULO DE PAGINA -->
 
                            <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->

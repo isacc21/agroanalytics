@@ -58,7 +58,12 @@ if(isset($_POST['codigo'])){
 		$mesSem = $fechaSem[3].$fechaSem[4];
 		$anioSem = $fechaSem[6].$fechaSem[7].$fechaSem[8].$fechaSem[9];
 
-
+		if($_POST['densidad']==""){
+			$densidad = 1;
+		}
+		else{
+			$densidad = $_POST['densidad'];
+		}
 		$productos->codigo = $_POST['codigo'];
 		$productos->viejo = $_POST['viejo'];
 		$productos->nombre = $_POST['nombre'];
@@ -131,7 +136,13 @@ if(isset($_POST['codigo'])){
 		$diaSem = $fechaSem[0].$fechaSem[1];
 		$mesSem = $fechaSem[3].$fechaSem[4];
 		$anioSem = $fechaSem[6].$fechaSem[7].$fechaSem[8].$fechaSem[9];
-
+		
+		if($_POST['densidad']==""){
+			$densidad = 1;
+		}
+		else{
+			$densidad = $_POST['densidad'];
+		}
 
 		$productos->codigo = $_POST['codigo'];
 		$productos->viejo = $_POST['viejo'];

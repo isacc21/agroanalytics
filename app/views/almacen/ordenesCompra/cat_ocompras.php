@@ -40,7 +40,7 @@ $listaCotizaciones = $ordenesCompra->consultarOrdenes();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
 $consultaModal = $ordenesCompra->consultarOrdenes();
-$consultarProductos = $ordenesCompra->consultarOrdenes();
+
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 $usuarios->id=$_SESSION['idUsuario'];
@@ -91,23 +91,16 @@ foreach ($result as $row){
    <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
    <div class="col-md-12">
     <!-- INICIA PORTLET -->
-    <div class="portlet light bordered">
+    <div class="portlet box grey-steel">
 
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
 
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption font-dark">
-
-       <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="fa fa-list-alt font-dark"></i>
-
-       <!-- TEXTO DE TITULO DE PORTLET-->
-       <span class="caption-subject bold uppercase"> Órdenes de Compra</span>
-     </div>
-     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
-     <div class="actions btn-set">
-       <button type="button" name="back" id="back_cat_ocompras" class="btn default green-stripe">
+      <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div></div>
+      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
+      <div class="actions btn-set">
+       <button type="button" name="back" id="back_cat_ocompras" class="btn green-seagreen">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
@@ -201,27 +194,24 @@ foreach ($result as $row){
       $html_final_action='</ul></div>';
       $html_moreInfo='<li>
       <a data-toggle="modal" href="#modal'.$codigo.'">
-        <i class="icon-magnifier"></i> Ver info. </a>
+        <i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
       </li>';
 
-      $html_productos='<li>
-      <a data-toggle="modal" href="#productos'.$codigo.'">
-        <i class="icon-magnifier"></i> Productos </a>
-      </li>';
       $html_cancelar='<li><a><input type="radio" id="cancelar'.$codigo.'" class="cancelar" name="cancelar" value="'.$codigo.'">
-      <label for="cancelar'.$codigo.'" ">  <i class="glyphicon glyphicon-remove-circle"></i>&nbsp;Cancelar </label></a></li>';
+      <label for="cancelar'.$codigo.'" ">  <i class="glyphicon glyphicon-remove-circle"></i>&nbsp;Cancelar<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
 
       $html_factura='<li><a><input type="radio" id="factura'.$codigo.'" class="factura" name="factura" value="'.$codigo.'">
-      <label for="factura'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Agregar factura </label></a></li>';
+      <label for="factura'.$codigo.'" ">  <i class="fa fa-paperclip"></i>&nbsp;Agregar factura<i class="font-white fa fa-square-o"></i></label></a></li>';
 
-
+      $html_imprimir='<li><a><input type="radio" id="imprimir'.$codigo.'" class="imprimir" name="imprimir" value="'.$codigo.'">
+      <label for="imprimir'.$codigo.'" ">  <i class="fa fa-print"></i>&nbsp;Imprimir<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
 
       if($compras[0]=='1'||$compras[1]=='2'||$compras[2]=='3'||$compras[3]=='4'){
         echo $html_inicio_action;
       }
       if($compras[0]=='1'){
         echo $html_moreInfo; 
-        echo $html_productos;
+        echo $html_imprimir;
       }
       if($compras[2]=='3'&&$status==1){
         echo $html_factura;
@@ -286,10 +276,10 @@ foreach($consultaModal as $row){
 
 ?>
 <!-- INICIO DE VENTANA MODAL -->
-<div class="modal fade" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal fade bs-modal-lg" id="modal<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">
@@ -345,61 +335,19 @@ foreach($consultaModal as $row){
         echo '<tr><td>Folio importación:</td><td>'.$importacion.'</td></tr>';
       }?>
     </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
-
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
-</div>
-<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
-</div>
-<!-- TERMINO DE VENTANA MODAL  -->
-</div>
-<!-- TERMINO DE VENTANA MODAL -->
-<?
-} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
-?>
-
-
-<?php
-
+    <?php
+    $ordenesCompra->folio = $codigo;
+    $consultarProductos = $ordenesCompra->consultarOrdenesxID();
 ###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
-foreach($consultarProductos as $row){
- $codigo = $row['folioOrdenCompra'];
+    foreach($consultarProductos as $row){
+     $codigo = $row['folioOrdenCompra'];
 
 
 
 
- ?>
- <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade bs-modal-lg" id="productos<?=$codigo;?>" tabindex="-1" role="basic" aria-hidden="true">
+     ?>
 
-  <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog modal-lg">
-
-   <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-   <div class="modal-content">
-
-    <!-- INICIO DE CABECERA DE VENTANA MODAL -->
-    <div class="modal-header">
-
-     <!-- BONTON DE CIERRE DE VENTANA MODAL-->
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-
-     <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa</h4>
-   </div>
-   <!-- TERMINA CABECERA DE VENTANA MODAL -->
-
-   <!-- INICIA CUERPO DE VENTANA MODAL-->
-   <div class="modal-body">
-
-     <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
      <table class="table table-hover">
        <tr>
          <th>Producto</th>
@@ -470,18 +418,24 @@ foreach($consultarProductos as $row){
         <td><strong>Total</strong></td>
         <td><?php echo  "$ ".number_format($total_coti,2, '.', ','); ?></td>
       </tr>
-      
+
     </table>
-  </div>
-  <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-  <!-- INICIA PIE DE VENTANA MODAL-->
-  <div class="modal-footer">
+    <?
+} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
+?>
 
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
+
+</div>
+<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+
+<!-- INICIA PIE DE VENTANA MODAL-->
+<div class="modal-footer">
+
+  <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  <button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
+</div>
+<!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
 <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
 </div>
@@ -491,6 +445,8 @@ foreach($consultarProductos as $row){
 <?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
+
+
 
 
 <!-- SCRIPTS NECEARIOS PARA FUNCIONAMIENTO DE CATALOGO-->
@@ -511,6 +467,10 @@ foreach($consultarProductos as $row){
     $('#gotoCompra').click(function() {
       $("#mainContent").load( "form_ocompras.php");
     });
+
+    $('.imprimir').click(function() {
+      window.open("ordencompra.php?codigo="+$(this).val(), "_blank");
+    });
   });
 </script>
 
@@ -521,4 +481,4 @@ foreach($consultarProductos as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>

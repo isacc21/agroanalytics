@@ -82,23 +82,15 @@ foreach ($result as $row){
    <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
    <div class="col-md-12">
     <!-- INICIA PORTLET -->
-    <div class="portlet light bordered">
+    <div class="portlet box grey-steel">
 
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
 
-      <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption font-dark">
+      <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div></div>
 
-       <i class="fa fa-list-alt font-dark"></i>
-
-       <!-- TEXTO DE TITULO DE PORTLET-->
-       <span class="caption-subject bold uppercase"> Inventario en existencia</span>
-     </div>
-     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
-
-     <div class="actions btn-set">
-       <button type="button" name="back" id="back_cat_inv" class="btn default green-stripe">
+      <div class="actions btn-set">
+      <button type="button" name="back" id="back_cat_inv" class="btn green-seagreen">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
     </div>
@@ -393,7 +385,7 @@ foreach($consultaModal as $row){
 <div class="modal-footer">
 
   <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-  <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+  <button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
 </div>
 <!-- TERMINA PIE DE VENTANA MODAL-->
 </div>
@@ -439,4 +431,4 @@ foreach($consultaModal as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>

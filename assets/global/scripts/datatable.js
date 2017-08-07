@@ -52,8 +52,8 @@ var Datatable = function() {
                         "lengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
                         "info": "<span class='seperator'>|</span>Found total _TOTAL_ records",
                         "infoEmpty": "No records found to show",
-                        "emptyTable": "No data available in table",
-                        "zeroRecords": "No matching records found",
+                        "emptyTable": "No se encontraron registros",
+                        "zeroRecords": "No se encontraron registros",
                         "paginate": {
                             "previous": "Prev",
                             "next": "Next",

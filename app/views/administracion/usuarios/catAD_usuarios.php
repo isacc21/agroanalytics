@@ -201,6 +201,14 @@ if(isset($_SESSION['login'])){
 <script>
   $(document).ready(function(){
 
+    $('#example').DataTable( {
+      ajax:           "../data/2500.txt",
+      deferRender:    true,
+      scrollY:        200,
+      scrollCollapse: true,
+      scroller:       true
+    } );
+
     $("#back_cat_userad").click(function(){
       window.location = "";
     });
@@ -282,7 +290,7 @@ if(isset($_SESSION['login'])){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>
 <?php
 }else{
   header("LOCATION: ../../../../index.php");

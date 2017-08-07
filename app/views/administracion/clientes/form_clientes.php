@@ -244,7 +244,12 @@ if (isset($_REQUEST['rfc'])){
       
     }).done(function(result){
      if(result=="Cliente registrado exitósamente"||result=="Cliente modificado exitósamente"){
-      swal (result, "", "success");
+      swal({
+        title: result,
+        type: "success",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
       if(tipo=="2"){
         var rfc = $("#rfc").val();
         $("#mainContent").load( "form_precios.php?rfc="+rfc);  
@@ -254,7 +259,12 @@ if (isset($_REQUEST['rfc'])){
       }
       
     }else{
-      swal (result, "", "warning");
+      swal({
+        title: result,
+        type: "warning",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
       //$("#mainContent").load( "cat_clientes.php");
     }
 
@@ -510,9 +520,8 @@ if (isset($_REQUEST['rfc'])){
           </div>
           <!-- TERMINA RADIO TIPO-->
 
-          <br>
           <div class="text-center">
-
+            <hr>
             <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
             <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 

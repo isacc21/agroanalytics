@@ -36,10 +36,20 @@ if (isset($_REQUEST['codigo'])){
 				'&pass='+$("#pass").val()
 			}).done(function(result){
 				if(result=="Remisión registrada"){
-					swal (result, "", "success");
+					swal({
+						title: result,
+						type: "success",
+						showCloseButton: true,
+						confirmButtonText:'Cerrar'
+					});
 					$("#mainContent").load( "cat_ocargas.php" );
 				}else{
-					swal (result, "", "warning");
+					swal({
+						title: result,
+						type: "warning",
+						showCloseButton: true,
+						confirmButtonText:'Cerrar'
+					});
 				}
 				
 			});
@@ -80,7 +90,7 @@ if (isset($_REQUEST['codigo'])){
 				<!--INICIAN ESTILOS DE FORM-->
 				<div class="form-body">
 
-				<!-- INICIA INPUT FOLIO-->
+					<!-- INICIA INPUT FOLIO-->
 					<div class="form-group">
 						<label class="col-md-4 control-label">Folio de remisión</label>
 						<div class="col-md-6">

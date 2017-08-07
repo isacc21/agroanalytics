@@ -89,20 +89,20 @@
 </style>
 
 <!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
-<div class="col-md-11">
+<div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box grey-mint">
+  <div class="portlet box grey-steel">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
 
       <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">Registro de Cotizacion <?echo $_REQUEST['codigo'];?></div>
+      <div class="caption"><div class="font-grey-mint"><b>Registro de Cotizacion <?echo $_REQUEST['codigo'];?></b></div></div>
       <!-- TERMINA TITULO DE PORTLET -->
       <div class="actions btn-set">
-        <button type="button" name="back" id="back_form_cotiz" class="btn default blue-stripe">
-          <i class="fa fa-arrow-left"></i> Regresar
+        <button type="button" name="back" id="back_form_cotiz" class="btn green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
         </button>
       </div>
     </div>
@@ -309,18 +309,13 @@
             <!-- TERMINA INPUT FOLIO DE REGISTRO-->
 
 
-            <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-            <div class="form-actions">
-              <div class="row">
-                <div class="text-center">
+            <div class="text-center">
+              <hr>
+              <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+              <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 
-                  <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                  <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
-
-                  <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                  <a href="../cotizaciones" class="btn grey-salsa btn-outline">Cancelar</a>
-                </div>
-              </div>
+              <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+              <a href="../pedidos" class="btn grey-salsa btn-outline">Cancelar</a>
             </div>
             <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
           </form>
@@ -495,7 +490,12 @@
 
           if(j!=i && i!=registros && producto == $("#producto"+j).val() && cuenta!== "1" && productoEliminado[j]!="no"){
             $("#producto"+j).val("default");
-            swal("Producto ya ingresado", "", "warning");
+            swal({
+              title: "Producto ya ingresado",
+              type: "warning",
+              showCloseButton: true,
+              confirmButtonText:'Cerrar'
+            });
           }
         }
 
@@ -552,7 +552,12 @@
         }).done(function(result){
           if(result != "Seleccione un cliente"){
             if(result == "Ingrese una cantidadRegistro exitoso"){
-              swal("Ingrese una cantidad", "", "warning");
+              swal({
+                title: "Ingrese una cantidad",
+                type: "warning",
+                showCloseButton: true,
+                confirmButtonText:'Cerrar'
+              });
             }
             else{
              $("#total").val(result);
@@ -617,10 +622,20 @@
     "&pass="+$("#pass").val()
   }).done(function(result){
     if(result=="Pedido establecido"){
-      swal (result, "", "success");
+      swal({
+        title: result,
+        type: "success",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
       $("#mainContent").load( "cat_pedidos.php" );
     }else{
-      swal (result, "", "warning");
+      swal({
+        title: result,
+        type: "warning",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
     } 
   });
 

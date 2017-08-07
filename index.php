@@ -201,8 +201,8 @@ date_default_timezone_set('America/Tijuana');
 
 		<body class="login">
 			<div class="logo">
-				<a href="index.php">
-					<img src="assets/pages/img/logo-big.png" alt="" /> </a>
+				<a href="">
+					<img src="assets/img/agroanalytics_index.png" alt="logo_index" /> </a>
 				</div>
 				<!-- END LOGO -->
 				<!-- BEGIN LOGIN -->

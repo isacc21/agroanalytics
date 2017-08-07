@@ -32,6 +32,15 @@ if(isset($_POST['rfc'])){
 	if($_POST['viejo']==$_POST['rfc']){
 
 ###### SE RECIBEN VARIABLES "POST" PARA ENVIARLAS AL METODO ##########################
+		if($_POST['estadoMexico']!="null"){
+			$estado=$_POST['estadoMexico'];
+		}
+		else{
+			if($_POST['estadoMexico']=="null"){
+				$estado=$_POST['estado'];
+			}
+		}
+
 		$transportistas->rfc = $_POST['rfc'];
 		$transportistas->viejo = $_POST['viejo'];
 		$transportistas->razon = $_POST['nombre'];
@@ -41,7 +50,7 @@ if(isset($_POST['rfc'])){
 		$transportistas->colonia = $_POST['colonia'];
 		$transportistas->codigoPostal = $_POST['cPostal'];
 		$transportistas->ciudad = $_POST['ciudad'];
-		$transportistas->estado = $_POST['estado'];
+		$transportistas->estado = $estado;
 		$transportistas->pais = $_POST['pais'];
 		$transportistas->contacto = $_POST['contacto'];
 		$transportistas->email = $_POST['email'];
@@ -77,6 +86,16 @@ if(isset($_POST['rfc'])){
 	}## LLAVE DE IF DE COMPARACION DE FOLIOS
 	else{
 		###### SE RECIBEN VARIABLES "POST" PARA ENVIARLAS AL METODO ##########################
+
+		if($_POST['estadoMexico']!="null"){
+			$estado=$_POST['estadoMexico'];
+		}
+		else{
+			if($_POST['estadoMexico']=="null"){
+				$estado=$_POST['estado'];
+			}
+		}
+
 		$transportistas->rfc = $_POST['rfc'];
 		$transportistas->viejo = $_POST['viejo'];
 		$transportistas->razon = $_POST['nombre'];
@@ -86,7 +105,7 @@ if(isset($_POST['rfc'])){
 		$transportistas->colonia = $_POST['colonia'];
 		$transportistas->codigoPostal = $_POST['cPostal'];
 		$transportistas->ciudad = $_POST['ciudad'];
-		$transportistas->estado = $_POST['estado'];
+		$transportistas->estado = $estado;
 		$transportistas->pais = $_POST['pais'];
 		$transportistas->contacto = $_POST['contacto'];
 		$transportistas->email = $_POST['email'];

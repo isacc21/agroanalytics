@@ -1,3 +1,4 @@
+
 <?php
 ######################################################################################
 # ISACC JAVIER LOZANO MONTAÑEZ (IJLM)                                                #
@@ -100,7 +101,7 @@ if (isset($_REQUEST['idUsuario'])){
   $(document).ready(function(){
 
     $("#back_form_acre").click(function(){
-      window.location = ""
+      window.location = "";
     });
 
 
@@ -114,29 +115,40 @@ if (isset($_REQUEST['idUsuario'])){
 
 
     /* AJAX PARA ENVIO DE INFORMACION DE ACUERDO A LA RUTA*/
-    $("#guardarUser").submit(function(e){
-      $.ajax({
-        type: "POST",
-        url: urlCont,
-        data: "id="+$("#id").val()+
-        "&nombre="+$("#nombre").val()+
-        '&apellidos='+$("#apellidos").val()+
-        '&nick='+$("#nick").val()+
-        '&repetir='+$("#repetir").val()+
-        '&viejo='+$("#viejo").val()+
-        '&password='+$("#password").val()
-      }).done(function(result){
-       if(result=="Usuario registrado exitósamente"||result=="Usuario modificado exitósamente"){
-        swal (result, "", "success");
-        $("#mainContent").load( "form_permisos.php?idUsuario="+$("#id").val() );
+    $("#accionBoton").click(function(e){
+     // alert('orch');
+     $.ajax({
+      type: "POST",
+      url: urlCont,
+      data: "id="+$("#id").val()+
+      "&nombre="+$("#nombre").val()+
+      '&apellidos='+$("#apellidos").val()+
+      '&nick='+$("#nick").val()+
+      '&repetir='+$("#repetir").val()+
+      '&viejo='+$("#viejo").val()+
+      '&password='+$("#password").val()
+    }).done(function(result){
+     if(result=="Usuario registrado exitósamente"||result=="Usuario modificado exitósamente"){
+      swal({
+        title: result,
+        type: "success",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
+      window.location = "";
 
-      }else{
-        swal (result, "", "warning");
-      }
-      
-    });
-      return false;
-    });
+    }else{
+      swal({
+        title: result,
+        type: "warning",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
+    }
+    
+  });
+    return false;
+  });
   });
 </script>
 
@@ -209,31 +221,30 @@ if (isset($_REQUEST['idUsuario'])){
           <div class="form-group">
             <label class="col-md-3 control-label">Contraseña</label>
             <div class="col-md-6">
-              <input type="password" class="form-control " id="password" name="password" value="<?=$password;?>" required>
+              <input type="password" class="form-control " id="password" name="password" value="" required>
               <input type="hidden" id="id" name="id" value="<?=$idUsuario;?>">
             </div>
           </div>
           
           <!--TERMINA INPUT CONTRASEÑA -->
-        </div>
-        <!--INICIA SECCION DE BOTONES-->
-        
-        <div class="text-center">
 
-          <!--BOTON DE GUARDAR O ACTUALIZAR-->
-          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
-          <!--BOTON PARA REGRESAR AL INICIO-->
-          <a href="../usuarios" class="btn  grey-salsa btn-outline">Cancelar</a>
-        </div>
-        
-        <!--TERMINA SECCION DE BOTONES-->
+          
+          <div class="text-center">
+            <hr>
+            <!--BOTON DE GUARDAR O ACTUALIZAR-->
+            <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
+            <!--BOTON PARA REGRESAR AL INICIO-->
+            <a href="../usuarios" class="btn  grey-salsa btn-outline">Cancelar</a>
+          </div>
+          
+          <!--TERMINA SECCION DE BOTONES-->
 
-      </form>
-      <!-- TERMINA FORM-->
+        </form>
+        <!-- TERMINA FORM-->
+      </div>
+      <!--TERMINA CUERPO DE PORTLET-->
+
     </div>
-    <!--TERMINA CUERPO DE PORTLET-->
-
+    <!-- TERMINA PORTLET-->
   </div>
-  <!-- TERMINA PORTLET-->
-</div>
-<!--TERMINA COLUMNA DE 8-->
+  <!--TERMINA COLUMNA DE 8-->

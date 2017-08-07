@@ -21,6 +21,7 @@ class declaraciones{
 
 	var $codigo;
 	var $tipo;
+	var $producto;
 
 	
 
@@ -168,6 +169,25 @@ class declaraciones{
 		}
 	}
 
+	public function consultarDeclaracionesxID(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM aduanasdeclaraciones WHERE folioDeclaracion = '".$this->folio."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
 
 	public function consultarTransportistas(){
 		try {
@@ -292,6 +312,44 @@ class declaraciones{
 
 			//Sentencia SQL para eliminar un usuario
 			return $resultados = $conexion->query("SELECT * FROM transportistas WHERE rfcTransportista = '".$this->transportista."' ");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarDetalleOC(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM detalleordenescompra WHERE folioOrdenCompra = '".$this->folio."' ");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function consultarProductosxID(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM productos WHERE codigoProducto = '".$this->producto."' ");
 
 		}
 

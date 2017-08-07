@@ -360,7 +360,7 @@ foreach($consultaModal as $row){
           <div class="modal-footer">
 
             <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-            <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
           </div>
           <!-- TERMINA PIE DE VENTANA MODAL-->
         </div>
@@ -450,7 +450,7 @@ foreach($consultaModal as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>
 
 
 <!-- TERMINAN SCRIPTS PARA EL FUNCIONAMIENTO DE DATA TABLES-->

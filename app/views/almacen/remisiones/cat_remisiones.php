@@ -76,140 +76,132 @@ foreach ($result as $row){
    <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
    <div class="col-md-12">
     <!-- INICIA PORTLET -->
-    <div class="portlet light bordered">
+    <div class="portlet box grey-steel">
 
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
 
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption font-dark">
+      <div class="caption font-grey-mint"><b>Catálogo</b></div>
 
-       <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="fa fa-list-alt font-dark"></i>
-
-       <!-- TEXTO DE TITULO DE PORTLET-->
-       <span class="caption-subject bold uppercase"> Remisiones</span>
-     </div>
-
-     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
-     <div class="actions btn-set">
-      <button type="button" name="back" id="back_remisiones" class="btn default green-stripe">
-        <i class="fa fa-arrow-left"></i> Regresar
-      </button>
+      <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
+      <div class="actions btn-set">
+        <button type="button" name="back" id="back_remisiones" class="btn green-seagreen">
+          <i class="fa fa-arrow-left"></i> Regresar
+        </button>
+      </div>
     </div>
-  </div>
-  <!-- TERMINA TITULO DE PORTLET-->
+    <!-- TERMINA TITULO DE PORTLET-->
 
-  <!-- INICIA CUERPO DE PORTLET-->
-  <div class="portlet-body">
-    <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+    <!-- INICIA CUERPO DE PORTLET-->
+    <div class="portlet-body">
+      <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+      <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
-     <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-     <thead>
-      <tr>
-       <th> Remisión </th>
-       <th> Fecha [AAAA/MM/DD] </th>
-       <th> Cliente </th>
-       <th> Orden de Carga </th>
-       <th> Acciones </th>
-     </tr>
-   </thead>
-   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+       <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+       <thead>
+        <tr>
+         <th> Remisión </th>
+         <th> Fecha [AAAA/MM/DD] </th>
+         <th> Cliente </th>
+         <th> Orden de Carga </th>
+         <th> Acciones </th>
+       </tr>
+     </thead>
+     <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
-   <!-- INICIA CUERPO DE DATA TABLE-->
-   <tbody>
+     <!-- INICIA CUERPO DE DATA TABLE-->
+     <tbody>
 
-    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-    <?php
-    foreach($lista_remisiones as $row){
-     $folio_rem = $row['folioRemision'];
-     $dd = $row['ddRemision'];
-     $mm = $row['mmRemision'];
-     $yyyy = $row['yyyyRemision'];
-     $ordenCarga = $row['folioOrdenCarga'];
+      <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+      <?php
+      foreach($lista_remisiones as $row){
+       $folio_rem = $row['folioRemision'];
+       $dd = $row['ddRemision'];
+       $mm = $row['mmRemision'];
+       $yyyy = $row['yyyyRemision'];
+       $ordenCarga = $row['folioOrdenCarga'];
 
-     $remisiones->carga = $ordenCarga;
-     $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
+       $remisiones->carga = $ordenCarga;
+       $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
 
-     foreach($lista_ordenesCarga as $row){
-      $pedido = $row['folioPedido'];
-    }
-
-    $remisiones->pedido = $pedido;
-    $lista_pedidos = $remisiones->consultarPedidosxID();
-
-    foreach($lista_pedidos as $row){
-      $rfc = $row['rfcCliente'];
-    }
-
-    $remisiones->cliente = $rfc;
-    $lista_clientes = $remisiones->consultarClientesxID();
-
-    foreach($lista_clientes as $row){
-      $cliente = $row['razonSocCliente'];
-    }
-    ?>
-    <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
-
-    <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-    <tr class="odd gradeX">
-      <td> <?php echo $folio_rem;?> </td>
-      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
-      <td> <?php echo $cliente; ?></td>
-      <td> <?php echo $ordenCarga;?></td>
-      <td>
-
-       <!-- INICIAN BOTONES DE ACCIONES-->
-
-       <?php
-
-       $html_inicio_action='<div class="text-center"><div class="btn-group">
-       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-        &nbsp; Elegir&nbsp;&nbsp;
-      </button><ul class="dropdown-menu pull-right" role="menu">';
-
-      $html_final_action='</ul></div></div>';
-      $html_moreInfo='<li>
-      <a data-toggle="modal" href="#modal'.$folio_rem.'">
-        <i class="icon-magnifier"></i> Ver info. </a>
-      </li>';
-
-      $html_productos='<li>
-      <a data-toggle="modal" href="#productos'.$folio_rem.'">
-        <i class="icon-social-dropbox"></i> Productos </a>
-      </li>';
-
-      $html_pedimentos='<li>
-      <a data-toggle="modal" href="#pedimentos'.$folio_rem.'">
-        <i class="icon-book-open"></i> Pedimentos </a>
-      </li>';
-
-      if($carga[0]=='1'||$carga[1]=='2'||$caremisionrga[2]=='3'||$remision[3]=='4'){
-        echo $html_inicio_action;
-      }
-      if($remision[0]=='1'){
-        echo $html_moreInfo; 
-        echo $html_productos;
-        echo $html_pedimentos;
-      }
-      
-      if($remision[0]=='1'||$remision[1]=='2'||$remision[2]=='3'||$remision[3]=='4'){
-        echo $html_final_action;
+       foreach($lista_ordenesCarga as $row){
+        $pedido = $row['folioPedido'];
       }
 
+      $remisiones->pedido = $pedido;
+      $lista_pedidos = $remisiones->consultarPedidosxID();
+
+      foreach($lista_pedidos as $row){
+        $rfc = $row['rfcCliente'];
+      }
+
+      $remisiones->cliente = $rfc;
+      $lista_clientes = $remisiones->consultarClientesxID();
+
+      foreach($lista_clientes as $row){
+        $cliente = $row['razonSocCliente'];
+      }
       ?>
+      <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-    </td>
-  </tr>
-  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+      <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+      <tr class="odd gradeX">
+        <td> <?php echo $folio_rem;?> </td>
+        <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+        <td> <?php echo $cliente; ?></td>
+        <td> <?php echo $ordenCarga;?></td>
+        <td>
 
-  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php 
-}
-?>
-<!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+         <!-- INICIAN BOTONES DE ACCIONES-->
+
+         <?php
+
+         $html_inicio_action='<div class="text-center"><div class="btn-group">
+         <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+          &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+          &nbsp; Elegir&nbsp;&nbsp;
+        </button><ul class="dropdown-menu pull-right" role="menu">';
+
+        $html_final_action='</ul></div></div>';
+        $html_moreInfo='<li>
+        <a data-toggle="modal" href="#modal'.$folio_rem.'">
+          <i class="icon-magnifier"></i> Ver info. </a>
+        </li>';
+
+
+        $html_pedimentos='<li>
+        <a data-toggle="modal" href="#pedimentos'.$folio_rem.'">
+          <i class="icon-book-open"></i> Pedimentos </a>
+        </li>';
+
+        $html_imprimir='<li><a><input type="radio" id="imprimir'.$folio_rem.'" class="imprimir" name="imprimir" value="'.$folio_rem.'">
+        <label for="imprimir'.$folio_rem.'" ">  <i class="fa fa-print"></i>&nbsp;Imprimir<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+        if($carga[0]=='1'||$carga[1]=='2'||$caremisionrga[2]=='3'||$remision[3]=='4'){
+          echo $html_inicio_action;
+        }
+        if($remision[0]=='1'){
+          echo $html_moreInfo; 
+          echo $html_pedimentos;
+          echo $html_imprimir;
+        }
+
+        if($remision[0]=='1'||$remision[1]=='2'||$remision[2]=='3'||$remision[3]=='4'){
+          echo $html_final_action;
+        }
+
+        ?>
+
+      </td>
+    </tr>
+    <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
+
+    <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php 
+  }
+  ?>
+  <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
 
 </tbody>
 <!-- TERMINA CUERPO DE DATA TABLE -->
@@ -250,10 +242,10 @@ foreach($consultaModal as $row){
 
   ?>
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal fade" id="modal<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal fade bs-modal-lg" id="modal<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
 
     <!-- INICIO DE VENTANA MODAL -->
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
 
      <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
      <div class="modal-content">
@@ -297,75 +289,35 @@ foreach($consultaModal as $row){
          <td><?php echo $nombreUser;?></td>
        </tr>
      </table>
-   </div>
-   <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
-
-   <!-- INICIA PIE DE VENTANA MODAL-->
-   <div class="modal-footer">
-
-    <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-    <button type="button" class="btn dark btn-outline" data-dismiss="modal">Cerrar</button>
-  </div>
-  <!-- TERMINA PIE DE VENTANA MODAL-->
-</div>
-<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
-</div>
-<!-- TERMINO DE VENTANA MODAL  -->
-</div>
-<!-- TERMINO DE VENTANA MODAL -->
-<?
-} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
-?>
 
 
-<?php
 
-###### FOREACH PARA CONSULTA DE DETALLES DE ACREEDORES PARA VENTANA MODAL #########
-foreach($revisar_productos as $row){
- $folio_rem = $row['folioRemision'];
 
- $ordenCarga = $row['folioOrdenCarga'];
+     <?php
+     $remisiones->folio = $folio_rem;
+     $revisar_productos = $remisiones->consultarRemisionesID();
 
- $remisiones->carga = $ordenCarga;
- $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
+     foreach($revisar_productos as $row){
+       $folio_rem = $row['folioRemision'];
 
- foreach($lista_ordenesCarga as $row){
-  $pedido = $row['folioPedido'];
-}
+       $ordenCarga = $row['folioOrdenCarga'];
 
-$remisiones->pedido = $pedido;
-$lista_pedidos = $remisiones->consultarPedidosxID();
+       $remisiones->carga = $ordenCarga;
+       $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
 
-foreach($lista_pedidos as $row){
-  $cliente = $row['rfcCliente'];
-}
+       foreach($lista_ordenesCarga as $row){
+        $pedido = $row['folioPedido'];
+      }
 
-?>
-<!-- INICIO DE VENTANA MODAL -->
-<div class="modal fade bs-modal-lg" id="productos<?=$folio_rem;?>" tabindex="-1" role="basic" aria-hidden="true">
+      $remisiones->pedido = $pedido;
+      $lista_pedidos = $remisiones->consultarPedidosxID();
 
-  <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog modal-lg">
+      foreach($lista_pedidos as $row){
+        $cliente = $row['rfcCliente'];
+      }
 
-   <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
-   <div class="modal-content">
-
-    <!-- INICIO DE CABECERA DE VENTANA MODAL -->
-    <div class="modal-header">
-
-     <!-- BONTON DE CIERRE DE VENTANA MODAL-->
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-
-     <!-- ENCABEZADO DE VENTANA MODAL-->
-     <h4 class="modal-title">Información completa </h4>
-   </div>
-   <!-- TERMINA CABECERA DE VENTANA MODAL -->
-
-   <!-- INICIA CUERPO DE VENTANA MODAL-->
-   <div class="modal-body">
-
-     <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
-     <table class="table table-hover">
+      ?>
+      <table class="table table-hover">
        <tr>
          <th>Producto</th>
          <th>Cantidad</th>
@@ -505,6 +457,10 @@ foreach($lista_pedidos as $row){
     </tr>
 
   </table>
+
+  <?
+} ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
+?>
 </div>
 <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
@@ -524,6 +480,9 @@ foreach($lista_pedidos as $row){
 <?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
+
+
+
 
 
 <?php
@@ -599,6 +558,10 @@ foreach($consultar_pedimentos as $row){
     $("#back_remisiones").click(function(){
       window.location = ""
     });
+
+    $('.imprimir').click(function() {
+      window.open("remision.php?codigo="+$(this).val(), "_blank");
+    });
   });
 </script>
 
@@ -609,4 +572,4 @@ foreach($consultar_pedimentos as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>

@@ -112,6 +112,8 @@
  $liquido ="";
  $solido="";
 
+ $density = "none";
+
 ###### RECEPCION DE VARIABLE EN CASO DE MODIFICACION #################################
  $codigo=(isset($_REQUEST['codigo']))?$_REQUEST['codigo']:"";
 
@@ -167,36 +169,42 @@
     $cubeta = "checked";
     $v_liquido = "block";
     $liquido = "checked";
+    $density = "block";
     break;
 
     case 2: 
     $tibor = "checked";
     $v_liquido = "block";
     $liquido = "checked";
+    $density = "block";
     break;
 
     case 3:
     $tote = "checked";
     $v_liquido = "block";
     $liquido = "checked";
+    $density = "block";
     break;
 
     case 4:
     $granel = "checked";
     $v_liquido = "block";
     $liquido = "checked";
+    $density = "block";
     break;
 
     case 5:
     $saco = "checked";
     $v_solido = "block";
     $solido = "checked";
+    $density = "none";
     break;
 
     case 6:
     $superSaco = "checked";
     $v_solido = "block";
     $solido = "checked";
+    $density = "none";
 
   }
   
@@ -250,6 +258,14 @@
       $("#rb_liquidos").css("display", "block");
       $('#saco').iCheck('uncheck');
       $("#supersaco").iCheck('uncheck');
+
+      $("#compra").attr("placeholder", "USD/Gal");
+      $("#iVentaDistri").attr("placeholder", "USD/Gal");
+      $("#mVentaDistri").attr("placeholder", "USD/Lts");
+      $("#iVentaGrower").attr("placeholder", "USD/Gal");
+      $("#mVentaGrower").attr("placeholder", "USD/Lts");
+
+      $("#density").css("display", "block");
     });
 
 
@@ -261,6 +277,14 @@
       $("#tote").iCheck('uncheck');
       $("#tibor").iCheck('uncheck');
       $("#granel").iCheck('uncheck');
+
+      $("#compra").attr("placeholder", "USD/Lbs");
+      $("#iVentaDistri").attr("placeholder", "USD/Lbs");
+      $("#mVentaDistri").attr("placeholder", "USD/Kg");
+      $("#iVentaGrower").attr("placeholder", "USD/Lbs");
+      $("#mVentaGrower").attr("placeholder", "USD/Kg");
+
+      $("#density").css("display", "none");
     });
     /* COMPARACION DE VALOR DE BOTON DE FORMULARIO PARA CAMBIO DE URL*/
     if ($("#accionBoton").val() == 'Guardar'){
@@ -370,10 +394,20 @@
 
       }).done(function(result){
        if(result=="Producto registrado exitósamente"||result=="Producto modificado exitósamente"){
-        swal (result, "", "success");
+        swal({
+          title: result,
+          type: "success",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
         $("#mainContent").load( "cat_productos.php" );
       }else{
-        swal (result, "", "warning");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
       }
       
     });
@@ -397,294 +431,316 @@
 <!-- INICIA COLUMNA DE 8 PARA USO DE FORMULARIO-->
 <div class="col-md-12">
 
-  <!--INICIA PORTLET-->
-  <div class="portlet box grey-mint">
+ <!--INICIA PORTLET-->
+ <div class="portlet  box grey-steel">
 
-    <!--INICIA TITULO DE PORTLET-->
-    <div class="portlet-title">
+  <!--INICIA TITULO DE PORTLET-->
+  <div class="portlet-title">
 
-      <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">Registro </div>
-      <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="actions btn-set">
-        <button type="button" name="back" id="back_form_prod" class="btn default blue-stripe">
-          <i class="fa fa-arrow-left"></i> Regresar
-        </button>
-      </div>
-
+    <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
+    <div class="caption"><div class="font-grey-mint"> <b>Registro</b> </div></div>
+    <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
+    <div class="actions btn-set">
+      <button type="button" name="back" id="back_form_prod" class="btn default green-seagreen">
+        <i class="fa fa-arrow-left"></i> Regresar
+      </button>
     </div>
-    <!-- TERMINA TITULO DE PORTLET -->
+  </div>
+  <!-- TERMINA TITULO DE PORTLET -->
 
-    <!--INICIA CUERPO DE PORTLET-->
-    <div class="portlet-body form">
-
-
-      <!--INICIA FORM-->
-      <form class="form-horizontal save-user" id="guardarProduct" >
-
-        <!--INICIAN ESTILOS DE FORM-->
-        <div class="form-body">
-
-          <!-- INICIA INPUT FOLIO-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Código</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control " id="codigo" name="codigo" value="<?=$codigo;?>" required>
-              <input type="hidden" id="viejo" name="viejo" value="<?=$codigo;?>">
-            </div>
-          </div>
-          <!-- TERMINA INPUT FOLIO-->
-
-          
-
-          <!-- INICIA INPUT NOMBRE-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Nombre</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control " id="nombre" name="nombre" value="<?=$nombre;?>" required>
-            </div>
-          </div>
-          <!-- TERMINA INPUT NOMBRE-->
-
-          
-
-          <!-- INICIA RADIO TIPO-->
-          <div class="form-group">
-            <label class="control-label col-md-3" >Categoría
-            </label>
-            <div class="input-group" id="categoria">
-              <div class="icheck-inline col-md-12" >
-                <label>
-                  <input type="radio" name="cat" id="liquido" class="icheck" data-radio="iradio_square-grey" <?echo $liquido;?> value="liquido" required> Líquido 
-                </label>
-                <label>
-                  <input type="radio" name="cat" id="solido" class="icheck" data-radio="iradio_square-grey"<?echo $solido;?> value="solido" > Sólido 
-                </label>
-              </div>
-            </div>
-          </div>
-          <!-- TERMINA RADIO TIPO-->
+  <!--INICIA CUERPO DE PORTLET-->
+  <div class="portlet-body form">
 
 
-          <!-- INICIA RADIO PRESENTACION-->
-          <div class="form-group" id="rb_liquidos" style="display:<?=$v_liquido;?>;">
-            <label class="control-label col-md-3" >Líquidos
-            </label>
-            <div class="input-group">
-              <div class="icheck-inline col-md-12" >
-                <label>
-                  <input type="radio" name="presentacion" id="cubeta" class="icheck" data-radio="iradio_square-grey" <?echo $cubeta?> required> Cubeta 
-                </label>
-                <label>
-                  <input type="radio" name="presentacion" id="tibor" class="icheck" data-radio="iradio_square-grey"<?echo $tibor?>> Tibor 
-                </label>
-                <label>
-                  <input type="radio" name="presentacion" id="tote" class="icheck" data-radio="iradio_square-grey" <?echo $tote?>> Tote 
-                </label>
-                <label>
-                  <input type="radio" name="presentacion" id="granel" class="icheck" data-radio="iradio_square-grey" <?echo $granel?>> Granel 
-                </label>
-              </div>
-            </div>
-          </div>
-          <!-- TERMINA RADIO PRESENTACION-->
+    <!--INICIA FORM-->
+    <form class="form-horizontal save-user" id="guardarProduct" >
 
+      <!--INICIAN ESTILOS DE FORM-->
+      <div class="form-body">
 
-          <!-- INICIA RADIO PRESENTACION-->
-          <div class="form-group" id="rb_solidos" style="display:<?=$v_solido;?>;">
-            <label class="control-label col-md-3" >Sólidos
-            </label>
-            <div class="input-group">
-              <div class="icheck-inline col-md-12" >
-                <label>
-                  <input type="radio" name="presentacion" id="saco" class="icheck" data-radio="iradio_square-grey" <?echo $saco?> required> Saco 
-                </label>
-                <label>
-                  <input type="radio" name="presentacion" id="supersaco" class="icheck" data-radio="iradio_square-grey"<?echo $superSaco?>> Súper saco 
-                </label>
-              </div>
-            </div>
-          </div>
-          <!-- TERMINA RADIO PRESENTACION-->
-
-          <!--INICIA RADIOS PARA TIPO DE PRODUCTO-->
-          <div class="form-group">
-            <label class="control-label col-md-3" >Tipo de producto
-            </label>
-            <div class="input-group">
-              <div class="icheck-inline col-md-12">
-                <label>
-                  <input type="radio" name="tipo" id="organico" class="icheck" data-radio="iradio_square-grey" <?echo $organico;?> required> Orgánico 
-                </label>
-                <label>
-                  <input type="radio" name="tipo" id="convencional" class="icheck" data-radio="iradio_square-grey" <?echo $convencional;?>> Convencional 
-                </label>
-                <label>
-                  <input type="radio" name="tipo" id="both" class="icheck" data-radio="iradio_square-grey" <?echo $ambos;?>> Ambos 
-                </label>
-              </div>
-            </div>
-          </div>
-          <!--TERMINA RADIOS PARA TIPO DE PRODUCTO-->
-
-          <!-- INICIA INPUT CADUCIDAD-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Ciclo de vida</label>
-            <div class="col-md-3">
-              <input type="number" class="form-control " id="caducidad" name="caducidad" value="<?=$caducidad;?>" required>
-              <span class="help-block">No. de meses </span>
-            </div>
-            <div class="col-md-2">
-             <i class="glyphicon glyphicon-plus btn btn-icon-only btn-lg white" id="incrementar"></i>
-             <i class="glyphicon glyphicon-minus btn btn-icon-only btn-lg white" id="decrementar"></i>
-             
-           </div>
-         </div>
-         <!-- TERMINA INPUT CADUCIDAD-->
-
-         <!-- INICIA INPUT PRECIO DE COMPRA-->
-         <div class="form-group">
-          <label class="col-md-3 control-label">Precio de compra</label>
+        <!-- INICIA INPUT FOLIO-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Código</label>
           <div class="col-md-6">
+            <input type="text" class="form-control " id="codigo" name="codigo" value="<?=$codigo;?>" required>
+            <input type="hidden" id="viejo" name="viejo" value="<?=$codigo;?>">
+          </div>
+        </div>
+        <!-- TERMINA INPUT FOLIO-->
+
+        
+
+        <!-- INICIA INPUT NOMBRE-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Nombre</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control " id="nombre" name="nombre" value="<?=$nombre;?>" required>
+          </div>
+        </div>
+        <!-- TERMINA INPUT NOMBRE-->
+
+        
+
+        <!-- INICIA RADIO TIPO-->
+        <div class="form-group">
+          <label class="control-label col-md-3" >Categoría
+          </label>
+          <div class="input-group" id="categoria">
+            <div class="icheck-inline col-md-12" >
+              <label>
+                <input type="radio" name="cat" id="liquido" class="icheck" data-radio="iradio_square-grey" <?echo $liquido;?> value="liquido" required> Líquido 
+              </label>
+              <label>
+                <input type="radio" name="cat" id="solido" class="icheck" data-radio="iradio_square-grey"<?echo $solido;?> value="solido" > Sólido 
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- TERMINA RADIO TIPO-->
+
+
+        <!-- INICIA RADIO PRESENTACION-->
+        <div class="form-group" id="rb_liquidos" style="display:<?=$v_liquido;?>;">
+          <label class="control-label col-md-3" >Líquidos
+          </label>
+          <div class="input-group">
+            <div class="icheck-inline col-md-12" >
+              <label>
+                <input type="radio" name="presentacion" id="cubeta" class="icheck" data-radio="iradio_square-grey" <?echo $cubeta?> required> Cubeta 
+              </label>
+              <label>
+                <input type="radio" name="presentacion" id="tibor" class="icheck" data-radio="iradio_square-grey"<?echo $tibor?>> Tibor 
+              </label>
+              <label>
+                <input type="radio" name="presentacion" id="tote" class="icheck" data-radio="iradio_square-grey" <?echo $tote?>> Tote 
+              </label>
+              <label>
+                <input type="radio" name="presentacion" id="granel" class="icheck" data-radio="iradio_square-grey" <?echo $granel?>> Granel 
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- TERMINA RADIO PRESENTACION-->
+
+
+        <!-- INICIA RADIO PRESENTACION-->
+        <div class="form-group" id="rb_solidos" style="display:<?=$v_solido;?>;">
+          <label class="control-label col-md-3" >Sólidos
+          </label>
+          <div class="input-group">
+            <div class="icheck-inline col-md-12" >
+              <label>
+                <input type="radio" name="presentacion" id="saco" class="icheck" data-radio="iradio_square-grey" <?echo $saco?> required> Saco 
+              </label>
+              <label>
+                <input type="radio" name="presentacion" id="supersaco" class="icheck" data-radio="iradio_square-grey"<?echo $superSaco?>> Súper saco 
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- TERMINA RADIO PRESENTACION-->
+
+        <!--INICIA RADIOS PARA TIPO DE PRODUCTO-->
+        <div class="form-group">
+          <label class="control-label col-md-3" >Tipo de producto
+          </label>
+          <div class="input-group">
+            <div class="icheck-inline col-md-12">
+              <label>
+                <input type="radio" name="tipo" id="organico" class="icheck" data-radio="iradio_square-grey" <?echo $organico;?> required> Orgánico 
+              </label>
+              <label>
+                <input type="radio" name="tipo" id="convencional" class="icheck" data-radio="iradio_square-grey" <?echo $convencional;?>> Convencional 
+              </label>
+              <label>
+                <input type="radio" name="tipo" id="both" class="icheck" data-radio="iradio_square-grey" <?echo $ambos;?>> Ambos 
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--TERMINA RADIOS PARA TIPO DE PRODUCTO-->
+
+        <!-- INICIA INPUT CADUCIDAD-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Ciclo de vida</label>
+          <div class="col-md-3">
+            <input type="number" class="form-control " id="caducidad" name="caducidad" value="<?=$caducidad;?>" required>
+            <span class="help-block">No. de meses </span>
+          </div>
+          <div class="col-md-2">
+           <i class="glyphicon glyphicon-plus btn btn-icon-only btn-lg white" id="incrementar"></i>
+           <i class="glyphicon glyphicon-minus btn btn-icon-only btn-lg white" id="decrementar"></i>
+           
+         </div>
+       </div>
+       <!-- TERMINA INPUT CADUCIDAD-->
+
+       <!-- INICIA INPUT PRECIO DE COMPRA-->
+       <div class="form-group">
+        <label class="col-md-3 control-label">Precio de compra</label>
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
             <input type="number" step="any" min="0" class="form-control " id="compra" name="compra" value="<?=$compra;?>" required>
           </div>
         </div>
-        <!-- TERMINA INPUT PRECIO DE COMPRA-->
+      </div>
+      <!-- TERMINA INPUT PRECIO DE COMPRA-->
 
-        <!--INICIA INPUT DE PRECIO DE VENTA -->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Precio de venta | Distribuidor</label>
-          <div class="col-md-3">
-            <input type="number" step="any" min="0" class="form-control " id="iVentaDistri" name="venta" value="<?=$distribuidor;?>" required placeholder="Sist. Inglés">
-          </div>
-          <div class="col-md-3">
-            <input type="number" step="any" min="0" class="form-control " id="mVentaDistri" name="venta" value="<?=$distribuidor_m;?>" required placeholder="Sist. Métrico">
-          </div>
-        </div>
-        <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-        <!--INICIA INPUT DE PRECIO DE VENTA -->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Precio de venta | Grower</label>
-          <div class="col-md-3">
-            <input type="number" step="any" min="0" class="form-control " id="iVentaGrower" name="venta" value="<?=$grower;?>" required placeholder="Sist. Inglés">
-          </div>
-          <div class="col-md-3">
-            <input type="number" step="any" min="0" class="form-control " id="mVentaGrower" name="venta" value="<?=$grower_m;?>" required placeholder="Sist. Métrico">
+      <!--INICIA INPUT DE PRECIO DE VENTA -->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Precio de venta | Distribuidor</label>
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
+            <input type="number" step="any" min="0" class="form-control " id="iVentaDistri" name="venta" value="<?=$distribuidor;?>" required>
           </div>
         </div>
-        <!-- TERMINA INPUT DE PRECIO DE VENTA-->
-
-        <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Número de Registro COFEPRIS</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="cofepris" name="cofepris" value="<?=$cofepris;?>" required>
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
+            <input type="number" step="any" min="0" class="form-control " id="mVentaDistri" name="venta" value="<?=$distribuidor_m;?>" required>
           </div>
         </div>
-        <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
+      </div>
+      <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-        <!-- INICIA INPUT PARA FECHA COFEPRIS-->
-        <div class="form-group">
-          <label class="control-label col-md-3">Vencimiento COFEPRIS</label>
-          <div class="col-md-6">
-            <div class="input-group  date date-picker" data-date="<?=$ddCof."/".$mmCof."/".$yyyyCof;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
-              <input type="text" class="form-control readonly"  id="fechaCof" required value="<?=$ddCof."/".$mmCof."/".$yyyyCof;?>">
-              <span class="input-group-btn">
-                <button class="btn default" type="button">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </div>
+      <!--INICIA INPUT DE PRECIO DE VENTA -->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Precio de venta | Grower</label>
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
+            <input type="number" step="any" min="0" class="form-control " id="iVentaGrower" name="venta" value="<?=$grower;?>" required>
           </div>
         </div>
-        <!-- TERMINA INPUT PARA FECHA COFEPRIS-->
-
-
-        <!-- INICIA INPUT DE REGISTRO CICOPLAFEST-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Registro CICOPLAFEST</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="cicoplafest" name="cicoplafest" value="<?=$cicoplafest;?>" required>
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
+            <input type="number" step="any" min="0" class="form-control " id="mVentaGrower" name="venta" value="<?=$grower_m;?>" required>
           </div>
         </div>
-        <!-- TERMINA INPUT DE REGISTRO CICOPLAFEST-->
+      </div>
+      <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-        <!-- INICIA INPUT PARA FECHA CICOPLAFEST-->
-        <div class="form-group">
-          <label class="control-label col-md-3">Vencimiento CICOPLAFEST</label>
-          <div class="col-md-6">
-            <div class="input-group  date date-picker" data-date="<?=$ddCic."/".$mmCic."/".$yyyyCic;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
-              <input type="text" class="form-control readonly"  id="fechaCic" required value="<?=$ddCic."/".$mmCic."/".$yyyyCic;?>">
-              <span class="input-group-btn">
-                <button class="btn default" type="button">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </div>
+      <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Número de Registro COFEPRIS</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="cofepris" name="cofepris" value="<?=$cofepris;?>" required>
+        </div>
+      </div>
+      <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
+
+      <!-- INICIA INPUT PARA FECHA COFEPRIS-->
+      <div class="form-group">
+        <label class="control-label col-md-3">Vencimiento COFEPRIS</label>
+        <div class="col-md-6">
+          <div class="input-group  date date-picker" data-date="<?=$ddCof."/".$mmCof."/".$yyyyCof;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
+            <input type="text" class="form-control readonly"  id="fechaCof" required value="<?=$ddCof."/".$mmCof."/".$yyyyCof;?>">
+            <span class="input-group-btn">
+              <button class="btn default" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
           </div>
         </div>
-        <!-- TERMINA INPUT PARA FECHA CICOPLAFEST-->
+      </div>
+      <!-- TERMINA INPUT PARA FECHA COFEPRIS-->
 
-        <!-- INICIA INPUT DE REGISTRO SEMARNAT-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Registro SEMARNAT</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="semarnat" name="semarnat" value="<?=$semarnat;?>" required>
+
+      <!-- INICIA INPUT DE REGISTRO CICOPLAFEST-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Registro CICOPLAFEST</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="cicoplafest" name="cicoplafest" value="<?=$cicoplafest;?>" required>
+        </div>
+      </div>
+      <!-- TERMINA INPUT DE REGISTRO CICOPLAFEST-->
+
+      <!-- INICIA INPUT PARA FECHA CICOPLAFEST-->
+      <div class="form-group">
+        <label class="control-label col-md-3">Vencimiento CICOPLAFEST</label>
+        <div class="col-md-6">
+          <div class="input-group  date date-picker" data-date="<?=$ddCic."/".$mmCic."/".$yyyyCic;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
+            <input type="text" class="form-control readonly"  id="fechaCic" required value="<?=$ddCic."/".$mmCic."/".$yyyyCic;?>">
+            <span class="input-group-btn">
+              <button class="btn default" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
           </div>
         </div>
-        <!-- TERMINA INPUT DE REGISTRO SEMARNAT-->
+      </div>
+      <!-- TERMINA INPUT PARA FECHA CICOPLAFEST-->
 
-        <!-- INICIA INPUT PARA FECHA SEMARNAT-->
-        <div class="form-group">
-          <label class="control-label col-md-3">Vencimiento SEMARNAT</label>
-          <div class="col-md-6">
-            <div class="input-group  date date-picker" data-date="<?=$ddSem."/".$mmSem."/".$yyyySem;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
-              <input type="text" class="form-control readonly"  id="fechaSem" required value="<?=$ddSem."/".$mmSem."/".$yyyySem;?>">
-              <span class="input-group-btn">
-                <button class="btn default" type="button">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </div>
+      <!-- INICIA INPUT DE REGISTRO SEMARNAT-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Registro SEMARNAT</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="semarnat" name="semarnat" value="<?=$semarnat;?>" required>
+        </div>
+      </div>
+      <!-- TERMINA INPUT DE REGISTRO SEMARNAT-->
+
+      <!-- INICIA INPUT PARA FECHA SEMARNAT-->
+      <div class="form-group">
+        <label class="control-label col-md-3">Vencimiento SEMARNAT</label>
+        <div class="col-md-6">
+          <div class="input-group  date date-picker" data-date="<?=$ddSem."/".$mmSem."/".$yyyySem;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
+            <input type="text" class="form-control readonly"  id="fechaSem" required value="<?=$ddSem."/".$mmSem."/".$yyyySem;?>">
+            <span class="input-group-btn">
+              <button class="btn default" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
           </div>
         </div>
-        <!-- TERMINA INPUT PARA FECHA SEMARNAT-->
+      </div>
+      <!-- TERMINA INPUT PARA FECHA SEMARNAT-->
 
-        <!-- INICIA INPUT DE FRACCION ARANCELARIA-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Fraccion Arancelaria</label>
-          <div class="col-md-6">
-            <input type="text" step="1" min="0" class="form-control " id="arancel" name="arancel" value="<?=$arancel;?>" required>
-          </div>
+      <!-- INICIA INPUT DE FRACCION ARANCELARIA-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Fraccion Arancelaria</label>
+        <div class="col-md-6">
+          <input type="text" step="1" min="0" class="form-control " id="arancel" name="arancel" value="<?=$arancel;?>" required>
         </div>
-        <!-- TERMINA INPUT DE FRACCION ARANCELARIA-->
+      </div>
+      <!-- TERMINA INPUT DE FRACCION ARANCELARIA-->
 
-        <!-- INICIA INPUT PARA DENSIDAD-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Densidad</label>
-          <div class="col-md-6">
-            <input type="number" step="any" min="0" class="form-control " id="densidad" name="densidad" value="<?=$densidad;?>">
-          </div>
-
+      <!-- INICIA INPUT PARA DENSIDAD-->
+      <div class="form-group" id="density" style="display:<?=$density;?>;">
+        <label class="col-md-3 control-label">Densidad</label>
+        <div class="col-md-6">
+          <input type="number" step="any" min="0" class="form-control " id="densidad" name="densidad" value="<?=$densidad;?>">
         </div>
-        <!-- TERMINA INPUT PARA DENSIDAD-->
 
-        <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-        <div class="form-actions">
-          <div class="text-center">
-            <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-            <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>">
-            <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-            <a href="../productos" class="btn grey-salsa btn-outline">Cancelar</a>
-          </div>
-        </div>
-        <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
-      </form>
-      <!-- TERMINA FORM-->
-    </div>
+      </div>
+      <!-- TERMINA INPUT PARA DENSIDAD-->
+      <div class="text-center">
+        <hr>
+        <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+        <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>">
+        <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+        <a href="../productos" class="btn grey-salsa btn-outline">Cancelar</a>
+      </div>
+
+    </form>
+    <!-- TERMINA FORM-->
   </div>
-  <!-- TERMINA CUERPO DE PORTLET-->
+</div>
+<!-- TERMINA CUERPO DE PORTLET-->
 </div>
 <!-- TERMINA PORTLET-->
 

@@ -104,6 +104,12 @@ if(isset($_POST['codigo'])){
 				}
 			}
 
+			if($_POST['densidad']==""){
+				$densidad = 1;
+			}
+			else{
+				$densidad = $_POST['densidad'];
+			}
 			$productos->codigo = $nvoCodigo;
 			$productos->nombre = $_POST['nombre'];
 			$productos->presentacion = $_POST['presentacion'];
@@ -127,7 +133,7 @@ if(isset($_POST['codigo'])){
 			$productos->mmSem = $mesSem;
 			$productos->yyyySem = $anioSem;
 			$productos->arancel = $_POST['arancel'];
-			$productos->densidad = $_POST['densidad'];
+			$productos->densidad = $densidad;
 
 
 ###### SE PROCESA METODO QUE REALIZA EL PROCESO EN LA BASE DE DATOS ##################

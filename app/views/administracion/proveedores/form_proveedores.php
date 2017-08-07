@@ -217,10 +217,20 @@ if (isset($_REQUEST['rfc'])){
         '&pagina='+$("#pagina").val()
       }).done(function(result){
        if(result=="Proveedor registrado exitósamente"||result=="Proveedor modificado exitósamente"){
-        swal (result, "", "success");
+        swal({
+          title: result,
+          type: "success",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
         $("#mainContent").load( "cat_proveedores.php" );
       }else{
-        swal (result, "", "warning");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
         
       }
       
@@ -459,26 +469,23 @@ if (isset($_REQUEST['rfc'])){
             </div>
           </div>
           <!-- TERMINA INPUT PARA PAGINA WEB-->
-        </div>
-        <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
+          
+          <div class="text-center">
+            <hr>
+            <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+            <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 
+            <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+            <a href="../proveedores" class="btn grey-salsa btn-outline">Cancelar</a>
+          </div>
 
-        <div class="text-center">
-
-          <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
-
-          <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-          <a href="../proveedores" class="btn grey-salsa btn-outline">Cancelar</a>
-        </div>
-
-        <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
-      </form>
-      <!-- TERMINA FORM-->
+          <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
+        </form>
+        <!-- TERMINA FORM-->
+      </div>
     </div>
+    <!-- TERMINA CUERPO DE PORTLET-->
   </div>
-  <!-- TERMINA CUERPO DE PORTLET-->
-</div>
-<!-- TERMINA PORTLET-->
+  <!-- TERMINA PORTLET-->
 
-<!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->
+  <!-- COLUMNA DE 2 PARA CENTRAR FORMULARIO-->

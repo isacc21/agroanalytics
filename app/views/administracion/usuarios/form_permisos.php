@@ -1109,9 +1109,19 @@ if (isset($_REQUEST['idUsuario'])){
       "&idPermiso=" + $("#idPermiso").val()
     }).done(function(result){
       if(result=="Nickname no corresponde"||result=="Usuario existente"){
-       swal (result, "", "warning");
-     }else{
-       swal (result, "", "success");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
+      }else{
+       swal({
+        title: result,
+        type: "success",
+        showCloseButton: true,
+        confirmButtonText:'Cerrar'
+      });
      }
      $("#mainContent").load( "catAD_usuarios.php" );
    });
@@ -1161,7 +1171,7 @@ $("#back_pusers").click(function(){
 
              <!-- INICIA TITULO SECCION CATALOGOS-->
              <tr>
-             <td width="28%">
+               <td width="28%">
                  <div class="text-left font-grey-mint"> 
                    <h4>
                      <b>Catálogos</b>
@@ -1606,16 +1616,15 @@ $("#back_pusers").click(function(){
 
              </tbody>
            </table>
-           <br />
-           <br />
+
            <input type="hidden" id="idPermiso" value="<?=$idPermiso; ?>">
            <input type="hidden" id="sesion" value="<?=$sesionAc;?>">
 
            <div class="text-center">
-
-             <!--BOTON DE GUARDAR O ACTUALIZAR-->
-             <?php
-             if($_REQUEST['idUsuario']!=""){
+            <hr>
+            <!--BOTON DE GUARDAR O ACTUALIZAR-->
+            <?php
+            if($_REQUEST['idUsuario']!=""){
               $nombreSubmit="Actualizar";
             }
             else{

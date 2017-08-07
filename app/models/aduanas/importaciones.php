@@ -358,6 +358,25 @@ class importaciones{
 		}
 	}
 
+	public function consultarImportacionesxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM importaciones WHERE folioImportacion = '".$this->folio."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
 	public function consultarOrdenesxImportacion(){
 		try {
 
@@ -636,6 +655,52 @@ class importaciones{
 		}
 	}
 
+	public function consultarImportacionesDisponibles(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM importaciones WHERE statusImportacion = 1");
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cancelarImportacion(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para modificar un registro
+			$query = "UPDATE importaciones SET
+
+			statusImportacion = 3,
+			idUsuario = '".$this->id."'
+
+			WHERE folioImportacion =   '".$this->folio."'";
+
+			$statement = $conexion->prepare($query);
+
+			$statement->execute();
+
+			return "Importación cancelada";
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
 	
 }
 

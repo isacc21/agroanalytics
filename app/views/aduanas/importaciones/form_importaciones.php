@@ -66,15 +66,19 @@
 <div class="col-md-12">
 
   <!--INICIA PORTLET-->
-  <div class="portlet box grey-mint">
+  <div class="portlet box grey-steel">
 
     <!--INICIA TITULO DE PORTLET-->
     <div class="portlet-title">
 
       <!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-      <div class="caption">Registro de importacion </div>
+      <div class="caption"><div class="font-grey-mint"><b>Registro de importacion</b></div> </div>
       <!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
-
+      <div class="actions btn-set">
+        <button type="button" name="back" id="back_form_import" class="btn green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+        </button>
+      </div>
     </div>
     <!-- TERMINA TITULO DE PORTLET -->
 
@@ -139,7 +143,7 @@
           <div class="form-group">
             <label class="col-md-6 control-label">Total</label>
             <div class="col-md-4">
-              <input type="text" class="form-control" id="total" name="total" value="" required placeholder="Calcular total">
+              <input type="text" class="form-control" id="total" name="total" value="" required placeholder="Calcular total" readonly>
 
             </div>
           </div>
@@ -152,19 +156,13 @@
           </div>
           <!-- TERMINA INPUT FOLIO DE REGISTRO-->
 
+          <div class="text-center">
+            <hr>
+            <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+            <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 
-          <!--INICIA GRUPO DE BOTONES DE FORMULARIO-->
-          <div class="form-actions">
-            <div class="row">
-              <div class="text-center">
-
-                <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-                <input type="submit" id="accionBoton" class="btn green" value="<?=$nombreSubmit;?>"> 
-
-                <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-                <a href="../importaciones" class="btn grey-salsa btn-outline">Cancelar</a>
-              </div>
-            </div>
+            <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+            <a href="../importaciones" class="btn grey-salsa btn-outline">Cancelar</a>
           </div>
           <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
         </form>
@@ -183,6 +181,10 @@
     } /* LLAVE DE IF */
     $(".readonly").keydown(function(e){
       e.preventDefault();
+    });
+
+    $("#back_form_import").click(function(){
+      window.location = "";
     });
 
     x=1;
@@ -226,7 +228,12 @@
 
         if(j!=i && i!=registros && producto == $("#factura"+j).val() && cuenta!== "1" && productoEliminado[j]!="no"){
           $("#factura"+j).val("default");
-          swal("Factura ya ingresada", "", "warning");
+          swal({
+            title: "Factura ya ingresada",
+            type: "warning",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
         }
       }
     }
@@ -322,10 +329,20 @@
         "&pass="+$("#pass").val()
       }).done(function(result){
         if(result!="Password no corresponde al usuario activo"||result!="Campos de factura vacios"){
-          swal ("Registro exitoso", "", "success");
+          swal({
+            title: "Registro exitoso",
+            type: "success",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
           $("#mainContent").load( "form_fechas.php?codigo="+result );
         }else{
-          swal (result, "", "warning");
+          swal({
+            title: result,
+            type: "warning",
+            showCloseButton: true,
+            confirmButtonText:'Cerrar'
+          });
         } 
       });
 

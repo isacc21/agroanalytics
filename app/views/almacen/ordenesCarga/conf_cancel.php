@@ -35,10 +35,20 @@ if (isset($_REQUEST['codigo'])){
 				'&pass='+$("#pass").val()
 			}).done(function(result){
 				if(result=="Cancelación Exitosa"){
-					swal (result, "", "success");
+					swal({
+						title: result,
+						type: "success",
+						showCloseButton: true,
+						confirmButtonText:'Cerrar'
+					});
 					$("#mainContent").load( "cat_pedidos.php" );
 				}else{
-					swal (result, "", "warning");
+					swal({
+						title: result,
+						type: "warning",
+						showCloseButton: true,
+						confirmButtonText:'Cerrar'
+					});
 				}
 				
 			});

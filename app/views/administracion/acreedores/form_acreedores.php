@@ -219,10 +219,20 @@ if (isset($_REQUEST['rfc'])){
         '&pagina='+$("#pagina").val()
       }).done(function(result){
        if(result=="Acreedor registrado exitósamente"||result=="Acreedor modificado exitósamente"){
-        swal (result, "", "success");
+        swal({
+          title: result,
+          type: "success",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
         $("#mainContent").load( "cat_acreedores.php" );
       }else{
-        swal (result, "", "warning");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
       }
       
     });
@@ -457,9 +467,8 @@ if (isset($_REQUEST['rfc'])){
           </div>
         </div>
         <!-- TERMINA INPUT PARA PAGINA WEB-->
-        <br>
         <div class="text-center">
-
+          <hr>
           <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
           <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 

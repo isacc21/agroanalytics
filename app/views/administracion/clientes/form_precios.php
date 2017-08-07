@@ -167,12 +167,12 @@ foreach($lista_clientes as $row){
         <input type="hidden" id="id" name="id" value="<?= $listaID;?>">
         <input type="hidden" id="vueltas" name="vueltas" value="<?= $x;?>">
         <input type="hidden" id="rfc" name="rfc" value="<?=$_REQUEST['rfc'];?>">
-        <br>
-        <div class="text-center">
 
+        <div class="text-center">
+          <hr>
           <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
           <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
-
+          
           <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
           <a href="../clientes" class="btn grey-salsa btn-outline">Cancelar</a>
         </div>
@@ -233,9 +233,19 @@ foreach($lista_clientes as $row){
     }).done(function(result){
 
       if(result=="RFC existente"){
-        swal (result, "", "warning");
+        swal({
+          title: result,
+          type: "warning",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
       }else{
-        swal (result, "", "success");
+        swal({
+          title: result,
+          type: "success",
+          showCloseButton: true,
+          confirmButtonText:'Cerrar'
+        });
       }
       $("#mainContent").load( "cat_clientes.php" );
     });

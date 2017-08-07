@@ -81,140 +81,129 @@ foreach ($result as $row){
    <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
    <div class="col-md-12">
     <!-- INICIA PORTLET -->
-    <div class="portlet light bordered">
+    <div class="portlet box grey-steel">
 
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
 
-      <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption font-dark">
+       <div class="caption"><div class="font-grey-mint"><b>Catálogo</b></div></div>
 
-       <!-- ICONO A DERECHA DE TITULO DE PORTLET-->
-       <i class="fa fa-list-alt font-dark"></i>
-
-       <!-- TEXTO DE TITULO DE PORTLET-->
-       <span class="caption-subject bold uppercase"> Declaraciones de Aduanas</span>
-     </div>
-     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
-
-     <div class="actions btn-set">
-       <button type="button" name="back" id="back_cat_decl" class="btn default green-stripe">
-        <i class="fa fa-arrow-left"></i> Regresar
-      </button>
+       <div class="actions btn-set">
+         <button type="button" name="back" id="back_cat_decl" class="btn green-seagreen">
+          <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+        </button>
+      </div>
     </div>
-  </div>
-  <!-- TERMINA TITULO DE PORTLET-->
+    <!-- TERMINA TITULO DE PORTLET-->
 
-  <!-- INICIA CUERPO DE PORTLET-->
-  <div class="portlet-body">
+    <!-- INICIA CUERPO DE PORTLET-->
+    <div class="portlet-body">
 
-    <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
-    <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+      <!-- INICIA DATA TABLE PARA CATALOGO DE ACREEDORES-->
+      <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 
-     <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
-     <thead>
-      <tr>
-       <th> Código </th>
-       <th> Fecha [AAAA/MM/DD] </th>
-       <th> Peso Total </th>
-       <th> Estatus </th>
-       <th> Acciones </th>
-     </tr>
-   </thead>
-   <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
+       <!-- INICIAN ENCABEZADOS PARA DATATALBE -->
+       <thead>
+        <tr>
+         <th> Código </th>
+         <th> Fecha [AAAA/MM/DD] </th>
+         <th> Peso Total </th>
+         <th> Estatus </th>
+         <th> Acciones </th>
+       </tr>
+     </thead>
+     <!-- TERMINAN ENCABEZADOS PARA DATA TABLE-->
 
-   <!-- INICIA CUERPO DE DATA TABLE-->
-   <tbody>
+     <!-- INICIA CUERPO DE DATA TABLE-->
+     <tbody>
 
-    <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
-    <?php
-    foreach($lista_declaraciones as $row){
-     $codigo = $row['folioDeclaracion'];
-     $dd = $row['ddDeclaracion'];
-     $mm = $row['mmDeclaracion'];
-     $yyyy = $row['yyyyDeclaracion'];
-     $total = $row['pesoTotalDeclaracion'];
-     $status = $row['statusDeclaracion'];
-     $num = number_format($total,2, '.', ',');
-     ?>
-     <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
+      <!--INICIO DE FOREACH PARA TABLA DE ACREEDORES-->
+      <?php
+      foreach($lista_declaraciones as $row){
+       $codigo = $row['folioDeclaracion'];
+       $dd = $row['ddDeclaracion'];
+       $mm = $row['mmDeclaracion'];
+       $yyyy = $row['yyyyDeclaracion'];
+       $total = $row['pesoTotalDeclaracion'];
+       $status = $row['statusDeclaracion'];
+       $num = number_format($total,2, '.', ',');
+       ?>
+       <!--TERMINO DE FOREACH PARA TABLA DE ACREEDORES-->
 
-     <!-- INICIA FILA CON VARIABLES DE FOREACH-->
-     <tr class="odd gradeX">
+       <!-- INICIA FILA CON VARIABLES DE FOREACH-->
+       <tr class="odd gradeX">
 
-      <td> <?php echo $codigo;?> </td>
-      <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
+        <td> <?php echo $codigo;?> </td>
+        <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
 
-      <td> <?php echo $num;?> [LIBRAS]</td>
-      <td>
-        <?php 
-        if($status==1){
-          echo $html_camino;
-        }
-        else{
-          if($status==2){
-            echo $html_finalizada;
+        <td> <?php echo $num;?> [LIBRAS]</td>
+        <td>
+          <?php 
+          if($status==1){
+            echo $html_camino;
           }
           else{
-            if($status==3){
-              echo $html_cancelado;
+            if($status==2){
+              echo $html_finalizada;
             }
             else{
-              if($status==4){
-                echo $html_usado;
+              if($status==3){
+                echo $html_cancelado;
+              }
+              else{
+                if($status==4){
+                  echo $html_usado;
+                }
               }
             }
           }
+          ?>
+        </td>
+        <td>
+
+         <!-- INICIAN BOTONES DE ACCIONES-->
+
+         <?php
+
+         $html_inicio_action='<div class="text-center"><div class="btn-group">
+         <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
+          &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+          &nbsp; Elegir&nbsp;&nbsp;
+        </button><ul class="dropdown-menu pull-right" role="menu">';
+
+        $html_final_action='</ul></div>';
+        $html_moreInfo='<li>
+        <a data-toggle="modal" href="#modal'.$codigo.'">
+          <i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
+        </li>';
+        $html_imprimir='<li><a><input type="radio" id="imprimir'.$codigo.'" class="imprimir" name="imprimir" value="'.$codigo.'">
+        <label for="imprimir'.$codigo.'" ">  <i class="fa fa-print"></i>&nbsp;Imprimir<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></label></a></li>';
+
+
+
+        if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+          echo $html_inicio_action;
         }
+        if($declaracion[0]=='1'){
+          echo $html_moreInfo; 
+          echo $html_imprimir;
+        }
+
+        if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
+          echo $html_final_action;
+        }
+
         ?>
+
       </td>
-      <td>
+    </tr>
+    <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
 
-       <!-- INICIAN BOTONES DE ACCIONES-->
-
-       <?php
-
-       $html_inicio_action='<div class="text-center"><div class="btn-group">
-       <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-        &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-        &nbsp; Elegir&nbsp;&nbsp;
-      </button><ul class="dropdown-menu pull-right" role="menu">';
-
-      $html_final_action='</ul></div>';
-      $html_moreInfo='<li>
-      <a data-toggle="modal" href="#modal'.$codigo.'">
-        <i class="icon-magnifier"></i> Info. </a>
-      </li>';
-      $html_print='<li>
-      <a data-toggle="modal">
-        <i class="icon-printer"></i> Imprimir </a>
-      </li>';
-
-
-
-      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
-        echo $html_inicio_action;
-      }
-      if($declaracion[0]=='1'){
-        echo $html_moreInfo; 
-        echo $html_print;
-      }
-
-      if($declaracion[0]=='1'||$declaracion[1]=='2'||$declaracion[2]=='3'||$declaracion[3]=='4'){
-        echo $html_final_action;
-      }
-
-      ?>
-
-    </td>
-  </tr>
-  <!-- TERMINA FILAS CON VARIABLES DE FOREACH-->
-
-  <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
-  <?php 
-}
-?>
-<!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+    <!-- INICIA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
+    <?php 
+  }
+  ?>
+  <!-- TERMINA LLAVE DE FOREACH PARA TABLA DE ACREEDORES-->
 
 </tbody>
 <!-- TERMINA CUERPO DE DATA TABLE -->
@@ -406,9 +395,10 @@ foreach($consultaModal as $row){
       $("#mainContent").load( "conf_cancel.php?codigo="+$(this).val());
     });
 
-    /*$('.factura').click(function() {
-      $("#mainContent").load( "agr_factura.php?codigo="+$(this).val());
-    });*/
+    
+    $('.imprimir').click(function() {
+      window.open("hdi.php?codigo="+$(this).val(), "_blank");
+    });
 
     $('.pedimento').click(function() {
       $("#mainContent").load( "agr_pedimento.php?codigo="+$(this).val());
@@ -428,4 +418,4 @@ foreach($consultaModal as $row){
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="../../../../assets/pages/scripts/table-datatables-scroller.js" type="text/javascript"></script>
+<script src="../../../../assets/pages/scripts/table-datatables-scroller.min.js" type="text/javascript"></script>

@@ -293,6 +293,7 @@ if(isset($_SESSION['login'])){
 		<link href="../assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
 		<link href="../assets/layouts/layout/css/themes/grey.min.css" rel="stylesheet" type="text/css" id="style_color" />
 		<link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+		<link href="../assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
 		<!-- END THEME LAYOUT STYLES -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -359,7 +360,7 @@ if(isset($_SESSION['login'])){
 									</a>
 									<ul class="dropdown-menu dropdown-menu-default">
 										<li>
-											<a href="page_user_profile_1.html">
+											<a href="views/profile/info">
 												<i class="icon-user"></i> Mi Perfil </a>
 											</li>
 											<li class="divider"> </li>
@@ -566,633 +567,635 @@ if(isset($_SESSION['login'])){
 											}*/
 
 											?>
-											<div class="row">
-												<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 purple-soft" href="views/atn-clientes/pedidos">
-														<div class="visual">
-															<i class="fa fa-credit-card"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="86,039.53">0</span>&nbsp;USD
+											<div id="mainContent">
+												<div class="row">
+
+													<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 purple-soft" href="views/atn-clientes/pedidos">
+															<div class="visual">
+																<i class="fa fa-credit-card"></i>
 															</div>
-															<div class="desc"> Monthly Sales </div>
-														</div>
-													</a>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="86,039.53">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Monthly Sales </div>
+															</div>
+														</a>
+													</div>
+
+													<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 green-seagreen" href="views/aduanas/importaciones">
+															<div class="visual">
+																<i class="fa fa-truck"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="72,850.53">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Monthly Imports </div>
+															</div>
+														</a>
+													</div>
+
 												</div>
 
-												<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 green-seagreen" href="views/aduanas/importaciones">
-														<div class="visual">
-															<i class="fa fa-truck"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="72,850.53">0</span>&nbsp;USD
+
+												<div class="clearfix"></div>
+												<div class="row">
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 green-jungle" href="views/contabilidad/bancos">
+															<div class="visual">
+																<i class="fa fa-money"></i>
 															</div>
-															<div class="desc"> Monthly Imports </div>
-														</div>
-													</a>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="8,457">0</span>
+																</div>
+																<div class="desc"> USD </div>
+															</div>
+														</a>
+													</div>
+
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 green-soft" href="views/contabilidad/bancos">
+															<div class="visual">
+																<i class="fa fa-usd"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="5,213">0</span>&nbsp;
+																</div>
+																<div class="desc"> MXN </div>
+															</div>
+														</a>
+													</div>
+
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 blue-sharp" href="views/contabilidad/cuentasCobrar">
+															<div class="visual">
+																<i class="fa fa-arrow-down"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="7,748">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Accounts receivable </div>
+															</div>
+														</a>
+													</div>
+
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 red-soft" href="views/contabilidad/cuentasPagar">
+															<div class="visual">
+																<i class="fa fa-arrow-up"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="2,574">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Accounts payable </div>
+															</div>
+														</a>
+													</div>
 												</div>
 
+
+												<div class="clearfix"></div>
+
+												<div class="row">
+
+													<!-- Chart code -->
+													<script>
+														var chart = AmCharts.makeChart( "import_products", {
+															"type": "pie",
+															"theme": "light",
+															"dataProvider": [ {
+																"product": "Humega",
+																"usd": 3179.20
+															}, {
+																"product": "IsoGreen",
+																"usd": 9808.80
+															}, {
+																"product": "Fulvex",
+																"usd": 5382.00
+															}, {
+																"product": "GO Isolates",
+																"usd": 7334.64
+															}, {
+																"product": "Dry Crumbles",
+																"usd": 976.27
+															}],
+															"valueField": "usd",
+															"titleField": "product",
+															"balloon":{
+																"fixedPosition":true
+															},
+
+														} );
+													</script>
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+														<style>
+															#custom_broker {
+																width		: 100%;
+																height		: 300px;
+																font-size	: 11px;
+															}					
+														</style>
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Imports by Product</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="import_products" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+
+
+
+													<script>
+														var chart = AmCharts.makeChart( "custom_broker", {
+															"type": "serial",
+															"theme": "light",
+															"dataProvider": [ {
+																"product": "SAI",
+																"sales": 38618.55
+															}, {
+																"product": "Ibarrola",
+																"sales": 34231.98
+															}],
+															"valueAxes": [ {
+																"gridColor": "#FFFFFF",
+																"gridAlpha": 0.2,
+																"dashLength": 0
+															} ],
+															"gridAboveGraphs": true,
+															"startDuration": 1,
+															"graphs": [ {
+																"balloonText": "[[category]]: <b>$[[value]]</b>",
+																"fillAlphas": 0.8,
+																"lineAlpha": 0.2,
+																"type": "column",
+																"valueField": "sales"
+															} ],
+															"chartCursor": {
+																"categoryBalloonEnabled": false,
+																"cursorAlpha": 0,
+																"zoomable": false
+															},
+															"categoryField": "product",
+															"categoryAxis": {
+																"autoGridCount": false,
+																"gridPosition": "start",
+																"gridAlpha": 0,
+																"tickPosition": "start",
+																"tickLength": 20
+															},
+															"export": {
+																"enabled": true
+															}
+
+														} );
+													</script>
+
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Imports by Custom Broker</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="custom_broker" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+
+												</div>
+												<div class="clearfix"></div>
+
+												<div class="row">
+
+
+													<script>
+														var chart = AmCharts.makeChart( "expenses", {
+															"type": "serial",
+															"theme": "light",
+															"dataProvider": [ {
+																"detail": "Custom Broker",
+																"sales": 2093.94
+															}, {
+																"detail": "Border Freight",
+																"sales": 633.05
+															}, {
+																"detail": "Freight",
+																"sales": 12874.05
+															}],
+															"valueAxes": [ {
+																"gridColor": "#FFFFFF",
+																"gridAlpha": 0.2,
+																"dashLength": 0
+															} ],
+															"gridAboveGraphs": true,
+															"startDuration": 1,
+															"graphs": [ {
+																"balloonText": "[[category]]: <b>$[[value]]</b>",
+																"fillAlphas": 0.8,
+																"lineAlpha": 0.2,
+																"type": "column",
+																"valueField": "sales"
+															} ],
+															"chartCursor": {
+																"categoryBalloonEnabled": false,
+																"cursorAlpha": 0,
+																"zoomable": false
+															},
+															"categoryField": "detail",
+															"categoryAxis": {
+																"autoGridCount": false,
+																"gridPosition": "start",
+																"gridAlpha": 0,
+																"tickPosition": "start",
+																"tickLength": 20
+															},
+															"export": {
+																"enabled": true
+															}
+
+														} );
+													</script>
+
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="expenses" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+													<!--END COL MD 6-->
+
+													<!-- Chart code -->
+													<script>
+														var chart = AmCharts.makeChart( "sales_dc", {
+															"type": "pie",
+															"theme": "light",
+															"dataProvider": [ {
+																"directc": "V. Alta",
+																"usd": 0
+															}, {
+																"directc": "V. Prima",
+																"usd": 0
+															}, {
+																"directc": "Pozo Manuel",
+																"usd": 0
+															}, {
+																"directc": "M. Bísani",
+																"usd": 30658.50
+															}, {
+																"directc": "Las Cumbres",
+																"usd": 31602.00
+															}, {
+																"directc": "25 Enero",
+																"usd": 2898.00
+															}, {
+																"directc": "AgroSierraVista",
+																"usd": 14420.85
+															}, {
+																"directc": "Altima",
+																"usd": 0
+															}],
+															"valueField": "usd",
+															"titleField": "directc",
+															"balloon":{
+																"fixedPosition":true
+															},
+
+														} );
+													</script>
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+														<style>
+															#sales_dc {
+																width		: 100%;
+																height		: 300px;
+																font-size	: 11px;
+															}					
+														</style>
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Sales by Direct Customer</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="sales_dc" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+
+												</div>
+
+												<div class="clearfix"></div>
+												<!--BEGIN ROW-->
+												<div class="row">
+													<script>
+														var chart = AmCharts.makeChart( "sales_dis", {
+															"type": "pie",
+															"theme": "light",
+															"dataProvider": [ {
+																"distri": "AGRICOM",
+																"usd": 5435.10
+															}, {
+																"distri": "EMSA",
+																"usd": 1025.08
+															}],
+															"valueField": "usd",
+															"titleField": "distri",
+															"balloon":{
+																"fixedPosition":true
+															},
+
+														} );
+													</script>
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Sales by Distributor</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="sales_dis" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+
+													<script>
+														var chart = AmCharts.makeChart( "sales_pr", {
+															"type": "serial",
+															"theme": "light",
+															"dataProvider": [{
+																"product": "Humega",
+																"sales": 32886.00
+															}, {
+																"product": "IsoGreen",
+																"sales": 34500.00
+															}, {
+																"product": "Fulvex",
+																"sales": 3207.60
+															}, {
+																"product": "Go Isolates",
+																"sales": 14420.85
+															}, {
+																"product": "Dry Crumbles",
+																"sales": 1025.08
+															}],
+															"valueAxes": [ {
+																"gridColor": "#FFFFFF",
+																"gridAlpha": 0.2,
+																"dashLength": 0
+															} ],
+															"gridAboveGraphs": true,
+															"startDuration": 1,
+															"graphs": [ {
+																"balloonText": "[[category]]: <b>$[[value]]</b>",
+																"fillAlphas": 0.8,
+																"lineAlpha": 0.2,
+																"type": "column",
+																"valueField": "sales"
+															} ],
+															"chartCursor": {
+																"categoryBalloonEnabled": false,
+																"cursorAlpha": 0,
+																"zoomable": false
+															},
+															"categoryField": "product",
+															"categoryAxis": {
+																"autoGridCount": false,
+																"gridPosition": "start",
+																"gridAlpha": 0,
+																"tickPosition": "start",
+																"tickLength": 20
+															},
+															"export": {
+																"enabled": true
+															}
+
+														} );
+													</script>
+
+
+													<!-- HTML -->
+													<div class="col-lg-6 col-xs-12 col-sm-12">
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="sales_pr" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+													<!--END COL MD 6-->
+												</div>
+												<!--END ROW-->
+												<div class="clearfix"></div>
+
+												<div class="row">
+													<script>
+														var chart = AmCharts.makeChart( "meses", {
+															"type": "serial",
+															"addClassNames": true,
+															"theme": "light",
+															"autoMargins": true,
+															"marginLeft": 30,
+															"marginRight": 8,
+															"marginTop": 10,
+															"marginBottom": 26,
+															"balloon": {
+																"adjustBorderColor": false,
+																"horizontalPadding": 10,
+																"verticalPadding": 8,
+																"color": "#ffffff"
+															},
+
+															"dataProvider": [ {
+																"mes": "Enero",
+																"presente": 25504.02,
+																"pasado": 28741.15
+															}, {
+																"mes": "Febrero",
+																"presente": 31486.25,
+																"pasado": 21203.00
+															}, {
+																"mes": "Marzo",
+																"presente": 14257.02,
+																"pasado": 14200.51
+															}, {
+																"mes": "Abril",
+																"presente": 45781.94,
+																"pasado": 25149.14
+															}, {
+																"mes": "Mayo",
+																"presente": 38215.94,
+																"pasado": 27749.41
+															}, {
+																"mes": "Junio",
+																"presente": 24152.52,
+																"pasado": 47824.65
+															}, {
+																"mes": "Julio",
+																"presente": 12000.93,
+																"pasado": 17000.39
+															}, {
+																"mes": "Agosto",
+																"presente": 11021.98,
+																"pasado": 3147.45
+															}, {
+																"mes": "Septiembre",
+																"presente": 52135.21,
+																"pasado": 41002.21
+															}, {
+																"mes": "Octubre",
+																"presente": 62478.94,
+																"pasado": 55215.14
+															}, {
+																"mes": "Noviembre",
+																"presente": 15862.94,
+																"pasado": 5324.14
+															}, {
+																"mes": "Diciembre",
+																"presente": 21247.94,
+																"pasado": 15142.14
+															}],
+															"valueAxes": [ {
+																"axisAlpha": 0,
+																"position": "left"
+															} ],
+															"startDuration": 1,
+															"graphs": [ {
+																"alphaField": "alpha",
+																"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
+																"fillAlphas": 1,
+																"title": "2017",
+																"type": "column",
+																"valueField": "presente",
+																"dashLengthField": "dashLengthColumn"
+															}, {
+																"id": "graph2",
+																"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
+																"bullet": "round",
+																"lineThickness": 3,
+																"bulletSize": 7,
+																"bulletBorderAlpha": 1,
+																"bulletColor": "#FFFFFF",
+																"useLineColorForBulletBorder": true,
+																"bulletBorderThickness": 3,
+																"fillAlphas": 0,
+																"lineAlpha": 1,
+																"title": "2016",
+																"valueField": "pasado",
+																"dashLengthField": "dashLengthLine"
+															} ],
+															"categoryField": "mes",
+															"categoryAxis": {
+																"gridPosition": "start",
+																"axisAlpha": 0,
+																"tickLength": 0
+															},
+															"export": {
+																"enabled": true
+															}
+														} );
+													</script>
+
+
+													<!-- HTML -->
+													<div class="col-lg-12 col-xs-12 col-sm-12">
+
+
+														<!-- BEGIN CHART PORTLET-->
+														<div class="portlet light bordered">
+															<div class="portlet-title">
+																<div class="caption">
+																	<i class="icon-bar-chart font-green-haze"></i>
+																	<span class="caption-subject bold uppercase font-green-haze"> Year to date & last year sales</span>
+																</div>
+															</div>
+															<div class="portlet-body">
+
+																<div id="meses" class="chart"></div>
+															</div>
+														</div>
+														<!-- END CHART PORTLET-->
+
+													</div>
+													<!--END COL MD 6-->
+
+												</div>
 											</div>
-
-											
-											<div class="clearfix"></div>
-											<div class="row">
-												<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 green-jungle" href="views/contabilidad/bancos">
-														<div class="visual">
-															<i class="fa fa-money"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="8,457">0</span>
-															</div>
-															<div class="desc"> USD </div>
-														</div>
-													</a>
-												</div>
-
-												<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 green-soft" href="views/contabilidad/bancos">
-														<div class="visual">
-															<i class="fa fa-usd"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="5,213">0</span>&nbsp;
-															</div>
-															<div class="desc"> MXN </div>
-														</div>
-													</a>
-												</div>
-
-												<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 blue-sharp" href="views/contabilidad/cuentasCobrar">
-														<div class="visual">
-															<i class="fa fa-arrow-down"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="7,748">0</span>&nbsp;USD
-															</div>
-															<div class="desc"> Accounts receivable </div>
-														</div>
-													</a>
-												</div>
-
-												<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-													<a class="dashboard-stat dashboard-stat-v2 red-soft" href="views/contabilidad/cuentasPagar">
-														<div class="visual">
-															<i class="fa fa-arrow-up"></i>
-														</div>
-														<div class="details">
-															<div class="number">
-																$<span data-counter="counterup" data-value="2,574">0</span>&nbsp;USD
-															</div>
-															<div class="desc"> Accounts payable </div>
-														</div>
-													</a>
-												</div>
-											</div>
-											
-
-											<div class="clearfix"></div>
-
-											<div class="row">
-
-												<!-- Chart code -->
-												<script>
-													var chart = AmCharts.makeChart( "import_products", {
-														"type": "pie",
-														"theme": "light",
-														"dataProvider": [ {
-															"product": "Humega",
-															"usd": 3179.20
-														}, {
-															"product": "IsoGreen",
-															"usd": 9808.80
-														}, {
-															"product": "Fulvex",
-															"usd": 5382.00
-														}, {
-															"product": "GO Isolates",
-															"usd": 7334.64
-														}, {
-															"product": "Dry Crumbles",
-															"usd": 976.27
-														}],
-														"valueField": "usd",
-														"titleField": "product",
-														"balloon":{
-															"fixedPosition":true
-														},
-
-													} );
-												</script>
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-													<style>
-														#custom_broker {
-															width		: 100%;
-															height		: 300px;
-															font-size	: 11px;
-														}					
-													</style>
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Imports by Product</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="import_products" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-
-
-
-												<script>
-													var chart = AmCharts.makeChart( "custom_broker", {
-														"type": "serial",
-														"theme": "light",
-														"dataProvider": [ {
-															"product": "SAI",
-															"sales": 38618.55
-														}, {
-															"product": "Ibarrola",
-															"sales": 34231.98
-														}],
-														"valueAxes": [ {
-															"gridColor": "#FFFFFF",
-															"gridAlpha": 0.2,
-															"dashLength": 0
-														} ],
-														"gridAboveGraphs": true,
-														"startDuration": 1,
-														"graphs": [ {
-															"balloonText": "[[category]]: <b>$[[value]]</b>",
-															"fillAlphas": 0.8,
-															"lineAlpha": 0.2,
-															"type": "column",
-															"valueField": "sales"
-														} ],
-														"chartCursor": {
-															"categoryBalloonEnabled": false,
-															"cursorAlpha": 0,
-															"zoomable": false
-														},
-														"categoryField": "product",
-														"categoryAxis": {
-															"autoGridCount": false,
-															"gridPosition": "start",
-															"gridAlpha": 0,
-															"tickPosition": "start",
-															"tickLength": 20
-														},
-														"export": {
-															"enabled": true
-														}
-
-													} );
-												</script>
-
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Imports by Custom Broker</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="custom_broker" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-
-											</div>
-											<div class="clearfix"></div>
-
-											<div class="row">
-												
-												
-												<script>
-													var chart = AmCharts.makeChart( "expenses", {
-														"type": "serial",
-														"theme": "light",
-														"dataProvider": [ {
-															"detail": "Custom Broker",
-															"sales": 2093.94
-														}, {
-															"detail": "Border Freight",
-															"sales": 633.05
-														}, {
-															"detail": "Freight",
-															"sales": 12874.05
-														}],
-														"valueAxes": [ {
-															"gridColor": "#FFFFFF",
-															"gridAlpha": 0.2,
-															"dashLength": 0
-														} ],
-														"gridAboveGraphs": true,
-														"startDuration": 1,
-														"graphs": [ {
-															"balloonText": "[[category]]: <b>$[[value]]</b>",
-															"fillAlphas": 0.8,
-															"lineAlpha": 0.2,
-															"type": "column",
-															"valueField": "sales"
-														} ],
-														"chartCursor": {
-															"categoryBalloonEnabled": false,
-															"cursorAlpha": 0,
-															"zoomable": false
-														},
-														"categoryField": "detail",
-														"categoryAxis": {
-															"autoGridCount": false,
-															"gridPosition": "start",
-															"gridAlpha": 0,
-															"tickPosition": "start",
-															"tickLength": 20
-														},
-														"export": {
-															"enabled": true
-														}
-
-													} );
-												</script>
-
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="expenses" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-												<!--END COL MD 6-->
-
-												<!-- Chart code -->
-												<script>
-													var chart = AmCharts.makeChart( "sales_dc", {
-														"type": "pie",
-														"theme": "light",
-														"dataProvider": [ {
-															"directc": "V. Alta",
-															"usd": 0
-														}, {
-															"directc": "V. Prima",
-															"usd": 0
-														}, {
-															"directc": "Pozo Manuel",
-															"usd": 0
-														}, {
-															"directc": "M. Bísani",
-															"usd": 30658.50
-														}, {
-															"directc": "Las Cumbres",
-															"usd": 31602.00
-														}, {
-															"directc": "25 Enero",
-															"usd": 2898.00
-														}, {
-															"directc": "AgroSierraVista",
-															"usd": 14420.85
-														}, {
-															"directc": "Altima",
-															"usd": 0
-														}],
-														"valueField": "usd",
-														"titleField": "directc",
-														"balloon":{
-															"fixedPosition":true
-														},
-
-													} );
-												</script>
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-													<style>
-														#sales_dc {
-															width		: 100%;
-															height		: 300px;
-															font-size	: 11px;
-														}					
-													</style>
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Sales by Direct Customer</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="sales_dc" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-
-											</div>
-
-											<div class="clearfix"></div>
-											<!--BEGIN ROW-->
-											<div class="row">
-												<script>
-													var chart = AmCharts.makeChart( "sales_dis", {
-														"type": "pie",
-														"theme": "light",
-														"dataProvider": [ {
-															"distri": "AGRICOM",
-															"usd": 5435.10
-														}, {
-															"distri": "EMSA",
-															"usd": 1025.08
-														}],
-														"valueField": "usd",
-														"titleField": "distri",
-														"balloon":{
-															"fixedPosition":true
-														},
-
-													} );
-												</script>
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-													
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Sales by Distributor</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="sales_dis" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-
-												<script>
-													var chart = AmCharts.makeChart( "sales_pr", {
-														"type": "serial",
-														"theme": "light",
-														"dataProvider": [{
-															"product": "Humega",
-															"sales": 32886.00
-														}, {
-															"product": "IsoGreen",
-															"sales": 34500.00
-														}, {
-															"product": "Fulvex",
-															"sales": 3207.60
-														}, {
-															"product": "Go Isolates",
-															"sales": 14420.85
-														}, {
-															"product": "Dry Crumbles",
-															"sales": 1025.08
-														}],
-														"valueAxes": [ {
-															"gridColor": "#FFFFFF",
-															"gridAlpha": 0.2,
-															"dashLength": 0
-														} ],
-														"gridAboveGraphs": true,
-														"startDuration": 1,
-														"graphs": [ {
-															"balloonText": "[[category]]: <b>$[[value]]</b>",
-															"fillAlphas": 0.8,
-															"lineAlpha": 0.2,
-															"type": "column",
-															"valueField": "sales"
-														} ],
-														"chartCursor": {
-															"categoryBalloonEnabled": false,
-															"cursorAlpha": 0,
-															"zoomable": false
-														},
-														"categoryField": "product",
-														"categoryAxis": {
-															"autoGridCount": false,
-															"gridPosition": "start",
-															"gridAlpha": 0,
-															"tickPosition": "start",
-															"tickLength": 20
-														},
-														"export": {
-															"enabled": true
-														}
-
-													} );
-												</script>
-
-
-												<!-- HTML -->
-												<div class="col-lg-6 col-xs-12 col-sm-12">
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="sales_pr" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-												<!--END COL MD 6-->
-											</div>
-											<!--END ROW-->
-											<div class="clearfix"></div>
-
-											<div class="row">
-												<script>
-													var chart = AmCharts.makeChart( "meses", {
-														"type": "serial",
-														"addClassNames": true,
-														"theme": "light",
-														"autoMargins": true,
-														"marginLeft": 30,
-														"marginRight": 8,
-														"marginTop": 10,
-														"marginBottom": 26,
-														"balloon": {
-															"adjustBorderColor": false,
-															"horizontalPadding": 10,
-															"verticalPadding": 8,
-															"color": "#ffffff"
-														},
-
-														"dataProvider": [ {
-															"mes": "Enero",
-															"presente": 25504.02,
-															"pasado": 28741.15
-														}, {
-															"mes": "Febrero",
-															"presente": 31486.25,
-															"pasado": 21203.00
-														}, {
-															"mes": "Marzo",
-															"presente": 14257.02,
-															"pasado": 14200.51
-														}, {
-															"mes": "Abril",
-															"presente": 45781.94,
-															"pasado": 25149.14
-														}, {
-															"mes": "Mayo",
-															"presente": 38215.94,
-															"pasado": 27749.41
-														}, {
-															"mes": "Junio",
-															"presente": 24152.52,
-															"pasado": 47824.65
-														}, {
-															"mes": "Julio",
-															"presente": 12000.93,
-															"pasado": 17000.39
-														}, {
-															"mes": "Agosto",
-															"presente": 11021.98,
-															"pasado": 3147.45
-														}, {
-															"mes": "Septiembre",
-															"presente": 52135.21,
-															"pasado": 41002.21
-														}, {
-															"mes": "Octubre",
-															"presente": 62478.94,
-															"pasado": 55215.14
-														}, {
-															"mes": "Noviembre",
-															"presente": 15862.94,
-															"pasado": 5324.14
-														}, {
-															"mes": "Diciembre",
-															"presente": 21247.94,
-															"pasado": 15142.14
-														}],
-														"valueAxes": [ {
-															"axisAlpha": 0,
-															"position": "left"
-														} ],
-														"startDuration": 1,
-														"graphs": [ {
-															"alphaField": "alpha",
-															"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
-															"fillAlphas": 1,
-															"title": "2017",
-															"type": "column",
-															"valueField": "presente",
-															"dashLengthField": "dashLengthColumn"
-														}, {
-															"id": "graph2",
-															"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
-															"bullet": "round",
-															"lineThickness": 3,
-															"bulletSize": 7,
-															"bulletBorderAlpha": 1,
-															"bulletColor": "#FFFFFF",
-															"useLineColorForBulletBorder": true,
-															"bulletBorderThickness": 3,
-															"fillAlphas": 0,
-															"lineAlpha": 1,
-															"title": "2016",
-															"valueField": "pasado",
-															"dashLengthField": "dashLengthLine"
-														} ],
-														"categoryField": "mes",
-														"categoryAxis": {
-															"gridPosition": "start",
-															"axisAlpha": 0,
-															"tickLength": 0
-														},
-														"export": {
-															"enabled": true
-														}
-													} );
-												</script>
-
-
-												<!-- HTML -->
-												<div class="col-lg-12 col-xs-12 col-sm-12">
-
-
-													<!-- BEGIN CHART PORTLET-->
-													<div class="portlet light bordered">
-														<div class="portlet-title">
-															<div class="caption">
-																<i class="icon-bar-chart font-green-haze"></i>
-																<span class="caption-subject bold uppercase font-green-haze"> Year to date & last year sales</span>
-															</div>
-														</div>
-														<div class="portlet-body">
-
-															<div id="meses" class="chart"></div>
-														</div>
-													</div>
-													<!-- END CHART PORTLET-->
-
-												</div>
-												<!--END COL MD 6-->
-
-											</div>
-
 											<!-- END CONTENT BODY -->
 										</div>
 										<!-- END CONTENT -->
@@ -1274,7 +1277,7 @@ if(isset($_SESSION['login'])){
 <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 
-
+<script src="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
 <script src="../assets/js/logout.js" type="text/javascript"></script>
 

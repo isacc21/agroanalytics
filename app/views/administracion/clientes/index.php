@@ -290,7 +290,7 @@ if(isset($_SESSION['login'])){
 						<!-- REDIRECCION AL CLICK LOGO-->
 						<a href="index.php">
 							<!-- IMAGEN-->
-							<img src="../../../../assets/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+							<img src="../../../../assets/img/agroanalytics_logo.png" alt="logo" class="logo-default" /> </a>
 							<div class="menu-toggler sidebar-toggler">
 								<span></span>
 							</div>
@@ -316,7 +316,7 @@ if(isset($_SESSION['login'])){
 									</a>
 									<ul class="dropdown-menu dropdown-menu-default">
 										<li>
-											<a href="page_user_profile_1.html">
+											<a href="../../profile/info">
 												<i class="icon-user"></i> Mi Perfil </a>
 											</li>
 											<li class="divider"> </li>
