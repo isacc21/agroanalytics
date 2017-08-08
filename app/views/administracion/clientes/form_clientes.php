@@ -346,7 +346,7 @@ if (isset($_REQUEST['rfc'])){
           <div class="form-group">
             <label class="col-md-3 control-label">Número exterior</label>
             <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="exterior" name="exterior" value="<?=$exterior;?>" required>
+              <input type="text" class="form-control  " id="exterior" name="exterior" value="<?=$exterior;?>" required>
             </div>
           </div>
           <!-- TERMINA INPUT EXTERIOR-->
@@ -467,29 +467,49 @@ if (isset($_REQUEST['rfc'])){
           </div>
           <!-- TERMINA INPUT PARA EMAIL-->
 
-          <!-- INICIA INPUT PARA TELEFONO-->
+          <!--INICIA INPUT DE PRECIO DE VENTA -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Teléfono</label>
+          <label class="col-md-3 control-label">Telefono</label>
             <div class="col-md-2">
-              <input type="number" class="form-control" id="ladafijo" name="ladafijo" value="<?=$ladafijo;?>" required placeholder="Lada">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-phone-alt"></i>
+                </span>
+                 <input type="number" class="form-control" id="ladafijo" name="ladafijo" value="<?=$ladafijo;?>" required placeholder="Lada">
+              </div>
             </div>
             <div class="col-md-4">
-              <input type="number"  class="form-control " id="telefono" name="telefono" value="<?=$telfijo;?>" required placeholder="Teléfono">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-phone-alt"></i>
+                </span>
+                <input type="number"  class="form-control " id="telefono" name="telefono" value="<?=$telfijo;?>" required placeholder="Teléfono">
+              </div>
             </div>
           </div>
-          <!-- TERMINA INPUT PARA TELEFONO-->
+          <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-          <!-- INICIA INPUT PARA CELULAR-->
+          <!--INICIA INPUT DE PRECIO DE VENTA -->
           <div class="form-group">
-            <label class="col-md-3 control-label">Celular</label>
+          <label class="col-md-3 control-label">Celular</label>
             <div class="col-md-2">
-              <input type="number" class="form-control" id="ladamovil" name="ladamovil" value="<?=$ladamovil;?>" placeholder="Lada">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-phone"></i>
+                </span>
+                <input type="number" class="form-control" id="ladamovil" name="ladamovil" value="<?=$ladamovil;?>" placeholder="Lada">
+              </div>
             </div>
             <div class="col-md-4">
-              <input type="text " step="any" class="form-control" id="celular" name="celular" value="<?=$telmovil;?>" placeholder="Teléfono">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="glyphicon glyphicon-phone"></i>
+                </span>
+                <input type="text " step="any" class="form-control" id="celular" name="celular" value="<?=$telmovil;?>" placeholder="Celular">
+              </div>
             </div>
           </div>
-          <!-- TERMINA INPUT PARA CELULAR-->
+          <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
           <!-- INICIA INPUT PARA PAGINA WEB-->
           <div class="form-group">

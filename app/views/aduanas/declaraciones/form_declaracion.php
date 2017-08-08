@@ -296,9 +296,9 @@ $nombreSubmit = 'Guardar';
 
             <!-- INICIA INPUT PARA PAIS-->
             <div class="form-group">
-              <label class="col-md-3 control-label">Password</label>
+              <label class="col-md-3 control-label">Autorización</label>
               <div class="col-md-7">
-                <input type="password" class="form-control" id="pass" name="pass" required>
+                <input type="password" class="form-control" id="pass" name="pass" required placeholder="Ingresa tu contraseña">
               </div>
             </div>
             <!-- TERMINA INPUT PARA PAIS-->

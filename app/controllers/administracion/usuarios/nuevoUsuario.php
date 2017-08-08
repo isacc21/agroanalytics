@@ -66,15 +66,31 @@ if(isset($_POST['nick'])){
 		else{
 
 ###### SE RECIBEN VARIABLES "POST" PARA ENVIARLAS AL METODO ##########################
-			$usuarios->nombre = $_POST['nombre'];
-			$usuarios->apellidos = $_POST['apellidos'];
-			$usuarios->nick = $_POST['nick'];
-			$usuarios->password = md5($_POST['password']);
+			$alert = "";
+			$username = $_POST['nick'];
 
+			$letras = strlen($_POST['nick']);
+
+			for ($i=0; $i < $letras ; $i++) { 
+				
+				if($username[$i]==" "){
+					$alert = 'El nick contiene espacio'	;
+				}
+			}
+			if($alert!=""){
+				echo $alert;
+			}
+			else{
+				$usuarios->nombre = $_POST['nombre'];
+				$usuarios->apellidos = $_POST['apellidos'];
+				$usuarios->nick = $_POST['nick'];
+				$usuarios->password = md5($_POST['password']);
+				
 
 
 ###### SE PROCESA EL METODO PARA REALIZAR EL PROCESO EN LA BASE DE DATOS #############
-			echo $usuarios->guardarUsuario();
+				echo $usuarios->guardarUsuario();
+			}
 		} ## LLAVE DE ELSE EN CASO DE NO REPETIR NICK ####################################
 
 

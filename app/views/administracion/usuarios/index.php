@@ -163,6 +163,23 @@ if(isset($_SESSION['login'])){
 		<span class="title">1 | Cotizaciones</span>
 	</a></li>';
 
+	###### MODULO DE COMPRAS ###############################################
+
+	$html_inicio_compras='<li class="nav-item">
+	<a href="javascript:;" class="nav-link nav-toggle">
+		<i class="icon-basket"></i>
+		<span class="title">Compras</span>
+		<span class="arrow"></span>
+	</a><ul class="sub-menu">';
+
+	$html_final_compras = '</ul></li>';
+
+	$html_compra='<li class="nav-item  ">
+	<a href="../../../views/almacen/ordenesCompra" class="nav-link ">
+		<span class="title">1 | Órdenes de Compra</span>
+	</a></li>';
+
+
 	###### MODULO DE ADUANAS ###########################################################
 
 	$html_inicio_aduanas='<li class="nav-item  ">
@@ -196,22 +213,17 @@ if(isset($_SESSION['login'])){
 
 	$html_inventario='<li class="nav-item  ">
 	<a href="../../../views/almacen/inventario" class="nav-link ">
-		<span class="title">2 | Inventario</span>
-	</a></li>';
-
-	$html_compra='<li class="nav-item  ">
-	<a href="../../../views/almacen/ordenesCompra" class="nav-link ">
-		<span class="title">1 | Órdenes de Compra</span>
+		<span class="title">1 | Inventario</span>
 	</a></li>';
 
 	$html_carga='<li class="nav-item  ">
 	<a href="../../../views/almacen/ordenesCarga" class="nav-link ">
-		<span class="title">3 | Órdenes de Carga</span>
+		<span class="title">2 | Órdenes de Carga</span>
 	</a></li>';
 
 	$html_remisiones='<li class="nav-item  ">
 	<a href="../../../views/almacen/remisiones" class="nav-link ">
-		<span class="title">4 | Remisiones</span>
+		<span class="title">3 | Remisiones</span>
 	</a></li>';
 
 	###### MODULO DE CONTABILIDAD ######################################################
@@ -340,232 +352,242 @@ if(isset($_SESSION['login'])){
 										<li>
 											<a href="../../profile/info">
 												<i class="icon-user"></i> Mi Perfil </a>
-										</li>
-										<li class="divider"> </li>
-										<li>
-											<a href="../../../../index.php?lg=1">
-												<i class="icon-key"></i> Log Out </a>
 											</li>
-										</ul>
-									</li>
-								</ul>
+											<li class="divider"> </li>
+											<li>
+												<a href="../../../../index.php?lg=1">
+													<i class="icon-key"></i> Log Out </a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<!--TERMINAN ACCIONES DE USUARIO-->
 							</div>
-							<!--TERMINAN ACCIONES DE USUARIO-->
 						</div>
-					</div>
-					<!--TERMINA HEADER-->
+						<!--TERMINA HEADER-->
 
 
-					<!--DIVISOR DE HEADER Y BODY-->
-					<div class="clearfix"> </div>
+						<!--DIVISOR DE HEADER Y BODY-->
+						<div class="clearfix"> </div>
 
-					<!--INICIA CONTENEDOR-->
-					<div class="page-container">
+						<!--INICIA CONTENEDOR-->
+						<div class="page-container">
 
 
-						<!--INICIA SIDEBAR-->
-						<div class="page-sidebar-wrapper">
-							<div class="page-sidebar navbar-collapse collapse">
-								<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-									<li class="sidebar-toggler-wrapper hide">
-										<div class="sidebar-toggler">
-											<span></span>
-										</div>
-									</li>
+							<!--INICIA SIDEBAR-->
+							<div class="page-sidebar-wrapper">
+								<div class="page-sidebar navbar-collapse collapse">
+									<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+										<li class="sidebar-toggler-wrapper hide">
+											<div class="sidebar-toggler">
+												<span></span>
+											</div>
+										</li>
 
-									<!--INICIA ELEMENTO DASHBOARD-->
-									<li class="nav-item">
-										<a href="../../../" class="nav-link nav-toggle">
-											<i class="icon-home"></i>
-											<span class="title">GOP Scorecard</span>
-										</a>
-									</li>
-									<!--TERMINA ELEMENTO DASHBOARD-->
+										<!--INICIA ELEMENTO DASHBOARD-->
+										<li class="nav-item">
+											<a href="../../../" class="nav-link nav-toggle">
+												<i class="icon-home"></i>
+												<span class="title">GOP Scorecard</span>
+											</a>
+										</li>
+										<!--TERMINA ELEMENTO DASHBOARD-->
 
-									<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
-									<?php
-									if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
+										<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
+										<?php
+										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
 
-										if($usuarios!=='0000'){
-											echo $html_inicio_administrador;
-											echo $html_usuarios;
-											echo $html_final_administrador;
+											if($usuarios!=='0000'){
+												echo $html_inicio_administrador;
+												echo $html_usuarios;
+												echo $html_final_administrador;
+											}
+
+											echo $html_inicio_administracion;
+											if($proveedores!='0000'){
+												echo $html_proveedores;
+											}
+											if($acreedores!='0000'){
+												echo $html_acreedores;
+											}
+											if($transportistas!='0000'){
+												echo $html_transportistas;
+											}
+											if($productos!='0000'){
+												echo $html_productos;
+											}
+											if($clientes!='0000'){
+												echo $html_clientes;
+											}
+											echo $html_final_administracion;
 										}
+										?>
+										<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
 
-										echo $html_inicio_administracion;
-										if($proveedores!='0000'){
-											echo $html_proveedores;
+
+										<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
+										<?php
+										if($pedidos!='0000'||$cotizaciones!='0000'){
+
+											echo $html_inicio_atnCliente;
+											if($cotizaciones!='0000'){
+												echo $html_cotizaciones;
+											}
+											if($pedidos!='0000'){
+												echo $html_pedidos;
+											}
+											echo $html_final_atnCliente;
 										}
-										if($acreedores!='0000'){
-											echo $html_acreedores;
-										}
-										if($transportistas!='0000'){
-											echo $html_transportistas;
-										}
-										if($productos!='0000'){
-											echo $html_productos;
-										}
-										if($clientes!='0000'){
-											echo $html_clientes;
-										}
-										echo $html_final_administracion;
-									}
-									?>
-									<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
+										?>
+										<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
 
+										<!-- INICIA MODULO DE COMPRAS -->
+										<?php 
 
-									<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
-									<?php
-									if($pedidos!='0000'||$cotizaciones!='0000'){
-
-										echo $html_inicio_atnCliente;
-										if($cotizaciones!='0000'){
-											echo $html_cotizaciones;
-										}
-										if($pedidos!='0000'){
-											echo $html_pedidos;
-										}
-										echo $html_final_atnCliente;
-									}
-									?>
-									<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
-
-
-									<!--INICIA MÓDULO DE ADUANAS-->
-									<?php
-									if($importaciones!='0000'||$declaraciones!='0000'){
-
-										echo $html_inicio_aduanas;
-										if($importaciones!='0000'){
-											echo $html_importaciones;
-										}
-										if($declaraciones!='0000'){
-											echo $html_declaraciones;
-										}
-										echo $html_final_aduanas;
-									}
-									?>
-									<!--TERMINA MÓDULO DE ADUANAS-->
-
-
-									<!--INICIA MÓDULO DE ALMACÉN-->
-									<?php
-									if($inventario!='0000'||$compra!='0000'||$carga!='0000'||$remisiones!='0000'){
-
-										echo $html_inicio_almacen;
 										if($compra!='0000'){
+											echo $html_inicio_compras;
 											echo $html_compra;
+											echo $html_final_compras;
 										}
-										if($inventario!='0000'){
-											echo $html_inventario;
-										}
-										if($carga!='0000'){
-											echo $html_carga;
-										}
-										if($remisiones!='0000'){
-											echo $html_remisiones;
-										}
-										echo $html_final_almacen;
-									}
-									?>
-									<!--TERMINA MÓDULO DE ALMACÉN-->
+
+										?>
+										<!-- TERMINA MODULO DE COMPRAS -->
 
 
-									<!--INICIA MÓDULO DE CONTABILIDAD-->
-									<?php
-									if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
+										<!--INICIA MÓDULO DE ADUANAS-->
+										<?php
+										if($importaciones!='0000'||$declaraciones!='0000'){
 
-										echo $html_inicio_conta;
-										if($bancos!='0000'){
-											echo $html_bancos;
-										}
-										if($cxc!='0000'){
-											echo $html_cxc;
-										}
-										if($cxp!='0000'){
-											echo $html_cxp;
-										}
-										echo $html_final_conta;
-									}
-									?>
-									<!--TERMINA MÓDULO DE CONTABILIDAD-->
-								</div>
-							</div>
-							<!--TERMINA SIDEBAR-->
-							<style>
-								body {overflow-x:hidden;}
-							</style>
-
-
-							<!--INICIA CONTENIDO DE PAGINA-->
-							<div class="page-content-wrapper">
-
-								<div class="page-content">
-
-									<!--INICIA TITULO DE PAGINA -->
-									<h1 class="page-title"> <b>Usuarios</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
-									<!--TERMINA TITULO DE PAGINA-->
-
-									<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-									<style type="text/css">
-										div#mainContent {margin:0}
-										body {overflow-x:hidden;}
-									</style>
-
-									<div id="mainContent" class="page-container">
-
-										<!--INICIA PORTLET MENU DE USUARIOS-->
-										<div class="clearfix"></div>
-										<div class="row">
-
-											<!--INICIA REGISTRAR USUARIO-->
-											<?php 
-											if($usuarios[1]=='2'){
-												echo $html_registro;
+											echo $html_inicio_aduanas;
+											if($importaciones!='0000'){
+												echo $html_importaciones;
 											}
-											?>
-											<!--TERMINA REGISTRAR USUARIO-->
-
-											<!--INICIA LISTA DE USUARIOS-->
-											<?php 
-											if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
-												if($_SESSION['tipo']==1){
-													echo $html_consulta_admin;
-												}
-												else{
-														//echo $html_consulta;
-												}
+											if($declaraciones!='0000'){
+												echo $html_declaraciones;
 											}
-											?>
-											<!--TERMINA LISTA DE USUARIOS-->
+											echo $html_final_aduanas;
+										}
+										?>
+										<!--TERMINA MÓDULO DE ADUANAS-->
 
-											<!--INICIA REPORTE DE USUARIOS-->
-											<?php 
-											if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
-												echo $html_reporte;
+
+										<!--INICIA MÓDULO DE ALMACÉN-->
+										<?php
+										if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
+
+											echo $html_inicio_almacen;
+	
+											if($inventario!='0000'){
+												echo $html_inventario;
 											}
-											?>
-											<!--TERMINA REPORTE DE USUARIOS-->
-										</div>
+											if($carga!='0000'){
+												echo $html_carga;
+											}
+											if($remisiones!='0000'){
+												echo $html_remisiones;
+											}
+											echo $html_final_almacen;
+										}
+										?>
+										<!--TERMINA MÓDULO DE ALMACÉN-->
+
+
+										<!--INICIA MÓDULO DE CONTABILIDAD-->
+										<?php
+										if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
+
+											echo $html_inicio_conta;
+											if($bancos!='0000'){
+												echo $html_bancos;
+											}
+											if($cxc!='0000'){
+												echo $html_cxc;
+											}
+											if($cxp!='0000'){
+												echo $html_cxp;
+											}
+											echo $html_final_conta;
+										}
+										?>
+										<!--TERMINA MÓDULO DE CONTABILIDAD-->
 									</div>
-									<!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
+								</div>
+								<!--TERMINA SIDEBAR-->
+								<style>
+									body {overflow-x:hidden;}
+								</style>
+
+
+								<!--INICIA CONTENIDO DE PAGINA-->
+								<div class="page-content-wrapper">
+
+									<div class="page-content">
+
+										<!--INICIA TITULO DE PAGINA -->
+										<h1 class="page-title"> <b>Usuarios</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+										<!--TERMINA TITULO DE PAGINA-->
+
+										<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+										<style type="text/css">
+											div#mainContent {margin:0}
+											body {overflow-x:hidden;}
+										</style>
+
+										<div id="mainContent" class="page-container">
+
+											<!--INICIA PORTLET MENU DE USUARIOS-->
+											<div class="clearfix"></div>
+											<div class="row">
+
+												<!--INICIA REGISTRAR USUARIO-->
+												<?php 
+												if($usuarios[1]=='2'){
+													echo $html_registro;
+												}
+												?>
+												<!--TERMINA REGISTRAR USUARIO-->
+
+												<!--INICIA LISTA DE USUARIOS-->
+												<?php 
+												if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
+													if($_SESSION['tipo']==1){
+														echo $html_consulta_admin;
+													}
+													else{
+														//echo $html_consulta;
+													}
+												}
+												?>
+												<!--TERMINA LISTA DE USUARIOS-->
+
+												<!--INICIA REPORTE DE USUARIOS-->
+												<?php 
+												if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
+													echo $html_reporte;
+												}
+												?>
+												<!--TERMINA REPORTE DE USUARIOS-->
+											</div>
+										</div>
+										<!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
+									</div>
+								</div>
+								<!-- TERMINA CONTENIDO DE LA PAGINA -->
+							</div>
+							<!-- TERMINA CONTENEDOR -->
+
+
+							<!-- INICIA FOOTER -->
+							<div class="page-footer">
+								<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+								</div>
+								<div class="scroll-to-top">
+									<i class="icon-arrow-up"></i>
 								</div>
 							</div>
-							<!-- TERMINA CONTENIDO DE LA PAGINA -->
+							<!-- TERMINA FOOTER -->
 						</div>
-						<!-- TERMINA CONTENEDOR -->
-
-
-						<!-- INICIA FOOTER -->
-						<div class="page-footer">
-							<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-							</div>
-							<div class="scroll-to-top">
-								<i class="icon-arrow-up"></i>
-							</div>
-						</div>
-						<!-- TERMINA FOOTER -->
-					</div>
 
 		<!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>

@@ -310,199 +310,219 @@ if (isset($_REQUEST['rfc'])){
           <div class="form-group">
             <label class="col-md-3 control-label">Número exterior</label>
             <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="exterior" name="exterior" value="<?=$exterior;?>" required>
-            </div>
-          </div>
-          <!-- TERMINA INPUT EXTERIOR-->
+             <input type="text" class="form-control  " id="exterior" name="exterior" value="<?=$exterior;?>" required>
+           </div>
+         </div>
+         <!-- TERMINA INPUT EXTERIOR-->
 
-          <!-- INICIA INPUT INTERIOR-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Número interior</label>
-            <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="interior" name="interior" value="<?=$interior;?>" required>
-            </div>
+         <!-- INICIA INPUT INTERIOR-->
+         <div class="form-group">
+          <label class="col-md-3 control-label">Número interior</label>
+          <div class="col-md-6">
+            <input type="number" step="1" min="0" class="form-control " id="interior" name="interior" value="<?=$interior;?>" required>
           </div>
-          <!-- TERMINA INPUT INTERIOR-->
+        </div>
+        <!-- TERMINA INPUT INTERIOR-->
 
-          <!--INICIA INPUT DE COLONIA -->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Colonia</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="colonia" name="colonia" value="<?=$colonia;?>">
-            </div>
+        <!--INICIA INPUT DE COLONIA -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Colonia</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="colonia" name="colonia" value="<?=$colonia;?>">
           </div>
-          <!-- TERMINA INPUT DE COLONIA-->
+        </div>
+        <!-- TERMINA INPUT DE COLONIA-->
 
-          <!-- INICIA INPUT DE CODIGO POSTAL-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Código Postal</label>
-            <div class="col-md-6">
-              <input type="number" step="1" min="0" class="form-control " id="cPostal" name="cPostal" value="<?=$cPostal;?>" required>
-            </div>
+        <!-- INICIA INPUT DE CODIGO POSTAL-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Código Postal</label>
+          <div class="col-md-6">
+            <input type="number" step="1" min="0" class="form-control " id="cPostal" name="cPostal" value="<?=$cPostal;?>" required>
           </div>
-          <!-- TERMINA INPUT DE CODIGO POSTAL-->
+        </div>
+        <!-- TERMINA INPUT DE CODIGO POSTAL-->
 
-          <!-- INICIA INPUT PARA PAIS-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">País</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="pais" name="pais" value="<?=$pais;?>">
-            </div>
+        <!-- INICIA INPUT PARA PAIS-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">País</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="pais" name="pais" value="<?=$pais;?>">
           </div>
-          <!-- TERMINA INPUT PARA PAIS-->
+        </div>
+        <!-- TERMINA INPUT PARA PAIS-->
 
-          <!-- INICIA INPUT PARA ESTAD-->
-          <div class="form-group" id="mostrado" style="display:block;">
-            <label class="col-md-3 control-label">Estado</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control " id="estado" name="estado" value="<?=$estado;?>">
-            </div>
+        <!-- INICIA INPUT PARA ESTAD-->
+        <div class="form-group" id="mostrado" style="display:block;">
+          <label class="col-md-3 control-label">Estado</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control " id="estado" name="estado" value="<?=$estado;?>">
           </div>
-          <!-- TERMINA INPUT PARA ESTAD-->
+        </div>
+        <!-- TERMINA INPUT PARA ESTAD-->
 
-          <!-- INICIA INPUT PARA ESTAD-->
-          <div class="form-group" id="oculto" style="display:none;">
-            <label class="col-md-3 control-label">Estado</label>
-            <div class="col-md-6">
-              <select id="estadoMexico" class="form-control ">
-                <option selected disabled value="">Seleccione Estado</option>
-                <option value="Aguascalientes">Aguascalientes</option>
-                <option value="Baja California">Baja California</option>
-                <option value="Baja California Sur">Baja California Sur</option>
-                <option value="Campeche">Campeche</option>
-                <option value="Ciudad de México">Ciudad de México</option>
-                <option value="Coahuila">Coahuila</option>
-                <option value="Colima">Colima</option>
-                <option value="Chiapas">Chiapas</option>
-                <option value="Chihuahua">Chihuahua</option>
-                <option value="Durango">Durango</option>
-                <option value="Estado de México">Estado de México</option>
-                <option value="Guanajuato">Guanajuato</option>
-                <option value="Guerrero">Guerrero</option>
-                <option value="Hidalgo">Hidalgo</option>
-                <option value="Jalisco">Jalisco</option>
-                <option value="Michoacán">Michoacán</option>
-                <option value="Morelos">Morelos</option>
-                <option value="Nayarit">Nayarit</option>
-                <option value="Nuevo León">Nuevo León</option>
-                <option value="Oaxaca">Oaxaca</option>
-                <option value="Puebla">Puebla</option>
-                <option value="Querétaro">Querétaro</option>
-                <option value="Quintana Roo">Quintana Roo</option>
-                <option value="San Luis Potosí">San Luis Potosí</option>
-                <option value="Sinaloa">Sinaloa</option>
-                <option value="Sonora">Sonora</option>
-                <option value="Tabasco">Tabasco</option>
-                <option value="Tamaulipas">Tamaulipas</option>
-                <option value="Tlaxcala">Tlaxcala</option>
-                <option value="Veracruz">Veracruz</option>
-                <option value="Yucatán">Yucatán</option>
-                <option value="Zacatecas">Zacatecas</option>
-              </select>
-            </div>
+        <!-- INICIA INPUT PARA ESTAD-->
+        <div class="form-group" id="oculto" style="display:none;">
+          <label class="col-md-3 control-label">Estado</label>
+          <div class="col-md-6">
+            <select id="estadoMexico" class="form-control ">
+              <option selected disabled value="">Seleccione Estado</option>
+              <option value="Aguascalientes">Aguascalientes</option>
+              <option value="Baja California">Baja California</option>
+              <option value="Baja California Sur">Baja California Sur</option>
+              <option value="Campeche">Campeche</option>
+              <option value="Ciudad de México">Ciudad de México</option>
+              <option value="Coahuila">Coahuila</option>
+              <option value="Colima">Colima</option>
+              <option value="Chiapas">Chiapas</option>
+              <option value="Chihuahua">Chihuahua</option>
+              <option value="Durango">Durango</option>
+              <option value="Estado de México">Estado de México</option>
+              <option value="Guanajuato">Guanajuato</option>
+              <option value="Guerrero">Guerrero</option>
+              <option value="Hidalgo">Hidalgo</option>
+              <option value="Jalisco">Jalisco</option>
+              <option value="Michoacán">Michoacán</option>
+              <option value="Morelos">Morelos</option>
+              <option value="Nayarit">Nayarit</option>
+              <option value="Nuevo León">Nuevo León</option>
+              <option value="Oaxaca">Oaxaca</option>
+              <option value="Puebla">Puebla</option>
+              <option value="Querétaro">Querétaro</option>
+              <option value="Quintana Roo">Quintana Roo</option>
+              <option value="San Luis Potosí">San Luis Potosí</option>
+              <option value="Sinaloa">Sinaloa</option>
+              <option value="Sonora">Sonora</option>
+              <option value="Tabasco">Tabasco</option>
+              <option value="Tamaulipas">Tamaulipas</option>
+              <option value="Tlaxcala">Tlaxcala</option>
+              <option value="Veracruz">Veracruz</option>
+              <option value="Yucatán">Yucatán</option>
+              <option value="Zacatecas">Zacatecas</option>
+            </select>
           </div>
-          <!-- TERMINA INPUT PARA ESTAD-->
+        </div>
+        <!-- TERMINA INPUT PARA ESTAD-->
 
-          <!-- INICIA INPUT DE CIUDAD-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Ciudad</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control " id="ciudad" name="ciudad" value="<?=$ciudad;?>">
-            </div>
+        <!-- INICIA INPUT DE CIUDAD-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Ciudad</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control " id="ciudad" name="ciudad" value="<?=$ciudad;?>">
           </div>
-          <!-- TERMINA INPUT DE CIUDAD-->
+        </div>
+        <!-- TERMINA INPUT DE CIUDAD-->
 
-          <!-- INICIA INPUT CONTACTO-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Contacto</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control " id="contacto" name="contacto" value="<?=$contacto;?>">
-            </div>
+        <!-- INICIA INPUT CONTACTO-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Contacto</label>
+          <div class="col-md-6">
+            <input type="text" class="form-control " id="contacto" name="contacto" value="<?=$contacto;?>">
           </div>
-          <!-- TERMINA INPUT CONTACTO-->
+        </div>
+        <!-- TERMINA INPUT CONTACTO-->
 
-          <!-- INICIA INPUT PARA EMAIL-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">E-mail</label>
-            <div class="col-md-6">
-              <input type="email" step="any" class="form-control " id="email" name="email" value="<?=$email;?>">
-            </div>
+        <!-- INICIA INPUT PARA EMAIL-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">E-mail</label>
+          <div class="col-md-6">
+            <input type="email" step="any" class="form-control " id="email" name="email" value="<?=$email;?>">
           </div>
-          <!-- TERMINA INPUT PARA EMAIL-->
+        </div>
+        <!-- TERMINA INPUT PARA EMAIL-->
 
-          <!-- INICIA INPUT PARA TELEFONO-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Teléfono</label>
-            <div class="col-md-2">
+        <!--INICIA INPUT DE PRECIO DE VENTA -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Telefono</label>
+          <div class="col-md-2">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-phone-alt"></i>
+              </span>
               <input type="number" class="form-control" id="ladafijo" name="ladafijo" value="<?=$ladafijo;?>" required placeholder="Lada">
             </div>
-            <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-phone-alt"></i>
+              </span>
               <input type="number"  class="form-control " id="telefono" name="telefono" value="<?=$telfijo;?>" required placeholder="Teléfono">
             </div>
           </div>
-          <!-- TERMINA INPUT PARA TELEFONO-->
+        </div>
+        <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-          <!-- INICIA INPUT PARA CELULAR-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Celular</label>
-            <div class="col-md-2">
+        <!--INICIA INPUT DE PRECIO DE VENTA -->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Celular</label>
+          <div class="col-md-2">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-phone"></i>
+              </span>
               <input type="number" class="form-control" id="ladamovil" name="ladamovil" value="<?=$ladamovil;?>" placeholder="Lada">
             </div>
-            <div class="col-md-4">
-              <input type="text " step="any" class="form-control" id="celular" name="celular" value="<?=$telmovil;?>" placeholder="Teléfono">
+          </div>
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-phone"></i>
+              </span>
+              <input type="text " step="any" class="form-control" id="celular" name="celular" value="<?=$telmovil;?>" placeholder="Celular">
             </div>
           </div>
-          <!-- TERMINA INPUT PARA CELULAR-->
+        </div>
+        <!-- TERMINA INPUT DE PRECIO DE VENTA-->
 
-          <!-- INICIA INPUT PARA PAGINA WEB-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">Página Web</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="pagina" name="pagina" value="<?=$pagina;?>">
-            </div>
+        <!-- INICIA INPUT PARA PAGINA WEB-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">Página Web</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="pagina" name="pagina" value="<?=$pagina;?>">
           </div>
-          <!-- TERMINA INPUT PARA PAGINA WEB-->
+        </div>
+        <!-- TERMINA INPUT PARA PAGINA WEB-->
 
-          <!-- INICIA INPUT PARA ID FISCAL-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">ID Fiscal</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="idFiscal" name="idFiscal" value="<?=$idFiscal;?>">
-            </div>
+        <!-- INICIA INPUT PARA ID FISCAL-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">ID Fiscal</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="idFiscal" name="idFiscal" value="<?=$idFiscal;?>">
           </div>
-          <!-- TERMINA INPUT PARA ID FISCAL-->
+        </div>
+        <!-- TERMINA INPUT PARA ID FISCAL-->
 
-          <!-- INICIA INPUT PARA SCCAC-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">SCCAC</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="sccac" name="sccac" value="<?=$sccac;?>" required>
-            </div>
+        <!-- INICIA INPUT PARA SCCAC-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">SCCAC</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="sccac" name="sccac" value="<?=$sccac;?>" required>
           </div>
-          <!-- TERMINA INPUT PARA SCCAC-->
+        </div>
+        <!-- TERMINA INPUT PARA SCCAC-->
 
-          <!-- INICIA INPUT PARA CAAT-->
-          <div class="form-group">
-            <label class="col-md-3 control-label">CAAT</label>
-            <div class="col-md-6">
-              <input type="text" step="any" class="form-control " id="caat" name="caat" value="<?=$caat;?>" required>
-            </div>
+        <!-- INICIA INPUT PARA CAAT-->
+        <div class="form-group">
+          <label class="col-md-3 control-label">CAAT</label>
+          <div class="col-md-6">
+            <input type="text" step="any" class="form-control " id="caat" name="caat" value="<?=$caat;?>" required>
           </div>
+        </div>
 
-          <div class="text-center">
-            <hr>
-            <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-            <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
+        <div class="text-center">
+          <hr>
+          <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>"> 
 
-            <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-            <a href="../transportistas" class="btn grey-salsa btn-outline">Cancelar</a>
-          </div>
-          
-          <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
-        </form>
-        <!-- TERMINA FORM-->
-      </div>
+          <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+          <a href="../transportistas" class="btn grey-salsa btn-outline">Cancelar</a>
+        </div>
+        
+        <!--TERMINA GRUPO DE BOTONES DE FORMULARIO-->
+      </form>
+      <!-- TERMINA FORM-->
     </div>
-    <!-- TERMINA CUERPO DE PORTLET-->
   </div>
+  <!-- TERMINA CUERPO DE PORTLET-->
+</div>
   <!-- TERMINA PORTLET-->

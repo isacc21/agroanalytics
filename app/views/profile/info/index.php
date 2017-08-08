@@ -511,7 +511,7 @@ if(isset($_SESSION['login'])){
 									<div class="page-content">
 
 										<!--INICIA TITULO DE PAGINA -->
-										<h1 class="page-title"> <b>Usuarios</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+										<h1 class="page-title"> <b>Mi perfil</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
 										<!--TERMINA TITULO DE PAGINA-->
 
 										<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
@@ -628,7 +628,7 @@ if(isset($_SESSION['login'])){
 
 														<!-- INICIA TITULO DE PORTLET-->
 														<div class="portlet-title">
-															<div class="caption"><div class="font-grey-mint"> <b>Registro</b> </div> </div>
+															<div class="caption"><div class="font-grey-mint"> <b>Información de usuario</b> </div> </div>
 
 															<!-- TERMINA TITULO DE PORTLET-->
 															<div class="actions btn-set">

@@ -53,16 +53,33 @@ if(isset($_POST['nick'])){
 
 
 ###### SE RECIBEN VARIABLES "POST" PARA ENVIARLAS AL METODO ##########################
-			$usuarios->id = $_POST['id'];
-			$usuarios->nombre = $_POST['nombre'];
-			$usuarios->apellidos = $_POST['apellidos'];
-			$usuarios->nick = $_POST['nick'];
-			$usuarios->password = md5($_POST['password']);
+			$alert = "";
+			$username = $_POST['nick'];
+
+			$letras = strlen($_POST['nick']);
+
+			for ($i=0; $i < $letras ; $i++) { 
+				
+				if($username[$i]==" "){
+					$alert = 'El username contiene espacio'	;
+				}
+			}
+			if($alert!="El username contiene espacio"){
+				
+				$usuarios->nombre = $_POST['nombre'];
+				$usuarios->apellidos = $_POST['apellidos'];
+				$usuarios->nick = $_POST['nick'];
+				$usuarios->password = md5($_POST['password']);
+				$usuarios->id = $_POST['id'];
+
 
 
 ###### SE PROCESA EL METODO PARA REALIZAR EL PROCESO EN LA BASE DE DATOS #############
-			echo $usuarios->modificarUsuario();
-
+				echo $usuarios->modificarUsuario();
+			}
+			else{
+				echo $alert;
+			}
 		}## LLAVE DE IF DE COMPARACION DE NICKS
 		else{
 ###### EN CASO DE QUE NO COINCIDAN, SE ENVIA MENSAJE DE ALERTA #######################
@@ -92,15 +109,33 @@ if(isset($_POST['nick'])){
 		}
 		else{
 			###### SE RECIBEN VARIABLES "POST" PARA ENVIARLAS AL METODO ##########################
-			$usuarios->id = $_POST['id'];
-			$usuarios->nombre = $_POST['nombre'];
-			$usuarios->apellidos = $_POST['apellidos'];
-			$usuarios->nick = $_POST['nick'];
-			$usuarios->password = md5($_POST['password']);
+			$alert = "";
+			$username = $_POST['nick'];
+
+			$letras = strlen($_POST['nick']);
+
+			for ($i=0; $i < $letras ; $i++) { 
+				
+				if($username[$i]==" "){
+					$alert = 'El username contiene espacio'	;
+				}
+			}
+			if($alert!="El username contiene espacio"){
+				
+				$usuarios->nombre = $_POST['nombre'];
+				$usuarios->apellidos = $_POST['apellidos'];
+				$usuarios->nick = $_POST['nick'];
+				$usuarios->password = md5($_POST['password']);
+				$usuarios->id = $_POST['id'];
+
 
 
 ###### SE PROCESA EL METODO PARA REALIZAR EL PROCESO EN LA BASE DE DATOS #############
-			echo $usuarios->modificarUsuario();
+				echo $usuarios->modificarUsuario();
+			}
+			else{
+				echo $alert;
+			}
 		}## LLAVE DE IF PARA COMPARAR NICK CON RESULTADO DE FOREACH ######################
 	}
 	else{

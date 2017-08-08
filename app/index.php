@@ -147,6 +147,7 @@ if(isset($_SESSION['login'])){
 		<span class="title"> Usuarios</span>
 	</a></li>';
 
+
 	###### MODULO DE ATENCION AL CLIENTE ###############################################
 
 	$html_inicio_atnCliente='<li class="nav-item  ">
@@ -169,6 +170,23 @@ if(isset($_SESSION['login'])){
 		
 		<span class="title">1 | Cotizaciones</span>
 	</a></li>';
+
+	###### MODULO DE COMPRAS ###############################################
+
+	$html_inicio_compras='<li class="nav-item">
+	<a href="javascript:;" class="nav-link nav-toggle">
+		<i class="icon-basket"></i>
+		<span class="title">Compras</span>
+		<span class="arrow"></span>
+	</a><ul class="sub-menu">';
+
+	$html_final_compras = '</ul></li>';
+
+	$html_compra='<li class="nav-item  ">
+	<a href="views/almacen/ordenesCompra" class="nav-link ">
+		<span class="title">1 | Órdenes de Compra</span>
+	</a></li>';
+
 
 	###### MODULO DE ADUANAS ###########################################################
 
@@ -206,25 +224,19 @@ if(isset($_SESSION['login'])){
 	$html_inventario='<li class="nav-item  ">
 	<a href="views/almacen/inventario" class="nav-link ">
 		
-		<span class="title">2 | Inventario</span>
-	</a></li>';
-
-	$html_compra='<li class="nav-item  ">
-	<a href="views/almacen/ordenesCompra" class="nav-link ">
-		
-		<span class="title">1 | Órdenes de Compra</span>
+		<span class="title">1 | Inventario</span>
 	</a></li>';
 
 	$html_carga='<li class="nav-item  ">
 	<a href="views/almacen/ordenesCarga" class="nav-link ">
 		
-		<span class="title">3 | Órdenes de Carga</span>
+		<span class="title">2 | Órdenes de Carga</span>
 	</a></li>';
 
 	$html_remisiones='<li class="nav-item  ">
 	<a href="views/almacen/remisiones" class="nav-link ">
 		
-		<span class="title">4 | Remisiones</span>
+		<span class="title">3 | Remisiones</span>
 	</a></li>';
 
 	###### MODULO DE CONTABILIDAD ######################################################
@@ -475,6 +487,17 @@ if(isset($_SESSION['login'])){
 										?>
 										<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
 
+										<!-- INICIA MODULO DE COMPRAS -->
+										<?php 
+
+										if($compra!='0000'){
+											echo $html_inicio_compras;
+											echo $html_compra;
+											echo $html_final_compras;
+										}
+
+										?>
+										<!-- TERMINA MODULO DE COMPRAS -->
 
 										<!--INICIA MÓDULO DE ADUANAS-->
 										<?php
@@ -495,13 +518,10 @@ if(isset($_SESSION['login'])){
 
 										<!--INICIA MÓDULO DE ALMACÉN-->
 										<?php
-										if($inventario!='0000'||$compra!='0000'||$carga!='0000'||$remisiones!='0000'){
+										if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
 
 											echo $html_inicio_almacen;
 											
-											if($compra!='0000'){
-												echo $html_compra;
-											}
 											if($inventario!='0000'){
 												echo $html_inventario;
 											}

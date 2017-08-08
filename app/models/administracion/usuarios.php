@@ -146,7 +146,12 @@ class usuarios{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      $query = "DELETE FROM usuarios WHERE idUsuario = '".$this->id."'";
+      $query = "UPDATE usuarios SET
+     
+      nickUsuario =         '*****',
+      passwordUsuario =     '*****'
+
+      WHERE idUsuario =     '".$this->id."'";
 
       $statement = $conexion->prepare($query);
 
@@ -174,7 +179,7 @@ class usuarios{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM usuarios");
+      return $resultados = $conexion->query("SELECT * FROM usuarios WHERE nickUsuario <> '*****' AND passwordUsuario <> '*****'");
 
     }
 

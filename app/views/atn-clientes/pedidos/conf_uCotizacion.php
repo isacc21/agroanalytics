@@ -92,9 +92,9 @@ if (isset($_REQUEST['codigo'])){
 
 					<!-- INICIA INPUT FOLIO-->
 					<div class="form-group">
-						<label class="col-md-4 control-label">Confirmar contraseña</label>
+						<label class="col-md-4 control-label">Autorización</label>
 						<div class="col-md-6">
-							<input type="password" class="form-control" id="pass" name="pass" required>
+							<input type="password" class="form-control" id="pass" name="pass" required placeholder="Ingresa tu contraseña">
 							<input type="hidden" id="coti" name="coti" value="<?=$codigo;?>">
 						</div>
 					</div>

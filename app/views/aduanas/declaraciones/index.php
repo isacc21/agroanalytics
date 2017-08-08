@@ -121,6 +121,22 @@ if(isset($_SESSION['login'])){
         <span class="title">1 | Cotizaciones</span>
     </a></li>';
 
+    ###### MODULO DE COMPRAS ###############################################
+
+    $html_inicio_compras='<li class="nav-item">
+    <a href="javascript:;" class="nav-link nav-toggle">
+        <i class="icon-basket"></i>
+        <span class="title">Compras</span>
+        <span class="arrow"></span>
+    </a><ul class="sub-menu">';
+
+    $html_final_compras = '</ul></li>';
+
+    $html_compra='<li class="nav-item  ">
+    <a href="../../../views/almacen/ordenesCompra" class="nav-link ">
+        <span class="title">1 | Órdenes de Compra</span>
+    </a></li>';
+
     ###### MODULO DE ADUANAS ###########################################################
 
     $html_inicio_aduanas='<li class="nav-item start active open   ">
@@ -155,22 +171,17 @@ if(isset($_SESSION['login'])){
 
     $html_inventario='<li class="nav-item  ">
     <a href="../../../views/almacen/inventario" class="nav-link ">
-        <span class="title">2 | Inventario</span>
-    </a></li>';
-
-    $html_compra='<li class="nav-item ">
-    <a href="../../../views/almacen/ordenesCompra" class="nav-link ">
-        <span class="title">1 | Órdenes de Compra</span>
+        <span class="title">1 | Inventario</span>
     </a></li>';
 
     $html_carga='<li class="nav-item  ">
     <a href="../../../views/almacen/ordenesCarga" class="nav-link ">
-        <span class="title">3 | Órdenes de Carga</span>
+        <span class="title">2 | Órdenes de Carga</span>
     </a></li>';
 
     $html_remisiones='<li class="nav-item  ">
     <a href="../../../views/almacen/remisiones" class="nav-link ">
-        <span class="title">4 | Remisiones</span>
+        <span class="title">3 | Remisiones</span>
     </a></li>';
 
     ###### MODULO DE CONTABILIDAD ######################################################
@@ -391,6 +402,19 @@ if(isset($_SESSION['login'])){
                                         ?>
                                         <!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
 
+                                        <!-- INICIA MODULO DE COMPRAS -->
+                                        <?php 
+
+                                        if($compra!='0000'){
+                                            echo $html_inicio_compras;
+                                            echo $html_compra;
+                                            echo $html_final_compras;
+                                        }
+
+                                        ?>
+                                        <!-- TERMINA MODULO DE COMPRAS -->
+
+
 
                                         <!--INICIA MÓDULO DE ADUANAS-->
                                         <?php
@@ -411,12 +435,10 @@ if(isset($_SESSION['login'])){
 
                                         <!--INICIA MÓDULO DE ALMACÉN-->
                                         <?php
-                                        if($inventario!='0000'||$compra!='0000'||$carga!='0000'||$remisiones!='0000'){
+                                        if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
 
                                             echo $html_inicio_almacen;
-                                            if($compra!='0000'){
-                                                echo $html_compra;
-                                            }
+                                            
                                             if($inventario!='0000'){
                                                 echo $html_inventario;
                                             }
@@ -460,55 +482,55 @@ if(isset($_SESSION['login'])){
                                 <div class="page-content-wrapper">
                                     <div class="page-content">
 
-                                     <!-- INICIA TITULO DE PAGINA-->
-                                     <h1 class="page-title"> <b>Declaraciones de aduanas</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
-                                     <!-- TERMINA TITULO DE PAGINA -->
+                                       <!-- INICIA TITULO DE PAGINA-->
+                                       <h1 class="page-title"> <b>Declaraciones de aduanas</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                       <!-- TERMINA TITULO DE PAGINA -->
 
-                                     <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-                                     <style type="text/css">
-                                      div#mainContent {margin:0}
-                                      body {overflow-x:hidden;}
-                                  </style>
+                                       <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                       <style type="text/css">
+                                          div#mainContent {margin:0}
+                                          body {overflow-x:hidden;}
+                                      </style>
 
-                                  <!--INICIA MAIN CONTENT USADO POR AJAX-->
-                                  <div id="mainContent" class="page-container">
+                                      <!--INICIA MAIN CONTENT USADO POR AJAX-->
+                                      <div id="mainContent" class="page-container">
 
 
-                                    <div class="row">
+                                        <div class="row">
 
-                                        <!--INICIA LISTA DE USUARIOS-->
-                                        <?php 
-                                        if($declaraciones[1]=='2'){
-                                            echo $html_import;
-                                        }
-                                        if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
-                                            
-                                            echo $html_lista;
-                                            echo $html_reporte;
-                                        }
-                                        ?>
+                                            <!--INICIA LISTA DE USUARIOS-->
+                                            <?php 
+                                            if($declaraciones[1]=='2'){
+                                                echo $html_import;
+                                            }
+                                            if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
+                                                
+                                                echo $html_lista;
+                                                echo $html_reporte;
+                                            }
+                                            ?>
 
+                                        </div>
+                                        <!--TERMINA PORTLET DE USUARIOS-->
                                     </div>
-                                    <!--TERMINA PORTLET DE USUARIOS-->
+                                    <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
                                 </div>
-                                <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
+                            </div>
+                            <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                        </div>
+                        <!-- TERMINA CONTENEDOR -->
+
+
+                        <!-- INICIA FOOTER -->
+                        <div class="page-footer">
+                            <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+                            </div>
+                            <div class="scroll-to-top">
+                                <i class="icon-arrow-up"></i>
                             </div>
                         </div>
-                        <!-- TERMINA CONTENIDO DE LA PAGINA -->
+                        <!-- TERMINA FOOTER -->
                     </div>
-                    <!-- TERMINA CONTENEDOR -->
-
-
-                    <!-- INICIA FOOTER -->
-                    <div class="page-footer">
-                        <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-                        </div>
-                        <div class="scroll-to-top">
-                            <i class="icon-arrow-up"></i>
-                        </div>
-                    </div>
-                    <!-- TERMINA FOOTER -->
-                </div>
 
         <!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>
