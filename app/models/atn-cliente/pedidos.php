@@ -209,7 +209,7 @@ class pedidos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM pedidos");
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE yyyyPedido = '".date(Y)."'");
 
     }
 
@@ -260,24 +260,7 @@ class pedidos{
   }
 
 
-  public function consultarDetalle(){
-    try {
 
-      //CONEXION A LA BASE DE DATOS
-      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
-
-      $conexion -> exec("set names utf8");
-
-      //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM detallepedidos WHERE folioPedido = '".$this->folio."'");
-
-    }
-
-    catch(PDOException $e){
-      return "Error: " . $e->getMessage();
-    }
-  }
 
 
   public function consultarProductosxID(){
@@ -535,5 +518,28 @@ class pedidos{
   }
   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+public function consultarDetalle(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM detallepedidos AS a 
+        INNER JOIN productos AS b ON a.codigoProducto = b.codigoProducto
+        INNER JOIN pedidos AS c ON a.folioPedido = c.folioPedido
+        INNER JOIN clientes AS d ON c.rfcCliente = d.rfcCliente
+        WHERE a.folioPedido ='".$this->folio."'");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
 }
 ?>

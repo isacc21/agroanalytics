@@ -49,7 +49,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 	$zahler = 0;
 
-	$fechaCodigo = "G".$dia.$mes.$anio[2].$anio[3];
+	$fechaCodigo = "E".$dia.$mes.$anio[2].$anio[3];
 	$pedidos->codigo = $fechaCodigo."%";
 	$encontrados = $pedidos->consultarCodigos();
 	foreach($encontrados as $row){

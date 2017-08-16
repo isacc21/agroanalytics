@@ -13,7 +13,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	/*SCRIPT PARA GENERAR FOLIOS CON FECHA Y NUMERO CONTINUO*/
 	$zahler = 0;
 
-	$fechaCodigo = "N".date('d').date('m').date('y');
+	$fechaCodigo = "G".date('d').date('m').date('y');
 	$remisiones->codigo = $fechaCodigo."%";
 	$encontrados = $remisiones->consultarCodigos();
 	foreach($encontrados as $row){
@@ -253,7 +253,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 				echo 'Message could not be sent.';
 				echo 'Mailer Error: ' . $mail->ErrorInfo;
 			} else {
-				echo 'Message has been sent';
+				//echo 'Message has been sent';
 			}
 
 		}

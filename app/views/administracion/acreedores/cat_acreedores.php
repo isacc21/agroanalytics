@@ -120,6 +120,11 @@ if(isset($_SESSION['login'])){
             $telefono = $row['telefonoAcreedor'];
             $celular = $row['celularAcreedor'];
 
+            $ladafijo = '';
+            $telfijo='';
+            $ladamovil='';
+            $telmovil='';
+
             for ($i=0; $i <(strlen($telefono)) ; $i++) { 
               if($telefono[$i]=="("){
                 $abreF = $i;

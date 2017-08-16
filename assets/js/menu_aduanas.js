@@ -12,10 +12,7 @@ $(document).ready(function(){
 		$("#mainContent").load( "form_importaciones.php" );
 	}); /* CIERRE SECCION DOLARES */
 
-	/* RUTA A SECCION DOLARES*/
-	$("#rep_importacion").click(function(){
-		$("#mainContent").load( "form_fechas.php" );
-	}); /* CIERRE SECCION DOLARES */
+
 
 
 
@@ -32,9 +29,5 @@ $(document).ready(function(){
 		$("#mainContent").load( "cat_declaraciones.php" );
 	}); /* CIERRE SECCION DOLARES */
 
-	/* RUTA A SECCION DOLARES*/
-	$("#rep_declaracion").click(function(){
-		$("#mainContent").load( "reportes.php" );
-	}); /* CIERRE SECCION DOLARES */
 
 }); /* TERMINA PROCESO JQUERY */

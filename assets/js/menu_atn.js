@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	/* RUTA A SECCION DOLARES*/
 	$("#rep_coti").click(function(){
-		$("#mainContent").load( "reportes.php" );
+		$("#mainContent").load( "cat_cotizaciones_all.php" );
 	}); /* CIERRE SECCION DOLARES */
 
 

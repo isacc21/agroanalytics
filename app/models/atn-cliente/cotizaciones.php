@@ -117,7 +117,7 @@ class cotizaciones{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM cotizaciones ORDER BY yyyyCotizacion DESC, mmCotizacion DESC, ddCotizacion DESC");
+      return $resultados = $conexion->query("SELECT * FROM cotizaciones WHERE yyyyCotizacion = '".date(Y)."' ORDER BY yyyyCotizacion DESC, mmCotizacion DESC, ddCotizacion DESC");
 
     }
 
@@ -126,6 +126,25 @@ class cotizaciones{
     }
   }
   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   public function consultarCotizacionesAll(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM cotizaciones ORDER BY yyyyCotizacion DESC, mmCotizacion DESC, ddCotizacion DESC");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
 
 
   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,7 +344,7 @@ class cotizaciones{
   }
   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   public function consultarPreciosAll(){
+  public function consultarPreciosAll(){
     try {
 
       //CONEXION A LA BASE DE DATOS
@@ -359,17 +378,17 @@ class cotizaciones{
 
       //CONEXION A LA BASE DE DATOS
       $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-      dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para modificar un registro
       $query = "UPDATE cotizaciones SET
 
-          statusCotizacion = 3,
-          idUsuario = '".$this->id."'
+      statusCotizacion = 3,
+      idUsuario = '".$this->id."'
 
-          WHERE folioCotizacion =   '".$this->folio."'";
+      WHERE folioCotizacion =   '".$this->folio."'";
 
       $statement = $conexion->prepare($query);
 
@@ -395,7 +414,11 @@ class cotizaciones{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM detallecotizacion WHERE folioCotizacion ='".$this->folio."'");
+      return $resultados = $conexion->query("SELECT * FROM detallecotizacion AS a 
+        INNER JOIN productos AS b ON a.codigoProducto = b.codigoProducto
+        INNER JOIN cotizaciones AS c ON a.folioCotizacion = c.folioCotizacion
+        INNER JOIN clientes AS d ON c.rfcCliente = d.rfcCliente
+        WHERE a.folioCotizacion ='".$this->folio."'");
 
     }
 
@@ -416,7 +439,7 @@ class cotizaciones{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM productos WHERE codigoProducto = '".$this->producto."' ");
+      return $resultados = $conexion->query("SELECT * FROM productos WHERE codigoProducto ='".$this->producto."' ");
 
     }
 
@@ -433,17 +456,17 @@ class cotizaciones{
 
       //CONEXION A LA BASE DE DATOS
       $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-      dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para modificar un registro
       $query = "UPDATE cotizaciones SET
 
-          statusCotizacion = 2,
-          idUsuario = '".$this->id."'
+      statusCotizacion = 2,
+      idUsuario = '".$this->id."'
 
-          WHERE folioCotizacion =   '".$this->folio."'";
+      WHERE folioCotizacion =   '".$this->folio."'";
 
       $statement = $conexion->prepare($query);
 
@@ -480,7 +503,7 @@ class cotizaciones{
   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-   public function consultarCodigos(){
+  public function consultarCodigos(){
     try {
 
       //CONEXION A LA BASE DE DATOS

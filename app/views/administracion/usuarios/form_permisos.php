@@ -153,6 +153,7 @@ $bancos = "";
 $cxc = "";
 $cxp = "";
 $idPermiso="";
+$idUsuario="";
 
 
 ###### RECEPCION DE ID USUARIO #######################################################
@@ -162,7 +163,7 @@ $idUsuario=(isset($_REQUEST['idUsuario']))?$_REQUEST['idUsuario']:"";
 
 
 ###### IF EN CASO DE QUE SE RECIBA UN DATO ###########################################
-if (isset($_REQUEST['idUsuario'])){
+if (isset($idUsuario)){
 
 ###### CREACION DEL OBJETO USUARIOS ##################################################
 	$usuarios = new usuarios($datosConexionBD);
@@ -1618,13 +1619,13 @@ $("#back_pusers").click(function(){
            </table>
 
            <input type="hidden" id="idPermiso" value="<?=$idPermiso; ?>">
-           <input type="hidden" id="sesion" value="<?=$sesionAc;?>">
+
 
            <div class="text-center">
             <hr>
             <!--BOTON DE GUARDAR O ACTUALIZAR-->
             <?php
-            if($_REQUEST['idUsuario']!=""){
+            if($idUsuario!=""){
               $nombreSubmit="Actualizar";
             }
             else{

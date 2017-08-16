@@ -90,7 +90,7 @@ class PDF extends FPDF
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(45);
-		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219-8. Local 8 2DO Piso'),0,0,'L');
+		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219. Local 8 2DO Piso'),0,0,'L');
 		$this->setX(125);
 		$this->Cell(85,0,utf8_decode($_SESSION['lineauno']),0,0,'L');
 		$this->Ln(5);

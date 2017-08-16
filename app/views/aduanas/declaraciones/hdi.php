@@ -45,7 +45,7 @@ class PDF extends FPDF
 	{
 		
 		
-		$this->Image('../../../../resources/gologo.jpg',7,6,50);
+		$this->Image('../../../../resources/gologo.jpg',7,6,42);
 		$this->AddFont('segoeuisl','');
 		$this->AddFont('segoeuib','');
 		$this->AddFont('segoeuil','');
@@ -285,11 +285,12 @@ foreach($result as $row){
 			$pdf->Cell(20,6,utf8_decode('Kilos'),0,0,'C',1);
 			$pdf->Cell(20,6,utf8_decode($factura) ,0,0,'C',1);
 			$pdf->Ln(5);
+			$peso_kilos +=$peso_metrico;
 		}
 	}
 }
 
-$ptotal = number_format($peso,2, '.', ',');
+$ptotal = number_format($peso_kilos,2, '.', ',');
 $pdf->Ln(15);
 $pdf->SetFillColor(242,242,242);
 $pdf->SetFont('Arial','B',12);

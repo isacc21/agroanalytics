@@ -29,7 +29,7 @@ if(isset($_SESSION['login'])){
         $transportistas = $row['transportistasPermiso'];
         $clientes = $row['clientesPermiso'];
         $productos = $row['productosPermiso'];
-        $usuarios = $row['usuariosPermiso'];
+        $users = $row['usuariosPermiso'];
         $pedidos = $row['pedidosPermiso'];
         $cotizaciones = $row['cotizacionesPermiso'];
         $importaciones = $row['importacionesPermiso'];
@@ -81,6 +81,11 @@ if(isset($_SESSION['login'])){
     $html_productos = '<li class="nav-item">
     <a href="../../../views/administracion/productos" class="nav-link ">
         <span class="title">4 | Productos</span>
+    </a></li>';
+
+    $html_banco = '<li class="nav-item">
+    <a href="../../../views/administracion/bancos" class="nav-link ">
+        <span class="title">6 | Bancos</span>
     </a></li>';
 
    ###### MODULO DE ADMINISTRADOR ###############################################
@@ -356,9 +361,9 @@ if(isset($_SESSION['login'])){
 
                                         <!--INICIA MÓDULO DE ADMINISTRACIÓN-->
                                         <?php
-                                        if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
+                                        if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'){
 
-                                            if($usuarios!=='0000'){
+                                            if($users!=='0000'){
                                                 echo $html_inicio_administrador;
                                                 echo $html_usuarios;
                                                 echo $html_final_administrador;
@@ -380,6 +385,11 @@ if(isset($_SESSION['login'])){
                                             if($clientes!='0000'){
                                                 echo $html_clientes;
                                             }
+
+                                            if($bancos!='0000'){
+                                                echo $html_banco;
+                                            }
+
                                             echo $html_final_administracion;
                                         }
                                         ?>

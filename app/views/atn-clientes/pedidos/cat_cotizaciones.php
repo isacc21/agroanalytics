@@ -390,172 +390,137 @@ foreach($consultarProductos as $row){
     $cantidad = $row['cantidadDetalleCotizacion'];
     $unidad = $row['unidadDetalleCotizacion'];
     $monto = $row['montoDetalleCotizacion'];
-
-
-
-
-    $typep="";
-    switch($unidad){
-      case "Litros":
-      $typep = "  [Lit]";
-      $precio_unidad = 1;
-      break;
-      case "Galones":
-      $typep = "  [Gal]";
-      $precio_unidad = 2;
-      break;
-      case "Ton_Metrica": 
-      $typep = "  [Ton. Met.]";
-      $precio_unidad = 1;
-      break;
-      case "Ton_Corta": 
-      $typep = "  [Ton. Corta]";
-      $precio_unidad = 2;
-      break;
-    }
-    $cotizaciones->producto = $producto;
-    $cProducto = $cotizaciones->consultarProductosxID();
-
-    $cotizaciones->cliente = $cliente;
-    $lista_clientes = $cotizaciones->consultarClientes();
-    foreach($lista_clientes as $row){
-     $cliente_tipo = $row['tipoCliente'];
-   }
-
-   foreach($cProducto as $row){
     $nombreProducto = $row['nombreProducto'];
     $presentacion = $row['presentacionProducto'];
-    if($cliente_tipo != 2){
-      if($cliente_tipo==1){
-        $precio_ingles = $row['iVentaDisProducto'];
-        $precio_metrico = $row['mVentaDisProducto'];
-      }
-      else{
-        if($cliente_tipo == 3){
-          $precio_ingles = $row['iVentaGrwProducto'];
-          $precio_metrico = $row['mVentaGrwProducto'];    
-        }
+    $tipo_cliente = $row['tipoCliente'];
+    $rfc = $row['rfcCliente'];
+
+    if($tipo_cliente == 2){
+      $cotizaciones->producto=$producto;
+      $cotizaciones->cliente = $rfc;
+      $result_clientes = $cotizaciones->consultarPrecios();
+      foreach($result_clientes as $row){
+        $precio_ingles = $row['iPrecioEspecial'];
+        $precio_metrico = $row['mPrecioEspecial'];
       }
     }
     else{
-      if($cliente_tipo == 2){
-        $cotizaciones->cliente = $cliente;
-        $cotizaciones->producto = $producto;
-        $lista_precios = $cotizaciones->consultarPrecios();
+      if($tipo_cliente == 1){
+        $precio_ingles = $row['iVentaDisProducto'];
+        $precio_metrico = $row['iVentaGrwProducto'];
+      }
+      else{
+        if($tipo_cliente == 3){
+         $precio_ingles = $row['mVentaDisProducto'];
+         $precio_metrico = $row['mVentaGrwProducto'];
+       }
+     }
+   }
 
-        foreach($lista_precios as $row){
-          $precio_ingles = $row['iPrecioEspecial'];
-          $precio_metrico = $row['mPrecioEspecial'];
+   switch($unidad){
+    case 'Galones':
+    $typep = '[GAL]';
+    $precio_usar = $precio_ingles;
+    break;
+    case 'Ton_Corta':
+    $typep = '[TON.CORTA]';
+    $precio_usar = $precio_ingles;
+    break;
+    case 'Litros':
+    $typep = '[LIT]';
+    $precio_usar = $precio_metrico;
+    break;
+    case 'Ton_Metrica':
+    $typep = '[TON.MET]';
+    $precio_usar = $precio_metrico;
+    break;
+   }
+
+   switch($presentacion){
+    case 1:
+    $pres = ' | Cubeta';
+    break;
+    case 2:
+    $pres = ' | Tibor';
+    break;
+    case 3:
+    $pres = ' | Tote';
+    break;
+    case 2:
+    $pres = ' | Granel';
+    break;
+    case 5:
+    $pres = ' | Saco';
+    break;
+    case 6:
+    $pres = ' | S.Saco';
+    break;
+   }
+
+   ?>
+   <tr>
+    <td><?php echo $nombreProducto.$pres;?></td>
+    <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
+    <td><?php echo "$ ".number_format($precio_usar,2, '.', ','); ?></td>
+    <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
+    <td>
+      <?php 
+
+      $cotizaciones->producto =$producto;
+      $num_inventario = $cotizaciones->inventarioEsp();
+
+      foreach($num_inventario as $row){
+        $existencia = $row['SUM(existenciaInventario)'];
+      }
+      $binExistencia = 0;
+
+      if(is_null($existencia)){
+        $binExistencia = 1;
+      }
+      else{
+        switch($unidad){
+          case "Ton_Corta";
+          break;
+          case "Galones":
+          $qty = $cantidad;
+          break;
+
+          case "Litros":
+          $qty = $cantidad*0.26417205;
+          break;
+
+          case "Ton_Metrica": 
+          $qty = $cantidad*1.1023;
+          break;
         }
       }
-    }
 
-    switch($presentacion){
-      case 1:
-      $pres = " | Cubeta";
-      break;
-      case 2:
-      $pres = " | Tibor";
-      break;
-      case 3:
-      $pres = " | Tote";
-      break;
-      case 4:
-      $pres = " | Granel";
-      break;
-      case 5:
-      $pres = " | Saco";
-      break;
-      case 6:
-      $pres = " | Súper saco";
-      break;
-    }
+      $faltante = $qty-$existencia;
+      if($faltante>0){
+        $binExistencia = 1;
+      }
 
-    switch($unidad){
-      case "Litros":
 
-      $precio_usar = $precio_metrico;
-      break;
-      case "Galones":
+      $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
+      $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
 
-      $precio_usar = $precio_ingles;
-      break;
-      case "Ton_Metrica": 
-
-      $precio_usar = $precio_metrico;
-      break;
-      case "Ton_Corta": 
-
-      $precio_usar = $precio_ingles;
-      break;
-    }
-
-    
-
-    ?>
-    <tr>
-      <td><?php echo $nombreProducto.$pres;?></td>
-      <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
-      <td><?php echo "$ ".number_format($precio_usar,2, '.', ','); ?></td>
-      <td><?php echo "$ ".number_format($monto,2, '.', ','); ?></td>
-      <td>
-        <?php 
-
-        $cotizaciones->producto =$producto;
-        $num_inventario = $cotizaciones->inventarioEsp();
-
-        foreach($num_inventario as $row){
-          $existencia = $row['SUM(existenciaInventario)'];
-        }
-        $binExistencia = 0;
-
-        if(is_null($existencia)){
-          $binExistencia = 1;
+      if($binExistencia==1&&$status != 4&&$status != 3){
+        echo $negative;
+      }
+      else{
+        if($binExistencia == 0 && $status != 4&&$status != 3){
+          echo $positive;  
         }
         else{
-          switch($unidad){
-            case "Ton_Corta";
-            break;
-            case "Galones":
-            $qty = $cantidad;
-            break;
-
-            case "Litros":
-            $qty = $cantidad*0.26417205;
-            break;
-
-            case "Ton_Metrica": 
-            $qty = $cantidad*1.1023;
-            break;
-          }
+          echo '';
         }
 
-        $faltante = $qty-$existencia;
-        if($faltante>0){
-          $binExistencia = 1;
-        }
+      }
+      ?>
+    </td>
+  </tr>
+  <?php
 
-
-        $positive='<div class="text-center"><span class="badge badge-success badge-roundless"> &nbsp;Sí&nbsp; </span></div>';
-        $negative='<div class="text-center"><span class="badge badge-danger badge-roundless"> No </span></div>';
-
-        if($binExistencia==1&&$status != 4&&$status != 3){
-          echo $negative;
-        }
-        else{
-          if($binExistencia == 0 && $status != 4&&$status != 3){
-            echo $positive;  
-          }
-          else{
-            echo '';
-          }
-
-        }
-        ?>
-      </td>
-    </tr>
-    <?php
-  }
   $total_coti += $monto;
 }
 ?>

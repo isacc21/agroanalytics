@@ -22,12 +22,6 @@ $(document).ready(function(){
 	}); /* CIERRE DE REGISTRO DE USUARIOS */
 
 
-	/* RUTA A REGISTRO DE PROVISIONAL DE PERMISOS DE USUARIO */
-	$("#rep_user").click(function(){
-		$("#mainContent").load( "form_permisos.php" );
-	}); /* CIERRE DE REGISTRO DE PROVISIONAL DE PERMISOS DE USUARIO */
-
-
 	/****************** PRODUCTOS ****************************/
 
 	/* RUTA A LISTA DE PRODUCTOS */
@@ -97,22 +91,23 @@ $(document).ready(function(){
 		$("#mainContent").load( "form_clientes.php" );
 	}); /* CIERRE DE REGISTRO DE CLIENTES */
 
+
+	/****************** CLIENTES **************************/
+
+	/* RUTA A LISTA DE CLIENTES*/
+	$("#add_bancos").click(function(){
+		$("#mainContent").load( "form_bancos.php" );
+	}); /* CIERRE DE LISTA DE CLIENTES */
+
 	/* RUTA A REGISTRO DE CLIENTES */
-	$("#rep_client").click(function(){
-		$("#mainContent").load( "form_precios.php" );
+	$("#list_bancos").click(function(){
+		$("#mainContent").load( "cat_bancos.php" );
 	}); /* CIERRE DE REGISTRO DE CLIENTES */
 
-	/****************** BANCOS **************************/
-
-	/* RUTA A SECCION DOLARES*/
-	$("#sec_dolares").click(function(){
-		$("#mainContent").load( "sec_dolares.php" );
-	}); /* CIERRE SECCION DOLARES */
-
-	/* RUTA A SECCION PESOS*/
-	$("#sec_pesos").click(function(){
-		$("#mainContent").load( "sec_pesos.php" );
-	}); /* CIERRE SECCION PESOS */
+	/* RUTA A REGISTRO DE CLIENTES */
+	$("#rep_bancos").click(function(){
+		$("#mainContent").load( "repo_bancos.php" );
+	}); /* CIERRE DE REGISTRO DE CLIENTES */
 
 
 

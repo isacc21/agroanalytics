@@ -10,7 +10,7 @@ date_default_timezone_set('America/Tijuana');
 include '../../../../config.php';
 
 ###### REQUIRE DE LA LIBRERIA DE METODOS DE ACREEDORES ###############################
-require '../../../models/contabilidad/dolares/bancos.php';
+require '../../../models/atn-cliente/cotizaciones.php';
 
 
 ###### RECEPCION DE VARIABLE EN CASO DE MODIFICACION #################################

@@ -135,7 +135,7 @@ if (isset($_REQUEST['idUsuario'])){
         showCloseButton: true,
         confirmButtonText:'Cerrar'
       });
-      window.location = "";
+      $("#mainContent").load( "form_permisos.php" );
 
     }else{
       swal({

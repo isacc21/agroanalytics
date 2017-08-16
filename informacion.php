@@ -51,9 +51,10 @@ Estatus de registro en Bancos - Tablas usdBancos y mxnBancos
 2 = Cancelado
 
 Estatus de registro en Cuentas por Pagar - Tablas usdCuentasP y mxnCuentasP
-1 = Activo
-2 = Cancelado
-3 = Saldado
+1 = Pendiente a pago
+2 = Saldada
+3 = Vencida
+4 = Cancelada
 
 Estatus de registro en Cuentas por Cobrar - Tablas usdCuentasC y mxnCuentasC
 1 = Activo

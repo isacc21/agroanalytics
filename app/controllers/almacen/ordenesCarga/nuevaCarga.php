@@ -16,7 +16,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	$zahler = 0;
 	$x = 0;
 
-	$fechaCodigo = "M".date('d').date('m').date('y');
+	$fechaCodigo = "F".date('d').date('m').date('y');
 	$ordenesCarga->codigo = $fechaCodigo."%";
 	$encontrados = $ordenesCarga->consultarCodigos();
 	foreach($encontrados as $row){

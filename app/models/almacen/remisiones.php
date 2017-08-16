@@ -47,6 +47,7 @@ class remisiones{
 			ddRemision,
 			mmRemision,
 			yyyyRemision,
+			statusRemision,
 			idUsuario)
 
 			VALUES (
@@ -56,6 +57,7 @@ class remisiones{
 			'".$this->dd."',
 			'".$this->mm."',
 			'".$this->yyyy."',
+			1,
 			'".$this->id."'
 			)";
 

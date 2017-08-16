@@ -133,6 +133,11 @@ foreach ($result as $row){
               $telefono = $row['telefonoCliente'];
               $celular = $row['celularCliente'];
 
+              $ladafijo = '';
+              $telfijo='';
+              $ladamovil='';
+              $telmovil='';
+
               for ($i=0; $i <(strlen($telefono)) ; $i++) { 
                 if($telefono[$i]=="("){
                   $abreF = $i;

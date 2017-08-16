@@ -137,7 +137,7 @@ date_default_timezone_set('America/Tijuana');
 	<link href="assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
 
 
-	<link href="assets/pages/css/login-4.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
 
 	<!--SE AGREGA JQUERY POR GOOGLE APIS PARA QUE FUNCIONE AJAX-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -202,7 +202,7 @@ date_default_timezone_set('America/Tijuana');
 		<body class="login">
 			<div class="logo">
 				<a href="">
-					<img src="assets/img/agroanalytics_index.png" alt="logo_index" /> </a>
+					<img src="assets/img/index3.png" alt="logo_index" /> </a>
 				</div>
 				<!-- END LOGO -->
 				<!-- BEGIN LOGIN -->
@@ -268,7 +268,7 @@ date_default_timezone_set('America/Tijuana');
 						<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 						<script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 
-						<script src="assets/pages/scripts/login-4.js" type="text/javascript"></script>
+						<script src="assets/pages/scripts/login.js" type="text/javascript"></script>
 						<script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 
 						<script src="assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>

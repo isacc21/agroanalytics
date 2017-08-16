@@ -1,4 +1,5 @@
 <?php
+
 ######################################################################################
 # ISACC JAVIER LOZANO MONTAÑEZ (IJLM)                                                #
 # 14 Febrero 2017 : 10:00                                                            #
@@ -48,6 +49,7 @@ if(isset($_SESSION['login'])){
 
 ###### REQUIRE DE LA LIBRERIA DE METODOS DE USUARIOS #################################
 	require 'models/administracion/usuarios.php';
+	require 'models/principal.php';
 	require 'models/atn-cliente/cotizaciones.php';
 
 
@@ -71,7 +73,7 @@ if(isset($_SESSION['login'])){
 		$transportistas = $row['transportistasPermiso'];
 		$clientes = $row['clientesPermiso'];
 		$productos = $row['productosPermiso'];
-		$usuarios = $row['usuariosPermiso'];
+		$users = $row['usuariosPermiso'];
 		$pedidos = $row['pedidosPermiso'];
 		$cotizaciones = $row['cotizacionesPermiso'];
 		$importaciones = $row['importacionesPermiso'];
@@ -128,6 +130,11 @@ if(isset($_SESSION['login'])){
 	<a href="views/administracion/productos" class="nav-link ">
 		
 		<span class="title">4 | Productos</span>
+	</a></li>';
+
+	$html_banco = '<li class="nav-item">
+	<a href="views/administracion/bancos" class="nav-link ">
+		<span class="title">6 | Bancos</span>
 	</a></li>';
 
 	###### MODULO DE ADMINISTRADOR ###############################################
@@ -436,10 +443,10 @@ if(isset($_SESSION['login'])){
 										<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
 										<?php
 
-										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
+										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
 
 											
-											if($usuarios!=='0000'){
+											if($users!='0000'){
 												echo $html_inicio_administrador;
 												echo $html_usuarios;
 												echo $html_final_administrador;
@@ -462,6 +469,10 @@ if(isset($_SESSION['login'])){
 											}
 											if($clientes!='0000'){
 												echo $html_clientes;
+											}
+
+											if($bancos!='0000'){
+												echo $html_banco;
 											}
 											
 											echo $html_final_administracion;
@@ -568,7 +579,7 @@ if(isset($_SESSION['login'])){
 										<!-- BEGIN PAGE HEADER-->
 
 										<!-- BEGIN PAGE TITLE-->
-										<h1 class="page-title"> GOP Scorecard<br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+										<h1 class="page-title"> <b>GOP Scorecard</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
 										<!-- END PAGE TITLE-->
 										<!-- END PAGE HEADER-->
 										<?php
@@ -586,34 +597,111 @@ if(isset($_SESSION['login'])){
 												echo "error";
 											}*/
 
+											$principal = new principal($datosConexionBD);
+
+											$principal->mes = date('m');
+											$result = $principal->ventas_mensuales();
+											foreach($result as $row){
+												$total_mensual = $row['total'];
+												if(is_null($row['total'])==1){
+													$total_mensual = '0.00';
+												}
+											}
+
+											$principal->year = date('Y');
+											$result = $principal->ventas_acumuladas();
+											foreach($result as $row){
+												$total_acumulado = $row['total'];
+												if(is_null($row['total'])==1){
+													$total_acumulado = '0.00';
+												}
+											}
+
+											$result = $principal->bancos_dolares();
+											foreach($result as $row){
+												$usd_bancos = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$usd_bancos = '0.00';
+												}
+											}
+
+											$result = $principal->bancos_pesos();
+											foreach($result as $row){
+												$mxn_bancos = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$mxn_bancos = '0.00';
+												}
+											}
+
+											$result = $principal->cxc_activas();
+											foreach($result as $row){
+												$cxc_act = $row['total'];
+												if(is_null($row['total'])==1){
+													$cxc_act = '0.00';
+												}
+											}
+
+											$result = $principal->cxp_usd();
+											foreach($result as $row){
+												$cxp_dolares = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$cxp_dolares = '0.00';
+												}
+											}
+
+											$result = $principal->cxp_mxn();
+											foreach($result as $row){
+												$cxp_pesos = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$cxp_pesos = '0.00';
+												}
+											}
+
+											$principal->mes = date('m');
+											$result = $principal->importaciones();
+											foreach($result as $row){
+												$importacion = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$importacion = '0.00';
+												}
+											}
+
+											$result = $principal->inventario();
+											foreach($result as $row){
+												$inve = $row['Total'];
+												if(is_null($row['Total'])==1){
+													$inve = '0.00';
+												}
+											}
 											?>
 											<div id="mainContent">
 												<div class="row">
 
 													<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 purple-soft" href="views/atn-clientes/pedidos">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/atn-clientes/pedidos">
 															<div class="visual">
 																<i class="fa fa-credit-card"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="86,039.53">0</span>&nbsp;USD
+																	<?php  ?>
+																	$<span data-counter="counterup" data-value="<?=$total_mensual; ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc"> Monthly Sales </div>
+																<div class="desc">Ventas mensuales</div>
 															</div>
 														</a>
 													</div>
 
 													<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 green-seagreen" href="views/aduanas/importaciones">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/aduanas/importaciones">
 															<div class="visual">
-																<i class="fa fa-truck"></i>
+																<i class="fa fa-bank"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="72,850.53">0</span>&nbsp;USD
+																	$<span data-counter="counterup" data-value="<?=$total_acumulado; ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc"> Monthly Imports </div>
+																<div class="desc"> Ventas acumuladas </div>
 															</div>
 														</a>
 													</div>
@@ -624,13 +712,13 @@ if(isset($_SESSION['login'])){
 												<div class="clearfix"></div>
 												<div class="row">
 													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 green-jungle" href="views/contabilidad/bancos">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/bancos">
 															<div class="visual">
 																<i class="fa fa-money"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="8,457">0</span>
+																	$<span data-counter="counterup" data-value="<?=$usd_bancos; ?>">0</span>
 																</div>
 																<div class="desc"> USD </div>
 															</div>
@@ -638,74 +726,118 @@ if(isset($_SESSION['login'])){
 													</div>
 
 													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 green-soft" href="views/contabilidad/bancos">
+														<a class="dashboard-stat dashboard-stat-v2 grey-cascade" href="views/contabilidad/bancos">
 															<div class="visual">
 																<i class="fa fa-usd"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="5,213">0</span>&nbsp;
+																	$<span data-counter="counterup" data-value="<?=$mxn_bancos; ?>">0</span>&nbsp;
 																</div>
 																<div class="desc"> MXN </div>
 															</div>
 														</a>
 													</div>
 
-													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 blue-sharp" href="views/contabilidad/cuentasCobrar">
+													<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasCobrar">
 															<div class="visual">
 																<i class="fa fa-arrow-down"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="7,748">0</span>&nbsp;USD
+																	$<span data-counter="counterup" data-value="<?=$cxc_act; ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc"> Accounts receivable </div>
+																<div class="desc"> Cuentas por cobrar </div>
 															</div>
 														</a>
 													</div>
-
+												</div>
+												<div class="clearfix"></div>
+												<div class="row">
 													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 red-soft" href="views/contabilidad/cuentasPagar">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasPagar">
 															<div class="visual">
 																<i class="fa fa-arrow-up"></i>
 															</div>
 															<div class="details">
 																<div class="number">
-																	$<span data-counter="counterup" data-value="2,574">0</span>&nbsp;USD
+
+																	$<span data-counter="counterup" data-value="<?=$cxp_dolares; ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc"> Accounts payable </div>
+																<div class="desc"> Cuentas por pagar | USD </div>
+															</div>
+														</a>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 grey-cascade" href="views/contabilidad/cuentasPagar">
+															<div class="visual">
+																<i class="fa fa-arrow-up"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="<?=$cxp_pesos; ?>">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Cuentas por pagar | MXN </div>
+															</div>
+														</a>
+													</div>
+
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasPagar">
+															<div class="visual">
+																<i class="fa fa-truck"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+
+																	$<span data-counter="counterup" data-value="<?=$importacion; ?>">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Importaciones </div>
+															</div>
+														</a>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasPagar">
+															<div class="visual">
+																<i class="fa fa-industry"></i>
+															</div>
+															<div class="details">
+																<div class="number">
+																	$<span data-counter="counterup" data-value="<?=$inve; ?>">0</span>&nbsp;USD
+																</div>
+																<div class="desc"> Inventario </div>
 															</div>
 														</a>
 													</div>
 												</div>
-
-
 												<div class="clearfix"></div>
 
-												<div class="row">
 
+
+												<div class="row">
+													<?php 
+													$principal->mes = date('m');
+													$result = $principal->ventas_clientes();
+													foreach($result as $row){
+														$total = $row['total'];
+														if(is_null($row['total'])==1){
+															$total = '0.00';
+														}
+														$cliente = $row['cliente'];
+
+														$vxclientes .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
+													}
+													?>
 													<!-- Chart code -->
 													<script>
 														var chart = AmCharts.makeChart( "import_products", {
 															"type": "pie",
 															"theme": "light",
-															"dataProvider": [ {
-																"product": "Humega",
-																"usd": 3179.20
-															}, {
-																"product": "IsoGreen",
-																"usd": 9808.80
-															}, {
-																"product": "Fulvex",
-																"usd": 5382.00
-															}, {
-																"product": "GO Isolates",
-																"usd": 7334.64
-															}, {
-																"product": "Dry Crumbles",
-																"usd": 976.27
-															}],
+															"dataProvider": [
+
+															<?php echo $vxclientes; ?>
+															],
 															"valueField": "usd",
 															"titleField": "product",
 															"balloon":{
@@ -731,7 +863,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Imports by Product</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -746,16 +878,25 @@ if(isset($_SESSION['login'])){
 
 
 													<script>
+														<?php 
+														$principal->mes = date('m');
+														$result = $principal->ventas_distribuidor();
+														foreach($result as $row){
+															$total = $row['total'];
+															if(is_null($row['total'])==1){
+																$total = '0.00';
+															}
+															$cliente = $row['cliente'];
+
+															$vxdistri .=  '{"product": "'.$cliente.'","sales": "'.$total.'"},';
+														}
+														?>
 														var chart = AmCharts.makeChart( "custom_broker", {
 															"type": "serial",
 															"theme": "light",
-															"dataProvider": [ {
-																"product": "SAI",
-																"sales": 38618.55
-															}, {
-																"product": "Ibarrola",
-																"sales": 34231.98
-															}],
+															"dataProvider": [ 
+															<?php echo $vxdistri; ?>
+															],
 															"valueAxes": [ {
 																"gridColor": "#FFFFFF",
 																"gridAlpha": 0.2,
@@ -800,7 +941,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Imports by Custom Broker</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -816,22 +957,25 @@ if(isset($_SESSION['login'])){
 												<div class="clearfix"></div>
 
 												<div class="row">
+													<?php 
+													$principal->mes = date('m');
+													$result = $principal->ventas_grower();
+													foreach($result as $row){
+														$total = $row['total'];
+														if(is_null($row['total'])==1){
+															$total = '0.00';
+														}
+														$cliente = $row['cliente'];
 
+														$vxgrower .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
+													}
+													?>
 
 													<script>
 														var chart = AmCharts.makeChart( "expenses", {
 															"type": "serial",
 															"theme": "light",
-															"dataProvider": [ {
-																"detail": "Custom Broker",
-																"sales": 2093.94
-															}, {
-																"detail": "Border Freight",
-																"sales": 633.05
-															}, {
-																"detail": "Freight",
-																"sales": 12874.05
-															}],
+															"dataProvider": [ <?php echo $vxgrower; ?>],
 															"valueAxes": [ {
 																"gridColor": "#FFFFFF",
 																"gridAlpha": 0.2,
@@ -844,14 +988,14 @@ if(isset($_SESSION['login'])){
 																"fillAlphas": 0.8,
 																"lineAlpha": 0.2,
 																"type": "column",
-																"valueField": "sales"
+																"valueField": "usd"
 															} ],
 															"chartCursor": {
 																"categoryBalloonEnabled": false,
 																"cursorAlpha": 0,
 																"zoomable": false
 															},
-															"categoryField": "detail",
+															"categoryField": "product",
 															"categoryAxis": {
 																"autoGridCount": false,
 																"gridPosition": "start",
@@ -876,7 +1020,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -890,40 +1034,60 @@ if(isset($_SESSION['login'])){
 													<!--END COL MD 6-->
 
 													<!-- Chart code -->
+													<?php 
+													$principal->mes = date('m');
+													$result = $principal->ventas_producto();
+													foreach($result as $row){
+														$total = $row['total'];
+														if(is_null($row['total'])==1){
+															$total = '0.00';
+														}
+														$codigo = $row['codigo'];
+														$principal->producto = $codigo;
+														$lista = $principal->nombres_producto();
+														foreach($lista as $row){
+															$nombre_producto = $row['nombreProducto'];
+
+															$vxproductos .=  '{"product": "'.$nombre_producto.'","usd": "'.$total.'"},';
+														}
+													}
+													?>
+
 													<script>
 														var chart = AmCharts.makeChart( "sales_dc", {
-															"type": "pie",
+															"type": "serial",
 															"theme": "light",
-															"dataProvider": [ {
-																"directc": "V. Alta",
-																"usd": 0
-															}, {
-																"directc": "V. Prima",
-																"usd": 0
-															}, {
-																"directc": "Pozo Manuel",
-																"usd": 0
-															}, {
-																"directc": "M. Bísani",
-																"usd": 30658.50
-															}, {
-																"directc": "Las Cumbres",
-																"usd": 31602.00
-															}, {
-																"directc": "25 Enero",
-																"usd": 2898.00
-															}, {
-																"directc": "AgroSierraVista",
-																"usd": 14420.85
-															}, {
-																"directc": "Altima",
-																"usd": 0
-															}],
-															"valueField": "usd",
-															"titleField": "directc",
-															"balloon":{
-																"fixedPosition":true
+															"dataProvider": [ <?php echo $vxproductos; ?>],
+															"valueAxes": [ {
+																"gridColor": "#FFFFFF",
+																"gridAlpha": 0.2,
+																"dashLength": 0
+															} ],
+															"gridAboveGraphs": true,
+															"startDuration": 1,
+															"graphs": [ {
+																"balloonText": "[[category]]: <b>$[[value]]</b>",
+																"fillAlphas": 0.8,
+																"lineAlpha": 0.2,
+																"type": "column",
+																"valueField": "usd"
+															} ],
+															"chartCursor": {
+																"categoryBalloonEnabled": false,
+																"cursorAlpha": 0,
+																"zoomable": false
 															},
+															"categoryField": "product",
+															"categoryAxis": {
+																"autoGridCount": false,
+																"gridPosition": "start",
+																"gridAlpha": 0,
+																"tickPosition": "start",
+																"tickLength": 20
+															},
+															"export": {
+																"enabled": true
+															}
 
 														} );
 													</script>
@@ -944,7 +1108,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Sales by Direct Customer</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -958,133 +1122,86 @@ if(isset($_SESSION['login'])){
 
 												</div>
 
+
 												<div class="clearfix"></div>
-												<!--BEGIN ROW-->
+
 												<div class="row">
 													<script>
-														var chart = AmCharts.makeChart( "sales_dis", {
-															"type": "pie",
-															"theme": "light",
-															"dataProvider": [ {
-																"distri": "AGRICOM",
-																"usd": 5435.10
-															}, {
-																"distri": "EMSA",
-																"usd": 1025.08
-															}],
-															"valueField": "usd",
-															"titleField": "distri",
-															"balloon":{
-																"fixedPosition":true
-															},
 
-														} );
-													</script>
+														<?php 
+														$result = $principal->ventas_anuales_pasado();
+														foreach($result as $row){
+															$total_pasado = $row['total'];
+															if(is_null($row['total'])==1){
+																$total_pasado = '0.00';
+															}
+															$mes = $row['mes'];
 
-													<!-- HTML -->
-													<div class="col-lg-6 col-xs-12 col-sm-12">
+															switch($mes){
+																case '01':
+																$mes_mostrar = 'Enero';
+																break;
 
+																case '02':
+																$mes_mostrar = 'Febrero';
+																break;
 
+																case '03':
+																$mes_mostrar = 'Marzo';
+																break;
 
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Sales by Distributor</span>
-																</div>
-															</div>
-															<div class="portlet-body">
+																case '04':
+																$mes_mostrar = 'Abril';
+																break;
 
-																<div id="sales_dis" class="chart"></div>
-															</div>
-														</div>
-														<!-- END CHART PORTLET-->
+																case '05':
+																$mes_mostrar = 'Mayo';
+																break;
 
-													</div>
+																case '06':
+																$mes_mostrar = 'Junio';
+																break;
 
-													<script>
-														var chart = AmCharts.makeChart( "sales_pr", {
-															"type": "serial",
-															"theme": "light",
-															"dataProvider": [{
-																"product": "Humega",
-																"sales": 32886.00
-															}, {
-																"product": "IsoGreen",
-																"sales": 34500.00
-															}, {
-																"product": "Fulvex",
-																"sales": 3207.60
-															}, {
-																"product": "Go Isolates",
-																"sales": 14420.85
-															}, {
-																"product": "Dry Crumbles",
-																"sales": 1025.08
-															}],
-															"valueAxes": [ {
-																"gridColor": "#FFFFFF",
-																"gridAlpha": 0.2,
-																"dashLength": 0
-															} ],
-															"gridAboveGraphs": true,
-															"startDuration": 1,
-															"graphs": [ {
-																"balloonText": "[[category]]: <b>$[[value]]</b>",
-																"fillAlphas": 0.8,
-																"lineAlpha": 0.2,
-																"type": "column",
-																"valueField": "sales"
-															} ],
-															"chartCursor": {
-																"categoryBalloonEnabled": false,
-																"cursorAlpha": 0,
-																"zoomable": false
-															},
-															"categoryField": "product",
-															"categoryAxis": {
-																"autoGridCount": false,
-																"gridPosition": "start",
-																"gridAlpha": 0,
-																"tickPosition": "start",
-																"tickLength": 20
-															},
-															"export": {
-																"enabled": true
+																case '07':
+																$mes_mostrar = 'Julio';
+																break;
+
+																case '08':
+																$mes_mostrar = 'Agosto';
+																break;
+
+																case '09':
+																$mes_mostrar = 'Septiembre';
+																break;
+
+																case '10':
+																$mes_mostrar = 'Octubre';
+																break;
+
+																case '11':
+																$mes_mostrar = 'Noviembre';
+																break;
+
+																case '12':
+																$mes_mostrar = 'Diciembre';
+																break;
 															}
 
-														} );
-													</script>
+
+															$principal->mes = $mes;
+															$result = $principal->ventas_anuales();
+															foreach($result as $row){
+																$total = $row['total'];
+																if(is_null($row['total'])==1){
+																	$total = '0.00';
+																}
 
 
-													<!-- HTML -->
-													<div class="col-lg-6 col-xs-12 col-sm-12">
+															}
 
-
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Imports Expense</span>
-																</div>
-															</div>
-															<div class="portlet-body">
-
-																<div id="sales_pr" class="chart"></div>
-															</div>
-														</div>
-														<!-- END CHART PORTLET-->
-
-													</div>
-													<!--END COL MD 6-->
-												</div>
-												<!--END ROW-->
-												<div class="clearfix"></div>
-
-												<div class="row">
-													<script>
+															$ventas_mensuales .=  '{"mes": "'.$mes_mostrar.'","presente": "'.$total.'","pasado": "'.$total_pasado.'"},';
+														}
+														?>
 														var chart = AmCharts.makeChart( "meses", {
 															"type": "serial",
 															"addClassNames": true,
@@ -1101,55 +1218,7 @@ if(isset($_SESSION['login'])){
 																"color": "#ffffff"
 															},
 
-															"dataProvider": [ {
-																"mes": "Enero",
-																"presente": 25504.02,
-																"pasado": 28741.15
-															}, {
-																"mes": "Febrero",
-																"presente": 31486.25,
-																"pasado": 21203.00
-															}, {
-																"mes": "Marzo",
-																"presente": 14257.02,
-																"pasado": 14200.51
-															}, {
-																"mes": "Abril",
-																"presente": 45781.94,
-																"pasado": 25149.14
-															}, {
-																"mes": "Mayo",
-																"presente": 38215.94,
-																"pasado": 27749.41
-															}, {
-																"mes": "Junio",
-																"presente": 24152.52,
-																"pasado": 47824.65
-															}, {
-																"mes": "Julio",
-																"presente": 12000.93,
-																"pasado": 17000.39
-															}, {
-																"mes": "Agosto",
-																"presente": 11021.98,
-																"pasado": 3147.45
-															}, {
-																"mes": "Septiembre",
-																"presente": 52135.21,
-																"pasado": 41002.21
-															}, {
-																"mes": "Octubre",
-																"presente": 62478.94,
-																"pasado": 55215.14
-															}, {
-																"mes": "Noviembre",
-																"presente": 15862.94,
-																"pasado": 5324.14
-															}, {
-																"mes": "Diciembre",
-																"presente": 21247.94,
-																"pasado": 15142.14
-															}],
+															"dataProvider": [ <?php echo $ventas_mensuales; ?>],
 															"valueAxes": [ {
 																"axisAlpha": 0,
 																"position": "left"
@@ -1159,7 +1228,7 @@ if(isset($_SESSION['login'])){
 																"alphaField": "alpha",
 																"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
 																"fillAlphas": 1,
-																"title": "2017",
+																"title": "<?php echo date(Y); ?>",
 																"type": "column",
 																"valueField": "presente",
 																"dashLengthField": "dashLengthColumn"
@@ -1175,7 +1244,7 @@ if(isset($_SESSION['login'])){
 																"bulletBorderThickness": 3,
 																"fillAlphas": 0,
 																"lineAlpha": 1,
-																"title": "2016",
+																"title": "<?php echo (date(Y)-1) ?>",
 																"valueField": "pasado",
 																"dashLengthField": "dashLengthLine"
 															} ],
@@ -1201,7 +1270,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Year to date & last year sales</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1232,34 +1301,6 @@ if(isset($_SESSION['login'])){
 									<!-- END FOOTER -->
 								</div>
 
-
-								<?php 
-############## VENCER COTIZACIONES EN DESUSO ###################################################
-								$cotizaciones = new cotizaciones($datosConexionBD);
-
-								$consultar_coti = $cotizaciones->consultarCotizaciones();
-
-								foreach($consultar_coti as $row){
-									$folio = $row['folioCotizacion'];
-									$ddC = $row['ddCotizacion'];
-									$mmC = $row['mmCotizacion'];
-									$yyyyC = $row['yyyyCotizacion'];
-									$status = $row['statusCotizacion'];
-
-									if($status == 1){
-										$fecha = $ddC."-".$mmC."-".$yyyyC;
-										$vencimiento =  date( "d-m-Y", strtotime( " $fecha +30 days" ) );
-
-										$hoy =  date("d-m-Y");
-
-										if($vencimiento == $hoy){
-											$cotizaciones->folio = $folio;
-											$ejecutar = $cotizaciones->vencerCotizacion();
-										}
-									}
-								}
-############## VENCER COTIZACIONES EN DESUSO ###################################################
-								?>
 		<!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script> 

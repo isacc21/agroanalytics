@@ -48,13 +48,9 @@ foreach ($result as $row){
   }## LLAVE DE FOREACH ###############################################################
 
 
-  $html_entregado='<span class="label label-sm label-success"> Entregado </span>';
-  $html_camino='<span class="label label-sm label-warning"> En camino </span>';
-  //$html_utilizada='<span class="label label-sm label-info"> Utilizada </span>';
-  $html_cancelado='<span class="label label-sm label-danger"> Cancelado </span>';
+  $html_facturado='<span class="label label-sm label-success"> Facturado </span>';
+  $html_pendiente='<span class="label label-sm label-warning"> Pendiente a factura </span>';
 
-  $html_ingreso='<span class="label label-sm label-success"> Ingreso </span>';
-  $html_egreso='<span class="label label-sm label-danger"> Egreso </span>';
 
   ?>
 
@@ -105,6 +101,7 @@ foreach ($result as $row){
          <th> Fecha [AAAA/MM/DD] </th>
          <th> Cliente </th>
          <th> Orden de Carga </th>
+         <th> Estatus </th>
          <th> Acciones </th>
        </tr>
      </thead>
@@ -121,6 +118,7 @@ foreach ($result as $row){
        $mm = $row['mmRemision'];
        $yyyy = $row['yyyyRemision'];
        $ordenCarga = $row['folioOrdenCarga'];
+       $status = $row['statusRemision'];
 
        $remisiones->carga = $ordenCarga;
        $lista_ordenesCarga = $remisiones->consultarOrdenesCarga();
@@ -151,6 +149,7 @@ foreach ($result as $row){
         <td> <?php echo $yyyy."/".$mm."/".$dd; ?> </td>
         <td> <?php echo $cliente; ?></td>
         <td> <?php echo $ordenCarga;?></td>
+        <td><?php if($status==1){echo $html_pendiente;}else{if($status==2){echo $html_facturado;}} ?></td>
         <td>
 
          <!-- INICIAN BOTONES DE ACCIONES-->

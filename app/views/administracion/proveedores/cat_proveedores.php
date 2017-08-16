@@ -142,6 +142,11 @@ if(isset($_SESSION['login'])){
               $email = $row['emailProveedor'];
               $telefono = $row['telefonoProveedor'];
               $celular = $row['celularProveedor'];
+
+              $ladafijo = '';
+              $telfijo='';
+              $ladamovil='';
+              $telmovil='';
               
               for ($i=0; $i <(strlen($telefono)) ; $i++) { 
                 if($telefono[$i]=="("){

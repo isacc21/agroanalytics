@@ -70,7 +70,7 @@ if(isset($_SESSION['login'])){
 		$transportistas = $row['transportistasPermiso'];
 		$clientes = $row['clientesPermiso'];
 		$productos = $row['productosPermiso'];
-		$usuarios = $row['usuariosPermiso'];
+		$users = $row['usuariosPermiso'];
 		$pedidos = $row['pedidosPermiso'];
 		$cotizaciones = $row['cotizacionesPermiso'];
 		$importaciones = $row['importacionesPermiso'];
@@ -84,8 +84,6 @@ if(isset($_SESSION['login'])){
 		$cxp = $row['cxpPermiso'];
 		$idUsuario = $row['idUsuario'];
 	}## LLAVE DE FOREACH ###############################################################
-
-
 
 
 ###### MODULO DE ADMINISTRACION #####################################################
@@ -124,6 +122,10 @@ if(isset($_SESSION['login'])){
 		<span class="title">4 | Productos</span>
 	</a></li>';
 
+	$html_banco = '<li class="nav-item">
+	<a href="../../../views/administracion/bancos" class="nav-link ">
+		<span class="title">6 | Bancos</span>
+	</a></li>';
 
 	###### MODULO DE ADMINISTRADOR ###############################################
 
@@ -396,9 +398,9 @@ if(isset($_SESSION['login'])){
 
 										<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
 										<?php
-										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
+										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
 
-											if($usuarios!=='0000'){
+											if($users!='0000'){
 												echo $html_inicio_administrador;
 												echo $html_usuarios;
 												echo $html_final_administrador;
@@ -420,6 +422,11 @@ if(isset($_SESSION['login'])){
 											if($clientes!='0000'){
 												echo $html_clientes;
 											}
+
+											if($bancos!='0000'){
+												echo $html_banco;
+											}
+
 											echo $html_final_administracion;
 										}
 										?>
@@ -477,7 +484,7 @@ if(isset($_SESSION['login'])){
 										if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
 
 											echo $html_inicio_almacen;
-	
+
 											if($inventario!='0000'){
 												echo $html_inventario;
 											}
@@ -542,7 +549,7 @@ if(isset($_SESSION['login'])){
 
 												<!--INICIA REGISTRAR USUARIO-->
 												<?php 
-												if($usuarios[1]=='2'){
+												if($users[1]=='2'){
 													echo $html_registro;
 												}
 												?>
@@ -550,7 +557,7 @@ if(isset($_SESSION['login'])){
 
 												<!--INICIA LISTA DE USUARIOS-->
 												<?php 
-												if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
+												if($users[0]=='1'||$users[2]=='3'||$users[3]=='4'){
 													if($_SESSION['tipo']==1){
 														echo $html_consulta_admin;
 													}
@@ -563,7 +570,7 @@ if(isset($_SESSION['login'])){
 
 												<!--INICIA REPORTE DE USUARIOS-->
 												<?php 
-												if($usuarios[0]=='1'||$usuarios[2]=='3'||$usuarios[3]=='4'){
+												if($users[0]=='1'||$users[2]=='3'||$users[3]=='4'){
 													echo $html_reporte;
 												}
 												?>

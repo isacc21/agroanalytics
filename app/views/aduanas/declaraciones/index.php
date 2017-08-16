@@ -29,7 +29,7 @@ if(isset($_SESSION['login'])){
         $transportistas = $row['transportistasPermiso'];
         $clientes = $row['clientesPermiso'];
         $productos = $row['productosPermiso'];
-        $usuarios = $row['usuariosPermiso'];
+        $users = $row['usuariosPermiso'];
         $pedidos = $row['pedidosPermiso'];
         $cotizaciones = $row['cotizacionesPermiso'];
         $importaciones = $row['importacionesPermiso'];
@@ -82,6 +82,12 @@ if(isset($_SESSION['login'])){
     <a href="../../../views/administracion/productos" class="nav-link ">
         <span class="title">4 | Productos</span>
     </a></li>';
+
+    $html_banco = '<li class="nav-item">
+    <a href="../../../views/administracion/bancos" class="nav-link ">
+        <span class="title">6 | Bancos</span>
+    </a></li>';
+
 
     ###### MODULO DE ADMINISTRADOR ###############################################
 
@@ -356,9 +362,9 @@ if(isset($_SESSION['login'])){
 
                                         <!--INICIA MÓDULO DE ADMINISTRACIÓN-->
                                         <?php
-                                        if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$usuarios!='0000'){
+                                        if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'){
 
-                                            if($usuarios!=='0000'){
+                                            if($users!=='0000'){
                                                 echo $html_inicio_administrador;
                                                 echo $html_usuarios;
                                                 echo $html_final_administrador;
@@ -380,6 +386,11 @@ if(isset($_SESSION['login'])){
                                             if($clientes!='0000'){
                                                 echo $html_clientes;
                                             }
+
+                                            if($bancos!='0000'){
+                                                echo $html_banco;
+                                            }
+
                                             echo $html_final_administracion;
                                         }
                                         ?>
@@ -482,55 +493,55 @@ if(isset($_SESSION['login'])){
                                 <div class="page-content-wrapper">
                                     <div class="page-content">
 
-                                       <!-- INICIA TITULO DE PAGINA-->
-                                       <h1 class="page-title"> <b>Declaraciones de aduanas</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
-                                       <!-- TERMINA TITULO DE PAGINA -->
+                                     <!-- INICIA TITULO DE PAGINA-->
+                                     <h1 class="page-title"> <b>Declaraciones de aduanas</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+                                     <!-- TERMINA TITULO DE PAGINA -->
 
-                                       <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-                                       <style type="text/css">
-                                          div#mainContent {margin:0}
-                                          body {overflow-x:hidden;}
-                                      </style>
+                                     <!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+                                     <style type="text/css">
+                                      div#mainContent {margin:0}
+                                      body {overflow-x:hidden;}
+                                  </style>
 
-                                      <!--INICIA MAIN CONTENT USADO POR AJAX-->
-                                      <div id="mainContent" class="page-container">
+                                  <!--INICIA MAIN CONTENT USADO POR AJAX-->
+                                  <div id="mainContent" class="page-container">
 
 
-                                        <div class="row">
+                                    <div class="row">
 
-                                            <!--INICIA LISTA DE USUARIOS-->
-                                            <?php 
-                                            if($declaraciones[1]=='2'){
-                                                echo $html_import;
-                                            }
-                                            if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
-                                                
-                                                echo $html_lista;
-                                                echo $html_reporte;
-                                            }
-                                            ?>
+                                        <!--INICIA LISTA DE USUARIOS-->
+                                        <?php 
+                                        if($declaraciones[1]=='2'){
+                                            echo $html_import;
+                                        }
+                                        if($declaraciones[0]=='1'||$declaraciones[2]=='3'||$declaraciones[3]=='4'){
 
-                                        </div>
-                                        <!--TERMINA PORTLET DE USUARIOS-->
+                                            echo $html_lista;
+                                            echo $html_reporte;
+                                        }
+                                        ?>
+
                                     </div>
-                                    <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
+                                    <!--TERMINA PORTLET DE USUARIOS-->
                                 </div>
-                            </div>
-                            <!-- TERMINA CONTENIDO DE LA PAGINA -->
-                        </div>
-                        <!-- TERMINA CONTENEDOR -->
-
-
-                        <!-- INICIA FOOTER -->
-                        <div class="page-footer">
-                            <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-                            </div>
-                            <div class="scroll-to-top">
-                                <i class="icon-arrow-up"></i>
+                                <!--TERMINA MAIN CONTAINT PARA USO DE AJAX-->
                             </div>
                         </div>
-                        <!-- TERMINA FOOTER -->
+                        <!-- TERMINA CONTENIDO DE LA PAGINA -->
                     </div>
+                    <!-- TERMINA CONTENEDOR -->
+
+
+                    <!-- INICIA FOOTER -->
+                    <div class="page-footer">
+                        <div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+                        </div>
+                        <div class="scroll-to-top">
+                            <i class="icon-arrow-up"></i>
+                        </div>
+                    </div>
+                    <!-- TERMINA FOOTER -->
+                </div>
 
         <!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>
