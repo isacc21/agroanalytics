@@ -137,7 +137,7 @@ date_default_timezone_set('America/Tijuana');
 	<link href="assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
 
 
-	<link href="assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/pages/css/login.css" rel="stylesheet" type="text/css" />
 
 	<!--SE AGREGA JQUERY POR GOOGLE APIS PARA QUE FUNCIONE AJAX-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -201,84 +201,75 @@ date_default_timezone_set('America/Tijuana');
 
 		<body class="login">
 			<div class="logo">
-				<a href="">
-					<img src="assets/img/index3.png" alt="logo_index" /> </a>
-				</div>
-				<!-- END LOGO -->
-				<!-- BEGIN LOGIN -->
-				<div class="content">
-					<!-- BEGIN LOGIN FORM -->
-					<form  id="entrar">
-						<div class="login-form">
-							<h3 class="form-title">Accede a tu cuenta</h3>
+			</div>
+			<!-- END LOGO -->
+			<!-- BEGIN LOGIN -->
+			<div class="content">
+				<!-- BEGIN LOGIN FORM -->
+				<form  id="entrar">
+					<div class="login-form">
+						<h6 class="form-title"></h6>
+						<div class="text-left">&nbsp;&nbsp;<img src="assets/img/AgroanalyticsDos.png" alt="logo_index"></div>
+						<h6 class="form-title"></h6>
 
+						<div class="form-group">
+							<label class="control-label visible-ie8 visible-ie9">Nombre</label>
+							<div class="input-icon">
+								<i class="fa fa-user"></i>
+								<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Nombre" id="nick" name="nick" required/> </div>
+							</div>
 							<div class="form-group">
-								<label class="control-label visible-ie8 visible-ie9">Nombre</label>
+								<label class="control-label visible-ie8 visible-ie9">Contraseña</label>
 								<div class="input-icon">
-									<i class="fa fa-user"></i>
-									<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Nombre" id="nick" name="nick" required/> </div>
+									<i class="fa fa-lock"></i>
+									<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" id="pass" name="pass"  required/> </div>
 								</div>
-								<div class="form-group">
-									<label class="control-label visible-ie8 visible-ie9">Contraseña</label>
-									<div class="input-icon">
-										<i class="fa fa-lock"></i>
-										<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña" id="pass" name="pass"  required/> </div>
-									</div>
-									<div class="form-actions">
-										<input type="submit" id="accionBoton" class="btn green pull-right" value="Login">
-									</div>
+								<div class="form-actions">
+									<input type="submit" id="accionBoton" class="btn green pull-right" value="Login">
 								</div>
-							</form>
-							<!-- END LOGIN FORM -->
-							<!-- BEGIN FORGOT PASSWORD FORM -->
-						</div>
-						<!-- END LOGIN -->
-						<!-- BEGIN COPYRIGHT -->
-						<div class="copyright"> 2017 &copy; Agroanalytics - Admin Dashboard</div>
+							</div>
+						</form>
+						<!-- END LOGIN FORM -->
+						<!-- BEGIN FORGOT PASSWORD FORM -->
+					</div>
+					<!-- END LOGIN -->
+					<!-- BEGIN COPYRIGHT -->
+					<div class="copyright"> 2017 &copy; Agroanalytics - Admin Dashboard</div>
+
+					<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+					<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+					<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+					<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+					<!-- END CORE PLUGINS -->
+					<!-- BEGIN PAGE LEVEL PLUGINS -->
+					<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 
 
 
+					<!-- END PAGE LEVEL PLUGINS -->
+					<!-- BEGIN THEME GLOBAL SCRIPTS -->
+					<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
+					<!-- END THEME GLOBAL SCRIPTS -->
+					<!-- BEGIN PAGE LEVEL SCRIPTS -->
+					<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
+					<!-- END PAGE LEVEL SCRIPTS -->
+					<!-- BEGIN THEME LAYOUT SCRIPTS -->
+					<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+					<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+					<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+					<script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 
+					<script src="assets/pages/scripts/login-4.js" type="text/javascript"></script>
+					<script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 
+					<script src="assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
 
+					<script src="assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 
+					<script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+					<script src="assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
 
+					<!-- END THEME LAYOUT SCRIPTS -->
+				</body>
 
-
-						<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-						<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-						<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-						<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-						<!-- END CORE PLUGINS -->
-						<!-- BEGIN PAGE LEVEL PLUGINS -->
-						<script src="assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
-
-
-
-						<!-- END PAGE LEVEL PLUGINS -->
-						<!-- BEGIN THEME GLOBAL SCRIPTS -->
-						<script src="assets/global/scripts/app.min.js" type="text/javascript"></script>
-						<!-- END THEME GLOBAL SCRIPTS -->
-						<!-- BEGIN PAGE LEVEL SCRIPTS -->
-						<script src="assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
-						<!-- END PAGE LEVEL SCRIPTS -->
-						<!-- BEGIN THEME LAYOUT SCRIPTS -->
-						<script src="assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-						<script src="assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-						<script src="assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-						<script src="assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
-
-						<script src="assets/pages/scripts/login.js" type="text/javascript"></script>
-						<script src="assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-
-						<script src="assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
-
-						<script src="assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
-
-						<script src="assets/global/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
-						<script src="assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
-
-						<!-- END THEME LAYOUT SCRIPTS -->
-					</body>
-
-					</html>
+				</html>

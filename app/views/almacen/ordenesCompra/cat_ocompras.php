@@ -264,6 +264,7 @@ foreach($consultaModal as $row){
  $usuario = $row['idUsuario'];
  $factura = $row['folioFactura'];
  $importacion = $row['folioImportacion'];
+ $status = $row['statusOrdenCompra'];
  $num = number_format($total,2, '.', ',');
 
  $usuarios->id=$usuario;

@@ -681,7 +681,7 @@ foreach($consultarProductos as $row){
     case 3:
     $pres = ' | Tote';
     break;
-    case 2:
+    case 4:
     $pres = ' | Granel';
     break;
     case 5:

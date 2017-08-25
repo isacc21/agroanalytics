@@ -26,6 +26,7 @@ if(isset($_SESSION['login'])){
 
 ###### REQUIRE DE LA LIBRERIA DE METODOS DE USUARIOS #################################
 	require '../../../models/administracion/usuarios.php';
+	require '../../../models/principal.php';
 
 
 ###### CREACION DEL METODO USUARIOS ##################################################
@@ -324,272 +325,584 @@ if(isset($_SESSION['login'])){
 						<!-- INICIAN ACCIONES DE HEDADER-->
 						<div class="top-menu">
 							<ul class="nav navbar-nav pull-right">
-
-								<!--INICIAN ACCIONES DE ICONO DE USUARIO-->
-								<li class="dropdown dropdown-user">
+								<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
 									<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-										<img alt="" class="img-circle" src="../../../../assets/layouts/layout/img/avatar.png" />
-										<span class="username username-hide-on-mobile"><?echo $_SESSION['nombre']." ".$_SESSION['paterno'] ;?></span>
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-default">
-										<li>
-											<a href="../../profile/info">
-												<i class="icon-user"></i> Mi Perfil </a>
-											</li>
-											<li class="divider"> </li>
-											<li>
-												<a href="../../../../index.php?lg=1">
-													<i class="icon-key"></i> Log Out </a>
-												</li>
-											</ul>
-										</li>
-										<!-- TERMINAN ACCIONES DE ICONO DE USUARIO-->
-									</ul>
-								</div>
-								<!-- TERMINAN ACCIONES DE HEADER -->
-							</div>
-							<!-- TERMINA HEADER INNER -->
-						</div>
-						<!-- TERMINA HEADER -->
-
-
-						<!-- DIVISOR DE HEADER Y CONTENIDO -->
-						<div class="clearfix"> </div>
-
-
-						<!-- INICIA CONTENEDOR -->
-						<div class="page-container">
-
-
-							<!-- INICIA SIDEBAR -->
-							<div class="page-sidebar-wrapper">
-
-								<!--INICIA COLPASO DE SIDEBAR-->
-								<div class="page-sidebar navbar-collapse collapse">
-
-
-									<!-- INICIA LISTA DE OBJETOS DE SIDEBAR-->
-									<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-
-										<!--INICIA BOTON PARA COLAPSO DE SIDEBAR-->
-										<li class="sidebar-toggler-wrapper hide">
-											<div class="sidebar-toggler">
-												<span></span>
-											</div>
-										</li>
-										<!-- TERMINA BOTON PARA COLAPSO DE SIDEBAR -->
-
-
-										<!-- INICIA ELEMENTO DASHBOARD-->
-										<li class="nav-item">
-											<a href="../../../" class="nav-link nav-toggle">
-												<i class="icon-home"></i>
-												<span class="title">GOP Scorecard</span>
-											</a>
-										</li>
-										<!--TERMINA ELEMENTO DASHBOARD-->
-
-										<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
-										<?php
-										if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'){
-
-											if($users!=='0000'){
-												echo $html_inicio_administrador;
-												echo $html_usuarios;
-												echo $html_final_administrador;
-											}
-											
-
-											echo $html_inicio_administracion;
-											if($proveedores!='0000'){
-												echo $html_proveedores;
-											}
-											if($acreedores!='0000'){
-												echo $html_acreedores;
-											}
-											if($transportistas!='0000'){
-												echo $html_transportistas;
-											}
-											if($productos!='0000'){
-												echo $html_productos;
-											}
-											if($clientes!='0000'){
-												echo $html_clientes;
-											}
-											if($bancos!='0000'){
-												echo $html_banco;
-											}
-											
-											echo $html_final_administracion;
-										}
-										?>
-										<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
-
-
-										<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
-										<?php
-										if($pedidos!='0000'||$cotizaciones!='0000'){
-
-											echo $html_inicio_atnCliente;
-											if($cotizaciones!='0000'){
-												echo $html_cotizaciones;
-											}
-											if($pedidos!='0000'){
-												echo $html_pedidos;
-											}
-											echo $html_final_atnCliente;
-										}
-										?>
-										<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
-
-										<!-- INICIA MODULO DE COMPRAS -->
+										<i class="icon-bell"></i>
+										<!-- COMIENZAN NOTIFICACIONES -->
 										<?php 
-
-										if($compra!='0000'){
-											echo $html_inicio_compras;
-											echo $html_compra;
-											echo $html_final_compras;
-										}
-
-										?>
-										<!-- TERMINA MODULO DE COMPRAS -->
-
-
-										<!--INICIA MÓDULO DE ADUANAS-->
-										<?php
-										if($importaciones!='0000'||$declaraciones!='0000'){
-
-											echo $html_inicio_aduanas;
-											if($importaciones!='0000'){
-												echo $html_importaciones;
-											}
-											if($declaraciones!='0000'){
-												echo $html_declaraciones;
-											}
-											echo $html_final_aduanas;
-										}
-										?>
-										<!--TERMINA MÓDULO DE ADUANAS-->
-
-
-										<!--INICIA MÓDULO DE ALMACÉN-->
-										<?php
-										if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
-
-											echo $html_inicio_almacen;
+										$principal = new principal($datosConexionBD);
+										
+										$contador_notificacion = 0;
+										$notificaciones = '';
+										
+										// COMIENZAN NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
+										$inventario = $principal->caducidad_inventario();
+										foreach($inventario as $row){
 											
-											if($inventario!='0000'){
-												echo $html_inventario;
+											$codigo_inventario = $row['barCodeInventario'];
+											$codigo_producto = $row['codigoProducto'];
+											$dd = $row['ddCaducidad'];
+											$mm = $row['mmCaducidad'];
+											$yyyy = $row['yyyyCaducidad'];
+											$nombre = $row['nombreProducto'];
+											$pres = $row['presentacionProducto'];
+											switch($pres){
+												case '1':
+												$presentacion = ' | Cubeta';
+												break;
+												case '2':
+												$presentacion = ' | Tibor';
+												break;
+												case '3':
+												$presentacion = ' | Tote';
+												break;
+												case '4':
+												$presentacion = ' | Granel';
+												break;
+												case '5':
+												$presentacion = ' | Saco';
+												break;
+												case '6':
+												$presentacion = ' | S.Saco';
+												break;
 											}
-											if($carga!='0000'){
-												echo $html_carga;
-											}
-											if($remisiones!='0000'){
-												echo $html_remisiones;
-											}
-											echo $html_final_almacen;
-										}
-										?>
-										<!--TERMINA MÓDULO DE ALMACÉN-->
-
-
-										<!--INICIA MÓDULO DE CONTABILIDAD-->
-										<?php
-										if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
-
-											echo $html_inicio_conta;
-											if($bancos!='0000'){
-												echo $html_bancos;
-											}
-											if($cxc!='0000'){
-												echo $html_cxc;
-											}
-											if($cxp!='0000'){
-												echo $html_cxp;
-											}
-											echo $html_final_conta;
-										}
-										?>
-										<!--TERMINA MÓDULO DE CONTABILIDAD-->
-
-
-										<!-- TERMINA COLAPSO DE SIDEBAR MENU -->
-									</div>
-									<!-- TERMINA SIDEBAR -->
-								</div>
-
-
-								<!-- INICIA CONTENT WRAPPER -->
-								<div class="page-content-wrapper">
-
-
-									<!-- INICIA CONTENIDO -->
-									<div class="page-content">
-
-										<!-- INICIA TITULO DE PAGINA-->
-										<h1 class="page-title"> <b>Clientes</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
-										<!-- TERMINA TITULO DE PAGINA -->
-
-										<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-										<style type="text/css">
-											div#mainContent {margin:0}
-											body {overflow-x:hidden;}
-										</style>
-
-										<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-										<div id="mainContent" class="page-container">
+											$hola .= $codigo_inventario;
 
 											
+											if(
+												// AVISO DE TRES MESES
+												strtotime('-3 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-3 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-3 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-3 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-3 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE TRES MESES 
+											{
 
-											<!--INICIA ROW-->
-											<div class="row">
+												
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 3 meses de caducar</span></a></li>';
+												$contador_notificacion++;
+											}
+											if(
+												// AVISO DE DOS MESES
+												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE DOS MESES
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 2 meses de caducar</span></a></li>';
+												$contador_notificacion++;
+											}
+											if(
+												// AVISO DE UN MES
+												strtotime('-1 month',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-1 month +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-1 month +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-1 month +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-1 month +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE UN MES
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 1 mes de caducar</span></a></li>';
+												$contador_notificacion++;
+											}
+											if(
+												// AVISO DE CADUCADO
+												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE CADUCADO
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' caducado</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
 
-												<!--INICIA CUADRO PARA REGISTRO DE CLIENTE-->
-												<?php 
-												if($clientes[1]=='2'){
-													echo $html_registro;
-												}
-												?>
-												<!--TERMINA CUADRO PARA REGISTRO DE CLIENTE-->
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+										$cuentasxcobrar = $principal->cxc_vencidas();
+										foreach($cuentasxcobrar as $row){
+											
+											$folio = $row['folioCuentaC'];
+											$dd = $row['ddCuentaC'];
+											$mm = $row['mmCuentaC'];
+											$yyyy = $row['yyyyCuentaC'];
+											$cliente = $row['razonSocCliente'];
 
-												<!--INICIA CUADRO PARA LISTA DE CLIENTES-->
-												<?php 
-												if($clientes[0]=='1'||$clientes[2]=='3'||$clientes[3]=='4'){
-													echo $html_consulta;
-												}
-												?>
-												<!--TERMINA CUADRO PARA LISTA DE CLIENTES-->
+											if(
+												// AVISO DE VENCIDO
+												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE VENCIDO
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" de "'.$cliente.'" vencida</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
 
-												<!--INICIA CUADRO PARA REPORTE DE CLIENTES-->
-												<?php 
-												if($clientes[0]=='1'||$clientes[2]=='3'||$clientes[3]=='4'){
-													echo $html_reporte;
-												}
-												?>
-												<!--TERMINA CUADRO PARA REPORTE DE CLIENTES-->
+										// COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
+										if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-success"><i class="fa fa-envelope-o"></i> </span>Estado de cuenta disponible</span></a></li>';
+											$contador_notificacion++;
+										}
+										// TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+										$cuentasxpagar = $principal->cxp_vencidas();
+										foreach($cuentasxpagar as $row){
+											$folio = $row['folioCuentaP'];
+											$dd = $row['ddCuentaP'];
+											$mm = $row['mmCuentaP'];
+											$yyyy = $row['yyyyCuentaP'];
+
+											if(
+												// AVISO DE UNA SEMANA DE VENCER
+												strtotime('-1 week -1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-1 week',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-1 week +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE UNA SEMANA DE VENCER
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>Cuenta por cobrar "'.$folio.'" a una semana de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+
+											if(
+												// AVISO DE UNA SEMANA DE VENCER
+												strtotime('-1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+												// AVISO DE UNA SEMANA DE VENCER
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" vencida</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+
+										// COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
+										$permisos_cof = $principal->permisos();
+										foreach($permisos_cof as $row){
+											$producto = $row['nombreProducto'];
+											$dd = $row['ddCofProducto'];
+											$mm = $row['mmCofProducto'];
+											$yyyy = $row['yyyyCofProducto'];
+
+
+											if(
+											// AVISO DE 18 MESES
+												strtotime('-18 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-18 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-18 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-18 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-18 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 18 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 18 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+
+
+											if(
+											// AVISO DE 12 MESES
+												strtotime('-12 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-12 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-12 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-12 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-12 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 12 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 12 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+
+										// COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
+										$permisos_cic = $principal->permisos();
+										foreach($permisos_cic as $row){
+											$producto = $row['nombreProducto'];
+											$dd = $row['ddCicProducto'];
+											$mm = $row['mmCicProducto'];
+											$yyyy = $row['yyyyCicProducto'];
+
+
+											if(
+											// AVISO DE 4 MESES
+												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-4 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 4 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 4 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+
+
+											if(
+											// AVISO DE 2 MESES
+												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 2 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 2 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+
+										// COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
+										$permisos_sem = $principal->permisos();
+										foreach($permisos_sem as $row){
+											$producto = $row['nombreProducto'];
+											$dd = $row['ddSemProducto'];
+											$mm = $row['mmSemProducto'];
+											$yyyy = $row['yyyySemProducto'];
+
+											
+											if(
+											// AVISO DE 4 MESES
+												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-4 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 4 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 4 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+
+
+											if(
+											// AVISO DE 2 MESES
+												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+												)
+											// AVISO DE 2 MESES 
+											{
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 2 meses de vencer</span></a></li>';
+												$contador_notificacion++;
+											}
+										}
+										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+
+
+
+										if($contador_notificacion!=0){
+											echo '<span class="badge badge-default">'.$contador_notificacion.'</span>';
+										} ?>
+									</a>
+									<ul class="dropdown-menu">
+										<li class="external">
+											<h3>
+												<span class="bold"><?php 
+													if($contador_notificacion==1){
+														echo $contador_notificacion; ?> notificación</span> pendiente</h3>
+														<?php }else{
+															echo $contador_notificacion; ?> notificaciones</span> pendientes</h3><?php
+														} ?>
+
+
+													</li>
+													<li>
+														<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+															<?php echo $notificaciones; 
+															?>
+														</ul>
+													</ul>
+												</li>
+												<!--INICIAN ACCIONES DE ICONO DE USUARIO-->
+												<li class="dropdown dropdown-user">
+													<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+														<img alt="" class="img-circle" src="../../../../assets/layouts/layout/img/avatar.png" />
+														<span class="username username-hide-on-mobile"><?echo $_SESSION['nombre']." ".$_SESSION['paterno'] ;?></span>
+														<i class="fa fa-angle-down"></i>
+													</a>
+													<ul class="dropdown-menu dropdown-menu-default">
+														<li>
+															<a href="../../profile/info">
+																<i class="icon-user"></i> Mi Perfil </a>
+															</li>
+															<li class="divider"> </li>
+															<li>
+																<a href="../../../../index.php?lg=1">
+																	<i class="icon-key"></i> Log Out </a>
+																</li>
+															</ul>
+														</li>
+														<!-- TERMINAN ACCIONES DE ICONO DE USUARIO-->
+													</ul>
+												</div>
+												<!-- TERMINAN ACCIONES DE HEADER -->
 											</div>
-											<!--TERMINA ROW -->
-											
+											<!-- TERMINA HEADER INNER -->
 										</div>
-										<!--TERMINA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
-									</div>
-									<!-- TERMINA CONTENIDO -->
-								</div>
-								<!-- TERMINA CONTENT WRAPPER -->
+										<!-- TERMINA HEADER -->
 
 
-								<!-- INICIA FOOTER -->
-								<div class="page-footer">
-									<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-									</div>
-									<div class="scroll-to-top">
-										<i class="icon-arrow-up"></i>
-									</div>
-								</div>
-								<!-- TERMINA FOOTER FOOTER -->
-							</div>
-							<!--TERMINA CONTENIDO-->
+										<!-- DIVISOR DE HEADER Y CONTENIDO -->
+										<div class="clearfix"> </div>
+
+
+										<!-- INICIA CONTENEDOR -->
+										<div class="page-container">
+
+
+											<!-- INICIA SIDEBAR -->
+											<div class="page-sidebar-wrapper">
+
+												<!--INICIA COLPASO DE SIDEBAR-->
+												<div class="page-sidebar navbar-collapse collapse">
+
+
+													<!-- INICIA LISTA DE OBJETOS DE SIDEBAR-->
+													<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+
+														<!--INICIA BOTON PARA COLAPSO DE SIDEBAR-->
+														<li class="sidebar-toggler-wrapper hide">
+															<div class="sidebar-toggler">
+																<span></span>
+															</div>
+														</li>
+														<!-- TERMINA BOTON PARA COLAPSO DE SIDEBAR -->
+
+
+														<!-- INICIA ELEMENTO DASHBOARD-->
+														<li class="nav-item">
+															<a href="../../../" class="nav-link nav-toggle">
+																<i class="icon-home"></i>
+																<span class="title">GOP Scorecard</span>
+															</a>
+														</li>
+														<!--TERMINA ELEMENTO DASHBOARD-->
+
+														<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
+														<?php
+														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'){
+
+															if($users!=='0000'){
+																echo $html_inicio_administrador;
+																echo $html_usuarios;
+																echo $html_final_administrador;
+															}
+															
+
+															echo $html_inicio_administracion;
+															if($proveedores!='0000'){
+																echo $html_proveedores;
+															}
+															if($acreedores!='0000'){
+																echo $html_acreedores;
+															}
+															if($transportistas!='0000'){
+																echo $html_transportistas;
+															}
+															if($productos!='0000'){
+																echo $html_productos;
+															}
+															if($clientes!='0000'){
+																echo $html_clientes;
+															}
+															if($bancos!='0000'){
+																echo $html_banco;
+															}
+															
+															echo $html_final_administracion;
+														}
+														?>
+														<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
+
+
+														<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
+														<?php
+														if($pedidos!='0000'||$cotizaciones!='0000'){
+
+															echo $html_inicio_atnCliente;
+															if($cotizaciones!='0000'){
+																echo $html_cotizaciones;
+															}
+															if($pedidos!='0000'){
+																echo $html_pedidos;
+															}
+															echo $html_final_atnCliente;
+														}
+														?>
+														<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
+
+														<!-- INICIA MODULO DE COMPRAS -->
+														<?php 
+
+														if($compra!='0000'){
+															echo $html_inicio_compras;
+															echo $html_compra;
+															echo $html_final_compras;
+														}
+
+														?>
+														<!-- TERMINA MODULO DE COMPRAS -->
+
+
+														<!--INICIA MÓDULO DE ADUANAS-->
+														<?php
+														if($importaciones!='0000'||$declaraciones!='0000'){
+
+															echo $html_inicio_aduanas;
+															if($importaciones!='0000'){
+																echo $html_importaciones;
+															}
+															if($declaraciones!='0000'){
+																echo $html_declaraciones;
+															}
+															echo $html_final_aduanas;
+														}
+														?>
+														<!--TERMINA MÓDULO DE ADUANAS-->
+
+
+														<!--INICIA MÓDULO DE ALMACÉN-->
+														<?php
+														if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
+
+															echo $html_inicio_almacen;
+															
+															if($inventario!='0000'){
+																echo $html_inventario;
+															}
+															if($carga!='0000'){
+																echo $html_carga;
+															}
+															if($remisiones!='0000'){
+																echo $html_remisiones;
+															}
+															echo $html_final_almacen;
+														}
+														?>
+														<!--TERMINA MÓDULO DE ALMACÉN-->
+
+
+														<!--INICIA MÓDULO DE CONTABILIDAD-->
+														<?php
+														if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
+
+															echo $html_inicio_conta;
+															if($bancos!='0000'){
+																echo $html_bancos;
+															}
+															if($cxc!='0000'){
+																echo $html_cxc;
+															}
+															if($cxp!='0000'){
+																echo $html_cxp;
+															}
+															echo $html_final_conta;
+														}
+														?>
+														<!--TERMINA MÓDULO DE CONTABILIDAD-->
+
+
+														<!-- TERMINA COLAPSO DE SIDEBAR MENU -->
+													</div>
+													<!-- TERMINA SIDEBAR -->
+												</div>
+
+
+												<!-- INICIA CONTENT WRAPPER -->
+												<div class="page-content-wrapper">
+
+
+													<!-- INICIA CONTENIDO -->
+													<div class="page-content">
+
+														<!-- INICIA TITULO DE PAGINA-->
+														<h1 class="page-title"> <b>Clientes</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+														<!-- TERMINA TITULO DE PAGINA -->
+
+														<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+														<style type="text/css">
+															div#mainContent {margin:0}
+															body {overflow-x:hidden;}
+														</style>
+
+														<!--INICIA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+														<div id="mainContent" class="page-container">
+
+															
+
+															<!--INICIA ROW-->
+															<div class="row">
+
+																<!--INICIA CUADRO PARA REGISTRO DE CLIENTE-->
+																<?php 
+																if($clientes[1]=='2'){
+																	echo $html_registro;
+																}
+																?>
+																<!--TERMINA CUADRO PARA REGISTRO DE CLIENTE-->
+
+																<!--INICIA CUADRO PARA LISTA DE CLIENTES-->
+																<?php 
+																if($clientes[0]=='1'||$clientes[2]=='3'||$clientes[3]=='4'){
+																	echo $html_consulta;
+																}
+																?>
+																<!--TERMINA CUADRO PARA LISTA DE CLIENTES-->
+
+																<!--INICIA CUADRO PARA REPORTE DE CLIENTES-->
+																<?php 
+																if($clientes[0]=='1'||$clientes[2]=='3'||$clientes[3]=='4'){
+																	echo $html_reporte;
+																}
+																?>
+																<!--TERMINA CUADRO PARA REPORTE DE CLIENTES-->
+															</div>
+															<!--TERMINA ROW -->
+															
+														</div>
+														<!--TERMINA MAIN CONTENT, CONTENEDOR PERSONALIZADO PARA AJAX-->
+													</div>
+													<!-- TERMINA CONTENIDO -->
+												</div>
+												<!-- TERMINA CONTENT WRAPPER -->
+
+
+												<!-- INICIA FOOTER -->
+												<div class="page-footer">
+													<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+													</div>
+													<div class="scroll-to-top">
+														<i class="icon-arrow-up"></i>
+													</div>
+												</div>
+												<!-- TERMINA FOOTER FOOTER -->
+											</div>
+											<!--TERMINA CONTENIDO-->
 
 		<!--[if lt IE 9]>
 <script src="../../../../assets/global/plugins/respond.min.js"></script>

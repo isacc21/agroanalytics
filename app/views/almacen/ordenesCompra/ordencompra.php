@@ -54,7 +54,7 @@ class PDF extends FPDF
 	{
 		
 		
-		$this->Image('../../../../resources/gologo.jpg',7,10,38);
+		$this->Image('../../../../resources/gologo.jpg',5,8,38);
 		$this->AddFont('segoeuisl','');
 		$this->AddFont('segoeuib','');
 		$this->AddFont('segoeuil','');
@@ -79,7 +79,7 @@ class PDF extends FPDF
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(45);
-		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219-8. Local 8 2DO Piso'),0,0,'L');
+		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219. Local 8 2DO Piso'),0,0,'L');
 		$this->setX(125);
 		$this->Cell(85,0,utf8_decode($_SESSION['linea_dos']),0,0,'L');
 		$this->Ln(5);
@@ -147,7 +147,7 @@ class PDF extends FPDF
 		$this->Cell(80,10,utf8_decode(' PURCHASE ORDER '),0,0,'C',1);
 		$this->SetFillColor(255,255,255);
 		$this->SetFont('Arial','',12);
-		$this->Cell(35,9.8,utf8_decode($_REQUEST['codigo']),1,0,'C',1);
+		$this->Cell(36,9.8,utf8_decode($_REQUEST['codigo']),1,0,'C',1);
 		$this->Ln(12);
 	}
 
@@ -180,12 +180,12 @@ $pdf->Addpage();
 $pdf->SetFillColor(240,240,240);
 $pdf->SetFont('Arial','B',10);
 $pdf->SetX(10);
-$pdf->Cell(70,6,'PRODUCT',0,0,'L',1);
-$pdf->Cell(15,6,'CODE',0,0,'L',1);
-$pdf->Cell(30,6,'CONTAINER',0,0,'C',1);
-$pdf->Cell(30,6,'QTY',0,0,'C',1);
+$pdf->Cell(65,6,'PRODUCT',0,0,'L',1);
+$pdf->Cell(25,6,'CODE',0,0,'L',1);
+$pdf->Cell(30,6,'CONTAINER',0,0,'L',1);
+$pdf->Cell(25,6,'QTY',0,0,'C',1);
 $pdf->Cell(20,6,'PRICE',0,0,'C',1);
-$pdf->Cell(29,6,'TOTAL',0,0,'C',1);
+$pdf->Cell(30,6,'TOTAL',0,0,'C',1);
 
 $pdf->Ln();
 
@@ -216,7 +216,7 @@ foreach($detalles as $row){
 
 	switch($presentacion_producto){
 		case 1:
-		$presentacion = '55 GAL';
+		$presentacion = '5 GAL';
 		break;
 		case 2:
 		$presentacion = '55 GAL';
@@ -242,12 +242,14 @@ foreach($detalles as $row){
 	$pdf->SetFont('Arial','',10);
 	$pdf->SetX(10);
 	$pdf->SetFillColor(255,255,255);
-	$pdf->Cell(70,7,utf8_decode($nombre_producto),0,0,'L',1);
-	$pdf->Cell(15,7,"  ",0,0,'L',1);
-	$pdf->Cell(30,7,$presentacion,0,0,'C',1);
-	$pdf->Cell(30,7,$cantidad,0,0,'C',1);
-	$pdf->Cell(20,7,"$ ".$unitario."  ",0,0,'R',1);
-	$pdf->Cell(29,7,"$ ".$sub."  ",0,0,'R',1);
+	$pdf->Cell(65,7,utf8_decode($nombre_producto),0,0,'L',1);
+	$pdf->Cell(25,7,$producto,0,0,'L',1);
+	$pdf->Cell(30,7,$presentacion,0,0,'L',1);
+	$pdf->Cell(25,7,$cantidad."        ",0,0,'R',1);
+	$pdf->Cell(5,7,"$",0,0,'L',1);
+	$pdf->Cell(15,7,$unitario." ",0,0,'R',1);
+	$pdf->Cell(5,7,"  $",0,0,'L',1);
+	$pdf->Cell(25,7,$sub,0,0,'R',1);
 	$pdf->Ln();
 
 }

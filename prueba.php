@@ -1,12 +1,10 @@
 <?php 
-function conversor_monedas($moneda_origen,$moneda_destino,$cantidad) {
-	$get = file_get_contents("http://www.google.com/finance/converter?a=$cantidad&from=$moneda_origen&to=$moneda_destino");
-	$get = explode("<span class=bld>",$get);
-	$get = explode("</span>",$get[1]);  
-	return preg_replace("/[^0-9\.]/", null, $get[0]);
+date_default_timezone_set('America/Tijuana');
 
-
-}
-
-echo conversor_monedas('MXN', 'USD', 1000);
-?>
+$foo = '2017/10/18';
+$bar = strtotime($foo);
+$candy = strtotime('-1 month +3 days',$bar);
+echo date('d/m/Y',$candy);
+echo '<br>';
+echo date('d/m/Y');
+ ?>

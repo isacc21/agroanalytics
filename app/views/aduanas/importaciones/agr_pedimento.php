@@ -80,7 +80,7 @@ if (isset($_REQUEST['codigo'])){
 		<div class="portlet-title">
 
 			<!--INICIAN ESTILOS DE TITULO DE PORTLET-->
-			<div class="caption"><div class="font-grey-mint"><b>Confirmar cancelación: "<?php echo $codigo;?>"	</b></div></div>
+			<div class="caption"><div class="font-grey-mint"><b>Agregar pedimento	</b></div></div>
 			<!-- TERMINAN ESTILOS DE TITULO DE PORTLET-->
 			<div class="actions btn-set">
 				<button type="button" name="back" id="back_form_import" class="btn green-seagreen">
@@ -130,9 +130,9 @@ if (isset($_REQUEST['codigo'])){
 
 					<!-- INICIA INPUT FOLIO-->
 					<div class="form-group">
-						<label class="col-md-3 control-label">Confirmar contraseña</label>
+						<label class="col-md-3 control-label">Autorización</label>
 						<div class="col-md-6">
-							<input type="password" class="form-control" id="pass" name="pass" required>
+							<input type="password" class="form-control" id="pass" name="pass" required placeholder="Ingrese su contraseña">
 							
 						</div>
 					</div>

@@ -236,5 +236,111 @@ class principal{
 			return "Error: " . $e->getMessage();
 		}
 	}
+
+
+	public function caducidad_inventario(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				a.barCodeInventario,
+				a.codigoProducto,
+				a.existenciaInventario,
+				a.ddCaducidad,
+				a.mmCaducidad,
+				a.yyyyCaducidad,
+				b.nombreProducto,
+				b.presentacionProducto
+				FROM 
+				inventario AS a 
+				INNER JOIN 
+				productos AS b
+				ON a.codigoProducto = b.codigoProducto
+				WHERE a.existenciaInventario > 0
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cxc_vencidas(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				a.folioCuentaC, 
+				a.ddCuentaC, 
+				a.mmCuentaC, 
+				a.yyyyCuentaC, 
+				b.razonSocCliente 
+				FROM 
+				cuentascobrar AS a 
+				INNER JOIN 
+				clientes AS b 
+				ON a.rfcCliente = b.rfcCliente 
+				WHERE a.statusCuentaC = 1
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cxp_vencidas(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				a.folioCuentaP, 
+				a.ddCuentaP, 
+				a.mmCuentaP, 
+				a.yyyyCuentaP
+				FROM 
+				cuentaspagar AS a 
+				WHERE a.statusCuentaP = 1
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+
+	public function permisos(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				nombreProducto,
+				ddCofProducto,
+				mmCofProducto,
+				yyyyCofProducto,
+				ddCicProducto,
+				mmCicProducto,
+				yyyyCicProducto,
+				ddSemProducto,
+				mmSemProducto,
+				yyyySemProducto
+				FROM productos
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
 }
 ?>

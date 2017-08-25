@@ -45,7 +45,7 @@ class PDF extends FPDF
 	{
 		
 		
-		$this->Image('../../../../resources/gologo.jpg',7,6,42);
+		$this->Image('../../../../resources/gologo.jpg',8,5,38);
 		$this->AddFont('segoeuisl','');
 		$this->AddFont('segoeuib','');
 		$this->AddFont('segoeuil','');
@@ -61,7 +61,7 @@ class PDF extends FPDF
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(55);
-		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219-8. Local 8 2DO Piso'),0,0,'L');
+		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219. Local 8 2DO Piso'),0,0,'L');
 		$this->setX(137);
 		$this->Ln(5);
 
@@ -134,6 +134,13 @@ foreach($lista as $row){
 	$placas_extra = $row['placasXtraDeclaracion'];
 	$eco_extra = $row['noEcoXtraDeclaracion'];
 
+	if($placas_extra == "NULL"){
+		$placas_extra = "";
+	}
+	if($eco_extra == "NULL"){
+		$eco_extra = "";
+	}
+
 	$peso = $row['pesoTotalDeclaracion'];
 
 	$folio_importacion = $row['folioImportacion'];
@@ -165,14 +172,6 @@ foreach($lista as $row){
 	$pdf->setFont('Arial', 'B', 12);
 	$pdf->Cell(18,0,utf8_decode('INFORMACIÓN DEL TRANSPORTISTA '),0,0,'L');
 	$pdf->Ln(5);
-
-	$pdf->setX(10);
-	$pdf->setFont('Arial', 'B', 12);
-	$pdf->Cell(18,7.8,utf8_decode('CHOFER: '),0,0,'L');
-	$pdf->setFont('Arial', '', 10);
-	$pdf->setX(40);
-	$pdf->Cell(70,7,utf8_decode($nombre_transp),1,0,'C');
-	$pdf->Ln(15);
 
 	$pdf->setFont('Arial', '', 10);
 	$pdf->setX(46);

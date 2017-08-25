@@ -212,7 +212,7 @@
             <div class="form-group">
               <label class="col-md-6 control-label">Total</label>
               <div class="col-md-4">
-                <input type="text" class="form-control" id="total" name="total" value="" required placeholder="Calcular total">
+                <input type="text" class="form-control" id="total" name="total" value="" required placeholder="Calcular total" readonly>
               </div>
             </div>
             <!-- INICIA INPUT FOLIO DE REGISTRO-->

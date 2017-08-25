@@ -65,7 +65,7 @@ class PDF extends FPDF
 	{
 		
 		
-		$this->Image('../../../../resources/gologo.jpg',7,10,38);
+		$this->Image('../../../../resources/gologo.jpg',4,7,38);
 		$this->AddFont('segoeuisl','');
 		$this->AddFont('segoeuib','');
 		$this->AddFont('segoeuil','');
