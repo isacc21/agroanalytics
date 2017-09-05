@@ -51,7 +51,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -106,7 +106,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -147,17 +147,17 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
 			//Sentencia SQL para modificar un registro
 			$query = "UPDATE ordenescompra SET
 
-					statusOrdenCompra =    3,
-					idUsuario = '".$this->id."'
+			statusOrdenCompra =    3,
+			idUsuario = '".$this->id."'
 
-					WHERE folioOrdenCompra =   '".$this->folio."'";
+			WHERE folioOrdenCompra =   '".$this->folio."'";
 
 			$statement = $conexion->prepare($query);
 
@@ -180,19 +180,19 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
 			//Sentencia SQL para modificar un registro
 			$query = "UPDATE ordenescompra SET
 
-					statusOrdenCompra =    2,
-					folioFactura = '".$this->factura."',
-					statusFactura = 1,
-					idUsuario = '".$this->id."'
+			statusOrdenCompra =    2,
+			folioFactura = '".$this->factura."',
+			statusFactura = 1,
+			idUsuario = '".$this->id."'
 
-					WHERE folioOrdenCompra =   '".$this->folio."'";
+			WHERE folioOrdenCompra =   '".$this->folio."'";
 
 			$statement = $conexion->prepare($query);
 
@@ -215,7 +215,28 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM ordenescompra WHERE yyyyOrdenCompra = '".date(Y)."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+	//FUNCION "CANCELAR ORDEN"/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//FUNCION "CONSULTAR ORDEN"/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function consultarOrdenes_all(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -236,7 +257,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -256,7 +277,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -276,7 +297,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -296,7 +317,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -315,7 +336,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -335,7 +356,7 @@ class ordenesCompra{
 
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-			dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
 			$conexion -> exec("set names utf8");
 
@@ -353,23 +374,23 @@ class ordenesCompra{
 
 
 	public function consultarCodigos(){
-    try {
+		try {
 
       //CONEXION A LA BASE DE DATOS
-      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 
-      $conexion -> exec("set names utf8");
+			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT folioOrdenCompra FROM ordenescompra WHERE folioOrdenCompra LIKE '".$this->codigo."'");
+			return $resultados = $conexion->query("SELECT folioOrdenCompra FROM ordenescompra WHERE folioOrdenCompra LIKE '".$this->codigo."'");
 
-    }
+		}
 
-    catch(PDOException $e){
-      return "Error: " . $e->getMessage();
-    }
-  }
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
 }
 
 ?>

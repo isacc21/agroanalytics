@@ -162,6 +162,25 @@ class cuentasPagar{
 			$conexion -> exec("set names utf8");
 
 			//Sentencia SQL para consultar los acreedores de la tabla.
+			return $resultados = $conexion->query("SELECT * FROM cuentaspagar WHERE monedaCuentaP = '".$this->moneda."' AND yyyyCuentaP = '".date(Y)."' ");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cuentasPagarxMoneda_all(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para consultar los acreedores de la tabla.
 			return $resultados = $conexion->query("SELECT * FROM cuentaspagar WHERE monedaCuentaP = '".$this->moneda."'");
 
 		}
@@ -170,6 +189,7 @@ class cuentasPagar{
 			return "Error: " . $e->getMessage();
 		}
 	}
+
 
 	public function consultarProveedoresxID(){
 		try {

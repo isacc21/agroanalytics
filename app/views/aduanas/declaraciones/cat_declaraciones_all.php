@@ -31,15 +31,10 @@ $declaraciones = new declaraciones($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$lista_declaraciones = $declaraciones->consultarDeclaraciones();
-
-
-
-
-
+$lista_declaraciones = $declaraciones->consultarDeclaraciones_all();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $declaraciones->consultarDeclaraciones();
+$consultaModal = $declaraciones->consultarDeclaraciones_all();
 
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
@@ -56,7 +51,7 @@ foreach ($result as $row){
 
 
 
- $html_finalizada='<div class="text-center"><span class="label label-sm label-default"> Finalizada </span></div>';
+  $html_finalizada='<div class="text-center"><span class="label label-sm label-default"> Finalizada </span></div>';
   $html_camino='<div class="text-center"><span class="label label-sm label-warning"> Declarada </span></div>';
   $html_usado='<div class="text-center"><span class="label label-sm label-info"> Espera pedimento </span></div>';
 
@@ -85,7 +80,7 @@ foreach ($result as $row){
      <!-- INICIA TITULO DE PORTLET-->
      <div class="portlet-title">
 
-       <div class="caption"><div class="font-grey-mint"><b>Catálogo</b></div></div>
+       <div class="caption"><div class="font-grey-mint"><b>Historial</b></div></div>
 
        <div class="actions btn-set">
          <button type="button" name="back" id="back_cat_decl" class="btn green-seagreen">

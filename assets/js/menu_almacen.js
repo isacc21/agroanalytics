@@ -12,6 +12,11 @@ $(document).ready(function(){
 		$("#mainContent").load( "form_ocompras.php" );
 	}); /* CIERRE SECCION DOLARES */
 
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_ocompra").click(function(){
+		$("#mainContent").load( "cat_ocompras_all.php" );
+	}); /* CIERRE SECCION DOLARES */
+
 
 	/****************** INVENTARIO **************************/
 
@@ -38,6 +43,11 @@ $(document).ready(function(){
 		$("#mainContent").load( "cat_ocargas.php" );
 	}); /* CIERRE SECCION DOLARES */
 
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_ocarga").click(function(){
+		$("#mainContent").load( "cat_ocargas_all.php" );
+	}); /* CIERRE SECCION DOLARES */
+
 
 	/****************** REMISIONES **************************/
 
@@ -49,6 +59,11 @@ $(document).ready(function(){
 	/* RUTA A SECCION DOLARES*/
 	$("#list_remisiones").click(function(){
 		$("#mainContent").load( "cat_remisiones.php" );
+	}); /* CIERRE SECCION DOLARES */
+
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_remisiones").click(function(){
+		$("#mainContent").load( "cat_remisiones_all.php" );
 	}); /* CIERRE SECCION DOLARES */
 
 }); /* TERMINA PROCESO JQUERY */

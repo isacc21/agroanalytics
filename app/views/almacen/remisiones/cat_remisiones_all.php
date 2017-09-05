@@ -31,12 +31,12 @@ $remisiones = new remisiones($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$lista_remisiones = $remisiones->consultarRemisiones();
+$lista_remisiones = $remisiones->consultarRemisiones_all();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $remisiones->consultarRemisiones();
-$revisar_productos = $remisiones->consultarRemisiones();
-$consultar_pedimentos = $remisiones->consultarRemisiones();
+$consultaModal = $remisiones->consultarRemisiones_all();
+$revisar_productos = $remisiones->consultarRemisiones_all();
+$consultar_pedimentos = $remisiones->consultarRemisiones_all();
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 $usuarios->id=$_SESSION['idUsuario'];
@@ -78,7 +78,7 @@ foreach ($result as $row){
      <div class="portlet-title">
 
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption font-grey-mint"><b>Catálogo</b></div>
+      <div class="caption font-grey-mint"><b>Historial</b></div>
 
       <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
       <div class="actions btn-set">

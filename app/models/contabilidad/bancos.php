@@ -166,6 +166,25 @@ class bancos{
 			$conexion -> exec("set names utf8");
 
 			//Sentencia SQL para consultar los acreedores de la tabla.
+			return $resultados = $conexion->query("SELECT * FROM estadocuenta WHERE idBanco = '".$this->id."' AND yyyyBanco = '".date(Y)."' ORDER BY yyyyBanco, mmBanco, ddBanco ASC");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function estadoCuenta_all(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para consultar los acreedores de la tabla.
 			return $resultados = $conexion->query("SELECT * FROM estadocuenta WHERE idBanco = '".$this->id."' ORDER BY yyyyBanco, mmBanco, ddBanco ASC");
 
 		}
@@ -294,6 +313,39 @@ class bancos{
 		}catch(PDOException $e){
 			return "Error: " . $e->getMessage();
 			
+		} ## LLAVE DE CATCH DE LA FUNCION  GUARDAR ACREEDOR ##############################
+	}
+
+
+	public function actualizarRegistro(){
+		try {
+	###### CONEXION A LA BASE DE DATOS ###################################################
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], 
+				$this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			$query = "UPDATE estadocuenta SET 
+			pagoBanco='".$this->metpago."',
+			tipoBanco='".$this->tipo."',
+			montoBanco='".$this->monto."',
+			conceptoBanco='".$this->concepto."',
+			descBanco='".$this->descripcion."',
+			idUsuario='".$this->usuario."' 
+			WHERE folioBanco = '".$this->folio."'";
+
+			$statement = $conexion->prepare($query);
+
+			$statement->execute();
+
+###### RETORNO DE MENSAJE DE EXITO ###################################################
+			return "Registrado exitósamente";
+
+
+		}catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+
 		} ## LLAVE DE CATCH DE LA FUNCION  GUARDAR ACREEDOR ##############################
 	}
 

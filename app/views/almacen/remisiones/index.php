@@ -318,7 +318,7 @@ if(isset($_SESSION['login'])){
                             $contador_notificacion = 0;
                             $notificaciones = '';
                             
-                                        // COMIENZAN NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
+                    // COMIENZAN NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
                             $inventario = $principal->caducidad_inventario();
                             foreach($inventario as $row){
                               
@@ -353,14 +353,14 @@ if(isset($_SESSION['login'])){
 
                               
                               if(
-                                                // AVISO DE TRES MESES
+                        // AVISO DE TRES MESES
                                 strtotime('-3 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-3 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-3 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-3 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-3 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                                // AVISO DE TRES MESES 
+                        // AVISO DE TRES MESES 
                               {
 
                                 
@@ -368,115 +368,136 @@ if(isset($_SESSION['login'])){
                                 $contador_notificacion++;
                               }
                               if(
-                                                // AVISO DE DOS MESES
+                        // AVISO DE DOS MESES
                                 strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                                // AVISO DE DOS MESES
+                        // AVISO DE DOS MESES
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 2 meses de caducar</span></a></li>';
                                 $contador_notificacion++;
                               }
                               if(
-                                                // AVISO DE UN MES
+                        // AVISO DE UN MES
                                 strtotime('-1 month',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-1 month +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-1 month +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-1 month +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-1 month +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                                // AVISO DE UN MES
+                        // AVISO DE UN MES
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 1 mes de caducar</span></a></li>';
                                 $contador_notificacion++;
                               }
                               if(
-                                                // AVISO DE CADUCADO
+                        // AVISO DE CADUCADO
                                 strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                                // AVISO DE CADUCADO
+                        // AVISO DE CADUCADO
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' caducado</span></a></li>';
                                 $contador_notificacion++;
                               }
                             }
-                                        // FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
+                    // FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
 
-                                        // COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
-                            $cuentasxcobrar = $principal->cxc_vencidas();
-                            foreach($cuentasxcobrar as $row){
-                              
+
+                    //VENCER CUENTAS POR COBRAR
+                            $contador = 0;
+                            $cxc_revision = $principal->cxc_revision();
+                            foreach($cxc_revision as $row){
                               $folio = $row['folioCuentaC'];
                               $dd = $row['ddCuentaC'];
                               $mm = $row['mmCuentaC'];
                               $yyyy = $row['yyyyCuentaC'];
-                              $cliente = $row['razonSocCliente'];
-
-                              if(
-                                                // AVISO DE VENCIDO
-                                strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-                                strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-                                strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-                                strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-                                strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-                                )
-                                                // AVISO DE VENCIDO
-                              {
-                                $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" de "'.$cliente.'" vencida</span></a></li>';
-                                $contador_notificacion++;
+                              if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+                                $contador ++;
+                                $principal->folio = $folio;
+                                $vencer = $principal->vencerCXC();
                               }
                             }
-                                        // FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+                    //VENCER CUENTAS POR COBRAR
 
-                                        // COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
-                            if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
-                              $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-success"><i class="fa fa-envelope-o"></i> </span>Estado de cuenta disponible</span></a></li>';
+                    // COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+                            $cuentasxcobrar = $principal->cxc_vencidas();
+                            foreach($cuentasxcobrar as $row){
+                              $folio = $row['folioCuentaC'];
+                              $factura = $row['folioFactura'];
+                              $cliente = $row['razonSocCliente'];
+
+                              $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
                               $contador_notificacion++;
                             }
-                                        // TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
+                    // FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
 
-                                        // COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
-                            $cuentasxpagar = $principal->cxp_vencidas();
-                            foreach($cuentasxpagar as $row){
+
+                    //VENCER CUENTAS POR PAGAR
+                            $contador = 0;
+                            $cxp_revision = $principal->cxp_revision();
+                            foreach($cxp_revision as $row){
                               $folio = $row['folioCuentaP'];
                               $dd = $row['ddCuentaP'];
                               $mm = $row['mmCuentaP'];
                               $yyyy = $row['yyyyCuentaP'];
+                              if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+                                $contador ++;
 
-                              if(
-                                                // AVISO DE UNA SEMANA DE VENCER
-                                strtotime('-1 week -1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-                                strtotime('-1 week',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-                                strtotime('-1 week +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-                                )
-                                                // AVISO DE UNA SEMANA DE VENCER
-                              {
-                                $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>Cuenta por cobrar "'.$folio.'" a una semana de vencer</span></a></li>';
-                                $contador_notificacion++;
-                              }
-
-                              if(
-                                                // AVISO DE UNA SEMANA DE VENCER
-                                strtotime('-1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-                                strtotime('today',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-                                strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-                                )
-                                                // AVISO DE UNA SEMANA DE VENCER
-                              {
-                                $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" vencida</span></a></li>';
-                                $contador_notificacion++;
+                                $principal->folio = $folio;
+                                $vencer = $principal->vencerCXP();
                               }
                             }
-                                        // TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+                    //echo $contador;
+                    //VENCER CUENTAS POR PAGAR
 
-                                        // COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
+                    // COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+                            $cuentasxpagar = $principal->cxp_vencidas();
+                            foreach($cuentasxpagar as $row){
+                              $folio = $row['folioCuentaP'];
+                              $rfcA = $row['rfcAcreedor'];
+                              $rfcP = $row['rfcProveedor'];
+                              $factura = $row['folioFactura'];
+
+                              if($rfcA=='null'){
+                                $principal->proveedor = $rfcP;
+                                $result = $principal->consultarProveedoresxID();
+                                foreach($result as $row){
+                                  $nombre_mostrar = $row['razonSocProveedor'];
+                                }
+                              }
+                              else{
+                                if($rfcP=='null'){
+                                  $principal->acreedor = $rfcA;
+                                  $result = $principal->consultarAcreedoresxID();
+                                  foreach($result as $row){
+                                    $nombre_mostrar = $row['razonSocAcreedor'];
+                                  }
+                                }
+                              }
+
+
+                              
+                              $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
+                              $contador_notificacion++;
+                              
+                            }
+                    // TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+
+                    // COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
+                            if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
+                              $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-success"><i class="fa fa-envelope-o"></i> </span>Estado de cuenta disponible</span></a></li>';
+                              $contador_notificacion++;
+                            }
+                    // TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
+
+                    // COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
                             $permisos_cof = $principal->permisos();
                             foreach($permisos_cof as $row){
                               $producto = $row['nombreProducto'];
@@ -486,14 +507,14 @@ if(isset($_SESSION['login'])){
 
 
                               if(
-                                            // AVISO DE 18 MESES
+                      // AVISO DE 18 MESES
                                 strtotime('-18 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-18 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-18 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-18 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-18 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 18 MESES 
+                      // AVISO DE 18 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 18 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
@@ -501,22 +522,22 @@ if(isset($_SESSION['login'])){
 
 
                               if(
-                                            // AVISO DE 12 MESES
+                      // AVISO DE 12 MESES
                                 strtotime('-12 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-12 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-12 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-12 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-12 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 12 MESES 
+                      // AVISO DE 12 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 12 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
                               }
                             }
-                                        // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+                    // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
-                                        // COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
+                    // COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
                             $permisos_cic = $principal->permisos();
                             foreach($permisos_cic as $row){
                               $producto = $row['nombreProducto'];
@@ -526,14 +547,14 @@ if(isset($_SESSION['login'])){
 
 
                               if(
-                                            // AVISO DE 4 MESES
+                      // AVISO DE 4 MESES
                                 strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-4 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 4 MESES 
+                      // AVISO DE 4 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 4 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
@@ -541,22 +562,22 @@ if(isset($_SESSION['login'])){
 
 
                               if(
-                                            // AVISO DE 2 MESES
+                      // AVISO DE 2 MESES
                                 strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 2 MESES 
+                      // AVISO DE 2 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 2 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
                               }
                             }
-                                        // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+                    // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
-                                        // COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
+                    // COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
                             $permisos_sem = $principal->permisos();
                             foreach($permisos_sem as $row){
                               $producto = $row['nombreProducto'];
@@ -564,16 +585,16 @@ if(isset($_SESSION['login'])){
                               $mm = $row['mmSemProducto'];
                               $yyyy = $row['yyyySemProducto'];
 
-                              
+
                               if(
-                                            // AVISO DE 4 MESES
+                      // AVISO DE 4 MESES
                                 strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-4 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 4 MESES 
+                      // AVISO DE 4 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 4 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
@@ -581,21 +602,20 @@ if(isset($_SESSION['login'])){
 
 
                               if(
-                                            // AVISO DE 2 MESES
+                      // AVISO DE 2 MESES
                                 strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
                                 strtotime('-2 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
                                 strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
                                 )
-                                            // AVISO DE 2 MESES 
+                      // AVISO DE 2 MESES 
                               {
                                 $notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 2 meses de vencer</span></a></li>';
                                 $contador_notificacion++;
                               }
                             }
-                                        // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
-
+                    // TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
 
                             if($contador_notificacion!=0){

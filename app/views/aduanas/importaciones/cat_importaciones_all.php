@@ -31,10 +31,10 @@ $importaciones = new importaciones($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$listaImportaciones = $importaciones->consultarImportaciones();
+$listaImportaciones = $importaciones->consultarImportaciones_all();
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $importaciones->consultarImportaciones();
+$consultaModal = $importaciones->consultarImportaciones_all();
 
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
@@ -89,7 +89,7 @@ foreach ($result as $row){
      <div class="portlet-title">
 
       <!-- TEXTO DE TITULO DE PORTLET-->
-      <div class="caption"><div class="font-grey-mint"><b>Catálogo</b></div></div>
+      <div class="caption"><div class="font-grey-mint"><b>Historial</b></div></div>
       <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
       <div class="actions btn-set">

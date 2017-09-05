@@ -18,13 +18,13 @@ if(isset($_SESSION['login'])){
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
 
 	$cuentasPagar->moneda = $_REQUEST['moneda'];
-	$lista_cxp = $cuentasPagar->cuentasPagarxMoneda();
+	$lista_cxp = $cuentasPagar->cuentasPagarxMoneda_all();
 
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
 
 	$cuentasPagar->moneda = $_REQUEST['moneda'];
-	$consultaModal = $cuentasPagar->cuentasPagarxMoneda();
+	$consultaModal = $cuentasPagar->cuentasPagarxMoneda_all();
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 	$usuarios->id=$_SESSION['idUsuario'];
@@ -66,7 +66,7 @@ if(isset($_SESSION['login'])){
   		<div class="portlet box grey-steel">
   			<div class="portlet-title">
 
-  				<div class="caption"><div class="font-grey-mint"> <b>Catálogo <?php if($_REQUEST['moneda']==1){echo 'dólares';}else{echo 'pesos';} ?></b> </div>
+  				<div class="caption"><div class="font-grey-mint"> <b>Historial <?php if($_REQUEST['moneda']==1){echo 'dólares';}else{echo 'pesos';} ?></b> </div>
 
   			</div>
   			<div class="actions btn-set">

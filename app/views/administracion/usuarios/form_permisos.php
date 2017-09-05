@@ -160,7 +160,7 @@ $idUsuario="";
 $idUsuario=(isset($_REQUEST['idUsuario']))?$_REQUEST['idUsuario']:"";
 
 ###### VALOR DE BOTON DE FORMULARIO ##################################################
-
+$_SESSION['boton']=1;
 
 ###### IF EN CASO DE QUE SE RECIBA UN DATO ###########################################
 if (isset($idUsuario)){

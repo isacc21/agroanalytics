@@ -31,7 +31,7 @@ $ordenesCompra = new ordenesCompra($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$listaCotizaciones = $ordenesCompra->consultarOrdenes();
+$listaCotizaciones = $ordenesCompra->consultarOrdenes_all();
 
 
 
@@ -39,7 +39,7 @@ $listaCotizaciones = $ordenesCompra->consultarOrdenes();
 
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $ordenesCompra->consultarOrdenes();
+$consultaModal = $ordenesCompra->consultarOrdenes_all();
 
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
@@ -53,7 +53,14 @@ foreach ($result as $row){
 
   $html_inicio_head_dt='<div class="row">';
   $html_final_head_dt='</div>';
-  $html_nuevo='<button id="gotoCompra" class="btn green-seagreen"><i class="fa fa-plus"></i>&nbsp;Nuevo </button>';
+  $html_nuevo='
+  <div class="col-md-6">
+  	<div class="btn-group">
+  		<button id="gotoCompra" class="btn sbold green"> 
+  			Nuevo <i class="fa fa-plus"></i>
+  		</button>
+  	</div>
+  </div>';
 
 
   $html_registrado='<div class="text-center"><span class="label label-sm label-warning"> Vigente </span></div>';
@@ -90,12 +97,9 @@ foreach ($result as $row){
      <div class="portlet-title">
 
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div></div>
+      <div class="caption"><div class="font-grey-mint"> <b>Historial</b> </div></div>
       <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
       <div class="actions btn-set">
-       <?php if($compras[1]=='2'){
-      echo $html_nuevo;
-    } ?>
        <button type="button" name="back" id="back_cat_ocompras" class="btn green-seagreen">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>

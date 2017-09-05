@@ -89,9 +89,6 @@ if (isset($_REQUEST['folio'])){
 <script type="text/javascript">
   $(document).ready(function(){
 
-    $(".readonly").keydown(function(e){
-      e.preventDefault();
-    });
 
     $('form').on('focus', 'input[type=number]', function (e) {
       $(this).on('mousewheel.disableScroll', function (e) {
@@ -212,97 +209,101 @@ if (isset($_REQUEST['folio'])){
       <!--INICIAN ESTILOS DE FORM-->
       <div class="form-body">
 
-
-        <div class="form-group">
-          <label class="control-label col-md-3">Fecha</label>
-          <div class="col-md-6">
-            <div class="input-group  date date-picker" data-date="<?=$ddBanco."/".$mmBanco."/".$yyyyBanco;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
-              <input type="text" class="form-control readonly"  id="fecha" required value="<?=$ddBanco."/".$mmBanco."/".$yyyyBanco;?>">
-              <span class="input-group-btn">
-                <button class="btn default" type="button">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </div>
+        <style type="text/css">
+          .readonly{
+           z-index: -1;
+         }
+       </style>
+       <div class="form-group">
+        <label class="control-label col-md-3">Fecha</label>
+        <div class="col-md-6">
+          <div class="input-group date date-picker" data-date="<?=$ddBanco."/".$mmBanco."/".$yyyyBanco;?>" data-date-format="dd/mm/yyyy" data-date-viewmode="days">
+            <input type="text" class="form-control readonly"  id="fecha" required value="<?=$ddBanco."/".$mmBanco."/".$yyyyBanco;?>">
+            <span class="input-group-btn">
+              <button class="btn default" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </span>
           </div>
         </div>
+      </div>
 
-        <!-- INICIA INPUT FOLIO-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Método de pago</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="metpago" name="metpago" value="<?=$metpago;?>" required>
-            <input type="hidden" id="folio" name="folio" value="<?=$folio;?>">
-            <input type="hidden" id="banco" name="banco" value="<?=$idBanco;?>">
+      <!-- INICIA INPUT FOLIO-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Método de pago</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="metpago" name="metpago" value="<?=$metpago;?>" required>
+          <input type="hidden" id="folio" name="folio" value="<?=$folio;?>">
+          <input type="hidden" id="banco" name="banco" value="<?=$idBanco;?>">
+        </div>
+      </div>
+      <!-- TERMINA INPUT FOLIO-->
+
+      <!-- INICIA RADIO TIPO-->
+      <div class="form-group">
+        <label class="control-label col-md-3" >Tipo de registro
+        </label>
+        <div class="input-group" id="categoria">
+          <div class="icheck-inline col-md-12" >
+            <label>
+              <input type="radio" name="cat" id="ingreso" class="icheck" data-radio="iradio_square-grey" <?echo $ingreso;?> value="liquido" required> Ingreso 
+            </label>
+            <label>
+              <input type="radio" name="cat" id="egreso" class="icheck" data-radio="iradio_square-grey"<?echo $egreso;?> value="solido" > Egreso 
+            </label>
           </div>
         </div>
-        <!-- TERMINA INPUT FOLIO-->
+      </div>
+      <!-- TERMINA RADIO TIPO-->
 
-        <!-- INICIA RADIO TIPO-->
-        <div class="form-group">
-          <label class="control-label col-md-3" >Tipo de registro
-          </label>
-          <div class="input-group" id="categoria">
-            <div class="icheck-inline col-md-12" >
-              <label>
-                <input type="radio" name="cat" id="ingreso" class="icheck" data-radio="iradio_square-grey" <?echo $ingreso;?> value="liquido" required> Ingreso 
-              </label>
-              <label>
-                <input type="radio" name="cat" id="egreso" class="icheck" data-radio="iradio_square-grey"<?echo $egreso;?> value="solido" > Egreso 
-              </label>
-            </div>
+
+      <!-- INICIA INPUT PRECIO DE COMPRA-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Monto</label>
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-usd"></i>
+            </span>
+            <input type="number" step="any" min="0" class="form-control " id="monto" name="monto" value="<?=$monto;?>" required>
           </div>
         </div>
-        <!-- TERMINA RADIO TIPO-->
+      </div>
+      <!-- TERMINA INPUT PRECIO DE COMPRA-->
 
 
-        <!-- INICIA INPUT PRECIO DE COMPRA-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Monto</label>
-          <div class="col-md-6">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-usd"></i>
-              </span>
-              <input type="number" step="any" min="0" class="form-control " id="monto" name="monto" value="<?=$monto;?>" required>
-            </div>
-          </div>
+      <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Concepto</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="concepto" name="concepto" value="<?=$concepto;?>" required>
         </div>
-        <!-- TERMINA INPUT PRECIO DE COMPRA-->
+      </div>
+      <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
 
-
-        <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Concepto</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="concepto" name="concepto" value="<?=$concepto;?>" required>
-          </div>
+      <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
+      <div class="form-group">
+        <label class="col-md-3 control-label">Descripción</label>
+        <div class="col-md-6">
+          <input type="text" class="form-control " id="descripcion" name="descripcion" value="<?=$descripcion;?>" required>
         </div>
-        <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
-
-        <!-- INICIA INPUT DE REGISTRO COFEPRIS-->
-        <div class="form-group">
-          <label class="col-md-3 control-label">Descripción</label>
-          <div class="col-md-6">
-            <input type="text" class="form-control " id="descripcion" name="descripcion" value="<?=$descripcion;?>" required>
-          </div>
-        </div>
-        <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
+      </div>
+      <!-- TERMINA INPUT DE REGISTRO COFEPRIS-->
 
 
-        <div class="text-center">
-          <hr>
-          <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
-          <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>">
-          <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
-          <a href="../bancos" class="btn grey-salsa btn-outline">Cancelar</a>
-        </div>
+      <div class="text-center">
+        <hr>
+        <!--BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS-->
+        <input type="submit" id="accionBoton" class="btn green-seagreen" value="<?=$nombreSubmit;?>">
+        <!-- BOTON PARA REGRESAR AL INICIO DE SECCION-->
+        <a href="../bancos" class="btn grey-salsa btn-outline">Cancelar</a>
+      </div>
 
-      </form>
-      <!-- TERMINA FORM-->
-    </div>
+    </form>
+    <!-- TERMINA FORM-->
   </div>
-  <!-- TERMINA CUERPO DE PORTLET-->
+</div>
+<!-- TERMINA CUERPO DE PORTLET-->
 </div>
 <!-- TERMINA PORTLET-->
 

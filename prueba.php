@@ -1,10 +1,8 @@
 <?php 
-date_default_timezone_set('America/Tijuana');
 
-$foo = '2017/10/18';
-$bar = strtotime($foo);
-$candy = strtotime('-1 month +3 days',$bar);
-echo date('d/m/Y',$candy);
-echo '<br>';
-echo date('d/m/Y');
+date_default_timezone_set('America/Tijuana');
+if(strtotime('+1 month -1 day',(strtotime("2017/09/05"))) == strtotime("2017/10/03")){
+	echo "hola";
+}
+
  ?>

@@ -68,9 +68,6 @@ if (isset($_REQUEST['folio'])){
 <script type="text/javascript">
   $(document).ready(function(){
 
-    $(".readonly").keydown(function(e){
-      e.preventDefault();
-    });
 
     $('form').on('focus', 'input[type=number]', function (e) {
       $(this).on('mousewheel.disableScroll', function (e) {
@@ -234,7 +231,7 @@ if (isset($_REQUEST['folio'])){
           <div class="form-group">
             <label class="col-md-3 control-label">Remisiones</label>
             <div class="col-md-6">
-              <select id="remision" class="form-control" required >
+              <select id="remision" class="form-control" >
                 <option selected disabled value="">Seleccione una remisión</option>
                 <?php 
                 if($nombreSubmit == 'Guardar'){

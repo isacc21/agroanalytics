@@ -196,7 +196,26 @@ class cuentasCobrar{
 			$conexion -> exec("set names utf8");
 
 			//Sentencia SQL para consultar los acreedores de la tabla.
-			return $resultados = $conexion->query("SELECT * FROM cuentascobrar WHERE monedaCuentaC = '".$this->moneda."'");
+			return $resultados = $conexion->query("SELECT * FROM cuentascobrar WHERE monedaCuentaC = '".$this->moneda."' AND yyyyCuentaC = '".date(Y)."' ");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cuentasCobrarxMoneda_all(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para consultar los acreedores de la tabla.
+			return $resultados = $conexion->query("SELECT * FROM cuentascobrar WHERE monedaCuentaC = '".$this->moneda."' ");
 
 		}
 

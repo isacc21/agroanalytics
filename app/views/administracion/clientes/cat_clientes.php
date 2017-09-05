@@ -467,8 +467,6 @@ foreach($consultaPreciosMo as $row){
             <tr><th>Producto</th> <th>Presentación</th> <th>Precio S. Inglés</th><th>Precio S. Métrico</th></tr>
             <?php
             $consultaPrecios = $clientes->consultarProductos();
-
-
             foreach($consultaPrecios as $row){
               $nombre = $row['nombreProducto'];
               $distri = $row['iVentaDisProducto'];

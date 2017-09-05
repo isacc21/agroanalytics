@@ -255,10 +255,10 @@ foreach ($result as $row){
     </li>
   </ul>';
 
-  $html_entregado='<span class="label label-sm label-success"> Entregado </span>';
-  $html_camino='<span class="label label-sm label-warning"> En camino </span>';
+  $html_entregado='<div class="text-center"><span class="label label-sm label-default"> Entregado </span></div>';
+  $html_camino='<div class="text-center"><span class="label label-sm label-warning"> En camino </span></div>';
   //$html_utilizada='<span class="label label-sm label-info"> Utilizada </span>';
-  $html_cancelado='<span class="label label-sm label-danger"> Cancelado </span>';
+  $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelado </span></div>';
 
   $html_ingreso='<span class="label label-sm label-success"> Ingreso </span>';
   $html_egreso='<span class="label label-sm label-danger"> Egreso </span>';
@@ -293,53 +293,36 @@ foreach ($result as $row){
     <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
     <div class="actions btn-set">
-
-      <div class="btn-group btn-group-devided" data-toggle="buttons">
-
-        <select id="select_year" class="btn grey-cascade btn-outline" required >
-         <option <?php echo $todos_a;?> value="0000>">Año</option>
-         <?php 
-         $years = $pedidos->consultarAnios();
-         foreach ($years as $row){
-          $yyyy = $row['yyyyPedido'];
-
-          ?>
-          <option <?php echo $anios[$yyyy];?> value="<?=$yyyy;?>"><? echo $yyyy;?></option>
-          <?php
-        }
-        ?>
-      </select>
-    </div>
-    &nbsp;
-    <div class="btn-group btn-group-devided" data-toggle="buttons">
-      <select id="select_month" class="btn grey-cascade btn-outline" required >
-       <option <?php echo $todos;?> value="00">Mes</option>
-       <option <?php echo $meses[0];?> value="01">Enero</option>
-       <option <?php echo $meses[1];?> value="02">Febrero</option>
-       <option <?php echo $meses[2];?> value="03">Marzo</option>
-       <option <?php echo $meses[3];?> value="04">Abril</option>
-       <option <?php echo $meses[4];?> value="05">Mayo</option>
-       <option <?php echo $meses[5];?> value="06">Junio</option>
-       <option <?php echo $meses[6];?> value="07">Julio</option>
-       <option <?php echo $meses[7];?> value="08">Agosto</option>
-       <option <?php echo $meses[8];?> value="09">Septiembre</option>
-       <option <?php echo $meses[9];?> value="10">Octubre</option>
-       <option <?php echo $meses[10];?> value="11">Noviembre</option>
-       <option <?php echo $meses[11];?> value="12">Diciembre</option>
+      &nbsp;
+      <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+        <select id="select_month" class="btn grey-cascade btn-outline" required >
+         <option <?php //echo $todos;?> value="00">Mes</option>
+         <option <?php //echo $meses[0];?> value="01">Enero</option>
+         <option <?php //echo $meses[1];?> value="02">Febrero</option>
+         <option <?php //echo $meses[2];?> value="03">Marzo</option>
+         <option <?php //echo $meses[3];?> value="04">Abril</option>
+         <option <?php //echo $meses[4];?> value="05">Mayo</option>
+         <option <?php //echo $meses[5];?> value="06">Junio</option>
+         <option <?php //echo $meses[6];?> value="07">Julio</option>
+         <option <?php //echo $meses[7];?> value="08">Agosto</option>
+         <option <?php //echo $meses[8];?> value="09">Septiembre</option>
+         <option <?php //echo $meses[9];?> value="10">Octubre</option>
+         <option <?php //echo $meses[10];?> value="11">Noviembre</option>
+         <option <?php //echo $meses[11];?> value="12">Diciembre</option>
+       </select>
+     </div> -->
+     &nbsp;
+     <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+      <select id="filtro" class="btn grey-cascade btn-outline" required >
+       <option <?php //echo $all;?> value="todas">Todos los registros</option>
+       <option <?php //echo $register;?> value="1">En camino</option>
+       <option <?php //echo $defeat;?> value="2">Entregados</option>
+       <option <?php //echo $cancel;?> value="3">Cancelados</option>
      </select>
-   </div>
-   &nbsp;
-   <div class="btn-group btn-group-devided" data-toggle="buttons">
-    <select id="filtro" class="btn grey-cascade btn-outline" required >
-     <option <?php echo $all;?> value="todas">Todos los registros</option>
-     <option <?php echo $register;?> value="1">En camino</option>
-     <option <?php echo $defeat;?> value="2">Entregados</option>
-     <option <?php echo $cancel;?> value="3">Cancelados</option>
-   </select>
- </div>
- <button type="button" name="back" id="back_cat_pedi" class="btn green-seagreen">
-  <i class="fa fa-arrow-left"></i> Regresar
-</button>
+   </div> -->
+   <button type="button" name="back" id="back_cat_pedi" class="btn green-seagreen">
+    <i class="fa fa-arrow-left"></i> Regresar
+  </button>
 </div>
 
 

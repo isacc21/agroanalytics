@@ -31,13 +31,13 @@ $ordenesCarga = new ordenesCarga($datosConexionBD);
 $usuarios = new usuarios($datosConexionBD);
 
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
-$lista_cargas = $ordenesCarga->consultarCargas();
+$lista_cargas = $ordenesCarga->consultarCargas_all();
 
 
 
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
-$consultaModal = $ordenesCarga->consultarCargas();
+$consultaModal = $ordenesCarga->consultarCargas_all();
 
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
@@ -81,7 +81,7 @@ foreach ($result as $row){
      <div class="portlet-title">
 
       <!-- INICIAN ESTILOS PARA TITULO DE PORTLET-->
-      <div class="caption"><div class="font-grey-mint"><b>Catálogo</b></div></div>
+      <div class="caption"><div class="font-grey-mint"><b>Historial</b></div></div>
       <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 
       <div class="actions btn-set">
@@ -89,9 +89,7 @@ foreach ($result as $row){
           <i class="fa fa-arrow-left"></i>&nbsp;Regresar
         </button>
 
-        <button type="button" name="back" id="goto_remisiones" class="btn green-seagreen">
-          Remisiones&nbsp;<i class="fa fa-arrow-right"></i> 
-        </button>
+       
       </div>
 
     </div>

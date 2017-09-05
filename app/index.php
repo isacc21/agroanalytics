@@ -78,7 +78,7 @@ if(isset($_SESSION['login'])){
 		$cotizaciones = $row['cotizacionesPermiso'];
 		$importaciones = $row['importacionesPermiso'];
 		$declaraciones = $row['declaracionesPermiso'];
-		$inventario = $row['inventarioPermiso'];
+		$inventary = $row['inventarioPermiso'];
 		$carga = $row['cargaPermiso'];
 		$compra = $row['compraPermiso'];
 		$remisiones = $row['remisionesPermiso'];
@@ -471,31 +471,86 @@ if(isset($_SESSION['login'])){
 										}
 										// FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
 
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
-										$cuentasxcobrar = $principal->cxc_vencidas();
-										foreach($cuentasxcobrar as $row){
-											
+
+										//VENCER CUENTAS POR COBRAR
+										$contador = 0;
+										$cxc_revision = $principal->cxc_revision();
+										foreach($cxc_revision as $row){
 											$folio = $row['folioCuentaC'];
 											$dd = $row['ddCuentaC'];
 											$mm = $row['mmCuentaC'];
 											$yyyy = $row['yyyyCuentaC'];
-											$cliente = $row['razonSocCliente'];
-
-											if(
-												// AVISO DE VENCIDO
-												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
-												// AVISO DE VENCIDO
-											{
-												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" de "'.$cliente.'" vencida</span></a></li>';
-												$contador_notificacion++;
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+												$contador ++;
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXC();
 											}
 										}
+										//VENCER CUENTAS POR COBRAR
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+										$cuentasxcobrar = $principal->cxc_vencidas();
+										foreach($cuentasxcobrar as $row){
+											$folio = $row['folioCuentaC'];
+											$factura = $row['folioFactura'];
+											$cliente = $row['razonSocCliente'];
+
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
+											$contador_notificacion++;
+										}
 										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+
+
+										//VENCER CUENTAS POR PAGAR
+										$contador = 0;
+										$cxp_revision = $principal->cxp_revision();
+										foreach($cxp_revision as $row){
+											$folio = $row['folioCuentaP'];
+											$dd = $row['ddCuentaP'];
+											$mm = $row['mmCuentaP'];
+											$yyyy = $row['yyyyCuentaP'];
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+												$contador ++;
+
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXP();
+											}
+										}
+										//echo $contador;
+										//VENCER CUENTAS POR PAGAR
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+										$cuentasxpagar = $principal->cxp_vencidas();
+										foreach($cuentasxpagar as $row){
+											$folio = $row['folioCuentaP'];
+											$rfcA = $row['rfcAcreedor'];
+											$rfcP = $row['rfcProveedor'];
+											$factura = $row['folioFactura'];
+
+											if($rfcA=='null'){
+												$principal->proveedor = $rfcP;
+												$result = $principal->consultarProveedoresxID();
+												foreach($result as $row){
+													$nombre_mostrar = $row['razonSocProveedor'];
+												}
+											}
+											else{
+												if($rfcP=='null'){
+													$principal->acreedor = $rfcA;
+													$result = $principal->consultarAcreedoresxID();
+													foreach($result as $row){
+														$nombre_mostrar = $row['razonSocAcreedor'];
+													}
+												}
+											}
+
+
+											
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
+											$contador_notificacion++;
+											
+										}
+										// TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
 
 										// COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
 										if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
@@ -503,40 +558,6 @@ if(isset($_SESSION['login'])){
 											$contador_notificacion++;
 										}
 										// TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
-
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
-										$cuentasxpagar = $principal->cxp_vencidas();
-										foreach($cuentasxpagar as $row){
-											$folio = $row['folioCuentaP'];
-											$dd = $row['ddCuentaP'];
-											$mm = $row['mmCuentaP'];
-											$yyyy = $row['yyyyCuentaP'];
-
-											if(
-												// AVISO DE UNA SEMANA DE VENCER
-												strtotime('-1 week -1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-												strtotime('-1 week',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('-1 week +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
-												// AVISO DE UNA SEMANA DE VENCER
-											{
-												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>Cuenta por cobrar "'.$folio.'" a una semana de vencer</span></a></li>';
-												$contador_notificacion++;
-											}
-
-											if(
-												// AVISO DE UNA SEMANA DE VENCER
-												strtotime('-1 day',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
-												// AVISO DE UNA SEMANA DE VENCER
-											{
-												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Cuenta por cobrar "'.$folio.'" vencida</span></a></li>';
-												$contador_notificacion++;
-											}
-										}
-										// TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
 
 										// COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
 										$permisos_cof = $principal->permisos();
@@ -626,7 +647,7 @@ if(isset($_SESSION['login'])){
 											$mm = $row['mmSemProducto'];
 											$yyyy = $row['yyyySemProducto'];
 
-											
+
 											if(
 											// AVISO DE 4 MESES
 												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -757,7 +778,7 @@ if(isset($_SESSION['login'])){
 														<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
 														<?php
 
-														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
+														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$bancos!='0000'){
 
 
 															if($users!='0000'){
@@ -843,11 +864,11 @@ if(isset($_SESSION['login'])){
 
 														<!--INICIA MÓDULO DE ALMACÉN-->
 														<?php
-														if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
+														if($inventary!='0000'||$carga!='0000'||$remisiones!='0000'){
 
 															echo $html_inicio_almacen;
 
-															if($inventario!='0000'){
+															if($inventary!='0000'){
 																echo $html_inventario;
 															}
 															if($carga!='0000'){
@@ -1105,7 +1126,7 @@ if(isset($_SESSION['login'])){
 															</div>
 															<div class="details">
 																<div class="number">
-	
+
 																	$<span class='numero_grande' data-counter="counterup" data-value="<?=number_format($importacion,2,'.',','); ?>">0</span>
 																</div>
 																<div class="desc"> Importaciones | USD</div>
@@ -1121,7 +1142,7 @@ if(isset($_SESSION['login'])){
 															<div class="details">
 																<div class="number">
 																	
-																		$<span data-counter="counterup" data-value="<?=number_format($inve,2,'.',','); ?>">0</span>
+																	$<span data-counter="counterup" data-value="<?=number_format($inve,2,'.',','); ?>">0</span>
 																	
 																</div>
 																<div class="desc"> Inventario | USD</div>
@@ -1181,7 +1202,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1259,7 +1280,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1338,7 +1359,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1427,7 +1448,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1450,10 +1471,10 @@ if(isset($_SESSION['login'])){
 														<?php 
 														$result = $principal->ventas_anuales_pasado();
 														foreach($result as $row){
+															$total_pasado='0.00';
 															$total_pasado = $row['total'];
-															if(is_null($row['total'])==1){
-																$total_pasado = '0.00';
-															}
+
+															$decimales = explode(".", $total_pasado);
 															$mes = $row['mes'];
 
 															switch($mes){
@@ -1506,16 +1527,11 @@ if(isset($_SESSION['login'])){
 																break;
 															}
 
-
+															$total='0.00';
 															$principal->mes = $mes;
 															$result = $principal->ventas_anuales();
 															foreach($result as $row){
 																$total = $row['total'];
-																if(is_null($row['total'])==1){
-																	$total = '0.00';
-																}
-
-
 															}
 
 															$ventas_mensuales .=  '{"mes": "'.$mes_mostrar.'","presente": "'.$total.'","pasado": "'.$total_pasado.'"},';
@@ -1523,6 +1539,7 @@ if(isset($_SESSION['login'])){
 														?>
 														var chart = AmCharts.makeChart( "meses", {
 															"type": "serial",
+															"precision": 2,
 															"addClassNames": true,
 															"theme": "light",
 															"autoMargins": true,
@@ -1530,6 +1547,7 @@ if(isset($_SESSION['login'])){
 															"marginRight": 8,
 															"marginTop": 10,
 															"marginBottom": 26,
+
 															"balloon": {
 																"adjustBorderColor": false,
 																"horizontalPadding": 10,
@@ -1582,14 +1600,14 @@ if(isset($_SESSION['login'])){
 
 													<!-- HTML -->
 													<div class="col-lg-12 col-xs-12 col-sm-12">
-
+														<?php echo $ttotal; ?>
 
 														<!-- BEGIN CHART PORTLET-->
 														<div class="portlet light bordered">
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">

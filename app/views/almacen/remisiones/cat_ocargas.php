@@ -51,8 +51,8 @@ foreach ($result as $row){
 
   
 
-  $html_registrado='<div class="text-center"><span class="label label-sm label-success"> Esperando remisión </span></div>';
-  $html_utilizada='<div class="text-center"><span class="label label-sm label-info"> Utilizada </span></div>';
+  $html_registrado='<div class="text-center"><span class="label label-sm label-warning"> Esperando remisión </span></div>';
+  $html_utilizada='<div class="text-center"><span class="label label-sm label-default"> Utilizada </span></div>';
   $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelada </span></div>';
 
   $html_ingreso='<div class="text-center"><span class="label label-sm label-success"> Ingreso </span></div>';
@@ -92,9 +92,9 @@ foreach ($result as $row){
           <i class="fa fa-arrow-left"></i>&nbsp;Regresar
         </button>
 
-        <button type="button" name="back" id="goto_remisiones" class="btn green-seagreen">
+        <!-- <button type="button" name="back" id="goto_remisiones" class="btn green-seagreen">
           Remisiones&nbsp;<i class="fa fa-arrow-right"></i> 
-        </button>
+        </button> -->
       </div>
 
     </div>

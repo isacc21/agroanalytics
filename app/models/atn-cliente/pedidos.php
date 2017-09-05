@@ -218,6 +218,25 @@ class pedidos{
     }
   }
 
+   public function consultarPedidos_all(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM pedidos");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+
   
 
 
@@ -445,7 +464,7 @@ class pedidos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' AND yyyyPedido = '".date(Y)."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
 
     }
 
@@ -466,7 +485,7 @@ class pedidos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE mmPedido = '".$this->mm."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE mmPedido = '".$this->mm."' AND yyyyPedido = '".date(Y)."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
 
     }
 
@@ -487,7 +506,7 @@ class pedidos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' AND mmPedido = '".$this->mm."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' AND mmPedido = '".$this->mm."' AND yyyyPedido = '".date(Y)."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
 
     }
 
@@ -509,6 +528,70 @@ class pedidos{
 
       //Sentencia SQL para eliminar un usuario
       return $resultados = $conexion->query("SELECT DISTINCT yyyyPedido FROM pedidos ORDER BY yyyyPedido ASC");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public function consultarxStatus_all(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public function consultarxMes_all(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE mmPedido = '".$this->mm."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
+
+    }
+
+    catch(PDOException $e){
+      return "Error: " . $e->getMessage();
+    }
+  }
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //FUNCION "CONSULTAR REGISTROS"////////////////////////////////////////////////////////////////////////////////////////////////////////
+  public function consultarxStatusyMes_all(){
+    try {
+
+      //CONEXION A LA BASE DE DATOS
+      $conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+        dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+      $conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+      return $resultados = $conexion->query("SELECT * FROM pedidos WHERE statusPedido = '".$this->status."' AND mmPedido = '".$this->mm."' ORDER BY yyyyPedido DESC, mmPedido DESC, ddPedido DESC");
 
     }
 

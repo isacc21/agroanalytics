@@ -31,9 +31,10 @@ if (isset($_REQUEST['rfc'])){
 
   $nombreSubmit = 'Actualizar';
 }
+//echo $_REQUEST['rfc'];
 
 $clientes->rfc =$_REQUEST['rfc'];
-$lista_clientes = $clientes->consultarClientes();
+$lista_clientes = $clientes->consultarClienteID();
 foreach($lista_clientes as $row){
   $nombre_cliente = $row['razonSocCliente'];
 }
@@ -90,14 +91,32 @@ foreach($lista_clientes as $row){
 
           switch($presentacion){
             case 1:
+            $pres = " | Cubeta";
+            $phi = "[USD/GAL]";
+            $phm = "[USD/LT]";
+            break;
             case 2:
+            $pres = " | Tibor";
+            $phi = "[USD/GAL]";
+            $phm = "[USD/LT]";
+            break;
             case 3:
+            $pres = " | Tote";
+            $phi = "[USD/GAL]";
+            $phm = "[USD/LT]";
+            break;
             case 4:
+            $pres = " | Granel";
             $phi = "[USD/GAL]";
             $phm = "[USD/LT]";
             break;
             case 5:
+            $pres = " | Saco";
+            $phi = "[USD/LB]";
+            $phm = "[USD/KG]";
+            break;
             case 6:
+            $pres = " | S.Saco";
             $phi = "[USD/LB]";
             $phm = "[USD/KG]";
             break;
@@ -139,7 +158,7 @@ foreach($lista_clientes as $row){
 
             ?>
 
-            <label class="col-md-3 control-label"><?echo $producto;?></label>
+            <label class="col-md-3 control-label"><?echo $producto.$pres;?></label>
             <div class="col-md-3">
               <input type="number" class="form-control" id="precio<?=$x;?>" name="precio<?=$x;?>" step="0.01" min="0" value="<?=$final;?>" required placeholder="<?=$phi;?>">
             </div>

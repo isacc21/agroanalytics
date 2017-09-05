@@ -22,9 +22,16 @@ foreach($result as $row){
 
 	foreach($proveedores as $row){
 		$_SESSION['lineauno']= $row['razonSocProveedor'];
-		$_SESSION['linea_dos']= $row['numeroExtProveedor']."-".$row['numeroIntProveedor']." ".$row['calleProveedor'];
+		if($row['numeroIntProveedor'] == 0){
+			$_SESSION['linea_dos']= $row['numeroExtProveedor']." ".$row['calleProveedor'];	
+		}
+		else{
+			$_SESSION['linea_dos']= $row['numeroExtProveedor']."-".$row['numeroIntProveedor']." ".$row['calleProveedor'];	
+		}
+		
 		$_SESSION['linea_tres']= $row['ciudadProveedor']." ".$row['estadoProveedor']." ".$row['codigoPostalProveedor'];
 		$_SESSION['linea_cuatro']= "T. ".$row['telefonoProveedor'];
+		$_SESSION['linea_cinco']= "F. ".$row['celularProveedor'];
 	}
 }
 
@@ -102,7 +109,7 @@ class PDF extends FPDF
 		$this->setX(45);
 		$this->Cell(60,0,utf8_decode('México'),0,0,'L');
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode($_SESSION['lineacinco']),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_cinco']),0,0,'L');
 		$this->Ln(10);
 
 		$this->setX(45);
@@ -216,13 +223,13 @@ foreach($detalles as $row){
 
 	switch($presentacion_producto){
 		case 1:
-		$presentacion = '5 GAL';
+		$presentacion = 'PAIL';
 		break;
 		case 2:
-		$presentacion = '55 GAL';
+		$presentacion = 'DRUM';
 		break;
 		case 3:
-		$presentacion = '275 GAL';
+		$presentacion = 'TOTE';
 		break;
 		case 4: 
 		$presentacion = 'BULK';
@@ -245,7 +252,7 @@ foreach($detalles as $row){
 	$pdf->Cell(65,7,utf8_decode($nombre_producto),0,0,'L',1);
 	$pdf->Cell(25,7,$producto,0,0,'L',1);
 	$pdf->Cell(30,7,$presentacion,0,0,'L',1);
-	$pdf->Cell(25,7,$cantidad."        ",0,0,'R',1);
+	$pdf->Cell(25,7,$cantidad."  GAL  ",0,0,'R',1);
 	$pdf->Cell(5,7,"$",0,0,'L',1);
 	$pdf->Cell(15,7,$unitario." ",0,0,'R',1);
 	$pdf->Cell(5,7,"  $",0,0,'L',1);

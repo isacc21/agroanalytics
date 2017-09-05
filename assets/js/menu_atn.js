@@ -38,6 +38,11 @@ $(document).ready(function(){
 		$("#mainContent").load( "form_pedidos.php" );
 	}); /* CIERRE SECCION DOLARES */
 
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_pedido").click(function(){
+		$("#mainContent").load( "cat_pedidos_all.php" );
+	}); /* CIERRE SECCION DOLARES */
+
 	
 
 

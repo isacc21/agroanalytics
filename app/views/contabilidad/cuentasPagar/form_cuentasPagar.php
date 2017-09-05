@@ -83,11 +83,6 @@ if (isset($_REQUEST['folio'])){
 <!-- SCRIPTS NECESARIOS PARA BOTONES DE ACCIONES-->
 <script type="text/javascript">
   $(document).ready(function(){
-
-    $(".readonly").keydown(function(e){
-      e.preventDefault();
-    });
-
     $('form').on('focus', 'input[type=number]', function (e) {
       $(this).on('mousewheel.disableScroll', function (e) {
         e.preventDefault()

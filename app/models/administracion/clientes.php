@@ -273,7 +273,7 @@ class clientes{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para consultar los clientes de la tabla.
-      return $resultados = $conexion->query("SELECT * FROM productos");
+      return $resultados = $conexion->query("SELECT * FROM productos ORDER BY presentacionProducto");
 
     }
 

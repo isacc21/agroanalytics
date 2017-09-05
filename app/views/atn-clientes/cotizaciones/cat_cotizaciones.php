@@ -254,9 +254,9 @@ foreach ($result as $row){
     </li>
   </ul>';
 
-  $html_registrado='<div class="text-center"><span class="label label-sm label-success"> Vigente </span></div>';
+  $html_registrado='<div class="text-center"><span class="label label-sm label-info"> Vigente </span></div>';
   $html_vencida='<div class="text-center"><span class="label label-sm label-warning"> Vencida </span></div>';
-  $html_utilizada='<div class="text-center"><span class="label label-sm label-info"> Utilizada </span></div>';
+  $html_utilizada='<div class="text-center"><span class="label label-sm label-default"> Utilizada </span></div>';
   $html_cancelado='<div class="text-center"><span class="label label-sm label-danger"> Cancelada </span></div>';
 
   $html_ingreso='<div class="text-center"><span class="label label-sm label-success"> Ingreso </span></div>';
@@ -291,61 +291,46 @@ foreach ($result as $row){
 
 
       <div class="actions btn-set">
-       <div class="btn-group btn-group-devided" data-toggle="buttons">
+       
+        &nbsp;
+        <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+          <select id="select_month" class="btn grey-cascade btn-outline" required >
+           <option <?php //echo $todos;?> value="00">Mes</option>
+           <option <?php //echo $meses[0];?> value="01">Enero</option>
+           <option <?php //echo $meses[1];?> value="02">Febrero</option>
+           <option <?php //echo $meses[2];?> value="03">Marzo</option>
+           <option <?php //echo $meses[3];?> value="04">Abril</option>
+           <option <?php //echo $meses[4];?> value="05">Mayo</option>
+           <option <?php //echo $meses[5];?> value="06">Junio</option>
+           <option <?php //echo $meses[6];?> value="07">Julio</option>
+           <option <?php //echo $meses[7];?> value="08">Agosto</option>
+           <option <?php //echo $meses[8];?> value="09">Septiembre</option>
+           <option <?php //echo $meses[9];?> value="10">Octubre</option>
+           <option <?php //echo $meses[10];?> value="11">Noviembre</option>
+           <option <?php //echo $meses[11];?> value="12">Diciembre</option>
+         </select>
+       </div>
+       &nbsp; -->
+       <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+        <select id="filtro" class="btn grey-cascade btn-outline" required >
+         <option <?php //echo $all;?> value="todas">Todos los registros</option>
+         <option <?php //echo $register;?> value="1">Registradas</option>
+         <option <?php //echo $defeat;?> value="2">Vencidas</option>
+         <option <?php //echo $cancel;?> value="3">Canceladas</option>
+         <option <?php //echo $used;?> value="4">Utilizadas</option>
+       </select>
+     </div> -->
+     <?php if($pCotizacion[1]=='2'){
+      echo $html_nuevo;
+    } ?>
 
-        <select id="select_year" class="btn grey-cascade btn-outline" required >
-         <option <?php echo $todos_a;?> value="0000>">Año</option>
-         <?php 
-         $years = $cotizaciones->consultarAnios();
-         foreach ($years as $row){
-          $yyyy = $row['yyyyCotizacion'];
-
-          ?>
-          <option <?php echo $anios[$yyyy];?> value="<?=$yyyy;?>"><? echo $yyyy;?></option>
-          <?php
-        }
-        ?>
-      </select>
-    </div>
-    &nbsp;
-    <div class="btn-group btn-group-devided" data-toggle="buttons">
-      <select id="select_month" class="btn grey-cascade btn-outline" required >
-       <option <?php echo $todos;?> value="00">Mes</option>
-       <option <?php echo $meses[0];?> value="01">Enero</option>
-       <option <?php echo $meses[1];?> value="02">Febrero</option>
-       <option <?php echo $meses[2];?> value="03">Marzo</option>
-       <option <?php echo $meses[3];?> value="04">Abril</option>
-       <option <?php echo $meses[4];?> value="05">Mayo</option>
-       <option <?php echo $meses[5];?> value="06">Junio</option>
-       <option <?php echo $meses[6];?> value="07">Julio</option>
-       <option <?php echo $meses[7];?> value="08">Agosto</option>
-       <option <?php echo $meses[8];?> value="09">Septiembre</option>
-       <option <?php echo $meses[9];?> value="10">Octubre</option>
-       <option <?php echo $meses[10];?> value="11">Noviembre</option>
-       <option <?php echo $meses[11];?> value="12">Diciembre</option>
-     </select>
-   </div>
-   &nbsp;
-   <div class="btn-group btn-group-devided" data-toggle="buttons">
-    <select id="filtro" class="btn grey-cascade btn-outline" required >
-     <option <?php echo $all;?> value="todas">Todos los registros</option>
-     <option <?php echo $register;?> value="1">Registradas</option>
-     <option <?php echo $defeat;?> value="2">Vencidas</option>
-     <option <?php echo $cancel;?> value="3">Canceladas</option>
-     <option <?php echo $used;?> value="4">Utilizadas</option>
-   </select>
- </div>
- <?php if($pCotizacion[1]=='2'){
-  echo $html_nuevo;
-} ?>
-
-<button type="button" name="back" id="back_cat_coti" class="btn green-seagreen">
-  <i class="fa fa-arrow-left"></i>&nbsp;Regresar
-</button>
-</div>
+    <button type="button" name="back" id="back_cat_coti" class="btn green-seagreen">
+      <i class="fa fa-arrow-left"></i>&nbsp;Regresar
+    </button>
+  </div>
 
 
-<!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
+  <!-- TERMINAR ESTILOS PARA TITULO DE PORTLET-->
 </div>
 <!-- TERMINA TITULO DE PORTLET-->
 
@@ -669,9 +654,9 @@ foreach($consultarProductos as $row){
     $typep = '[TON.MET]';
     $precio_usar = $precio_metrico;
     break;
-   }
+  }
 
-   switch($presentacion){
+  switch($presentacion){
     case 1:
     $pres = ' | Cubeta';
     break;
@@ -690,10 +675,10 @@ foreach($consultarProductos as $row){
     case 6:
     $pres = ' | S.Saco';
     break;
-   }
+  }
 
-   ?>
-   <tr>
+  ?>
+  <tr>
     <td><?php echo $nombreProducto.$pres;?></td>
     <td><?php echo number_format( $cantidad,2, '.', ',').$typep;?></td>
     <td><?php echo "$ ".number_format($precio_usar,2, '.', ','); ?></td>

@@ -5,6 +5,9 @@ class principal{
 	var $mes;
 	var $year;
 	var $producto;
+	var $folio;
+	var $proveedor;
+	var $acreedor;
 
 	function __construct($datosConexionBD){
 		$this->datosConexionBD=$datosConexionBD;
@@ -16,7 +19,7 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM(a.totalPedido) AS total FROM pedidos AS a INNER JOIN ordenescarga AS b ON a.folioPedido = b.folioPedido INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura WHERE d.statusCuentaC <> 4 AND d.statusCuentaC <> 3 AND d.mmCuentaC = '".$this->mes."'");
+			return $resultados = $conexion->query("SELECT SUM(a.totalPedido) AS total FROM pedidos AS a INNER JOIN ordenescarga AS b ON a.folioPedido = b.folioPedido INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura WHERE d.statusCuentaC <> 4 AND d.statusCuentaC <> 3 AND d.mmCuentaC = '".$this->mes."' AND d.mmCuentaC = '".date(Y)."'");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -42,7 +45,10 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM(montoBanco) as Total FROM estadocuenta WHERE tipoBanco = 1");
+			return $resultados = $conexion->query("SELECT SUM( a.montoBanco ) AS Total
+				FROM estadocuenta AS a
+				INNER JOIN bancos AS b ON a.idBanco = b.idBanco
+				WHERE b.monedaBanco =1");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -55,7 +61,10 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM(montoBanco) as Total FROM estadocuenta WHERE tipoBanco = 2");
+			return $resultados = $conexion->query("SELECT SUM( a.montoBanco ) AS Total
+				FROM estadocuenta AS a
+				INNER JOIN bancos AS b ON a.idBanco = b.idBanco
+				WHERE b.monedaBanco =2");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -68,12 +77,17 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM(a.totalPedido) AS total FROM pedidos AS a INNER JOIN ordenescarga AS b ON a.folioPedido = b.folioPedido INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura WHERE d.statusCuentaC=1 ");
+			return $resultados = $conexion->query("
+				SELECT SUM( importeCuentaC ) AS total
+				FROM cuentascobrar
+				WHERE statusCuentaC =1");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
 		}
 	}
+
+	//SELECT SUM(a.totalPedido) AS total FROM pedidos AS a INNER JOIN ordenescarga AS b ON a.folioPedido = b.folioPedido INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura WHERE d.statusCuentaC=1 
 
 	public function cxp_usd(){
 		try {
@@ -212,7 +226,9 @@ class principal{
 				INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga
 				INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura
 				WHERE d.yyyyCuentaC = '".date(Y)."'
-				AND d.mmCuentaC = '".$this->mes."'");
+				AND d.mmCuentaC = '".$this->mes."'
+				GROUP BY a.mmPedido
+				ORDER BY a.mmPedido ASC");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -225,10 +241,12 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM( a.totalPedido ) AS total, a.mmPedido as mes
+			return $resultados = $conexion->query("SELECT SUM( a.totalPedido ) AS total, d.mmCuentaC as mes
 				FROM pedidos AS a
-				WHERE a.yyyyPedido = '".(date(Y)-1)."'
-				
+				INNER JOIN ordenescarga AS b ON a.folioPedido = b.folioPedido
+				INNER JOIN remisiones AS c ON b.folioOrdenCarga = c.folioOrdenCarga
+				INNER JOIN cuentascobrar AS d ON c.folioRemision = d.remisionFactura
+				WHERE d.yyyyCuentaC = '".(date(Y)-1)."'
 				GROUP BY a.mmPedido
 				ORDER BY a.mmPedido ASC");
 		}
@@ -267,7 +285,7 @@ class principal{
 		}
 	}
 
-	public function cxc_vencidas(){
+	public function cxc_revision(){
 		try {
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
@@ -293,7 +311,32 @@ class principal{
 		}
 	}
 
-	public function cxp_vencidas(){
+
+	public function cxc_vencidas(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				a.folioCuentaC, 
+				a.folioFactura,
+				b.razonSocCliente 
+				FROM 
+				cuentascobrar AS a 
+				INNER JOIN 
+				clientes AS b 
+				ON a.rfcCliente = b.rfcCliente 
+				WHERE a.statusCuentaC = 3
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cxp_revision(){
 		try {
 			//CONEXION A LA BASE DE DATOS
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
@@ -308,6 +351,28 @@ class principal{
 				FROM 
 				cuentaspagar AS a 
 				WHERE a.statusCuentaP = 1
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function cxp_vencidas(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				folioCuentaP, 
+				folioFactura,
+				rfcProveedor,
+				rfcAcreedor
+				FROM 
+				cuentaspagar AS a 
+				WHERE statusCuentaP = 3
 				");
 		}
 		catch(PDOException $e){
@@ -336,6 +401,73 @@ class principal{
 				mmSemProducto,
 				yyyySemProducto
 				FROM productos
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function vencerCXC(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				UPDATE cuentascobrar SET
+				statusCuentaC = 3
+				WHERE folioCuentaC = '".$this->folio."'
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+	
+
+	public function vencerCXP(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				UPDATE cuentaspagar SET
+				statusCuentaP = 3
+				WHERE folioCuentaP = '".$this->folio."'
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+	public function consultarProveedoresxID(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT * FROM proveedores WHERE rfcProveedor = '".$this->proveedor."'
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+	public function consultarAcreedoresxID(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT * FROM acreedores WHERE rfcAcreedor = '".$this->acreedor."'
 				");
 		}
 		catch(PDOException $e){

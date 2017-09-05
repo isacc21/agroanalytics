@@ -173,7 +173,7 @@ class remisiones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'K%' AND codigoProducto = '".$this->producto."' AND existenciaInventario > 0 ORDER BY idInventario ASC");
+			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'K%' AND codigoProducto = '".$this->producto."' AND existenciaInventario > 0 ORDER BY yyyyCaducidad ASC, mmCaducidad ASC, ddCaducidad ASC");
 
 		}
 
@@ -221,7 +221,7 @@ class remisiones{
 			$conexion -> exec("set names utf8");
 
       //Sentencia SQL para eliminar un usuario
-			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'EE%' AND codigoProducto = '".$this->producto."' and existenciaInventario > 0 ORDER BY idInventario ASC");
+			return $resultados = $conexion->query("SELECT * FROM inventario WHERE barCodeInventario LIKE 'EE%' AND codigoProducto = '".$this->producto."' and existenciaInventario > 0 ORDER BY yyyyCaducidad ASC, mmCaducidad ASC, ddCaducidad ASC");
 
 		}
 
@@ -281,6 +281,26 @@ class remisiones{
 	}
 
 	public function consultarRemisiones(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM remisiones WHERE yyyyRemision = '".date(Y)."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+	public function consultarRemisiones_all(){
 		try {
 
       //CONEXION A LA BASE DE DATOS

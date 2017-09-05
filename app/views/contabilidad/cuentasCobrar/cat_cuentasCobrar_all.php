@@ -18,13 +18,13 @@ if(isset($_SESSION['login'])){
 ###### CONSULTA DE ACREEDORES PARA DATA TABLE ########################################
 
 	$cuentasCobrar->moneda = $_REQUEST['moneda'];
-	$lista_cxc = $cuentasCobrar->cuentasCobrarxMoneda();
+	$lista_cxc = $cuentasCobrar->cuentasCobrarxMoneda_all();
 
 
 ###### CONSULTA DE ACREEDORES PARA VENTANAS MODALES ##################################
 
 	$cuentasCobrar->moneda = $_REQUEST['moneda'];
-	$consultaModal = $cuentasCobrar->cuentasCobrarxMoneda();
+	$consultaModal = $cuentasCobrar->cuentasCobrarxMoneda_all();
 
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 	$usuarios->id=$_SESSION['idUsuario'];
@@ -67,7 +67,7 @@ if(isset($_SESSION['login'])){
   		<div class="portlet box grey-steel">
   			<div class="portlet-title">
 
-  				<div class="caption"><div class="font-grey-mint"> <b>Catálogo <?php if($_REQUEST['moneda']==1){echo 'dólares';}else{echo 'pesos';} ?></b> </div>
+  				<div class="caption"><div class="font-grey-mint"> <b>Historial <?php if($_REQUEST['moneda']==1){echo 'dólares';}else{echo 'pesos';} ?></b> </div>
 
   			</div>
   			<div class="actions btn-set">
@@ -276,63 +276,61 @@ if(isset($_SESSION['login'])){
   							<td><?php echo $factura;?></td>
   						</tr>
   						<tr>
-                <?php if($remision != 'null'){
-                  echo '<td>Remisión: </td><td>'.$remision.'</td>';
-                  } ?>
+  							<td>Remisión: </td>
+  							<td><?php echo $remision; ?></td>
+  						</tr>
 
-                </tr>
+  						<tr>
+  							<td>Monto: </td>
+  							<td><?php echo "$ ".$monto_cf;;?></td>
+  						</tr>
 
-                <tr>
-                 <td>Monto: </td>
-                 <td><?php echo "$ ".$monto_cf;;?></td>
-               </tr>
+  						<tr>
+  							<td>Comentario: </td>
+  							<td><?php echo $comentario;?></td>
+  						</tr>
 
-               <tr>
-                 <td>Comentario: </td>
-                 <td><?php echo $comentario;?></td>
-               </tr>
+  						<tr>
+  							<td>Estatus:</td>
+  							<td><?php 
+  								switch($status){
+  									case 1:
+  									echo $html_pendiente_left;
+  									break;
+  									case 2: 
+  									echo $html_pagada_left;
+  									break;
+  									case 3: 
+  									echo $html_vencida_left;
+  									break;
+  									case 4:
+  									echo $html_cancelada_left;
+  									break;
+  								} ?></td>
+  							</tr>
 
-               <tr>
-                 <td>Estatus:</td>
-                 <td><?php 
-                  switch($status){
-                   case 1:
-                   echo $html_pendiente_left;
-                   break;
-                   case 2: 
-                   echo $html_pagada_left;
-                   break;
-                   case 3: 
-                   echo $html_vencida_left;
-                   break;
-                   case 4:
-                   echo $html_cancelada_left;
-                   break;
-                 } ?></td>
-               </tr>
+  							<tr>
+  								<td><?php if($status!=4){echo 'Última modificación por:';}else{echo 'Cancelada por';} ?></td>
+  								<td><?php echo $nombreUser; ?></td>
+  							</tr>
+  						</table>
+  					</div>
+  					<!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
 
-               <tr>
-                <td><?php if($status!=4){echo 'Última modificación por:';}else{echo 'Cancelada por';} ?></td>
-                <td><?php echo $nombreUser; ?></td>
-              </tr>
-            </table>
-          </div>
-          <!-- TERMINA TABLA SIMPLE PARA DETALLES DE ACREEDORES-->
+  					<!-- INICIA PIE DE VENTANA MODAL-->
+  					<div class="modal-footer">
 
-          <!-- INICIA PIE DE VENTANA MODAL-->
-          <div class="modal-footer">
-
-            <!-- BOTON DE CIERRE PARA VENTANA MODAL-->
-            <button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
-          </div>
-          <!-- TERMINA PIE DE VENTANA MODAL-->
-        </div>
-        <!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
-      </div>
-      <!-- TERMINO DE VENTANA MODAL  -->
-    </div>
-    <!-- TERMINO DE VENTANA MODAL -->
-    <?
+  						<!-- BOTON DE CIERRE PARA VENTANA MODAL-->
+  						<button type="button" class="btn green-seagreen btn-outline" data-dismiss="modal">Cerrar</button>
+  					</div>
+  					<!-- TERMINA PIE DE VENTANA MODAL-->
+  				</div>
+  				<!-- TERMINO DE DEFINICION DE CONTENIDO DE VENTANA MODAL -->
+  			</div>
+  			<!-- TERMINO DE VENTANA MODAL  -->
+  		</div>
+  		<!-- TERMINO DE VENTANA MODAL -->
+  		<?
 } ###### LLAVE DE FOREACH PARA CADA DETALLE DE ACREEDORES #############################################
 ?>
 

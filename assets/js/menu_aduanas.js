@@ -12,12 +12,16 @@ $(document).ready(function(){
 		$("#mainContent").load( "form_importaciones.php" );
 	}); /* CIERRE SECCION DOLARES */
 
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_importacion").click(function(){
+		$("#mainContent").load( "cat_importaciones_all.php" );
+	}); /* CIERRE SECCION DOLARES */
 
 
 
 
 
-		/****************** DECLARACIONES **************************/
+	/****************** DECLARACIONES **************************/
 
 	/* RUTA A SECCION DOLARES*/
 	$("#jalar_importacion").click(function(){
@@ -27,6 +31,11 @@ $(document).ready(function(){
 	/* RUTA A SECCION DOLARES*/
 	$("#list_declaracion").click(function(){
 		$("#mainContent").load( "cat_declaraciones.php" );
+	}); /* CIERRE SECCION DOLARES */
+
+	/* RUTA A SECCION DOLARES*/
+	$("#rep_declaracion").click(function(){
+		$("#mainContent").load( "cat_declaraciones_all.php" );
 	}); /* CIERRE SECCION DOLARES */
 
 
