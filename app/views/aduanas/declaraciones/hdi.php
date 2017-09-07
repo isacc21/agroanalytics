@@ -149,7 +149,7 @@ foreach($lista as $row){
 	$result = $declaraciones->consultarTransportistaxID();
 
 	foreach($result as $row){
-		$nombre_transp = $row['razonSocTransportista'];
+		$nombre_transp = $row['comercialTransportista'];
 		$id_fiscal = $row['idFiscalTransportista'];
 		$sccac = $row['sccacTransportista'];
 		$caat = $row['caatTransportista'];

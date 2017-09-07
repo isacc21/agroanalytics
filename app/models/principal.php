@@ -45,10 +45,20 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM( a.montoBanco ) AS Total
-				FROM estadocuenta AS a
-				INNER JOIN bancos AS b ON a.idBanco = b.idBanco
-				WHERE b.monedaBanco =1");
+			return $resultados = $conexion->query("
+				SELECT 
+				(SELECT 
+				SUM( estadocuenta.montoBanco ) AS ingresos
+				FROM estadocuenta
+				INNER JOIN bancos ON estadocuenta.idBanco = bancos.idBanco
+				WHERE bancos.monedaBanco =1
+				AND estadocuenta.tipoBanco =1) - 
+				(SELECT SUM( estadocuenta.montoBanco ) AS ingresos
+				FROM estadocuenta
+				INNER JOIN bancos ON estadocuenta.idBanco = bancos.idBanco
+				WHERE bancos.monedaBanco =1
+				AND estadocuenta.tipoBanco =2 )
+				AS Total");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -61,10 +71,20 @@ class principal{
 			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
 				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
 			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("SELECT SUM( a.montoBanco ) AS Total
-				FROM estadocuenta AS a
-				INNER JOIN bancos AS b ON a.idBanco = b.idBanco
-				WHERE b.monedaBanco =2");
+			return $resultados = $conexion->query("
+				SELECT 
+				(SELECT 
+				SUM( estadocuenta.montoBanco ) AS ingresos
+				FROM estadocuenta
+				INNER JOIN bancos ON estadocuenta.idBanco = bancos.idBanco
+				WHERE bancos.monedaBanco =2
+				AND estadocuenta.tipoBanco =1) - 
+				(SELECT SUM( estadocuenta.montoBanco ) AS ingresos
+				FROM estadocuenta
+				INNER JOIN bancos ON estadocuenta.idBanco = bancos.idBanco
+				WHERE bancos.monedaBanco =2
+				AND estadocuenta.tipoBanco =2 )
+				AS Total");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();
@@ -311,6 +331,29 @@ class principal{
 		}
 	}
 
+	public function cxp_lista(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT 
+				a.folioCuentaP, 
+				a.ddCuentaP, 
+				a.mmCuentaP, 
+				a.yyyyCuentaP
+				FROM 
+				cuentaspagar AS a 
+
+				WHERE a.statusCuentaP = 1
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
 
 	public function cxc_vencidas(){
 		try {
@@ -336,27 +379,7 @@ class principal{
 		}
 	}
 
-	public function cxp_revision(){
-		try {
-			//CONEXION A LA BASE DE DATOS
-			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
-				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
-			$conexion -> exec("set names utf8");
-			return $resultados = $conexion->query("
-				SELECT 
-				a.folioCuentaP, 
-				a.ddCuentaP, 
-				a.mmCuentaP, 
-				a.yyyyCuentaP
-				FROM 
-				cuentaspagar AS a 
-				WHERE a.statusCuentaP = 1
-				");
-		}
-		catch(PDOException $e){
-			return "Error: " . $e->getMessage();
-		}
-	}
+
 
 	public function cxp_vencidas(){
 		try {
@@ -366,13 +389,13 @@ class principal{
 			$conexion -> exec("set names utf8");
 			return $resultados = $conexion->query("
 				SELECT 
-				folioCuentaP, 
-				folioFactura,
-				rfcProveedor,
-				rfcAcreedor
+				a.folioCuentaP, 
+				a.folioFactura,
+				a.rfcProveedor,
+				a.rfcAcreedor
 				FROM 
-				cuentaspagar AS a 
-				WHERE statusCuentaP = 3
+				cuentaspagar as a
+				WHERE a.statusCuentaP = 3
 				");
 		}
 		catch(PDOException $e){
@@ -468,6 +491,24 @@ class principal{
 			$conexion -> exec("set names utf8");
 			return $resultados = $conexion->query("
 				SELECT * FROM acreedores WHERE rfcAcreedor = '".$this->acreedor."'
+				");
+		}
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+
+	public function cuentasVencidasXP(){
+		try {
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+			$conexion -> exec("set names utf8");
+			return $resultados = $conexion->query("
+				SELECT * FROM cuentaspagar
+				WHERE statusCuentaP = 3
 				");
 		}
 		catch(PDOException $e){

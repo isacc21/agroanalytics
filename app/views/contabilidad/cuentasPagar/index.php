@@ -207,7 +207,7 @@ if(isset($_SESSION['login'])){
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="glyphicon glyphicon-usd"></i>
 		<span class="title">Contabilidad</span>
-		<span class="arrow"></span>
+		<span class="selected"></span>
 	</a><ul class="sub-menu">';
 
 	$html_final_conta='</ul></li>';
@@ -316,7 +316,7 @@ if(isset($_SESSION['login'])){
 					<!--INICIA LOGO-->
 					<div class="page-logo">
 						<!-- REDIRECCION AL CLICK LOGO-->
-						<a href="index.php">
+						<a href="../../../">
 							<!-- IMAGEN-->
 							<img src="../../../../assets/img/agroanalytics_logo.png" alt="logo" class="logo-default" /> </a>
 							<div class="menu-toggler sidebar-toggler">
@@ -340,6 +340,7 @@ if(isset($_SESSION['login'])){
 										<!-- COMIENZAN NOTIFICACIONES -->
 										<?php 
 										$principal = new principal($datosConexionBD);
+
 										
 										$contador_notificacion = 0;
 										$notificaciones = '';
@@ -376,7 +377,6 @@ if(isset($_SESSION['login'])){
 												break;
 											}
 											$hola .= $codigo_inventario;
-
 											
 											if(
 												// AVISO DE TRES MESES
@@ -388,7 +388,6 @@ if(isset($_SESSION['login'])){
 												)
 												// AVISO DE TRES MESES 
 											{
-
 												
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 3 meses de caducar</span></a></li>';
 												$contador_notificacion++;
@@ -436,92 +435,11 @@ if(isset($_SESSION['login'])){
 										// FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
 
 
-										//VENCER CUENTAS POR COBRAR
-										$contador = 0;
-										$cxc_revision = $principal->cxc_revision();
-										foreach($cxc_revision as $row){
-											$folio = $row['folioCuentaC'];
-											$dd = $row['ddCuentaC'];
-											$mm = $row['mmCuentaC'];
-											$yyyy = $row['yyyyCuentaC'];
-											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
-												$contador ++;
-												$principal->folio = $folio;
-												$vencer = $principal->vencerCXC();
-											}
-										}
-										//VENCER CUENTAS POR COBRAR
-
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
-										$cuentasxcobrar = $principal->cxc_vencidas();
-										foreach($cuentasxcobrar as $row){
-											$folio = $row['folioCuentaC'];
-											$factura = $row['folioFactura'];
-											$cliente = $row['razonSocCliente'];
-
-											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
-											$contador_notificacion++;
-										}
-										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+										
 
 
-										//VENCER CUENTAS POR PAGAR
-										$contador = 0;
-										$cxp_revision = $principal->cxp_revision();
-										foreach($cxp_revision as $row){
-											$folio = $row['folioCuentaP'];
-											$dd = $row['ddCuentaP'];
-											$mm = $row['mmCuentaP'];
-											$yyyy = $row['yyyyCuentaP'];
-											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
-												$contador ++;
-
-												$principal->folio = $folio;
-												$vencer = $principal->vencerCXP();
-											}
-										}
-										//echo $contador;
-										//VENCER CUENTAS POR PAGAR
-
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
-										$cuentasxpagar = $principal->cxp_vencidas();
-										foreach($cuentasxpagar as $row){
-											$folio = $row['folioCuentaP'];
-											$rfcA = $row['rfcAcreedor'];
-											$rfcP = $row['rfcProveedor'];
-											$factura = $row['folioFactura'];
-
-											if($rfcA=='null'){
-												$principal->proveedor = $rfcP;
-												$result = $principal->consultarProveedoresxID();
-												foreach($result as $row){
-													$nombre_mostrar = $row['razonSocProveedor'];
-												}
-											}
-											else{
-												if($rfcP=='null'){
-													$principal->acreedor = $rfcA;
-													$result = $principal->consultarAcreedoresxID();
-													foreach($result as $row){
-														$nombre_mostrar = $row['razonSocAcreedor'];
-													}
-												}
-											}
-
-
-											
-											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
-											$contador_notificacion++;
-											
-										}
-										// TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
-
-										// COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
-										if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
-											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-success"><i class="fa fa-envelope-o"></i> </span>Estado de cuenta disponible</span></a></li>';
-											$contador_notificacion++;
-										}
-										// TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
+										
+										
 
 										// COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
 										$permisos_cof = $principal->permisos();
@@ -530,8 +448,6 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddCofProducto'];
 											$mm = $row['mmCofProducto'];
 											$yyyy = $row['yyyyCofProducto'];
-
-
 											if(
 											// AVISO DE 18 MESES
 												strtotime('-18 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -545,8 +461,6 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 18 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
-
-
 											if(
 											// AVISO DE 12 MESES
 												strtotime('-12 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -563,6 +477,7 @@ if(isset($_SESSION['login'])){
 										}
 										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
+
 										// COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
 										$permisos_cic = $principal->permisos();
 										foreach($permisos_cic as $row){
@@ -570,8 +485,6 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddCicProducto'];
 											$mm = $row['mmCicProducto'];
 											$yyyy = $row['yyyyCicProducto'];
-
-
 											if(
 											// AVISO DE 4 MESES
 												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -585,8 +498,6 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 4 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
-
-
 											if(
 											// AVISO DE 2 MESES
 												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -610,8 +521,7 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddSemProducto'];
 											$mm = $row['mmSemProducto'];
 											$yyyy = $row['yyyySemProducto'];
-
-
+											
 											if(
 											// AVISO DE 4 MESES
 												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -625,8 +535,6 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 4 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
-
-
 											if(
 											// AVISO DE 2 MESES
 												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -642,6 +550,86 @@ if(isset($_SESSION['login'])){
 											}
 										}
 										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
+
+							
+										//VENCER CUENTAS POR COBRAR
+
+										$cxc_revision = $principal->cxp_lista();
+										foreach($cxc_revision  as $row){
+											$folio = $row['folioCuentaP'];
+											$dd = $row['ddCuentaP'];
+											$mm = $row['mmCuentaP'];
+											$yyyy = $row['yyyyCuentaP'];
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+												
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXP();
+											}
+										}
+
+
+										//VENCER CUENTAS POR COBRAR
+										
+										$cxc_revision = $principal->cxc_revision();
+										foreach($cxc_revision as $row){
+											$folio = $row['folioCuentaC'];
+											$dd = $row['ddCuentaC'];
+											$mm = $row['mmCuentaC'];
+											$yyyy = $row['yyyyCuentaC'];
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXC();
+											}
+										}
+										//VENCER CUENTAS POR COBRAR
+										
+										
+										//VENCER CUENTAS POR PAGAR
+
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 									
+										$resultado = $principal->cuentasVencidasXP();
+										foreach($resultado as $row){
+											$rfcA = $row['rfcAcreedor'];
+											$rfcP = $row['rfcProveedor'];
+											$factura = $row['folioFactura'];
+
+											if($rfcA=='null'){
+												$principal->proveedor = $rfcP;
+												$result = $principal->consultarProveedoresxID();
+												foreach($result as $row){
+													$nombre_mostrar = $row['razonSocProveedor'];
+												}
+											}
+											else{
+												if($rfcP=='null'){
+													$principal->acreedor = $rfcA;
+													$result = $principal->consultarAcreedoresxID();
+													foreach($result as $row){
+														$nombre_mostrar = $row['razonSocAcreedor'];
+													}
+												}
+											}
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
+											$contador_notificacion++;
+										}
+										//TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+										
+										
+
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+										$cuentasxcobrar = $principal->cxc_vencidas();
+										foreach($cuentasxcobrar as $row){
+											$folio = $row['folioCuentaC'];
+											$factura = $row['folioFactura'];
+											$cliente = $row['razonSocCliente'];
+
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
+											$contador_notificacion++;
+										}
+										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
 
 
 

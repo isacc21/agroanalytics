@@ -102,9 +102,11 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 	$ordenesCompra->mm = $mes;
 	$ordenesCompra->yyyy = $anio;
 	$ordenesCompra->proveedor = $_POST['proveedor'];
+	$ordenesCompra->agencia = $_POST['agencia'];
 	$ordenesCompra->total = $total;
 	$ordenesCompra->id=$_SESSION['idUsuario'];
 	echo $ordenesCompra->generarOrdenCompra();
+
 
 
 //echo $_POST['fecha'].$_POST['cliente'].$_POST['codigo'];

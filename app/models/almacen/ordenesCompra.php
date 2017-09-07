@@ -37,6 +37,7 @@ class ordenesCompra{
 	var $monto;
 	var $id;
 	var $factura;
+	var $agencia;
 
 	var $codigo;
 
@@ -67,6 +68,7 @@ class ordenesCompra{
 			totalOrdenCompra,
 			folioFactura,
 			statusFactura,
+			agenciaOrdenC,
 			folioImportacion,
 			idUsuario)
 
@@ -81,6 +83,7 @@ class ordenesCompra{
 			'".$this->total."',
 			NULL,
 			0,
+			'".$this->agencia."',
 			NULL,
 			'".$this->id."'
 			)";
@@ -311,6 +314,26 @@ class ordenesCompra{
 		}
 	}
 
+	public function consultarAgencias(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM agenciaaduanal");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
 
 	public function consultarDetalle(){
 		try {
@@ -384,6 +407,27 @@ class ordenesCompra{
 
       //Sentencia SQL para eliminar un usuario
 			return $resultados = $conexion->query("SELECT folioOrdenCompra FROM ordenescompra WHERE folioOrdenCompra LIKE '".$this->codigo."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+
+	public function consultarAgenciasxID(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM agenciaaduanal WHERE idAgencia = '".$this->agencia."'");
 
 		}
 

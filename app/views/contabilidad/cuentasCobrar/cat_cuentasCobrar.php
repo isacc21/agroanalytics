@@ -180,10 +180,11 @@ if(isset($_SESSION['login'])){
   									if($cxc[2]=='3'&&$status==1){
   										echo $html_editar;
   									}
-  									if($cxc[3]=='4'&&$status==1){
+  									if($cxc[3]=='4'&&$status==1||$status==3){
   										echo $html_saldar;
   										echo $html_cancelar;
   									}
+
   									if($cxc[0]=='1'||$cxc[1]=='2'||$cxc[2]=='3'||$cxc[3]=='4'){
   										echo $html_final_actions;
   									}

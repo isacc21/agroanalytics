@@ -65,6 +65,7 @@ class transportistas{
       $query = "INSERT INTO transportistas (
       rfcTransportista,
       razonSocTransportista,
+      comercialTransportista,
       calleTransportista,
       numeroExtTransportista,
       numeroIntTransportista,
@@ -85,6 +86,7 @@ class transportistas{
       VALUES (
       '".$this->rfc."',
       '".$this->razon."',
+      NULL,
       '".$this->calle."',
       '".$this->numeroExterior."',
       '".$this->numeroInterior."',

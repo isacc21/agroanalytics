@@ -20,6 +20,9 @@ foreach($result as $row){
 	$ordenesCompra->proveedor = $row['rfcProveedor'];
 	$proveedores = $ordenesCompra->consultarProveedores();
 
+	$ordenesCompra->agencia = $row['agenciaOrdenC'];
+	$agencias = $ordenesCompra->consultarAgenciasxID();
+
 	foreach($proveedores as $row){
 		$_SESSION['lineauno']= $row['razonSocProveedor'];
 		if($row['numeroIntProveedor'] == 0){
@@ -32,6 +35,15 @@ foreach($result as $row){
 		$_SESSION['linea_tres']= $row['ciudadProveedor']." ".$row['estadoProveedor']." ".$row['codigoPostalProveedor'];
 		$_SESSION['linea_cuatro']= "T. ".$row['telefonoProveedor'];
 		$_SESSION['linea_cinco']= "F. ".$row['celularProveedor'];
+	}
+
+	foreach($agencias as $row){
+		$_SESSION['linea_uno_agencia']= $row['nombreAgencia'];
+		$_SESSION['linea_dos_agencia']= $row['numeroAgencia']." ".$row['calleAgencia'];
+		$_SESSION['linea_tres_agencia']= $row['ciudadAgencia'].", ".$row['estadoAgencia']." ".$row['zipAgencia'];
+		$_SESSION['linea_cuatro_agencia']= "CONTACT: ".$row['contactoAgencia'];
+		$_SESSION['linea_cinco_agencia']= "TELEPHONE: ".$row['telefonoAgencia'];
+
 	}
 }
 
@@ -114,7 +126,7 @@ class PDF extends FPDF
 
 		$this->setX(45);
 		$this->setFont('Arial', 'B', 12);
-		$this->Cell(18,0,utf8_decode('FECHA: '),0,0,'L');
+		$this->Cell(18,0,utf8_decode('DATE: '),0,0,'L');
 		$this->setFont('Arial', '', 10);
 		$this->Cell(20,0,utf8_decode($_SESSION['fecha']),0,0,'L');
 		$this->setX(125);
@@ -124,27 +136,27 @@ class PDF extends FPDF
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode('COM EX INC. / GO PRODUCTS'),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_uno_agencia'] ),0,0,'L');
 		$this->Ln(5);
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode('531 CLARA NOFAL RD SUITE B'),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_dos_agencia']),0,0,'L');
 		$this->Ln(5);
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode('CALEXICO, CAL 92231'),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_tres_agencia']),0,0,'L');
 		$this->Ln(5);
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode('CONTACT: CELESTINA RAMIREZ'),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_cuatro_agencia']),0,0,'L');
 		$this->Ln(5);
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(125);
-		$this->Cell(85,0,utf8_decode('TELEPHONE: (760) 357 4804'),0,0,'L');
+		$this->Cell(85,0,utf8_decode($_SESSION['linea_cinco_agencia']),0,0,'L');
 		$this->Ln(15);
 
 		$this->setX(10);

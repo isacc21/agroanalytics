@@ -1,5 +1,5 @@
-
 <?php
+
 ######################################################################################
 # ISACC JAVIER LOZANO MONTAÑEZ (IJLM)                                                #
 # 14 Febrero 2017 : 10:00                                                            #
@@ -31,28 +31,41 @@
 # IJLM - Se agrega una condicional para confirmar el inicio de sesión                #
 # IJLM - Se agrega Else en caso de no iniciar sesión, mandar al login                #
 ######################################################################################
+
 ###### SE CONFIGURA ZONA HORARIA #####################################################
 date_default_timezone_set('America/Tijuana');
+
 ###### SE CONFIGURA UN INICIA DE SESION ##############################################
 session_start();
+
 ###### EN CASO DE QUE HAYA UN LOGIN ACTIVO SE EJECUTA EL CODIGO HTML #################
 if(isset($_SESSION['login'])){
+
+
+
 ###### INCLUDE PARA CONEXION A BASE DE DATOS #########################################
 	include '../config.php';
+
+
 ###### REQUIRE DE LA LIBRERIA DE METODOS DE USUARIOS #################################
 	require 'models/administracion/usuarios.php';
 	require 'models/principal.php';
 	require 'models/atn-cliente/cotizaciones.php';
+
+
 ###### CREACION DEL METODO USUARIOS ##################################################
 	$usuarios = new usuarios($datosConexionBD);
 	$usuarios->id=$_SESSION['idUsuario'];
 	$active = $usuarios->activarSesion();
+
 	if($active = "Sesión activa"){
 		$prueba = $active;
 	}
+
 ###### SE CONSULTAN PERMISOS PARA MOSTRAR INFORMACION ################################
 	$usuarios->id=$_SESSION['idUsuario'];
 	$result = $usuarios->consultarPermisos();
+
 ###### FOREACH PARA CONSULTA DE PERMISOS #############################################
 	foreach ($result as $row){
 		$proveedores = $row['proveedoresPermiso'];
@@ -65,7 +78,7 @@ if(isset($_SESSION['login'])){
 		$cotizaciones = $row['cotizacionesPermiso'];
 		$importaciones = $row['importacionesPermiso'];
 		$declaraciones = $row['declaracionesPermiso'];
-		$inventario = $row['inventarioPermiso'];
+		$inventary = $row['inventarioPermiso'];
 		$carga = $row['cargaPermiso'];
 		$compra = $row['compraPermiso'];
 		$remisiones = $row['remisionesPermiso'];
@@ -74,6 +87,10 @@ if(isset($_SESSION['login'])){
 		$cxp = $row['cxpPermiso'];
 		$idUsuario = $row['idUsuario'];
 	}## LLAVE DE FOREACH ###############################################################
+
+
+
+
 ###### MODULO DE ADMINISTRACION #####################################################
 	$html_inicio_administracion='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
@@ -81,97 +98,126 @@ if(isset($_SESSION['login'])){
 		<span class="title">Catálogos</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_administracion = '</ul></li>';
+
+
 	$html_proveedores = '<li class="nav-item  ">
 	<a href="views/administracion/proveedores" class="nav-link ">
 		
 		<span class="title">1 | Proveedores</span>
 	</a></li>';
+
 	$html_acreedores = '<li class="nav-item ">
 	<a href="views/administracion/acreedores" class="nav-link ">
 		
 		<span class="title">2 | Acreedores</span>
 	</a></li>';
+
 	$html_transportistas = '<li class="nav-item  ">
 	<a href="views/administracion/transportistas" class="nav-link ">
 		
 		<span class="title">3 | Transportistas</span>
 	</a></li>';
+
 	$html_clientes= '<li class="nav-item  ">
 	<a href="views/administracion/clientes" class="nav-link ">
 		
 		<span class="title">5 | Clientes</span>
 	</a></li>';
+
 	$html_productos = '<li class="nav-item">
 	<a href="views/administracion/productos" class="nav-link ">
 		
 		<span class="title">4 | Productos</span>
 	</a></li>';
+
 	$html_banco = '<li class="nav-item">
 	<a href="views/administracion/bancos" class="nav-link ">
 		<span class="title">6 | Bancos</span>
 	</a></li>';
+
 	###### MODULO DE ADMINISTRADOR ###############################################
+
 	$html_inicio_administrador='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="icon-settings"></i>
 		<span class="title">Administrador</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_administrador = '</ul></li>';
+
 	$html_usuarios = '<li class="nav-item ">
 	<a href="views/administracion/usuarios" class="nav-link ">
 		<i class="fa fa-user-plus"></i>
 		<span class="title"> Usuarios</span>
 	</a></li>';
+
+
 	###### MODULO DE ATENCION AL CLIENTE ###############################################
+
 	$html_inicio_atnCliente='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="icon-earphones-alt"></i>
 		<span class="title">Atención a Clientes</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_atnCliente='</ul></li>';
+
 	$html_pedidos='<li class="nav-item  ">
 	<a href="views/atn-clientes/pedidos" class="nav-link ">
 		
 		<span class="title">2 | Pedidos</span>
 	</a></li>';
+
 	$html_cotizaciones='<li class="nav-item  ">
 	<a href="views/atn-clientes/cotizaciones" class="nav-link ">
 		
 		<span class="title">1 | Cotizaciones</span>
 	</a></li>';
+
 	###### MODULO DE COMPRAS ###############################################
+
 	$html_inicio_compras='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="icon-basket"></i>
 		<span class="title">Compras</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_compras = '</ul></li>';
+
 	$html_compra='<li class="nav-item  ">
 	<a href="views/almacen/ordenesCompra" class="nav-link ">
 		<span class="title">1 | Órdenes de Compra</span>
 	</a></li>';
+
+
 	###### MODULO DE ADUANAS ###########################################################
+
 	$html_inicio_aduanas='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="fa fa-truck"></i>
 		<span class="title">Aduanas</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_aduanas='</ul></li>';
+
 	$html_importaciones='<li class="nav-item  ">
 	<a href="views/aduanas/importaciones" class="nav-link ">
 		
 		<span class="title">1 | Importaciones</span>
 	</a></li>';
+
 	$html_declaraciones='<li class="nav-item  ">
 	<a href="views/aduanas/declaraciones" class="nav-link ">
 		
 		<span class="title">2 | Declaración de Aduanas</span>
 	</a></li>';
+
 	###### MODULO DE ALMACEN ###########################################################
 	$html_inicio_almacen='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
@@ -179,40 +225,50 @@ if(isset($_SESSION['login'])){
 		<span class="title">Almacén</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_almacen='</ul></li>';
+
 	$html_inventario='<li class="nav-item  ">
 	<a href="views/almacen/inventario" class="nav-link ">
 		
 		<span class="title">1 | Inventario</span>
 	</a></li>';
+
 	$html_carga='<li class="nav-item  ">
 	<a href="views/almacen/ordenesCarga" class="nav-link ">
 		
 		<span class="title">2 | Órdenes de Carga</span>
 	</a></li>';
+
 	$html_remisiones='<li class="nav-item  ">
 	<a href="views/almacen/remisiones" class="nav-link ">
 		
 		<span class="title">3 | Remisiones</span>
 	</a></li>';
+
 	###### MODULO DE CONTABILIDAD ######################################################
+
 	$html_inicio_conta='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
 		<i class="glyphicon glyphicon-usd"></i>
 		<span class="title">Contabilidad</span>
 		<span class="arrow"></span>
 	</a><ul class="sub-menu">';
+
 	$html_final_conta='</ul></li>';
+
 	$html_bancos='<li class="nav-item  ">
 	<a href="views/contabilidad/bancos" class="nav-link ">
 		
 		<span class="title">1 | Bancos</span>
 	</a></li>';
+
 	$html_cxc='<li class="nav-item  ">
 	<a href="views/contabilidad/cuentasCobrar" class="nav-link ">
 		
 		<span class="title">2 | Cuentas por Cobrar</span>
 	</a></li>';
+
 	$html_cxp='<li class="nav-item  ">
 	<a href="views/contabilidad/cuentasPagar" class="nav-link ">
 		
@@ -278,6 +334,7 @@ if(isset($_SESSION['login'])){
 			function ini() {
 				stop = setTimeout('location="../index.php"',3600000); // 30 segundos
 			}
+
 			function parar() {
 				clearTimeout(stop);
 				stop = setTimeout('location="../index.php"',3600000); // 30 segundos
@@ -319,7 +376,6 @@ if(isset($_SESSION['login'])){
 										<!-- COMIENZAN NOTIFICACIONES -->
 										<?php 
 										$principal = new principal($datosConexionBD);
-
 										
 										$contador_notificacion = 0;
 										$notificaciones = '';
@@ -356,6 +412,7 @@ if(isset($_SESSION['login'])){
 												break;
 											}
 											$hola .= $codigo_inventario;
+
 											
 											if(
 												// AVISO DE TRES MESES
@@ -367,6 +424,7 @@ if(isset($_SESSION['login'])){
 												)
 												// AVISO DE TRES MESES 
 											{
+
 												
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 3 meses de caducar</span></a></li>';
 												$contador_notificacion++;
@@ -414,11 +472,91 @@ if(isset($_SESSION['login'])){
 										// FINALIZA NOTIFICACIONES PARA PRODUCTOS VENCIDOS EN EL INVENTARIO
 
 
-										
+										//VENCER CUENTAS POR COBRAR
+										$contador = 0;
+										$cxc_revision = $principal->cxc_revision();
+										foreach($cxc_revision as $row){
+											$folio = $row['folioCuentaC'];
+											$dd = $row['ddCuentaC'];
+											$mm = $row['mmCuentaC'];
+											$yyyy = $row['yyyyCuentaC'];
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+												$contador ++;
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXC();
+											}
+										}
+										//VENCER CUENTAS POR COBRAR
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
+										$cuentasxcobrar = $principal->cxc_vencidas();
+										foreach($cuentasxcobrar as $row){
+											$folio = $row['folioCuentaC'];
+											$factura = $row['folioFactura'];
+											$cliente = $row['razonSocCliente'];
+
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
+											$contador_notificacion++;
+										}
+										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
 
 
-										
-										
+										//VENCER CUENTAS POR PAGAR
+										$contador = 0;
+										$cxp_revision = $principal->cxp_revision();
+										foreach($cxp_revision as $row){
+											$folio = $row['folioCuentaP'];
+											$dd = $row['ddCuentaP'];
+											$mm = $row['mmCuentaP'];
+											$yyyy = $row['yyyyCuentaP'];
+											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
+												$contador ++;
+
+												$principal->folio = $folio;
+												$vencer = $principal->vencerCXP();
+											}
+										}
+										//echo $contador;
+										//VENCER CUENTAS POR PAGAR
+
+										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+										$cuentasxpagar = $principal->cxp_vencidas();
+										foreach($cuentasxpagar as $row){
+											$rfcA = $row['rfcAcreedor'];
+											$rfcP = $row['rfcProveedor'];
+											$factura = $row['folioFactura'];
+
+											if($rfcA=='null'){
+												$principal->proveedor = $rfcP;
+												$result = $principal->consultarProveedoresxID();
+												foreach($result as $row){
+													$nombre_mostrar = $row['razonSocProveedor'];
+												}
+											}
+											else{
+												if($rfcP=='null'){
+													$principal->acreedor = $rfcA;
+													$result = $principal->consultarAcreedoresxID();
+													foreach($result as $row){
+														$nombre_mostrar = $row['razonSocAcreedor'];
+													}
+												}
+											}
+
+
+											
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
+											$contador_notificacion++;
+											
+										}
+										// TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
+
+										// COMIENZAN NOTIFICACIONES PARA ESTADOS DE CUENTA DISPONIBLES
+										if(date(d)==01 || date(d)==02 || date(d)==03 || date(d)==04 || date(d)==05){
+											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-success"><i class="fa fa-envelope-o"></i> </span>Estado de cuenta disponible</span></a></li>';
+											$contador_notificacion++;
+										}
+										// TERMINAN NOTIFICACIONES PARA ESTADSO DE CUENTA DISPONIBLES
 
 										// COMIENZAN NOTIFICACIONES PARA PERMISO COFEPRIS
 										$permisos_cof = $principal->permisos();
@@ -427,6 +565,8 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddCofProducto'];
 											$mm = $row['mmCofProducto'];
 											$yyyy = $row['yyyyCofProducto'];
+
+
 											if(
 											// AVISO DE 18 MESES
 												strtotime('-18 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -440,6 +580,8 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 18 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
+
+
 											if(
 											// AVISO DE 12 MESES
 												strtotime('-12 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -456,7 +598,6 @@ if(isset($_SESSION['login'])){
 										}
 										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
-
 										// COMIENZAN NOTIFICACIONES PARA PERMISO CICOPLAFEST
 										$permisos_cic = $principal->permisos();
 										foreach($permisos_cic as $row){
@@ -464,6 +605,8 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddCicProducto'];
 											$mm = $row['mmCicProducto'];
 											$yyyy = $row['yyyyCicProducto'];
+
+
 											if(
 											// AVISO DE 4 MESES
 												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -477,6 +620,8 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 4 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
+
+
 											if(
 											// AVISO DE 2 MESES
 												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -500,7 +645,8 @@ if(isset($_SESSION['login'])){
 											$dd = $row['ddSemProducto'];
 											$mm = $row['mmSemProducto'];
 											$yyyy = $row['yyyySemProducto'];
-											
+
+
 											if(
 											// AVISO DE 4 MESES
 												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -514,6 +660,8 @@ if(isset($_SESSION['login'])){
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 4 meses de vencer</span></a></li>';
 												$contador_notificacion++;
 											}
+
+
 											if(
 											// AVISO DE 2 MESES
 												strtotime('-2 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
@@ -530,85 +678,7 @@ if(isset($_SESSION['login'])){
 										}
 										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
-							
-										//VENCER CUENTAS POR COBRAR
 
-										$cxc_revision = $principal->cxp_lista();
-										foreach($cxc_revision  as $row){
-											$folio = $row['folioCuentaP'];
-											$dd = $row['ddCuentaP'];
-											$mm = $row['mmCuentaP'];
-											$yyyy = $row['yyyyCuentaP'];
-											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
-												
-												$principal->folio = $folio;
-												$vencer = $principal->vencerCXP();
-											}
-										}
-
-
-										//VENCER CUENTAS POR COBRAR
-										
-										$cxc_revision = $principal->cxc_revision();
-										foreach($cxc_revision as $row){
-											$folio = $row['folioCuentaC'];
-											$dd = $row['ddCuentaC'];
-											$mm = $row['mmCuentaC'];
-											$yyyy = $row['yyyyCuentaC'];
-											if(strtotime('+1 month', (strtotime($yyyy.'/'.$mm.'/'.$dd))) <= strtotime('today')){
-
-												$principal->folio = $folio;
-												$vencer = $principal->vencerCXC();
-											}
-										}
-										//VENCER CUENTAS POR COBRAR
-										
-										
-										//VENCER CUENTAS POR PAGAR
-
-
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR PAGAR 									
-										$resultado = $principal->cuentasVencidasXP();
-										foreach($resultado as $row){
-											$rfcA = $row['rfcAcreedor'];
-											$rfcP = $row['rfcProveedor'];
-											$factura = $row['folioFactura'];
-
-											if($rfcA=='null'){
-												$principal->proveedor = $rfcP;
-												$result = $principal->consultarProveedoresxID();
-												foreach($result as $row){
-													$nombre_mostrar = $row['razonSocProveedor'];
-												}
-											}
-											else{
-												if($rfcP=='null'){
-													$principal->acreedor = $rfcA;
-													$result = $principal->consultarAcreedoresxID();
-													foreach($result as $row){
-														$nombre_mostrar = $row['razonSocAcreedor'];
-													}
-												}
-											}
-											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$nombre_mostrar.'" vencida</span></a></li>';
-											$contador_notificacion++;
-										}
-										//TERMINAN NOTIFICACIONES PARA CUENTAS POR PAGAR 
-										
-										
-
-
-										// COMIENZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
-										$cuentasxcobrar = $principal->cxc_vencidas();
-										foreach($cuentasxcobrar as $row){
-											$folio = $row['folioCuentaC'];
-											$factura = $row['folioFactura'];
-											$cliente = $row['razonSocCliente'];
-
-											$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>Factura "'.$factura.'" de "'.$cliente.'" vencida</span></a></li>';
-											$contador_notificacion++;
-										}
-										// FINALIZAN NOTIFICACIONES PARA CUENTAS POR COBRAR VENCIDAS
 
 										if($contador_notificacion!=0){
 											echo '<span class="badge badge-default">'.$contador_notificacion.'</span>';
@@ -706,12 +776,17 @@ if(isset($_SESSION['login'])){
 														</li>
 														<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
 														<?php
-														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
+
+														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$bancos!='0000'){
+
+
 															if($users!='0000'){
 																echo $html_inicio_administrador;
 																echo $html_usuarios;
 																echo $html_final_administrador;
 															}
+
+
 															echo $html_inicio_administracion;
 															if($proveedores!='0000'){
 																echo $html_proveedores;
@@ -719,6 +794,7 @@ if(isset($_SESSION['login'])){
 															if($acreedores!='0000'){
 																echo $html_acreedores;
 															}
+
 															if($transportistas!='0000'){
 																echo $html_transportistas;
 															}
@@ -728,9 +804,11 @@ if(isset($_SESSION['login'])){
 															if($clientes!='0000'){
 																echo $html_clientes;
 															}
+
 															if($bancos!='0000'){
 																echo $html_banco;
 															}
+
 															echo $html_final_administracion;
 														}
 														?>
@@ -740,7 +818,9 @@ if(isset($_SESSION['login'])){
 														<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
 														<?php
 														if($pedidos!='0000'||$cotizaciones!='0000'){
+
 															echo $html_inicio_atnCliente;
+
 															if($cotizaciones!='0000'){
 																echo $html_cotizaciones;
 															}
@@ -754,17 +834,20 @@ if(isset($_SESSION['login'])){
 
 														<!-- INICIA MODULO DE COMPRAS -->
 														<?php 
+
 														if($compra!='0000'){
 															echo $html_inicio_compras;
 															echo $html_compra;
 															echo $html_final_compras;
 														}
+
 														?>
 														<!-- TERMINA MODULO DE COMPRAS -->
 
 														<!--INICIA MÓDULO DE ADUANAS-->
 														<?php
 														if($importaciones!='0000'||$declaraciones!='0000'){
+
 															echo $html_inicio_aduanas;
 															if($importaciones!='0000'){
 																echo $html_importaciones;
@@ -780,9 +863,11 @@ if(isset($_SESSION['login'])){
 
 														<!--INICIA MÓDULO DE ALMACÉN-->
 														<?php
-														if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
+														if($inventary!='0000'||$carga!='0000'||$remisiones!='0000'){
+
 															echo $html_inicio_almacen;
-															if($inventario!='0000'){
+
+															if($inventary!='0000'){
 																echo $html_inventario;
 															}
 															if($carga!='0000'){
@@ -800,6 +885,7 @@ if(isset($_SESSION['login'])){
 														<!--INICIA MÓDULO DE CONTABILIDAD-->
 														<?php
 														if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
+
 															echo $html_inicio_conta;
 															if($bancos!='0000'){
 																echo $html_bancos;
@@ -836,14 +922,18 @@ if(isset($_SESSION['login'])){
 											/*echo date("jS F, Y", strtotime("-4 days")) . "<br>";
 											$fecha = "14-03-2017";
 											$fecha2 =  date( "d-m-Y", strtotime( " $fecha +30 days" ) );
+
 											$hoy =  date("d-m-Y");
+
 											if($fecha2 == $hoy){
 												echo "hola";
 											}
 											else{
 												echo "error";
 											}*/
+
 											
+
 											$principal->mes = date('m');
 											$result = $principal->ventas_mensuales();
 											foreach($result as $row){
@@ -852,6 +942,7 @@ if(isset($_SESSION['login'])){
 													$total_mensual = '0.00';
 												}
 											}
+
 											$principal->year = date('Y');
 											$result = $principal->ventas_acumuladas();
 											foreach($result as $row){
@@ -860,6 +951,7 @@ if(isset($_SESSION['login'])){
 													$total_acumulado = '0.00';
 												}
 											}
+
 											$result = $principal->bancos_dolares();
 											foreach($result as $row){
 												$usd_bancos = $row['Total'];
@@ -867,6 +959,7 @@ if(isset($_SESSION['login'])){
 													$usd_bancos = '0.00';
 												}
 											}
+
 											$result = $principal->bancos_pesos();
 											foreach($result as $row){
 												$mxn_bancos = $row['Total'];
@@ -874,6 +967,7 @@ if(isset($_SESSION['login'])){
 													$mxn_bancos = '0.00';
 												}
 											}
+
 											$result = $principal->cxc_activas();
 											foreach($result as $row){
 												$cxc_act = $row['total'];
@@ -881,6 +975,7 @@ if(isset($_SESSION['login'])){
 													$cxc_act = '0.00';
 												}
 											}
+
 											$result = $principal->cxp_usd();
 											foreach($result as $row){
 												$cxp_dolares = $row['Total'];
@@ -888,6 +983,7 @@ if(isset($_SESSION['login'])){
 													$cxp_dolares = '0.00';
 												}
 											}
+
 											$result = $principal->cxp_mxn();
 											foreach($result as $row){
 												$cxp_pesos = $row['Total'];
@@ -895,6 +991,7 @@ if(isset($_SESSION['login'])){
 													$cxp_pesos = '0.00';
 												}
 											}
+
 											$principal->mes = date('m');
 											$result = $principal->importaciones();
 											foreach($result as $row){
@@ -903,6 +1000,7 @@ if(isset($_SESSION['login'])){
 													$importacion = '0.00';
 												}
 											}
+
 											$result = $principal->inventario();
 											foreach($result as $row){
 												$inve = $row['Total'];
@@ -957,7 +1055,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($usd_bancos,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc">Bancos | USD </div>
+																<div class="desc"> USD </div>
 															</div>
 														</a>
 													</div>
@@ -971,7 +1069,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($mxn_bancos,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc">Bancos | MXN </div>
+																<div class="desc"> MXN </div>
 															</div>
 														</a>
 													</div>
@@ -1065,6 +1163,7 @@ if(isset($_SESSION['login'])){
 															$total = '0.00';
 														}
 														$cliente = $row['cliente'];
+
 														$vxclientes .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
 													}
 													?>
@@ -1074,6 +1173,7 @@ if(isset($_SESSION['login'])){
 															"type": "pie",
 															"theme": "light",
 															"dataProvider": [
+
 															<?php echo $vxclientes; ?>
 															],
 															"valueField": "usd",
@@ -1081,6 +1181,7 @@ if(isset($_SESSION['login'])){
 															"balloon":{
 																"fixedPosition":true
 															},
+
 														} );
 													</script>
 
@@ -1100,7 +1201,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1124,6 +1225,7 @@ if(isset($_SESSION['login'])){
 																$total = '0.00';
 															}
 															$cliente = $row['cliente'];
+
 															$vxdistri .=  '{"product": "'.$cliente.'","sales": "'.$total.'"},';
 														}
 														?>
@@ -1163,6 +1265,7 @@ if(isset($_SESSION['login'])){
 															"export": {
 																"enabled": true
 															}
+
 														} );
 													</script>
 
@@ -1176,7 +1279,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1201,6 +1304,7 @@ if(isset($_SESSION['login'])){
 															$total = '0.00';
 														}
 														$cliente = $row['cliente'];
+
 														$vxgrower .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
 													}
 													?>
@@ -1240,6 +1344,7 @@ if(isset($_SESSION['login'])){
 															"export": {
 																"enabled": true
 															}
+
 														} );
 													</script>
 
@@ -1253,7 +1358,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1280,6 +1385,7 @@ if(isset($_SESSION['login'])){
 														$lista = $principal->nombres_producto();
 														foreach($lista as $row){
 															$nombre_producto = $row['nombreProducto'];
+
 															$vxproductos .=  '{"product": "'.$nombre_producto.'","usd": "'.$total.'"},';
 														}
 													}
@@ -1320,6 +1426,7 @@ if(isset($_SESSION['login'])){
 															"export": {
 																"enabled": true
 															}
+
 														} );
 													</script>
 
@@ -1340,7 +1447,7 @@ if(isset($_SESSION['login'])){
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos</span>
+																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
@@ -1359,6 +1466,7 @@ if(isset($_SESSION['login'])){
 
 												<div class="row">
 													<script>
+
 														<?php 
 														$result = $principal->ventas_anuales_pasado();
 														foreach($result as $row){
@@ -1419,7 +1527,7 @@ if(isset($_SESSION['login'])){
 															}
 
 															$total='0.00';
-															$principal->mes = $mes;
+															$principal->mes = '02';
 															$result = $principal->ventas_anuales();
 															foreach($result as $row){
 																$total = $row['total'];
@@ -1430,6 +1538,7 @@ if(isset($_SESSION['login'])){
 														?>
 														var chart = AmCharts.makeChart( "meses", {
 															"type": "serial",
+															"precision": 2,
 															"addClassNames": true,
 															"theme": "light",
 															"autoMargins": true,
@@ -1437,12 +1546,14 @@ if(isset($_SESSION['login'])){
 															"marginRight": 8,
 															"marginTop": 10,
 															"marginBottom": 26,
+
 															"balloon": {
 																"adjustBorderColor": false,
 																"horizontalPadding": 10,
 																"verticalPadding": 8,
 																"color": "#ffffff"
 															},
+
 															"dataProvider": [ <?php echo $ventas_mensuales; ?>],
 															"valueAxes": [ {
 																"axisAlpha": 0,
@@ -1488,14 +1599,14 @@ if(isset($_SESSION['login'])){
 
 													<!-- HTML -->
 													<div class="col-lg-12 col-xs-12 col-sm-12">
-
+														<?php echo $ttotal; ?>
 
 														<!-- BEGIN CHART PORTLET-->
 														<div class="portlet light bordered">
 															<div class="portlet-title">
 																<div class="caption">
 																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente</span>
+																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente [USD]</span>
 																</div>
 															</div>
 															<div class="portlet-body">
