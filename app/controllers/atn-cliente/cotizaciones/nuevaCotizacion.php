@@ -118,7 +118,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 					
 				}
 				else{
-					if($tipo_cliente == 2){
+					if($tipo_cliente == 2 || $tipo_cliente == 4){
 						$cotizaciones->producto = $recProductos[$i];
 						$cotizaciones->cliente = $_POST['cliente'];
 						$precioEspe = $cotizaciones->consultarPrecios();

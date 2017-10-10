@@ -64,20 +64,20 @@ if(isset($_SESSION['login'])){
   $html_balance='<div class="text-center">
   
   <a data-toggle="modal" href="#modalBalance"><p class="btn '.$color.'">Balance: $ '.$total.'</p></a>
-</div>';
+  </div>';
 
-$html_nuevo='<button id="gotoBancos" class="btn green-seagreen"><i class="fa fa-plus"></i>&nbsp;Nuevo</button>';
-?>
+  $html_nuevo='<button id="gotoBancos" class="btn green-seagreen"><i class="fa fa-plus"></i>&nbsp;Nuevo</button>';
+  ?>
 
-<!-- INICIA LINK PARA ASSETS DE SWEET ALERTS -->
-<link href="../../../../assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
-<!-- TERMINA LINK PARA ASSETS DE SWEET ALERTS -->
+  <!-- INICIA LINK PARA ASSETS DE SWEET ALERTS -->
+  <link href="../../../../assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+  <!-- TERMINA LINK PARA ASSETS DE SWEET ALERTS -->
 
 
-<!--INICIA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
-<style>
-	input[type=radio] { display: none }
-	label {cursor: pointer}   
+  <!--INICIA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
+  <style>
+  input[type=radio] { display: none }
+  label {cursor: pointer}   
 </style>
 <!--TERMINA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
 <div class="row">
@@ -90,6 +90,7 @@ $html_nuevo='<button id="gotoBancos" class="btn green-seagreen"><i class="fa fa-
 
 			</div>
 			<div class="actions btn-set">
+				<button id="gotoRep" class="btn green-seagreen"><i class="fa fa-print"></i>&nbsp;Reporte</button>
 				<?php 
 				if($banco[1]=='2'){
 					echo $html_nuevo;
@@ -175,15 +176,15 @@ $html_nuevo='<button id="gotoBancos" class="btn green-seagreen"><i class="fa fa-
 
 								$html_inicio_actions='<div class="text-center"><div class="btn-group">
 								<button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-									&nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-									&nbsp; Elegir&nbsp;&nbsp;
+								&nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+								&nbsp; Elegir&nbsp;&nbsp;
 								</button><ul class="dropdown-menu pull-right" role="menu">';
 
 								$html_final_actions='</ul></div></div>';
 
 								$html_moreInfo='<li>
 								<a data-toggle="modal" href="#modal'.$folio.'">
-									<i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
+								<i class="icon-magnifier"></i> Ver info.<i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i><i class="font-white fa fa-square-o"></i></a>
 								</li>';
 
 								$html_editar='<li><a><input type="radio" id="editar'.$folio.'" class="editar" name="editar" value="'.$folio.'">
@@ -410,6 +411,11 @@ foreach($consultaModal as $row){
 		/* SCRIPT PARA CAMBIAR CONTENIDO POR FORMULARIO EN BLANCO */
 		$("#gotoBancos").click(function(){
 			$("#mainContent").load( "form_bancos.php?banco="+<?=$_REQUEST['banco'];?> );
+		});
+
+		/* SCRIPT PARA CAMBIAR CONTENIDO POR FORMULARIO EN BLANCO */
+		$("#gotoRep").click(function(){
+			 window.open( "reporte.php?banco="+<?=$_REQUEST['banco'];?>, "_blank" );
 		});
 
 

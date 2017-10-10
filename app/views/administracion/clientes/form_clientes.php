@@ -41,6 +41,7 @@ require '../../../models/administracion/clientes.php';
 ###### DEFINICION DE VARIABLES PARA EVITAR ERRORES ###################################
 $rfc ="";
 $nombre ="";
+$comercial ="";
 $calle ="";
 $exterior ="";
 $interior ="";
@@ -58,6 +59,7 @@ $tipo ="";
 $distribuidor ="";
 $gdc="";
 $grower="";
+$dpe="";
 $ladafijo ="";
 $ladamovil ="";
 $telfijo="";
@@ -91,6 +93,7 @@ if (isset($_REQUEST['rfc'])){
   foreach($result as $row){
     $rfc = $row['rfcCliente'];
     $nombre = $row['razonSocCliente'];
+    $comercial = $row['comercialCliente'];
     $calle = $row['calleCliente'];
     $exterior = $row['numeroExtCliente'];
     $interior = $row['numeroIntCliente'];
@@ -118,6 +121,11 @@ if (isset($_REQUEST['rfc'])){
     else{
       if($tipo==3){
         $grower="checked";
+      }
+      else{
+        if($tipo == 4){
+          $dpe = "checked";
+        }
       }
     }
   }
@@ -215,6 +223,11 @@ if (isset($_REQUEST['rfc'])){
          if($("#grower").is(':checked')){
           var tipo = "3";
         } 
+        else{
+           if($("#dpe").is(':checked')){
+          var tipo = "4";
+        } 
+        }
       }
     }
 
@@ -224,6 +237,7 @@ if (isset($_REQUEST['rfc'])){
       data: "rfc="+$("#rfc").val()+
       "&viejo="+$("#viejo").val()+
       "&nombre="+$("#nombre").val()+
+      "&comercial="+$("#comercial").val()+
       '&calle='+$("#calle").val()+
       '&exterior='+$("#exterior").val()+
       '&interior='+$("#interior").val()+
@@ -250,7 +264,7 @@ if (isset($_REQUEST['rfc'])){
         showCloseButton: true,
         confirmButtonText:'Cerrar'
       });
-      if(tipo=="2"){
+      if(tipo=="2"||tipo=="4"){
         var rfc = $("#rfc").val();
         $("#mainContent").load( "form_precios.php?rfc="+rfc);  
       }
@@ -319,6 +333,15 @@ if (isset($_REQUEST['rfc'])){
             <label class="col-md-3 control-label">Razón social</label>
             <div class="col-md-6">
               <input type="text" class="form-control " id="nombre" name="nombre" value="<?=$nombre;?>" required>
+            </div>
+          </div>
+          <!-- TERMINA INPUT NOMBRE-->
+
+           <!-- INICIA INPUT NOMBRE-->
+          <div class="form-group">
+            <label class="col-md-3 control-label">Nombre Comercial</label>
+            <div class="col-md-6">
+              <input type="text" class="form-control " id="comercial" name="comercial" value="<?=$comercial;?>" required>
             </div>
           </div>
           <!-- TERMINA INPUT NOMBRE-->
@@ -534,6 +557,9 @@ if (isset($_REQUEST['rfc'])){
                 </label>
                 <label>
                   <input type="radio" name="tipo" id="gdc" class="icheck" data-radio="iradio_square-grey"<?echo $gdc;?>> Global Direct Customer 
+                </label>
+                <label>
+                  <input type="radio" name="tipo" id="dpe" class="icheck" data-radio="iradio_square-grey"<?echo $dpe;?>> Distribuidor precio especial
                 </label>
               </div>
             </div>

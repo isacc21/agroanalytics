@@ -1,0 +1,302 @@
+[10-Oct-2017 09:51:38 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:51:38 America/Tijuana] PHP Notice:  Undefined variable: hola in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 393
+[10-Oct-2017 09:51:38 America/Tijuana] PHP Notice:  Use of undefined constant d - assumed 'd' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:51:38 America/Tijuana] PHP Notice:  Use of undefined constant m - assumed 'm' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:51:38 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: balance in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 153
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:40 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:51:41 America/Tijuana] PHP Fatal error:  Call to undefined method bancos::consultarInfoBanco() in /home/agroawqb/public_html/app/views/contabilidad/bancos/reporte.php on line 134
+[10-Oct-2017 09:52:09 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:09 America/Tijuana] PHP Notice:  Undefined variable: hola in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 393
+[10-Oct-2017 09:52:09 America/Tijuana] PHP Notice:  Use of undefined constant d - assumed 'd' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:09 America/Tijuana] PHP Notice:  Use of undefined constant m - assumed 'm' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:09 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: balance in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 153
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:10 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:12 America/Tijuana] PHP Fatal error:  Call to undefined method bancos::consultarInfoBanco() in /home/agroawqb/public_html/app/views/contabilidad/bancos/reporte.php on line 134
+[10-Oct-2017 09:52:18 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:18 America/Tijuana] PHP Notice:  Undefined variable: hola in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 393
+[10-Oct-2017 09:52:18 America/Tijuana] PHP Notice:  Use of undefined constant d - assumed 'd' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:18 America/Tijuana] PHP Notice:  Use of undefined constant m - assumed 'm' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:18 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: balance in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 153
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:19 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:23 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:23 America/Tijuana] PHP Notice:  Undefined variable: hola in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 393
+[10-Oct-2017 09:52:23 America/Tijuana] PHP Notice:  Use of undefined constant d - assumed 'd' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:23 America/Tijuana] PHP Notice:  Use of undefined constant m - assumed 'm' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:23 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: balance in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 153
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:25 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:26 America/Tijuana] PHP Fatal error:  Call to undefined method bancos::consultarInfoBanco() in /home/agroawqb/public_html/app/views/contabilidad/bancos/reporte.php on line 134
+[10-Oct-2017 09:52:30 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:30 America/Tijuana] PHP Notice:  Undefined variable: hola in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 393
+[10-Oct-2017 09:52:30 America/Tijuana] PHP Notice:  Use of undefined constant d - assumed 'd' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:30 America/Tijuana] PHP Notice:  Use of undefined constant m - assumed 'm' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:30 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/views/contabilidad/bancos/index.php on line 879
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  A session had already been started - ignoring session_start() in /home/agroawqb/public_html/app/models/administracion/usuarios.php on line 40
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Use of undefined constant Y - assumed 'Y' in /home/agroawqb/public_html/app/models/contabilidad/bancos.php on line 169
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: balance in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 153
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:31 America/Tijuana] PHP Notice:  Undefined variable: html_eliminar in /home/agroawqb/public_html/app/views/contabilidad/bancos/cat_bancos.php on line 204
+[10-Oct-2017 09:52:34 America/Tijuana] PHP Fatal error:  Call to undefined method bancos::consultarInfoBanco() in /home/agroawqb/public_html/app/views/contabilidad/bancos/reporte.php on line 134

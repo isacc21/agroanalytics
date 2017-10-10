@@ -143,9 +143,10 @@
                 foreach($clientes as $row){
                   $rfc = $row['rfcCliente'];
                   $nombre = $row['razonSocCliente'];
+                  $comercial = $row['comercialCliente'];
 
                   ?>
-                  <option value="<?=$rfc;?>"><? echo $nombre;?></option>
+                  <option value="<?=$rfc;?>"><? echo $comercial;?></option>
                   <?php } ?>
                 </select>
               </div>
@@ -195,7 +196,7 @@
                     <input type="text" class="form-control" id="cantidad0" name="cantidad" value="" placeholder="Cantidad" required "> 
                   </div>
                   <div class="col-md-2">
-                    <select id="unidad0" class="form-control" required >
+                    <select disabled id="unidad0" class="form-control" required >
                       <option selected disabled value="default">Seleccione</option>
                       <option id="litro0" value="Litros" style="display:none">Litros</option>
                       <option id="galon0" value="Galones" style="display:none">Galones</option>
@@ -295,7 +296,7 @@
                 case 6:
                 $preS = " | Súper saco";
                 break;
-              }?><option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option><?php } ?></select></div><div class="col-md-2"> <input type="text" class="form-control" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "> </div><div class="col-md-2"><select id="unidad'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><option id="litro'+x+'" value="Litros" style="display:none">Litros</option><option id="galon'+x+'" value="Galones" style="display:none">Galones</option><option id="metrica'+x+'" value="Ton_Metrica" style="display:none">Ton. Métrica</option><option id="corta'+x+'" value="Ton_Corta" style="display:none">Ton. Corta</option></select></div><div class="col-md-1"> <div class="btn blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div><br/><br/><br/><div id="mensaje'+x+'" style="display:none"><div class="col-md-1"></div><div class="alert alert-danger col-md-10 text-center"><strong><div id="text-message'+x+'"></div></strong></div></div></div>');
+              }?><option value="<?=$codigoP;?>"><? echo $nombreP.$preS;?></option><?php } ?></select></div><div class="col-md-2"> <input type="text" class="form-control" id="cantidad'+x+'" name="cantidad" value="" placeholder="Cantidad" required "> </div><div class="col-md-2"><select disabled id="unidad'+x+'" class="form-control" required ><option selected disabled value="default">Seleccione</option><option id="litro'+x+'" value="Litros" style="display:none">Litros</option><option id="galon'+x+'" value="Galones" style="display:none">Galones</option><option id="metrica'+x+'" value="Ton_Metrica" style="display:none">Ton. Métrica</option><option id="corta'+x+'" value="Ton_Corta" style="display:none">Ton. Corta</option></select></div><div class="col-md-1"> <div class="btn blue-chambray btn-outline" onclick="removerProducto('+x+')"><i class="glyphicon glyphicon-trash"></i></div></div><br/><br/><br/><div id="mensaje'+x+'" style="display:none"><div class="col-md-1"></div><div class="alert alert-danger col-md-10 text-center"><strong><div id="text-message'+x+'"></div></strong></div></div></div>');
           x++;
         });
         productoEliminado = [];
@@ -346,7 +347,7 @@
           case "Tote":
           case "Granel":
 
-          $("#litro"+atrabajar).css("display", "block");
+          //$("#litro"+atrabajar).css("display", "block");
           $("#galon"+atrabajar).css("display", "block");
 
           $("#metrica"+atrabajar).css("display", "none");
@@ -355,7 +356,7 @@
           //$("#unidad"+atrabajar).children().removeAttr("selected");
 
 
-          $('#unidad'+atrabajar+' option[value="Litros"]').attr('selected', 'selected');
+          $('#unidad'+atrabajar+' option[value="Galones"]').attr('selected', 'selected');
 
           break;
 
@@ -365,12 +366,12 @@
           $("#litro"+atrabajar).css("display", "none");
           $("#galon"+atrabajar).css("display", "none");
 
-          $("#metrica"+atrabajar).css("display", "block");
+          //$("#metrica"+atrabajar).css("display", "block");
           $("#corta"+atrabajar).css("display", "block");
 
           //$("#unidad"+atrabajar).children().removeAttr("selected");
           
-          $('#unidad'+atrabajar+' option[value="Ton_Metrica"]').attr('selected', 'selected');
+          $('#unidad'+atrabajar+' option[value="Ton_Corta"]').attr('selected', 'selected');
 
           break;
         }

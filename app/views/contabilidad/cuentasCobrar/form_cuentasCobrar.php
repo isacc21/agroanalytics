@@ -204,11 +204,12 @@ if (isset($_REQUEST['folio'])){
                 $selected = '';
                 $rfc = $row['rfcCliente'];
                 $nombre = $row['razonSocCliente'];
+                $comercial = $row['comercialCliente'];
                 if($rfc == $cliente){
                   $selected = 'selected';
                 }
                 ?>
-                <option value="<?=$rfc;?>" <?=$selected;?>><? echo $nombre;?></option>
+                <option value="<?=$rfc;?>" <?=$selected;?>><? echo $comercial;?></option>
                 <?php } ?>
               </select>
             </div>

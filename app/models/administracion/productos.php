@@ -233,7 +233,7 @@ class productos{
       $conexion -> exec("set names utf8");
 
       //Sentencia SQL para consultar los productos de la tabla.
-      return $resultados = $conexion->query("SELECT * FROM productos");
+      return $resultados = $conexion->query("SELECT * FROM productos ORDER BY nombreProducto ASC, presentacionProducto ASC");
 
     }
 

@@ -114,7 +114,7 @@ if(md5($_POST['pass'])==$_SESSION['password']){
 					
 				}
 				else{
-					if($tipo_cliente == 2){
+					if($tipo_cliente == 2 || $tipo_cliente == 4){
 						$pedidos->producto = $recProductos[$i];
 						$pedidos->cliente = $_POST['cliente'];
 						$precioEspe = $pedidos->consultarPrecios();

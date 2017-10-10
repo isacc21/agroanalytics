@@ -390,7 +390,7 @@ foreach($consultaModal as $row){
                 <td>Tipo de cliente: </td>
                 <td>
                   <?php 
-                  if($tipo==1){
+                  if($tipo==1||$tipo==4){
                     echo "Distribuidor";
                   }
                   else{

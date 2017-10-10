@@ -378,5 +378,44 @@ class bancos{
 	}
 
 
+	public function consultarInfoBanco(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM bancos WHERE idBanco = '".$this->id."'");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
+	public function estadoCuentaP(){
+		try {
+
+      //CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+      //Sentencia SQL para eliminar un usuario
+			return $resultados = $conexion->query("SELECT * FROM estadocuenta WHERE idBanco = '".$this->id."' ORDER BY yyyyBanco ASC, mmBanco ASC, ddBanco ASC");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
 }
 ?>

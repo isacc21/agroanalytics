@@ -89,7 +89,7 @@ foreach ($result as $row){
 
 
       <div class="actions btn-set">
-      <button type="button" name="back" id="back_cat_pdts" class="btn green-seagreen">
+        <button type="button" name="back" id="back_cat_pdts" class="btn green-seagreen">
           <i class="fa fa-arrow-left"></i> Regresar
         </button>
       </div>
@@ -229,10 +229,10 @@ foreach($consultaModal as $row){
 
  ?>
  <!-- INICIO DE VENTANA MODAL -->
- <div class="modal fade" id="modal<?=$pedimento;?>" tabindex="-1" role="basic" aria-hidden="true">
+ <div class="modal fade bs-modal-lg" id="modal<?=$pedimento;?>" tabindex="-1" role="basic" aria-hidden="true">
 
   <!-- INICIO DE VENTANA MODAL -->
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
    <!-- INCIO DE DEFINICIO DE CONTENIDO DE VENTANA MODAL -->
    <div class="modal-content">
@@ -254,13 +254,17 @@ foreach($consultaModal as $row){
      <!-- INICIA TABLA SIMPLE PARA MOSTRAR DETALLES DE ACREEDORES-->
      <table class="table table-hover">
       <?php
-      echo '<tr><td>Producto</td><td>Existencia</td><td>Importación</td></tr>'; 
+      echo '<tr><td><b>Producto</b></td><td><b>Existencia</b></td><td><b>Importación</b></td><td><b>Fecha Manufactura</b></td><td><b>Fecha Caducidad</b></td><td><b>Lot. Producción</b></td></tr>'; 
       $inventario->importacion = $importacion;
       $lista_productos = $inventario->consultarProductosPedimento();
       foreach($lista_productos as $row){
         $producto = $row['codigoProducto'];
         $existencia = $row['existenciaInventario'];
         $importacion = $row['folioImportacion'];
+
+        $manufactura = $row['ddManufactura'].'/'.$row['mmManufactura'].'/'.$row['yyyyManufactura'];
+        $caducidad = $row['ddCaducidad'].'/'.$row['mmCaducidad'].'/'.$row['yyyyCaducidad'];
+        $lote = $row['loteInventario'];
 
 
         $inventario->producto = $producto;
@@ -302,7 +306,7 @@ foreach($consultaModal as $row){
           }
         }
 
-        echo'<tr><td>'.$nombre.$pres.'</td><td>'.$existencia.$typep.'</td><td>'.$importacion.'</td></tr>';
+        echo'<tr><td>'.$nombre.$pres.'</td><td>'.$existencia.$typep.'</td><td>'.$importacion.'</td><td>'.$manufactura.'</td><td>'.$caducidad.'</td><td>'.$lote.'</td></tr>';
 
         ?>
 

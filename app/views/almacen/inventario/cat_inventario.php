@@ -71,25 +71,28 @@ foreach ($result as $row){
 
   <!--INICIA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
   <style>
-   input[type=radio] { display: none }
-   label {cursor: pointer}   
- </style>
- <!--TERMINA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
+  input[type=radio] { display: none }
+  label {cursor: pointer}   
+</style>
+<!--TERMINA ESTILOS PARA RADIO BUTTONS Y LABELS IMPROVISADOS -->
 
- <!-- INICIA ROW PARA PORTLET Y DATA TABLE-->
- <div class="row">
+<!-- INICIA ROW PARA PORTLET Y DATA TABLE-->
+<div class="row">
 
-   <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
-   <div class="col-md-12">
-    <!-- INICIA PORTLET -->
-    <div class="portlet box grey-steel">
+ <!-- INICIA COLUMNA DE 12 PARA PORTLET-->
+ <div class="col-md-12">
+  <!-- INICIA PORTLET -->
+  <div class="portlet box grey-steel">
 
-     <!-- INICIA TITULO DE PORTLET-->
-     <div class="portlet-title">
+   <!-- INICIA TITULO DE PORTLET-->
+   <div class="portlet-title">
 
-      <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div></div>
+    <div class="caption"><div class="font-grey-mint"> <b>Catálogo</b> </div></div>
 
-      <div class="actions btn-set">
+    <div class="actions btn-set">
+      <button type="button" name="back" id="rep_inv" class="btn green-seagreen">
+        <i class="fa fa-print"></i> Reporte
+      </button>
       <button type="button" name="back" id="back_cat_inv" class="btn green-seagreen">
         <i class="fa fa-arrow-left"></i> Regresar
       </button>
@@ -191,20 +194,20 @@ foreach ($result as $row){
 
          $html_inicio_action='<div class="text-center"><div class="btn-group">
          <button class="btn btn-xs green-seagreen dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-          &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
-          &nbsp; Elegir&nbsp;&nbsp;
-        </button><ul class="dropdown-menu pull-right" role="menu">';
+         &nbsp;&nbsp;<i class="glyphicon glyphicon-list"></i>
+         &nbsp; Elegir&nbsp;&nbsp;
+         </button><ul class="dropdown-menu pull-right" role="menu">';
 
-        $html_final_action='</ul></div>';
-        $html_moreInfo='<li>
-        <a data-toggle="modal" href="#modal'.$codigo.'">
-          <i class="icon-magnifier"></i> Ver info. </a>
-        </li>';
-
-
+         $html_final_action='</ul></div>';
+         $html_moreInfo='<li>
+         <a data-toggle="modal" href="#modal'.$codigo.'">
+         <i class="icon-magnifier"></i> Ver info. </a>
+         </li>';
 
 
-        if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
+
+
+         if($inventary[0]=='1'||$inventary[1]=='2'||$inventary[2]=='3'||$inventary[3]=='4'){
           echo $html_inicio_action;
         }
         if($inventary[0]=='1'){
@@ -258,6 +261,7 @@ foreach($consultaModal as $row){
  $yyyyC = $row['yyyyCaducidad'];
  $lote = $row['loteInventario'];
  $num = number_format($precio,2, '.', ',');
+ $pedimento = $row['folioPedimentoImportacion'];
 
 
 
@@ -305,6 +309,7 @@ foreach($consultaModal as $row){
         $precio = $row['compraProducto'];
         $densidad = $row['densidadProducto'];
         $presentacion = $row['presentacionProducto'];
+
 
         switch($presentacion){
           case 1:
@@ -374,6 +379,10 @@ foreach($consultaModal as $row){
      <td>Lote de manufactura: </td>
      <td><?php echo $lote;?></td>
    </tr>
+   <tr>
+     <td>Pedimento: </td>
+     <td><?php echo $pedimento; ?></td>
+   </tr>
 
 
 
@@ -419,6 +428,10 @@ foreach($consultaModal as $row){
 
     $('#gotoCompras').click(function() {
       $("#mainContent").load( "form_ocompras.php");
+    });
+
+    $('#rep_inv').click(function() {
+      window.open("rep_inventario.php", "_blank");
     });
   });
 </script>

@@ -415,7 +415,6 @@ class usuarios{
       clientesPermiso                ='".$this->clientes."',
       productosPermiso               ='".$this->productos."',
       aduanalPermiso                 ='".$this->aduanal."',
-      usuariosPermiso                ='".$this->persona."',
       pedidosPermiso                 ='".$this->pedidos."',
       cotizacionesPermiso            ='".$this->cotizaciones."',
       importacionesPermiso           ='".$this->importaciones."',

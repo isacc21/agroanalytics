@@ -233,7 +233,7 @@ foreach($lista as $row){
 				}
 			}
 		}
-		if($tipo_cliente == 2){
+		if($tipo_cliente == 2 || $tipo_cliente == 4){
 			$pedidos->cliente = $_SESSION['rfc'];
 			$pedidos->producto = $codigo_producto;
 			$result = $pedidos->consultarPrecios();

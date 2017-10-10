@@ -406,7 +406,7 @@ foreach($info_pedido as $row){
      foreach($cProducto as $row){
       $nombreProducto = $row['nombreProducto'];
       $presentacion = $row['presentacionProducto'];
-      if($cliente_tipo != 2){
+      if($cliente_tipo != 2 || $cliente_tipo != 4){
         if($cliente_tipo==1){
           $precio_ingles = $row['iVentaDisProducto'];
           $precio_metrico = $row['mVentaDisProducto'];
@@ -419,7 +419,7 @@ foreach($info_pedido as $row){
         }
       }
       else{
-        if($cliente_tipo == 2){
+        if($cliente_tipo == 2 || $cliente_tipo == 4){
           $ordenesCarga->cliente = $cliente;
           $ordenesCarga->producto = $producto;
           $lista_precios = $ordenesCarga->consultarPrecios();

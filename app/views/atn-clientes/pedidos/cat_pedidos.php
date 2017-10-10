@@ -606,7 +606,7 @@ foreach($consultaClientes as $row){
         $tipo_cliente = $row['tipoCliente'];
         $rfc = $row['rfcCliente'];
 
-        if($tipo_cliente == 2){
+        if($tipo_cliente == 2 || $tipo_cliente == 4){
           $pedidos->producto=$producto;
           $pedidos->cliente = $rfc;
           $result_clientes = $pedidos->consultarPrecios();

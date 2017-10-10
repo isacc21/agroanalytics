@@ -31,6 +31,7 @@
 # IJLM - Se agrega una condicional para confirmar el inicio de sesión                #
 # IJLM - Se agrega Else en caso de no iniciar sesión, mandar al login                #
 ######################################################################################
+
 ###### SE CONFIGURA ZONA HORARIA #####################################################
 date_default_timezone_set('America/Tijuana');
 ###### SE CONFIGURA UN INICIA DE SESION ##############################################
@@ -77,146 +78,146 @@ if(isset($_SESSION['login'])){
 ###### MODULO DE ADMINISTRACION #####################################################
 	$html_inicio_administracion='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="icon-folder-alt"></i>
-		<span class="title">Catálogos</span>
-		<span class="arrow"></span>
+	<i class="icon-folder-alt"></i>
+	<span class="title">Catálogos</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_administracion = '</ul></li>';
 	$html_proveedores = '<li class="nav-item  ">
 	<a href="views/administracion/proveedores" class="nav-link ">
-		
-		<span class="title">1 | Proveedores</span>
+
+	<span class="title">1 | Proveedores</span>
 	</a></li>';
 	$html_acreedores = '<li class="nav-item ">
 	<a href="views/administracion/acreedores" class="nav-link ">
-		
-		<span class="title">2 | Acreedores</span>
+
+	<span class="title">2 | Acreedores</span>
 	</a></li>';
 	$html_transportistas = '<li class="nav-item  ">
 	<a href="views/administracion/transportistas" class="nav-link ">
-		
-		<span class="title">3 | Transportistas</span>
+
+	<span class="title">3 | Transportistas</span>
 	</a></li>';
 	$html_clientes= '<li class="nav-item  ">
 	<a href="views/administracion/clientes" class="nav-link ">
-		
-		<span class="title">5 | Clientes</span>
+
+	<span class="title">5 | Clientes</span>
 	</a></li>';
 	$html_productos = '<li class="nav-item">
 	<a href="views/administracion/productos" class="nav-link ">
-		
-		<span class="title">4 | Productos</span>
+
+	<span class="title">4 | Productos</span>
 	</a></li>';
 	$html_banco = '<li class="nav-item">
 	<a href="views/administracion/bancos" class="nav-link ">
-		<span class="title">6 | Bancos</span>
+	<span class="title">6 | Bancos</span>
 	</a></li>';
 	###### MODULO DE ADMINISTRADOR ###############################################
 	$html_inicio_administrador='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="icon-settings"></i>
-		<span class="title">Administrador</span>
-		<span class="arrow"></span>
+	<i class="icon-settings"></i>
+	<span class="title">Administrador</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_administrador = '</ul></li>';
 	$html_usuarios = '<li class="nav-item ">
 	<a href="views/administracion/usuarios" class="nav-link ">
-		<i class="fa fa-user-plus"></i>
-		<span class="title"> Usuarios</span>
+	<i class="fa fa-user-plus"></i>
+	<span class="title"> Usuarios</span>
 	</a></li>';
 	###### MODULO DE ATENCION AL CLIENTE ###############################################
 	$html_inicio_atnCliente='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="icon-earphones-alt"></i>
-		<span class="title">Atención a Clientes</span>
-		<span class="arrow"></span>
+	<i class="icon-earphones-alt"></i>
+	<span class="title">Atención a Clientes</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_atnCliente='</ul></li>';
 	$html_pedidos='<li class="nav-item  ">
 	<a href="views/atn-clientes/pedidos" class="nav-link ">
-		
-		<span class="title">2 | Pedidos</span>
+
+	<span class="title">2 | Pedidos</span>
 	</a></li>';
 	$html_cotizaciones='<li class="nav-item  ">
 	<a href="views/atn-clientes/cotizaciones" class="nav-link ">
-		
-		<span class="title">1 | Cotizaciones</span>
+
+	<span class="title">1 | Cotizaciones</span>
 	</a></li>';
 	###### MODULO DE COMPRAS ###############################################
 	$html_inicio_compras='<li class="nav-item">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="icon-basket"></i>
-		<span class="title">Compras</span>
-		<span class="arrow"></span>
+	<i class="icon-basket"></i>
+	<span class="title">Compras</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_compras = '</ul></li>';
 	$html_compra='<li class="nav-item  ">
 	<a href="views/almacen/ordenesCompra" class="nav-link ">
-		<span class="title">1 | Órdenes de Compra</span>
+	<span class="title">1 | Órdenes de Compra</span>
 	</a></li>';
 	###### MODULO DE ADUANAS ###########################################################
 	$html_inicio_aduanas='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="fa fa-truck"></i>
-		<span class="title">Aduanas</span>
-		<span class="arrow"></span>
+	<i class="fa fa-truck"></i>
+	<span class="title">Aduanas</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_aduanas='</ul></li>';
 	$html_importaciones='<li class="nav-item  ">
 	<a href="views/aduanas/importaciones" class="nav-link ">
-		
-		<span class="title">1 | Importaciones</span>
+
+	<span class="title">1 | Importaciones</span>
 	</a></li>';
 	$html_declaraciones='<li class="nav-item  ">
 	<a href="views/aduanas/declaraciones" class="nav-link ">
-		
-		<span class="title">2 | Declaración de Aduanas</span>
+
+	<span class="title">2 | Declaración de Aduanas</span>
 	</a></li>';
 	###### MODULO DE ALMACEN ###########################################################
 	$html_inicio_almacen='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="icon-social-dropbox"></i>
-		<span class="title">Almacén</span>
-		<span class="arrow"></span>
+	<i class="icon-social-dropbox"></i>
+	<span class="title">Almacén</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_almacen='</ul></li>';
 	$html_inventario='<li class="nav-item  ">
 	<a href="views/almacen/inventario" class="nav-link ">
-		
-		<span class="title">1 | Inventario</span>
+
+	<span class="title">1 | Inventario</span>
 	</a></li>';
 	$html_carga='<li class="nav-item  ">
 	<a href="views/almacen/ordenesCarga" class="nav-link ">
-		
-		<span class="title">2 | Órdenes de Carga</span>
+
+	<span class="title">2 | Órdenes de Carga</span>
 	</a></li>';
 	$html_remisiones='<li class="nav-item  ">
 	<a href="views/almacen/remisiones" class="nav-link ">
-		
-		<span class="title">3 | Remisiones</span>
+
+	<span class="title">3 | Remisiones</span>
 	</a></li>';
 	###### MODULO DE CONTABILIDAD ######################################################
 	$html_inicio_conta='<li class="nav-item  ">
 	<a href="javascript:;" class="nav-link nav-toggle">
-		<i class="glyphicon glyphicon-usd"></i>
-		<span class="title">Contabilidad</span>
-		<span class="arrow"></span>
+	<i class="glyphicon glyphicon-usd"></i>
+	<span class="title">Contabilidad</span>
+	<span class="arrow"></span>
 	</a><ul class="sub-menu">';
 	$html_final_conta='</ul></li>';
 	$html_bancos='<li class="nav-item  ">
 	<a href="views/contabilidad/bancos" class="nav-link ">
-		
-		<span class="title">1 | Bancos</span>
+
+	<span class="title">1 | Bancos</span>
 	</a></li>';
 	$html_cxc='<li class="nav-item  ">
 	<a href="views/contabilidad/cuentasCobrar" class="nav-link ">
-		
-		<span class="title">2 | Cuentas por Cobrar</span>
+
+	<span class="title">2 | Cuentas por Cobrar</span>
 	</a></li>';
 	$html_cxp='<li class="nav-item  ">
 	<a href="views/contabilidad/cuentasPagar" class="nav-link ">
-		
-		<span class="title">3 | Cuentas por Pagar</span>
+
+	<span class="title">3 | Cuentas por Pagar</span>
 	</a></li>';
 	
 	?>
@@ -356,6 +357,21 @@ if(isset($_SESSION['login'])){
 												break;
 											}
 											$hola .= $codigo_inventario;
+
+											if(
+												// AVISO DE TRES MESES
+												strtotime('-4 months',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
+												strtotime('-4 months +1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
+												strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
+											)
+												// AVISO DE TRES MESES 
+											{
+												
+												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 4 meses de caducar</span></a></li>';
+												$contador_notificacion++;
+											}
 											
 											if(
 												// AVISO DE TRES MESES
@@ -364,7 +380,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-3 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-3 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-3 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 												// AVISO DE TRES MESES 
 											{
 												
@@ -378,7 +394,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 												// AVISO DE DOS MESES
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 2 meses de caducar</span></a></li>';
@@ -391,7 +407,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-1 month +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-1 month +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-1 month +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 												// AVISO DE UN MES
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' a 1 mes de caducar</span></a></li>';
@@ -399,12 +415,8 @@ if(isset($_SESSION['login'])){
 											}
 											if(
 												// AVISO DE CADUCADO
-												strtotime('today',(strtotime($yyyy."/".$mm."/".$dd))) == strtotime('today')||
-												strtotime('+1 day',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
-												strtotime('+4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+												strtotime($yyyy."/".$mm."/".$dd) <= strtotime('today')
+											)
 												// AVISO DE CADUCADO
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-danger"><i class="fa fa-ban"></i> </span>'.$codigo_inventario.' | '.$nombre.$presentacion.' caducado</span></a></li>';
@@ -434,7 +446,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-18 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-18 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-18 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 18 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 18 meses de vencer</span></a></li>';
@@ -447,7 +459,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-12 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-12 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-12 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 12 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso COFEPRIS de "'.$producto.'" a 12 meses de vencer</span></a></li>';
@@ -471,7 +483,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 4 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 4 meses de vencer</span></a></li>';
@@ -484,7 +496,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 2 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso CICOPLAFEST de "'.$producto.'" a 2 meses de vencer</span></a></li>';
@@ -508,7 +520,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-4 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-4 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-4 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 4 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 4 meses de vencer</span></a></li>';
@@ -521,7 +533,7 @@ if(isset($_SESSION['login'])){
 												strtotime('-2 months +2 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +3 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')||
 												strtotime('-2 months +4 days',(strtotime($yyyy."/".$mm."/".$dd)))==strtotime('today')
-												)
+											)
 											// AVISO DE 2 MESES 
 											{
 												$notificaciones = $notificaciones . '<li><a href="javascript:;"><span class="details"><span class="label label-sm label-icon label-warning"><i class="fa fa-warning"></i> </span> Permiso SEMARNAT de "'.$producto.'" a 2 meses de vencer</span></a></li>';
@@ -530,7 +542,7 @@ if(isset($_SESSION['login'])){
 										}
 										// TERMINAN NOTIFICACIONES PARA PERMISO COFEPRIS
 
-							
+
 										//VENCER CUENTAS POR COBRAR
 
 										$cxc_revision = $principal->cxp_lista();
@@ -618,220 +630,220 @@ if(isset($_SESSION['login'])){
 										<li class="external">
 											<h3>
 												<span class="bold"><?php 
-													if($contador_notificacion==1){
-														echo $contador_notificacion; ?> notificación</span> pendiente</h3>
-														<?php }else{
-															echo $contador_notificacion; ?> notificaciones</span> pendientes</h3><?php
-														} ?>
+												if($contador_notificacion==1){
+													echo $contador_notificacion; ?> notificación</span> pendiente</h3>
+													<?php }else{
+														echo $contador_notificacion; ?> notificaciones</span> pendientes</h3><?php
+													} ?>
 
 
-													</li>
-													<li>
-														<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-															<?php echo $notificaciones; 
-															?>
-														</ul>
-													</ul>
 												</li>
-												<!-- BEGIN USER LOGIN DROPDOWN -->
-												<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-												<li class="dropdown dropdown-user">
-													<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-														<img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar.png" />
-														<span class="username username-hide-on-mobile"><?echo $_SESSION['nombre']." ".$_SESSION['paterno'] ;?></span>
-														<i class="fa fa-angle-down"></i>
-													</a>
-													<ul class="dropdown-menu dropdown-menu-default">
-														<li>
-															<a href="views/profile/info">
-																<i class="icon-user"></i> Mi Perfil </a>
-															</li>
-															<li class="divider"> </li>
-															<li>
-																<a href="../index.php?lg=1">
-																	<i class="icon-key"></i> Log Out </a>
-																</li>
-															</ul>
-														</li>
-														<!-- END USER LOGIN DROPDOWN -->
+												<li>
+													<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+														<?php echo $notificaciones; 
+														?>
 													</ul>
-												</div>
-												<!-- END TOP NAVIGATION MENU -->
+												</ul>
+											</li>
+											<!-- BEGIN USER LOGIN DROPDOWN -->
+											<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+											<li class="dropdown dropdown-user">
+												<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+													<img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar.png" />
+													<span class="username username-hide-on-mobile"><?echo $_SESSION['nombre']." ".$_SESSION['paterno'] ;?></span>
+													<i class="fa fa-angle-down"></i>
+												</a>
+												<ul class="dropdown-menu dropdown-menu-default">
+													<li>
+														<a href="views/profile/info">
+															<i class="icon-user"></i> Mi Perfil </a>
+														</li>
+														<li class="divider"> </li>
+														<li>
+															<a href="../index.php?lg=1">
+																<i class="icon-key"></i> Log Out </a>
+															</li>
+														</ul>
+													</li>
+													<!-- END USER LOGIN DROPDOWN -->
+												</ul>
 											</div>
-											<!-- END HEADER INNER -->
+											<!-- END TOP NAVIGATION MENU -->
 										</div>
-										<!-- END HEADER -->
+										<!-- END HEADER INNER -->
+									</div>
+									<!-- END HEADER -->
 
 
 
 
-										<!--REVISADO HASTA ESTE PUNTO - **HEADER**-->
+									<!--REVISADO HASTA ESTE PUNTO - **HEADER**-->
 
 
 
-										<!-- BEGIN HEADER & CONTENT DIVIDER -->
-										<div class="clearfix"> </div>
-										<!-- END HEADER & CONTENT DIVIDER -->
-										<!-- BEGIN CONTAINER -->
-										<div class="page-container">
+									<!-- BEGIN HEADER & CONTENT DIVIDER -->
+									<div class="clearfix"> </div>
+									<!-- END HEADER & CONTENT DIVIDER -->
+									<!-- BEGIN CONTAINER -->
+									<div class="page-container">
+										<!-- BEGIN SIDEBAR -->
+										<div class="page-sidebar-wrapper">
 											<!-- BEGIN SIDEBAR -->
-											<div class="page-sidebar-wrapper">
-												<!-- BEGIN SIDEBAR -->
+											<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+											<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+											<div class="page-sidebar navbar-collapse collapse">
+												<!-- BEGIN SIDEBAR MENU -->
+												<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+												<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+												<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
 												<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-												<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-												<div class="page-sidebar navbar-collapse collapse">
-													<!-- BEGIN SIDEBAR MENU -->
-													<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
-													<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
-													<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
-													<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-													<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
-													<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-													<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
-														<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
-														<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-														<li class="sidebar-toggler-wrapper hide">
-															<div class="sidebar-toggler">
-																<span></span>
-															</div>
-														</li>
-														<!-- END SIDEBAR TOGGLER BUTTON -->
+												<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+												<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+												<ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+													<!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+													<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+													<li class="sidebar-toggler-wrapper hide">
+														<div class="sidebar-toggler">
+															<span></span>
+														</div>
+													</li>
+													<!-- END SIDEBAR TOGGLER BUTTON -->
 
-														<li class="nav-item start active open">
-															<a href="../app" class="nav-link nav-toggle">
-																<i class="icon-home"></i>
-																<span class="title">GOP Scorecard</span>
-																<span class="selected"></span>
-															</a>
-														</li>
-														<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
-														<?php
-														if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
-															if($users!='0000'){
-																echo $html_inicio_administrador;
-																echo $html_usuarios;
-																echo $html_final_administrador;
-															}
-															echo $html_inicio_administracion;
-															if($proveedores!='0000'){
-																echo $html_proveedores;
-															}
-															if($acreedores!='0000'){
-																echo $html_acreedores;
-															}
-															if($transportistas!='0000'){
-																echo $html_transportistas;
-															}
-															if($productos!='0000'){
-																echo $html_productos;
-															}
-															if($clientes!='0000'){
-																echo $html_clientes;
-															}
-															if($bancos!='0000'){
-																echo $html_banco;
-															}
-															echo $html_final_administracion;
+													<li class="nav-item start active open">
+														<a href="../app" class="nav-link nav-toggle">
+															<i class="icon-home"></i>
+															<span class="title">GOP Scorecard</span>
+															<span class="selected"></span>
+														</a>
+													</li>
+													<!--INICIA MÓDULO DE ADMINISTRACIÓN-->
+													<?php
+													if($proveedores!='0000'||$acreedores!='0000'||$transportistas!='0000'||$clientes!='0000'||$productos!='0000'||$users!='0000'||$banco!='0000'){
+														if($users!='0000'){
+															echo $html_inicio_administrador;
+															echo $html_usuarios;
+															echo $html_final_administrador;
 														}
-														?>
-														<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
-
-
-														<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
-														<?php
-														if($pedidos!='0000'||$cotizaciones!='0000'){
-															echo $html_inicio_atnCliente;
-															if($cotizaciones!='0000'){
-																echo $html_cotizaciones;
-															}
-															if($pedidos!='0000'){
-																echo $html_pedidos;
-															}
-															echo $html_final_atnCliente;
+														echo $html_inicio_administracion;
+														if($proveedores!='0000'){
+															echo $html_proveedores;
 														}
-														?>
-														<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
-
-														<!-- INICIA MODULO DE COMPRAS -->
-														<?php 
-														if($compra!='0000'){
-															echo $html_inicio_compras;
-															echo $html_compra;
-															echo $html_final_compras;
+														if($acreedores!='0000'){
+															echo $html_acreedores;
 														}
-														?>
-														<!-- TERMINA MODULO DE COMPRAS -->
-
-														<!--INICIA MÓDULO DE ADUANAS-->
-														<?php
-														if($importaciones!='0000'||$declaraciones!='0000'){
-															echo $html_inicio_aduanas;
-															if($importaciones!='0000'){
-																echo $html_importaciones;
-															}
-															if($declaraciones!='0000'){
-																echo $html_declaraciones;
-															}
-															echo $html_final_aduanas;
+														if($transportistas!='0000'){
+															echo $html_transportistas;
 														}
-														?>
-														<!--TERMINA MÓDULO DE ADUANAS-->
-
-
-														<!--INICIA MÓDULO DE ALMACÉN-->
-														<?php
-														if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
-															echo $html_inicio_almacen;
-															if($inventario!='0000'){
-																echo $html_inventario;
-															}
-															if($carga!='0000'){
-																echo $html_carga;
-															}
-															if($remisiones!='0000'){
-																echo $html_remisiones;
-															}
-															echo $html_final_almacen;
+														if($productos!='0000'){
+															echo $html_productos;
 														}
-														?>
-														<!--TERMINA MÓDULO DE ALMACÉN-->
-
-
-														<!--INICIA MÓDULO DE CONTABILIDAD-->
-														<?php
-														if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
-															echo $html_inicio_conta;
-															if($bancos!='0000'){
-																echo $html_bancos;
-															}
-															if($cxc!='0000'){
-																echo $html_cxc;
-															}
-															if($cxp!='0000'){
-																echo $html_cxp;
-															}
-															echo $html_final_conta;
+														if($clientes!='0000'){
+															echo $html_clientes;
 														}
-														?>
-														<!--TERMINA MÓDULO DE CONTABILIDAD-->
-														<!-- END SIDEBAR MENU -->
-														<!-- END SIDEBAR MENU -->
-													</div>
-													<!-- END SIDEBAR -->
+														if($bancos!='0000'){
+															echo $html_banco;
+														}
+														echo $html_final_administracion;
+													}
+													?>
+													<!--TERMINA MÓDULO DE ADMINISTRACIÓN-->
+
+
+													<!--INICIA MÓDULO DE ATENCIÓN A CLIENTES-->
+													<?php
+													if($pedidos!='0000'||$cotizaciones!='0000'){
+														echo $html_inicio_atnCliente;
+														if($cotizaciones!='0000'){
+															echo $html_cotizaciones;
+														}
+														if($pedidos!='0000'){
+															echo $html_pedidos;
+														}
+														echo $html_final_atnCliente;
+													}
+													?>
+													<!--TERMINA MÓDULO DE ATENCIÓN A CLIENTES-->
+
+													<!-- INICIA MODULO DE COMPRAS -->
+													<?php 
+													if($compra!='0000'){
+														echo $html_inicio_compras;
+														echo $html_compra;
+														echo $html_final_compras;
+													}
+													?>
+													<!-- TERMINA MODULO DE COMPRAS -->
+
+													<!--INICIA MÓDULO DE ADUANAS-->
+													<?php
+													if($importaciones!='0000'||$declaraciones!='0000'){
+														echo $html_inicio_aduanas;
+														if($importaciones!='0000'){
+															echo $html_importaciones;
+														}
+														if($declaraciones!='0000'){
+															echo $html_declaraciones;
+														}
+														echo $html_final_aduanas;
+													}
+													?>
+													<!--TERMINA MÓDULO DE ADUANAS-->
+
+
+													<!--INICIA MÓDULO DE ALMACÉN-->
+													<?php
+													if($inventario!='0000'||$carga!='0000'||$remisiones!='0000'){
+														echo $html_inicio_almacen;
+														if($inventario!='0000'){
+															echo $html_inventario;
+														}
+														if($carga!='0000'){
+															echo $html_carga;
+														}
+														if($remisiones!='0000'){
+															echo $html_remisiones;
+														}
+														echo $html_final_almacen;
+													}
+													?>
+													<!--TERMINA MÓDULO DE ALMACÉN-->
+
+
+													<!--INICIA MÓDULO DE CONTABILIDAD-->
+													<?php
+													if($bancos!='0000'||$cxc!='0000'||$cxp!='0000'){
+														echo $html_inicio_conta;
+														if($bancos!='0000'){
+															echo $html_bancos;
+														}
+														if($cxc!='0000'){
+															echo $html_cxc;
+														}
+														if($cxp!='0000'){
+															echo $html_cxp;
+														}
+														echo $html_final_conta;
+													}
+													?>
+													<!--TERMINA MÓDULO DE CONTABILIDAD-->
+													<!-- END SIDEBAR MENU -->
+													<!-- END SIDEBAR MENU -->
 												</div>
 												<!-- END SIDEBAR -->
-												<!-- BEGIN CONTENT -->
-												<div class="page-content-wrapper">
-													<!-- BEGIN CONTENT BODY -->
-													<div class="page-content">
-														<!-- BEGIN PAGE HEADER-->
+											</div>
+											<!-- END SIDEBAR -->
+											<!-- BEGIN CONTENT -->
+											<div class="page-content-wrapper">
+												<!-- BEGIN CONTENT BODY -->
+												<div class="page-content">
+													<!-- BEGIN PAGE HEADER-->
 
-														<!-- BEGIN PAGE TITLE-->
-														<h1 class="page-title"> <b>GOP Scorecard</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
+													<!-- BEGIN PAGE TITLE-->
+													<h1 class="page-title"> <b>GOP Scorecard</b><br /><small>GO Products S. de R.L de C.V.</small><br /><small><?php echo date(d) ."/". date(m) ."/". date(Y); ?></small></h1>
 
-														<!-- END PAGE TITLE-->
-														<!-- END PAGE HEADER-->
-														<?php
+													<!-- END PAGE TITLE-->
+													<!-- END PAGE HEADER-->
+													<?php
 ###### ESTE ES UN EJEMPLO PARA EL USO DE FECHA PARA PENDIENTES SEMANALES #############
 											/*echo date("jS F, Y", strtotime("-4 days")) . "<br>";
 											$fecha = "14-03-2017";
@@ -924,13 +936,54 @@ if(isset($_SESSION['login'])){
 																	<?php  ?>
 																	$<span data-counter="counterup" data-value="<?=number_format($total_mensual,2,'.',','); ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc">Ventas mensuales</div>
+																<?php 
+																switch(date('m')){
+																	case '01':
+																	$mes_ventas = 'Enero';
+																	break;
+																	case '02':
+																	$mes_ventas = 'Febrero';
+																	break;
+																	case '03':
+																	$mes_ventas = 'Marzo';
+																	break;
+																	case '04':
+																	$mes_ventas = 'Abril';
+																	break;
+																	case '05':
+																	$mes_ventas = 'Mayo';
+																	break;
+																	case '06':
+																	$mes_ventas = 'Junio';
+																	break;
+																	case '07':
+																	$mes_ventas = 'Julio';
+																	break;
+																	case '08':
+																	$mes_ventas = 'Agosto';
+																	break;
+																	case '09':
+																	$mes_ventas = 'Septiembre';
+																	break;
+																	case '10':
+																	$mes_ventas = 'Octubre';
+																	break;
+																	case '11':
+																	$mes_ventas = 'Noviembre';
+																	break;
+																	case '12':
+																	$mes_ventas = 'Diciembre';
+																	break;
+																}
+
+																?>
+																<div class="desc"><b>Ventas mensuales | <?php echo $mes_ventas; ?></b></div>
 															</div>
 														</a>
 													</div>
 
 													<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/aduanas/importaciones">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/atn-clientes/pedidos">
 															<div class="visual">
 																<i class="fa fa-bank"></i>
 															</div>
@@ -938,7 +991,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($total_acumulado,2,'.',','); ?>">0</span>&nbsp;USD
 																</div>
-																<div class="desc"> Ventas acumuladas </div>
+																<div class="desc"> <b>Ventas acumuladas</b> </div>
 															</div>
 														</a>
 													</div>
@@ -957,7 +1010,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($usd_bancos,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc">Bancos | USD </div>
+																<div class="desc"> <b>Bancos | USD</b> </div>
 															</div>
 														</a>
 													</div>
@@ -971,7 +1024,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($mxn_bancos,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc">Bancos | MXN </div>
+																<div class="desc"> <b>Bancos | MXN</b> </div>
 															</div>
 														</a>
 													</div>
@@ -985,7 +1038,7 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($cxc_act,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc"> Cuentas por cobrar | USD</div>
+																<div class="desc"> <b>Cuentas por cobrar | USD</b></div>
 															</div>
 														</a>
 													</div>
@@ -1002,7 +1055,7 @@ if(isset($_SESSION['login'])){
 
 																	$<span data-counter="counterup" data-value="<?=number_format($cxp_dolares,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc"> Cuentas por pagar | USD </div>
+																<div class="desc"> <b>Cuentas por pagar | USD</b> </div>
 															</div>
 														</a>
 													</div>
@@ -1015,13 +1068,13 @@ if(isset($_SESSION['login'])){
 																<div class="number">
 																	$<span data-counter="counterup" data-value="<?=number_format($cxp_pesos,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc"> Cuentas por pagar | MXN </div>
+																<div class="desc"> <b>Cuentas por pagar | MXN</b> </div>
 															</div>
 														</a>
 													</div>
 
 													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasPagar">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/aduanas/importaciones">
 															<div class="visual">
 																<i class="fa fa-truck"></i>
 															</div>
@@ -1030,13 +1083,13 @@ if(isset($_SESSION['login'])){
 
 																	$<span class='numero_grande' data-counter="counterup" data-value="<?=number_format($importacion,2,'.',','); ?>">0</span>
 																</div>
-																<div class="desc"> Importaciones | USD</div>
+																<div class="desc"> <b>Importaciones | USD</b></div>
 															</div>
 														</a>
 													</div>
 
 													<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/contabilidad/cuentasPagar">
+														<a class="dashboard-stat dashboard-stat-v2 grey-steel" href="views/almacen/inventario">
 															<div class="visual">
 																<i class="fa fa-industry"></i>
 															</div>
@@ -1046,7 +1099,7 @@ if(isset($_SESSION['login'])){
 																	$<span data-counter="counterup" data-value="<?=number_format($inve,2,'.',','); ?>">0</span>
 																	
 																</div>
-																<div class="desc"> Inventario | USD</div>
+																<div class="desc"> <b>Inventario | USD</b></div>
 															</div>
 														</a>
 													</div>
@@ -1087,444 +1140,444 @@ if(isset($_SESSION['login'])){
 													<!-- HTML -->
 													<div class="col-lg-6 col-xs-12 col-sm-12">
 														<style>
-															#custom_broker {
-																width		: 100%;
-																height		: 300px;
-																font-size	: 11px;
-															}					
-														</style>
+														#custom_broker {
+															width		: 100%;
+															height		: 300px;
+															font-size	: 11px;
+														}					
+													</style>
 
 
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes</span>
-																</div>
-															</div>
-															<div class="portlet-body">
-
-																<div id="import_products" class="chart"></div>
+													<!-- BEGIN CHART PORTLET-->
+													<div class="portlet light bordered">
+														<div class="portlet-title">
+															<div class="caption">
+																<i class="icon-bar-chart font-green-haze"></i>
+																<span class="caption-subject bold uppercase font-green-haze"> Ventas por clientes</span>
 															</div>
 														</div>
-														<!-- END CHART PORTLET-->
+														<div class="portlet-body">
 
-													</div>
-
-
-
-													<script>
-														<?php 
-														$principal->mes = date('m');
-														$result = $principal->ventas_distribuidor();
-														foreach($result as $row){
-															$total = $row['total'];
-															if(is_null($row['total'])==1){
-																$total = '0.00';
-															}
-															$cliente = $row['cliente'];
-															$vxdistri .=  '{"product": "'.$cliente.'","sales": "'.$total.'"},';
-														}
-														?>
-														var chart = AmCharts.makeChart( "custom_broker", {
-															"type": "serial",
-															"theme": "light",
-															"dataProvider": [ 
-															<?php echo $vxdistri; ?>
-															],
-															"valueAxes": [ {
-																"gridColor": "#FFFFFF",
-																"gridAlpha": 0.2,
-																"dashLength": 0
-															} ],
-															"gridAboveGraphs": true,
-															"startDuration": 1,
-															"graphs": [ {
-																"balloonText": "[[category]]: <b>$[[value]]</b>",
-																"fillAlphas": 0.8,
-																"lineAlpha": 0.2,
-																"type": "column",
-																"valueField": "sales"
-															} ],
-															"chartCursor": {
-																"categoryBalloonEnabled": false,
-																"cursorAlpha": 0,
-																"zoomable": false
-															},
-															"categoryField": "product",
-															"categoryAxis": {
-																"autoGridCount": false,
-																"gridPosition": "start",
-																"gridAlpha": 0,
-																"tickPosition": "start",
-																"tickLength": 20
-															},
-															"export": {
-																"enabled": true
-															}
-														} );
-													</script>
-
-
-													<!-- HTML -->
-													<div class="col-lg-6 col-xs-12 col-sm-12">
-
-
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor</span>
-																</div>
-															</div>
-															<div class="portlet-body">
-
-																<div id="custom_broker" class="chart"></div>
-															</div>
+															<div id="import_products" class="chart"></div>
 														</div>
-														<!-- END CHART PORTLET-->
-
 													</div>
+													<!-- END CHART PORTLET-->
 
 												</div>
-												<div class="clearfix"></div>
 
-												<div class="row">
+
+
+												<script>
 													<?php 
 													$principal->mes = date('m');
-													$result = $principal->ventas_grower();
+													$result = $principal->ventas_distribuidor();
 													foreach($result as $row){
 														$total = $row['total'];
 														if(is_null($row['total'])==1){
 															$total = '0.00';
 														}
 														$cliente = $row['cliente'];
-														$vxgrower .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
+														$vxdistri .=  '{"product": "'.$cliente.'","sales": "'.$total.'"},';
 													}
 													?>
-
-													<script>
-														var chart = AmCharts.makeChart( "expenses", {
-															"type": "serial",
-															"theme": "light",
-															"dataProvider": [ <?php echo $vxgrower; ?>],
-															"valueAxes": [ {
-																"gridColor": "#FFFFFF",
-																"gridAlpha": 0.2,
-																"dashLength": 0
-															} ],
-															"gridAboveGraphs": true,
-															"startDuration": 1,
-															"graphs": [ {
-																"balloonText": "[[category]]: <b>$[[value]]</b>",
-																"fillAlphas": 0.8,
-																"lineAlpha": 0.2,
-																"type": "column",
-																"valueField": "usd"
-															} ],
-															"chartCursor": {
-																"categoryBalloonEnabled": false,
-																"cursorAlpha": 0,
-																"zoomable": false
-															},
-															"categoryField": "product",
-															"categoryAxis": {
-																"autoGridCount": false,
-																"gridPosition": "start",
-																"gridAlpha": 0,
-																"tickPosition": "start",
-																"tickLength": 20
-															},
-															"export": {
-																"enabled": true
-															}
-														} );
-													</script>
-
-
-													<!-- HTML -->
-													<div class="col-lg-6 col-xs-12 col-sm-12">
+													var chart = AmCharts.makeChart( "custom_broker", {
+														"type": "serial",
+														"theme": "light",
+														"dataProvider": [ 
+														<?php echo $vxdistri; ?>
+														],
+														"valueAxes": [ {
+															"gridColor": "#FFFFFF",
+															"gridAlpha": 0.2,
+															"dashLength": 0
+														} ],
+														"gridAboveGraphs": true,
+														"startDuration": 1,
+														"graphs": [ {
+															"balloonText": "[[category]]: <b>$[[value]]</b>",
+															"fillAlphas": 0.8,
+															"lineAlpha": 0.2,
+															"type": "column",
+															"valueField": "sales"
+														} ],
+														"chartCursor": {
+															"categoryBalloonEnabled": false,
+															"cursorAlpha": 0,
+															"zoomable": false
+														},
+														"categoryField": "product",
+														"categoryAxis": {
+															"autoGridCount": false,
+															"gridPosition": "start",
+															"gridAlpha": 0,
+															"tickPosition": "start",
+															"tickLength": 20
+														},
+														"export": {
+															"enabled": true
+														}
+													} );
+												</script>
 
 
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista</span>
-																</div>
-															</div>
-															<div class="portlet-body">
+												<!-- HTML -->
+												<div class="col-lg-6 col-xs-12 col-sm-12">
 
-																<div id="expenses" class="chart"></div>
+
+													<!-- BEGIN CHART PORTLET-->
+													<div class="portlet light bordered">
+														<div class="portlet-title">
+															<div class="caption">
+																<i class="icon-bar-chart font-green-haze"></i>
+																<span class="caption-subject bold uppercase font-green-haze">Ventas por distribuidor</span>
 															</div>
 														</div>
-														<!-- END CHART PORTLET-->
+														<div class="portlet-body">
 
+															<div id="custom_broker" class="chart"></div>
+														</div>
 													</div>
-													<!--END COL MD 6-->
+													<!-- END CHART PORTLET-->
 
-													<!-- Chart code -->
-													<?php 
-													$principal->mes = date('m');
-													$result = $principal->ventas_producto();
+												</div>
+
+											</div>
+											<div class="clearfix"></div>
+
+											<div class="row">
+												<?php 
+												$principal->mes = date('m');
+												$result = $principal->ventas_grower();
+												foreach($result as $row){
+													$total = $row['total'];
+													if(is_null($row['total'])==1){
+														$total = '0.00';
+													}
+													$cliente = $row['cliente'];
+													$vxgrower .=  '{"product": "'.$cliente.'","usd": "'.$total.'"},';
+												}
+												?>
+
+												<script>
+													var chart = AmCharts.makeChart( "expenses", {
+														"type": "serial",
+														"theme": "light",
+														"dataProvider": [ <?php echo $vxgrower; ?>],
+														"valueAxes": [ {
+															"gridColor": "#FFFFFF",
+															"gridAlpha": 0.2,
+															"dashLength": 0
+														} ],
+														"gridAboveGraphs": true,
+														"startDuration": 1,
+														"graphs": [ {
+															"balloonText": "[[category]]: <b>$[[value]]</b>",
+															"fillAlphas": 0.8,
+															"lineAlpha": 0.2,
+															"type": "column",
+															"valueField": "usd"
+														} ],
+														"chartCursor": {
+															"categoryBalloonEnabled": false,
+															"cursorAlpha": 0,
+															"zoomable": false
+														},
+														"categoryField": "product",
+														"categoryAxis": {
+															"autoGridCount": false,
+															"gridPosition": "start",
+															"gridAlpha": 0,
+															"tickPosition": "start",
+															"tickLength": 20
+														},
+														"export": {
+															"enabled": true
+														}
+													} );
+												</script>
+
+
+												<!-- HTML -->
+												<div class="col-lg-6 col-xs-12 col-sm-12">
+
+
+													<!-- BEGIN CHART PORTLET-->
+													<div class="portlet light bordered">
+														<div class="portlet-title">
+															<div class="caption">
+																<i class="icon-bar-chart font-green-haze"></i>
+																<span class="caption-subject bold uppercase font-green-haze"> Ventas por comisionista</span>
+															</div>
+														</div>
+														<div class="portlet-body">
+
+															<div id="expenses" class="chart"></div>
+														</div>
+													</div>
+													<!-- END CHART PORTLET-->
+
+												</div>
+												<!--END COL MD 6-->
+
+												<!-- Chart code -->
+												<?php 
+												$principal->mes = date('m');
+												$result = $principal->ventas_producto();
+												foreach($result as $row){
+													$total = $row['total'];
+													if(is_null($row['total'])==1){
+														$total = '0.00';
+													}
+													$codigo = $row['codigo'];
+													$principal->producto = $codigo;
+													$lista = $principal->nombres_producto();
+													foreach($lista as $row){
+														$nombre_producto = $row['nombreProducto'];
+														$vxproductos .=  '{"product": "'.$nombre_producto.'","usd": "'.$total.'"},';
+													}
+												}
+												?>
+
+												<script>
+													var chart = AmCharts.makeChart( "sales_dc", {
+														"type": "serial",
+														"theme": "light",
+														"dataProvider": [ <?php echo $vxproductos; ?>],
+														"valueAxes": [ {
+															"gridColor": "#FFFFFF",
+															"gridAlpha": 0.2,
+															"dashLength": 0
+														} ],
+														"gridAboveGraphs": true,
+														"startDuration": 1,
+														"graphs": [ {
+															"balloonText": "[[category]]: <b>$[[value]]</b>",
+															"fillAlphas": 0.8,
+															"lineAlpha": 0.2,
+															"type": "column",
+															"valueField": "usd"
+														} ],
+														"chartCursor": {
+															"categoryBalloonEnabled": false,
+															"cursorAlpha": 0,
+															"zoomable": false
+														},
+														"categoryField": "product",
+														"categoryAxis": {
+															"autoGridCount": false,
+															"gridPosition": "start",
+															"gridAlpha": 0,
+															"tickPosition": "start",
+															"tickLength": 20
+														},
+														"export": {
+															"enabled": true
+														}
+													} );
+												</script>
+
+												<!-- HTML -->
+												<div class="col-lg-6 col-xs-12 col-sm-12">
+													<style>
+													#sales_dc {
+														width		: 100%;
+														height		: 300px;
+														font-size	: 11px;
+													}					
+												</style>
+
+
+												<!-- BEGIN CHART PORTLET-->
+												<div class="portlet light bordered">
+
+													<div class="portlet-title">
+														<div class="caption">
+															<i class="icon-bar-chart font-green-haze"></i>
+															<span class="caption-subject bold uppercase font-green-haze">Ventas por productos</span>
+														</div>
+													</div>
+													<div class="portlet-body">
+
+														<div id="sales_dc" class="chart"></div>
+													</div>
+												</div>
+												<!-- END CHART PORTLET-->
+
+											</div>
+
+										</div>
+
+
+										<div class="clearfix"></div>
+
+										<div class="row">
+											<script>
+												<?php 
+												$result = $principal->ventas_anuales_pasado();
+												foreach($result as $row){
+													$total_pasado='0.00';
+													$total_pasado = $row['total'];
+
+													$decimales = explode(".", $total_pasado);
+													$mes = $row['mes'];
+
+													switch($mes){
+														case '01':
+														$mes_mostrar = 'Enero';
+														break;
+
+														case '02':
+														$mes_mostrar = 'Febrero';
+														break;
+
+														case '03':
+														$mes_mostrar = 'Marzo';
+														break;
+
+														case '04':
+														$mes_mostrar = 'Abril';
+														break;
+
+														case '05':
+														$mes_mostrar = 'Mayo';
+														break;
+
+														case '06':
+														$mes_mostrar = 'Junio';
+														break;
+
+														case '07':
+														$mes_mostrar = 'Julio';
+														break;
+
+														case '08':
+														$mes_mostrar = 'Agosto';
+														break;
+
+														case '09':
+														$mes_mostrar = 'Septiembre';
+														break;
+
+														case '10':
+														$mes_mostrar = 'Octubre';
+														break;
+
+														case '11':
+														$mes_mostrar = 'Noviembre';
+														break;
+
+														case '12':
+														$mes_mostrar = 'Diciembre';
+														break;
+													}
+
+													$total='0.00';
+													$principal->mes = $mes;
+													$result = $principal->ventas_anuales();
 													foreach($result as $row){
 														$total = $row['total'];
-														if(is_null($row['total'])==1){
-															$total = '0.00';
-														}
-														$codigo = $row['codigo'];
-														$principal->producto = $codigo;
-														$lista = $principal->nombres_producto();
-														foreach($lista as $row){
-															$nombre_producto = $row['nombreProducto'];
-															$vxproductos .=  '{"product": "'.$nombre_producto.'","usd": "'.$total.'"},';
-														}
 													}
-													?>
 
-													<script>
-														var chart = AmCharts.makeChart( "sales_dc", {
-															"type": "serial",
-															"theme": "light",
-															"dataProvider": [ <?php echo $vxproductos; ?>],
-															"valueAxes": [ {
-																"gridColor": "#FFFFFF",
-																"gridAlpha": 0.2,
-																"dashLength": 0
-															} ],
-															"gridAboveGraphs": true,
-															"startDuration": 1,
-															"graphs": [ {
-																"balloonText": "[[category]]: <b>$[[value]]</b>",
-																"fillAlphas": 0.8,
-																"lineAlpha": 0.2,
-																"type": "column",
-																"valueField": "usd"
-															} ],
-															"chartCursor": {
-																"categoryBalloonEnabled": false,
-																"cursorAlpha": 0,
-																"zoomable": false
-															},
-															"categoryField": "product",
-															"categoryAxis": {
-																"autoGridCount": false,
-																"gridPosition": "start",
-																"gridAlpha": 0,
-																"tickPosition": "start",
-																"tickLength": 20
-															},
-															"export": {
-																"enabled": true
-															}
-														} );
-													</script>
+													$ventas_mensuales .=  '{"mes": "'.$mes_mostrar.'","presente": "'.$total.'","pasado": "'.$total_pasado.'"},';
+												}
+												?>
+												var chart = AmCharts.makeChart( "meses", {
+													"type": "serial",
+													"addClassNames": true,
+													"theme": "light",
+													"autoMargins": true,
+													"marginLeft": 30,
+													"marginRight": 8,
+													"marginTop": 10,
+													"marginBottom": 26,
+													"balloon": {
+														"adjustBorderColor": false,
+														"horizontalPadding": 10,
+														"verticalPadding": 8,
+														"color": "#ffffff"
+													},
+													"dataProvider": [ <?php echo $ventas_mensuales; ?>],
+													"valueAxes": [ {
+														"axisAlpha": 0,
+														"position": "left"
+													} ],
+													"startDuration": 1,
+													"graphs": [ {
+														"alphaField": "alpha",
+														"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
+														"fillAlphas": 1,
+														"title": "<?php echo date(Y); ?>",
+														"type": "column",
+														"valueField": "presente",
+														"dashLengthField": "dashLengthColumn"
+													}, {
+														"id": "graph2",
+														"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
+														"bullet": "round",
+														"lineThickness": 3,
+														"bulletSize": 7,
+														"bulletBorderAlpha": 1,
+														"bulletColor": "#FFFFFF",
+														"useLineColorForBulletBorder": true,
+														"bulletBorderThickness": 3,
+														"fillAlphas": 0,
+														"lineAlpha": 1,
+														"title": "<?php echo (date(Y)-1) ?>",
+														"valueField": "pasado",
+														"dashLengthField": "dashLengthLine"
+													} ],
+													"categoryField": "mes",
+													"categoryAxis": {
+														"gridPosition": "start",
+														"axisAlpha": 0,
+														"tickLength": 0
+													},
+													"export": {
+														"enabled": true
+													}
+												} );
+											</script>
 
-													<!-- HTML -->
-													<div class="col-lg-6 col-xs-12 col-sm-12">
-														<style>
-															#sales_dc {
-																width		: 100%;
-																height		: 300px;
-																font-size	: 11px;
-															}					
-														</style>
 
-														
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze">Ventas por productos</span>
-																</div>
-															</div>
-															<div class="portlet-body">
+											<!-- HTML -->
+											<div class="col-lg-12 col-xs-12 col-sm-12">
 
-																<div id="sales_dc" class="chart"></div>
-															</div>
+
+												<!-- BEGIN CHART PORTLET-->
+												<div class="portlet light bordered">
+													<div class="portlet-title">
+														<div class="caption">
+															<i class="icon-bar-chart font-green-haze"></i>
+															<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente</span>
 														</div>
-														<!-- END CHART PORTLET-->
-
 													</div>
+													<div class="portlet-body">
 
-												</div>
-
-
-												<div class="clearfix"></div>
-
-												<div class="row">
-													<script>
-														<?php 
-														$result = $principal->ventas_anuales_pasado();
-														foreach($result as $row){
-															$total_pasado='0.00';
-															$total_pasado = $row['total'];
-
-															$decimales = explode(".", $total_pasado);
-															$mes = $row['mes'];
-
-															switch($mes){
-																case '01':
-																$mes_mostrar = 'Enero';
-																break;
-
-																case '02':
-																$mes_mostrar = 'Febrero';
-																break;
-
-																case '03':
-																$mes_mostrar = 'Marzo';
-																break;
-
-																case '04':
-																$mes_mostrar = 'Abril';
-																break;
-
-																case '05':
-																$mes_mostrar = 'Mayo';
-																break;
-
-																case '06':
-																$mes_mostrar = 'Junio';
-																break;
-
-																case '07':
-																$mes_mostrar = 'Julio';
-																break;
-
-																case '08':
-																$mes_mostrar = 'Agosto';
-																break;
-
-																case '09':
-																$mes_mostrar = 'Septiembre';
-																break;
-
-																case '10':
-																$mes_mostrar = 'Octubre';
-																break;
-
-																case '11':
-																$mes_mostrar = 'Noviembre';
-																break;
-
-																case '12':
-																$mes_mostrar = 'Diciembre';
-																break;
-															}
-
-															$total='0.00';
-															$principal->mes = $mes;
-															$result = $principal->ventas_anuales();
-															foreach($result as $row){
-																$total = $row['total'];
-															}
-
-															$ventas_mensuales .=  '{"mes": "'.$mes_mostrar.'","presente": "'.$total.'","pasado": "'.$total_pasado.'"},';
-														}
-														?>
-														var chart = AmCharts.makeChart( "meses", {
-															"type": "serial",
-															"addClassNames": true,
-															"theme": "light",
-															"autoMargins": true,
-															"marginLeft": 30,
-															"marginRight": 8,
-															"marginTop": 10,
-															"marginBottom": 26,
-															"balloon": {
-																"adjustBorderColor": false,
-																"horizontalPadding": 10,
-																"verticalPadding": 8,
-																"color": "#ffffff"
-															},
-															"dataProvider": [ <?php echo $ventas_mensuales; ?>],
-															"valueAxes": [ {
-																"axisAlpha": 0,
-																"position": "left"
-															} ],
-															"startDuration": 1,
-															"graphs": [ {
-																"alphaField": "alpha",
-																"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
-																"fillAlphas": 1,
-																"title": "<?php echo date(Y); ?>",
-																"type": "column",
-																"valueField": "presente",
-																"dashLengthField": "dashLengthColumn"
-															}, {
-																"id": "graph2",
-																"balloonText": "<span style='font-size:12px;'>[[category]] de [[title]]:<br><span style='font-size:20px;'>$[[value]]</span> [[additional]]</span>",
-																"bullet": "round",
-																"lineThickness": 3,
-																"bulletSize": 7,
-																"bulletBorderAlpha": 1,
-																"bulletColor": "#FFFFFF",
-																"useLineColorForBulletBorder": true,
-																"bulletBorderThickness": 3,
-																"fillAlphas": 0,
-																"lineAlpha": 1,
-																"title": "<?php echo (date(Y)-1) ?>",
-																"valueField": "pasado",
-																"dashLengthField": "dashLengthLine"
-															} ],
-															"categoryField": "mes",
-															"categoryAxis": {
-																"gridPosition": "start",
-																"axisAlpha": 0,
-																"tickLength": 0
-															},
-															"export": {
-																"enabled": true
-															}
-														} );
-													</script>
-
-
-													<!-- HTML -->
-													<div class="col-lg-12 col-xs-12 col-sm-12">
-
-
-														<!-- BEGIN CHART PORTLET-->
-														<div class="portlet light bordered">
-															<div class="portlet-title">
-																<div class="caption">
-																	<i class="icon-bar-chart font-green-haze"></i>
-																	<span class="caption-subject bold uppercase font-green-haze"> Ventas año pasado y presente</span>
-																</div>
-															</div>
-															<div class="portlet-body">
-
-																<div id="meses" class="chart"></div>
-															</div>
-														</div>
-														<!-- END CHART PORTLET-->
-
+														<div id="meses" class="chart"></div>
 													</div>
-													<!--END COL MD 6-->
-
 												</div>
+												<!-- END CHART PORTLET-->
+
 											</div>
-											<!-- END CONTENT BODY -->
-										</div>
-										<!-- END CONTENT -->
-									</div>
-									<!-- END CONTAINER -->
-									<!-- BEGIN FOO;TER -->
-									<div class="page-footer">
-										<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
-										</div>
-										<div class="scroll-to-top">
-											<i class="icon-arrow-up"></i>
+											<!--END COL MD 6-->
+
 										</div>
 									</div>
-									<!-- END FOOTER -->
+									<!-- END CONTENT BODY -->
 								</div>
+								<!-- END CONTENT -->
+							</div>
+							<!-- END CONTAINER -->
+							<!-- BEGIN FOO;TER -->
+							<div class="page-footer">
+								<div class="page-footer-inner"> 2017 &copy; Agroanalytics - Admin Dashboard
+								</div>
+								<div class="scroll-to-top">
+									<i class="icon-arrow-up"></i>
+								</div>
+							</div>
+							<!-- END FOOTER -->
+						</div>
 
 		<!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>

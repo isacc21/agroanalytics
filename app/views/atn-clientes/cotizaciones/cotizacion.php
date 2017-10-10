@@ -22,9 +22,14 @@ $cotizaciones->cliente = $rfc;
 $result = $cotizaciones->consultarClientes();
 foreach($result as $row){
 	$cliente = $row['razonSocCliente'];
-	$linea_uno = $row['calleCliente']." ".$row['numeroExtCliente']."-".$row['numeroIntCliente'];
+	if($row['numeroIntCliente']==0){
+		$linea_uno = "Av. ".$row['calleCliente']." No. ".$row['numeroExtCliente'];	
+	}
+	else{
+		$linea_uno = "Av. ".$row['calleCliente']." No. ".$row['numeroExtCliente']."-".$row['numeroIntCliente'];
+	}
 	$linea_dos = "Colonia ".$row['coloniaCliente'];
-	$linea_tres = $row['ciudadCliente'].", ".$row['estadoCliente']." ".$row['codigoPostalCliente'];
+	$linea_tres = $row['ciudadCliente'].", ".$row['estadoCliente']." C.P. ".$row['codigoPostalCliente'];
 	$linea_cuatro = $row['paisCliente'];
 	$linea_cinco = $row['telefonoCliente'];
 	$tipo_cliente = $row['tipoCliente'];
@@ -233,7 +238,7 @@ foreach($lista as $row){
 				}
 			}
 		}
-		if($tipo_cliente == 2){
+		if($tipo_cliente == 2||$tipo_cliente == 4){
 			$cotizaciones->cliente = $_SESSION['rfc'];
 			$cotizaciones->producto = $codigo_producto;
 			$result = $cotizaciones->consultarPrecios();
@@ -288,7 +293,7 @@ foreach($lista as $row){
 		$pdf->SetFillColor(255,255,255);
 		$pdf->Cell(50,7,"  ".utf8_decode($nombre_producto),0,0,'L',1);
 		$pdf->Cell(25,7,"  ".$presentacion,0,0,'L',1);
-		$pdf->Cell(21,7,$qty,0,0,'C',1);
+		$pdf->Cell(21,7,number_format($qty,2,'.',','),0,0,'C',1);
 		$pdf->Cell(20,7,$unidad,0,0,'C',1);
 		$pdf->Cell(20,7,"$ ".$unitario."  ",0,0,'R',1);
 		$pdf->Cell(28,7,"$ ".$total."  ",0,0,'R',1);

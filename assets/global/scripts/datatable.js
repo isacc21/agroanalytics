@@ -35,6 +35,7 @@ var Datatable = function() {
 
             // default settings
             options = $.extend(true, {
+
                 src: "", // actual table  
                 filterApplyAction: "filter",
                 filterCancelAction: "filter_cancel",

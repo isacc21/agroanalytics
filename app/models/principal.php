@@ -100,7 +100,7 @@ class principal{
 			return $resultados = $conexion->query("
 				SELECT SUM( importeCuentaC ) AS total
 				FROM cuentascobrar
-				WHERE statusCuentaC =1");
+				WHERE statusCuentaC =1 OR statusCuentaC = 3");
 		}
 		catch(PDOException $e){
 			return "Error: " . $e->getMessage();

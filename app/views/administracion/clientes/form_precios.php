@@ -155,9 +155,8 @@ foreach($lista_clientes as $row){
               $final = "0.00";
               $finalM = "0.00";
             }
-
+//echo $final;echo $finalM;
             ?>
-
             <label class="col-md-3 control-label"><?echo $producto.$pres;?></label>
             <div class="col-md-3">
               <input type="number" class="form-control" id="precio<?=$x;?>" name="precio<?=$x;?>" step="0.01" min="0" value="<?=$final;?>" required placeholder="<?=$phi;?>">

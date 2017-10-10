@@ -135,7 +135,7 @@ $nombreSubmit = 'Guardar';
           $("#mainContent").load( "cat_declaraciones.php" );
         }else{
           swal (result, "", "warning");
-          $("#mainContent").load( "cat_importaciones.php" );
+          //$("#mainContent").load( "cat_importaciones.php" );
         }
       });
       return false;

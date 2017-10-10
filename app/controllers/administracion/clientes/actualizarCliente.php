@@ -44,6 +44,7 @@ if(isset($_POST['rfc'])){
 		$clientes->rfc = $_POST['rfc'];
 		$clientes->viejo = $_POST['viejo'];
 		$clientes->razon = $_POST['nombre'];
+		$clientes->comercial = $_POST['comercial'];
 		$clientes->calle = $_POST['calle'];
 		$clientes->numeroExterior = $_POST['exterior'];
 		$clientes->numeroInterior = $_POST['interior'];
@@ -96,6 +97,7 @@ if(isset($_POST['rfc'])){
 		$clientes->rfc = $_POST['rfc'];
 		$clientes->viejo = $_POST['viejo'];
 		$clientes->razon = $_POST['nombre'];
+		$clientes->comercial = $_POST['comercial'];
 		$clientes->calle = $_POST['calle'];
 		$clientes->numeroExterior = $_POST['exterior'];
 		$clientes->numeroInterior = $_POST['interior'];

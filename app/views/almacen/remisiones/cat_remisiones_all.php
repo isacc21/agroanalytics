@@ -403,7 +403,7 @@ foreach($consultaModal as $row){
           }
         } 
         else{
-          if($cliente_tipo == 2){
+          if($cliente_tipo == 2 || $cliente_tipo == 4){
             if($precio_unidad == 1){
               $precio_unitario = $growerM;
             }

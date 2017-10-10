@@ -249,7 +249,7 @@ foreach($result as $row){
 					}
 				}
 				else{
-					if($_SESSION['tipo_cliente'] == 2){
+					if($_SESSION['tipo_cliente'] == 2 || $_SESSION['tipo_cliente'] == 4){
 						$ordenesCarga->cliente = $_SESSION['cliente'];
 						$ordenesCarga->producto = $codigo_producto;
 						$lista_precios = $ordenesCarga->consultarPrecios();

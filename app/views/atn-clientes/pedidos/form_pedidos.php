@@ -150,6 +150,7 @@
                 foreach($clientes as $row){
                   $rfc = $row['rfcCliente'];
                   $nombre = $row['razonSocCliente'];
+                  $comercial = $row['comercialCliente'];
 
                   if($cliente == $rfc){
                     $selected_cliente = " selected";
@@ -159,7 +160,7 @@
                   }
 
                   ?>
-                  <option value="<?=$rfc;?>" <?=$selected_cliente;?>><? echo $nombre;?></option>
+                  <option value="<?=$rfc;?>" <?=$selected_cliente;?>><? echo $comercial;?></option>
                   <?php } ?>
                 </select>
               </div>

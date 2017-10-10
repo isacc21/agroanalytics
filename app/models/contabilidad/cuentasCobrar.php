@@ -373,5 +373,57 @@ class cuentasCobrar{
 			
 		} ## LLAVE DE CATCH DE LA FUNCION  GUARDAR ACREEDOR ##############################
 	}
+
+
+
+	public function clientes_cuentas(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para consultar los acreedores de la tabla.
+			return $resultados = $conexion->query("
+				SELECT DISTINCT a.rfcCliente, b.razonSocCliente
+				FROM cuentascobrar AS a
+				INNER JOIN clientes AS b ON a.rfcCliente = b.rfcCliente
+				WHERE a.rfcCliente !=  'XAXX010101000'
+				AND a.monedaCuentaC = 1
+				AND a.statusCuentaC =1
+				OR a.statusCuentaC =3
+				ORDER BY b.razonSocCliente ASC");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+	public function lista_cuentas_rep(){
+		try {
+
+			//CONEXION A LA BASE DE DATOS
+			$conexion = new PDO('mysql:host='.$this->datosConexionBD[0].';
+				dbname='.$this->datosConexionBD[3], $this->datosConexionBD[1], $this->datosConexionBD[2]);
+
+			$conexion -> exec("set names utf8");
+
+			//Sentencia SQL para consultar los acreedores de la tabla.
+			return $resultados = $conexion->query("
+				SELECT * FROM cuentascobrar WHERE rfcCliente = '".$this->cliente."' AND monedaCuentaC = 1 HAVING statusCuentaC =1
+				OR statusCuentaC =3 ORDER BY folioFactura ASC");
+
+		}
+
+		catch(PDOException $e){
+			return "Error: " . $e->getMessage();
+		}
+	}
+
+
 }
 ?>

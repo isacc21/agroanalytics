@@ -81,6 +81,8 @@ if(isset($_POST['rfc'])){
 		$acreedores->celular = "(".$_POST['ladamovil'].")".$_POST['celular'];
 		$acreedores->pagina = $_POST['pagina'];
 
+		
+
 
 ###### SE PROCESA METODO QUE REALIZA EL PROCESO EN LA BASE DE DATOS ###################
 		echo $acreedores->guardarAcreedor();

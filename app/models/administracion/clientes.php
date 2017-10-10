@@ -29,6 +29,7 @@ class clientes{
   var $rfc;
   var $viejo;
   var $razon;
+  var $comercial;
   var $calle;
   var $numeroInterior;
   var $numeroExterior;
@@ -66,6 +67,7 @@ class clientes{
       //Sentencia SQL para guardar nuevo cliente
       $query = "INSERT INTO clientes (
       rfcCliente,
+      comercialCliente,
       razonSocCliente,
       calleCliente,
       numeroExtCliente,
@@ -80,10 +82,12 @@ class clientes{
       telefonoCliente,
       celularCliente,
       paginaWebCliente,
-      tipoCliente)
+      tipoCliente,
+      rfcComisionista)
 
       VALUES (
       '".$this->rfc."',
+      '".$this->comercial."',
       '".$this->razon."',
       '".$this->calle."',
       '".$this->numeroExterior."',
@@ -98,7 +102,8 @@ class clientes{
       '".$this->telefono."',
       '".$this->celular."',
       '".$this->pagina."',
-      '".$this->tipo."')";
+      '".$this->tipo."',
+      NULL)";
 
       $statement = $conexion->prepare($query);
 
@@ -129,6 +134,7 @@ class clientes{
       $query = "UPDATE clientes SET
 
       rfcCliente =           '".$this->rfc."',
+      comercialCliente =      '".$this->comercial."',
       razonSocCliente =      '".$this->razon."',
       calleCliente =         '".$this->calle."',
       numeroExtCliente =     '".$this->numeroExterior."',

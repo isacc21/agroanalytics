@@ -22,9 +22,15 @@ $cotizaciones->cliente = $rfc;
 $result = $cotizaciones->consultarClientes();
 foreach($result as $row){
 	$cliente = $row['razonSocCliente'];
-	$linea_uno = $row['calleCliente']." ".$row['numeroExtCliente']."-".$row['numeroIntCliente'];
+	if($row['numeroIntCliente']==0){
+	$linea_uno = "Av. ".$row['calleCliente']." No. ".$row['numeroExtCliente'];	
+	}
+	else{
+		$linea_uno = "Av. ".$row['calleCliente']." No. ".$row['numeroExtCliente']."-".$row['numeroIntCliente'];
+	}
+	
 	$linea_dos = "Colonia ".$row['coloniaCliente'];
-	$linea_tres = $row['ciudadCliente'].", ".$row['estadoCliente']." ".$row['codigoPostalCliente'];
+	$linea_tres = $row['ciudadCliente'].", ".$row['estadoCliente']." C.P. ".$row['codigoPostalCliente'];
 	$linea_cuatro = $row['paisCliente'];
 	$linea_cinco = $row['telefonoCliente'];
 	$tipo_cliente = $row['tipoCliente'];
@@ -65,7 +71,7 @@ class PDF extends FPDF
 	{
 		
 		
-		$this->Image('../../../../resources/gologo.jpg',7,10,38);
+		$this->Image('../../../../resources/gologo.jpg',4,7,38);
 		$this->AddFont('segoeuisl','');
 		$this->AddFont('segoeuib','');
 		$this->AddFont('segoeuil','');
@@ -90,7 +96,7 @@ class PDF extends FPDF
 
 		$this->setFont('Arial', '', 10);
 		$this->setX(45);
-		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219-8. Local 8 2DO Piso'),0,0,'L');
+		$this->Cell(60,0,utf8_decode('Fco. I. Madero #1219. Local 8 2DO Piso'),0,0,'L');
 		$this->setX(125);
 		$this->Cell(85,0,utf8_decode($_SESSION['lineauno']),0,0,'L');
 		$this->Ln(5);
@@ -194,18 +200,23 @@ foreach($lista as $row){
 			case "Litros":
 			$unidad = "LT";
 			$unidad_producto = 2;
+			$tipo = 2;
 			break;
 			case "Ton_Metrica":
 			$unidad = "Ton. Met.";
 			$unidad_producto = 2;
+			$tipo = 1;
 			break;
+
 			case "Galones":
-			$unidad = "GAL";
+			$unidad = "LT";
 			$unidad_producto = 1;
+			$tipo = 2;
 			break;
 			case "Ton_Corta":
-			$unidad = "Ton. Cor.";
+			$unidad = "Ton. Met.";
 			$unidad_producto = 1;
+			$tipo = 1;
 			break;
 		}
 		
@@ -233,7 +244,7 @@ foreach($lista as $row){
 				}
 			}
 		}
-		if($tipo_cliente == 2 || $tipo_cliente == 4){
+		if($tipo_cliente == 2||$tipo_cliente == 4){
 			$cotizaciones->cliente = $_SESSION['rfc'];
 			$cotizaciones->producto = $codigo_producto;
 			$result = $cotizaciones->consultarPrecios();
@@ -280,15 +291,27 @@ foreach($lista as $row){
 			break;
 		}
 
+		if($tipo == 1){
+			$cantidad_metrica = $qty * 0.907;	
+			$cambio = 0.907;
+		}
+		else{
+			if($tipo == 2){
+				$cantidad_metrica = $qty * 3.785;
+				$cambio = 3.785;
+			}
+		}
 
-		$unitario = number_format($preciou,2, '.', ',');
+		$precioum = $preciou / $cambio;
+
+		$unitario = number_format($precioum,2, '.', ',');
 		$total = number_format($preciot,2, '.', ',');
 		$pdf->SetFont('Arial','',10);
 		$pdf->SetX(10);
 		$pdf->SetFillColor(255,255,255);
 		$pdf->Cell(50,7,"  ".utf8_decode($nombre_producto),0,0,'L',1);
 		$pdf->Cell(25,7,"  ".$presentacion,0,0,'L',1);
-		$pdf->Cell(21,7,$qty,0,0,'C',1);
+		$pdf->Cell(21,7,number_format($cantidad_metrica,2,'.',','),0,0,'C',1);
 		$pdf->Cell(20,7,$unidad,0,0,'C',1);
 		$pdf->Cell(20,7,"$ ".$unitario."  ",0,0,'R',1);
 		$pdf->Cell(28,7,"$ ".$total."  ",0,0,'R',1);

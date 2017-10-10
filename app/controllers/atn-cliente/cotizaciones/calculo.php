@@ -85,7 +85,7 @@ if($_POST['cliente']!="null"){
 
 				}
 				else{
-					if($tipo_cliente == 2){
+					if($tipo_cliente == 2 || $tipo_cliente == 4){
 						$cotizaciones->producto = $recProductos[$i];
 						$cotizaciones->cliente = $_POST['cliente'];
 						$precioEspe = $cotizaciones->consultarPrecios();

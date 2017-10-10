@@ -395,7 +395,7 @@ foreach($consultarProductos as $row){
     $tipo_cliente = $row['tipoCliente'];
     $rfc = $row['rfcCliente'];
 
-    if($tipo_cliente == 2){
+    if($tipo_cliente == 2 || $tipo_cliente == 4){
       $cotizaciones->producto=$producto;
       $cotizaciones->cliente = $rfc;
       $result_clientes = $cotizaciones->consultarPrecios();
